@@ -462,7 +462,7 @@ function Scene({
 
   // Auto-rotate: stops on interaction, resumes after 2.2s idle
   const [autoRotate, setAutoRotate] = useState(true);
-  const idleTimeout = useRef<ReturnType<typeof setTimeout>>();
+  const idleTimeout = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   const handleOrbitStart = useCallback(() => {
     setAutoRotate(false);
@@ -527,23 +527,63 @@ function Scene({
         onEnd={handleOrbitEnd}
       />
 
-      {/* Postprocessing */}
-      <EffectComposer>
-        <Bloom
-          mipmapBlur
-          intensity={bloomIntensity}
-          luminanceThreshold={bloomThreshold}
-          luminanceSmoothing={0.025}
-          radius={bloomRadius}
-        />
-        <Vignette
-          darkness={vignetteAmount}
-          offset={0.1}
-          blendFunction={BlendFunction.NORMAL}
-        />
-        <ChromaticAberration offset={chromaOffset} />
-      </EffectComposer>
+      {/* Postprocessing — deferred by one frame so WebGL context is ready */}
+      <DeferredEffects
+        bloomIntensity={bloomIntensity}
+        bloomThreshold={bloomThreshold}
+        bloomRadius={bloomRadius}
+        vignetteAmount={vignetteAmount}
+        chromaOffset={chromaOffset}
+      />
     </>
+  );
+}
+
+// ── DeferredEffects ──────────────────────────────────────────
+// Waits until the R3F render loop has ticked at least once before
+// mounting EffectComposer. This guarantees the WebGL context is
+// fully initialized (getContextAttributes() returns non-null).
+function DeferredEffects({
+  bloomIntensity,
+  bloomThreshold,
+  bloomRadius,
+  vignetteAmount,
+  chromaOffset,
+}: {
+  bloomIntensity: number;
+  bloomThreshold: number;
+  bloomRadius: number;
+  vignetteAmount: number;
+  chromaOffset: THREE.Vector2;
+}) {
+  const [ready, setReady] = useState(false);
+  const triggered = useRef(false);
+
+  useFrame(() => {
+    if (!triggered.current) {
+      triggered.current = true;
+      setReady(true);
+    }
+  });
+
+  if (!ready) return null;
+
+  return (
+    <EffectComposer>
+      <Bloom
+        mipmapBlur
+        intensity={bloomIntensity}
+        luminanceThreshold={bloomThreshold}
+        luminanceSmoothing={0.025}
+        radius={bloomRadius}
+      />
+      <Vignette
+        darkness={vignetteAmount}
+        offset={0.1}
+        blendFunction={BlendFunction.NORMAL}
+      />
+      <ChromaticAberration offset={chromaOffset} />
+    </EffectComposer>
   );
 }
 

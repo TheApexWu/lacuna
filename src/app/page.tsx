@@ -3,6 +3,8 @@
 import dynamic from "next/dynamic";
 import { useState, useCallback } from "react";
 import ConceptCard from "../components/ConceptCard";
+import ButterflyChart from "../components/ButterflyChart";
+import ConceptNetworkGraph from "../components/ConceptNetworkGraph";
 import { CLUSTER_HEX } from "../data/versailles";
 
 // DO NOT use SSR for Three.js
@@ -26,6 +28,8 @@ export default function Home() {
   const [selectedConcept, setSelectedConcept] = useState<string | null>(null);
   const [subtitle, setSubtitle] = useState<string | null>(null);
   const [hasFlipped, setHasFlipped] = useState(false);
+  const [showButterfly, setShowButterfly] = useState(false);
+  const [showNetwork, setShowNetwork] = useState(false);
 
   const handleLanguageSwitch = useCallback(() => {
     const next = language === "en" ? "de" : "en";
@@ -88,6 +92,28 @@ export default function Home() {
         />
       )}
 
+      {/* Butterfly divergence chart */}
+      {showButterfly && (
+        <ButterflyChart
+          language={language}
+          showGhosts={showGhosts}
+          selectedConcept={selectedConcept}
+          onConceptClick={handleConceptClick}
+          onClose={() => setShowButterfly(false)}
+        />
+      )}
+
+      {/* Concept network graph */}
+      {showNetwork && (
+        <ConceptNetworkGraph
+          language={language}
+          showGhosts={showGhosts}
+          selectedConcept={selectedConcept}
+          onConceptClick={handleConceptClick}
+          onClose={() => setShowNetwork(false)}
+        />
+      )}
+
       {/* 3D terrain (fullscreen) */}
       <TopologyTerrain
         language={language}
@@ -123,6 +149,34 @@ export default function Home() {
             }}
           >
             {showGhosts ? "HIDE LACUNAE" : "REVEAL LACUNAE"}
+          </button>
+
+          <button
+            onClick={() => setShowButterfly((b) => !b)}
+            className="px-4 py-2 text-xs tracking-wider rounded border transition-all"
+            style={{
+              borderColor: showButterfly ? "#f59e0b" : "#262626",
+              color: showButterfly ? "#e5e5e5" : "#737373",
+              background: showButterfly
+                ? "rgba(245, 158, 11, 0.15)"
+                : "rgba(10, 10, 10, 0.8)",
+            }}
+          >
+            {showButterfly ? "HIDE DIVERGENCE" : "DIVERGENCE"}
+          </button>
+
+          <button
+            onClick={() => setShowNetwork((n) => !n)}
+            className="px-4 py-2 text-xs tracking-wider rounded border transition-all"
+            style={{
+              borderColor: showNetwork ? "#f59e0b" : "#262626",
+              color: showNetwork ? "#e5e5e5" : "#737373",
+              background: showNetwork
+                ? "rgba(245, 158, 11, 0.15)"
+                : "rgba(10, 10, 10, 0.8)",
+            }}
+          >
+            {showNetwork ? "HIDE NETWORK" : "NETWORK"}
           </button>
         </div>
 
