@@ -462,7 +462,7 @@ function Scene({
 
   // Auto-rotate: stops on interaction, resumes after 2.2s idle
   const [autoRotate, setAutoRotate] = useState(true);
-  const idleTimeout = useRef<ReturnType<typeof setTimeout>>();
+  const idleTimeout = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   const handleOrbitStart = useCallback(() => {
     setAutoRotate(false);
