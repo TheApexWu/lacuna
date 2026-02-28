@@ -1,65 +1,144 @@
-import Image from "next/image";
+"use client";
+
+import dynamic from "next/dynamic";
+import { useState, useCallback } from "react";
+import ConceptCard from "../components/ConceptCard";
+import { CLUSTER_HEX } from "../data/versailles";
+
+// DO NOT use SSR for Three.js
+const TopologyTerrain = dynamic(
+  () => import("../components/TopologyTerrain"),
+  { ssr: false }
+);
+
+const LEGEND = [
+  { cluster: "core", label: "Core" },
+  { cluster: "justice", label: "Justice" },
+  { cluster: "victory", label: "Victory" },
+  { cluster: "humiliation", label: "Humiliation" },
+  { cluster: "ghost-de", label: "Ghost (DE)" },
+  { cluster: "ghost-en", label: "Ghost (EN)" },
+];
 
 export default function Home() {
+  const [language, setLanguage] = useState("en");
+  const [showGhosts, setShowGhosts] = useState(false);
+  const [selectedConcept, setSelectedConcept] = useState<string | null>(null);
+  const [subtitle, setSubtitle] = useState<string | null>(null);
+  const [hasFlipped, setHasFlipped] = useState(false);
+
+  const handleLanguageSwitch = useCallback(() => {
+    const next = language === "en" ? "de" : "en";
+    setLanguage(next);
+
+    if (!hasFlipped && next === "de") {
+      setHasFlipped(true);
+      setTimeout(() => {
+        setSubtitle("This topology gap started a world war");
+      }, 800);
+      setTimeout(() => {
+        setSubtitle(null);
+      }, 3200);
+    }
+  }, [language, hasFlipped]);
+
+  const handleConceptClick = useCallback((id: string) => {
+    setSelectedConcept(id);
+  }, []);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="relative w-screen h-screen overflow-hidden bg-[#0a0a0a]">
+      {/* Header */}
+      <header className="absolute top-0 left-0 z-40 p-6">
+        <h1 className="text-2xl font-bold tracking-widest text-[#e5e5e5]">
+          LACUNA
+        </h1>
+        <p className="text-xs text-[#737373] mt-1 tracking-wide">
+          Conceptual Topology Mapper
+        </p>
+        <div className="flex items-center gap-2 mt-2">
+          <span className="text-xs text-[#737373]">viewing</span>
+          <span
+            className="text-xs font-bold tracking-wider"
+            style={{
+              color: language === "en" ? "#3b82f6" : "#ef4444",
+            }}
+          >
+            {language === "en" ? "ENGLISH" : "DEUTSCH"}
+          </span>
+          <span className="text-xs text-[#737373]">topology</span>
+        </div>
+      </header>
+
+      {/* Subtitle flash */}
+      {subtitle && (
+        <div className="absolute top-24 left-0 right-0 z-40 text-center">
+          <p className="text-sm text-[#f59e0b] tracking-wide animate-pulse">
+            {subtitle}
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      )}
+
+      {/* Concept card */}
+      {selectedConcept && (
+        <ConceptCard
+          conceptId={selectedConcept}
+          language={language}
+          onClose={() => setSelectedConcept(null)}
+        />
+      )}
+
+      {/* 3D terrain (fullscreen) */}
+      <TopologyTerrain
+        language={language}
+        showGhosts={showGhosts}
+        onConceptClick={handleConceptClick}
+      />
+
+      {/* Bottom control bar */}
+      <div className="absolute bottom-0 left-0 right-0 z-40 p-4 flex items-center justify-between">
+        {/* Left: language switch + ghost toggle */}
+        <div className="flex items-center gap-3">
+          <button
+            onClick={handleLanguageSwitch}
+            className="px-4 py-2 text-xs font-bold tracking-wider rounded border transition-all"
+            style={{
+              borderColor: language === "en" ? "#3b82f6" : "#ef4444",
+              color: language === "en" ? "#3b82f6" : "#ef4444",
+              background: "rgba(10, 10, 10, 0.8)",
+            }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            {language === "en" ? "SWITCH TO DE" : "SWITCH TO EN"}
+          </button>
+
+          <button
+            onClick={() => setShowGhosts((g) => !g)}
+            className="px-4 py-2 text-xs tracking-wider rounded border transition-all"
+            style={{
+              borderColor: showGhosts ? "#78716c" : "#262626",
+              color: showGhosts ? "#e5e5e5" : "#737373",
+              background: showGhosts
+                ? "rgba(120, 113, 108, 0.15)"
+                : "rgba(10, 10, 10, 0.8)",
+            }}
           >
-            Documentation
-          </a>
+            {showGhosts ? "HIDE LACUNAE" : "REVEAL LACUNAE"}
+          </button>
         </div>
-      </main>
+
+        {/* Right: color legend */}
+        <div className="flex items-center gap-4 bg-[#0a0a0a]/80 px-4 py-2 rounded">
+          {LEGEND.map((item) => (
+            <div key={item.cluster} className="flex items-center gap-1.5">
+              <span
+                className="w-2 h-2 rounded-full"
+                style={{ background: CLUSTER_HEX[item.cluster] || "#78716c" }}
+              />
+              <span className="text-[10px] text-[#737373]">{item.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
