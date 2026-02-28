@@ -649,6 +649,7 @@ export default function TopologyTerrain({
     <CanvasErrorBoundary onRetry={() => setCanvasKey((k) => k + 1)}>
       <Canvas
         key={canvasKey}
+        gl={{ alpha: false, antialias: true }}
         camera={{ fov: 50, near: 0.1, far: 500 }}
         onCreated={({ gl }) => {
           gl.setClearColor(new THREE.Color("#050508"));
