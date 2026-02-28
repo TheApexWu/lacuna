@@ -29,7 +29,6 @@ class EmbedResponse(BaseModel):
     position: List[float] = Field(..., description="[x, z] UMAP-projected position")
     weight: float = Field(..., description="Normalized L2 norm (semantic weight)")
     neighbors: List[Neighbor] = Field(..., description="Top-8 nearest neighbors")
-    interpretation: Optional[str] = Field(None, description="LLM-generated semantic interpretation")
     status: str = Field(default="live", description="Service status")
 
 

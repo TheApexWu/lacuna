@@ -10,7 +10,6 @@ from .models import EmbedRequest, EmbedResponse, HealthResponse
 from .embeddings import EmbeddingService
 from .umap_projection import UMAPProjector
 from .neighbors import NeighborSearch
-from .interpretation import InterpretationService
 
 # Configure logging
 logging.basicConfig(
@@ -23,13 +22,12 @@ logger = logging.getLogger(__name__)
 embedding_service = None
 umap_projector = None
 neighbor_search = None
-interpretation_service = None
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Startup and shutdown events."""
-    global embedding_service, umap_projector, neighbor_search, interpretation_service
+    global embedding_service, umap_projector, neighbor_search
 
     # Startup
     logger.info("Starting LACUNA embedding service...")
@@ -44,9 +42,6 @@ async def lifespan(app: FastAPI):
 
         logger.info("Loading neighbor search...")
         neighbor_search = NeighborSearch()
-
-        logger.info("Initializing interpretation service...")
-        interpretation_service = InterpretationService()
 
         logger.info("All services loaded successfully!")
 
@@ -63,7 +58,7 @@ async def lifespan(app: FastAPI):
 # Create FastAPI app
 app = FastAPI(
     title="LACUNA Embedding Service",
-    description="BGE-M3 embeddings with UMAP projection and semantic interpretation",
+    description="BGE-M3 embeddings with UMAP projection",
     version="1.0.0",
     lifespan=lifespan
 )
@@ -109,7 +104,7 @@ async def embed_concept(request: EmbedRequest):
         request: EmbedRequest with concept, language, and definition
 
     Returns:
-        EmbedResponse with embedding, position, weight, neighbors, and interpretation
+        EmbedResponse with embedding, position, weight, neighbors
     """
     # Validate services are loaded
     if not all([embedding_service, umap_projector, neighbor_search]):
@@ -156,20 +151,6 @@ async def embed_concept(request: EmbedRequest):
         logger.info("Finding semantic neighbors")
         neighbors = neighbor_search.find_neighbors(embedding, request.language)
 
-        # Step 5: Generate interpretation (optional)
-        interpretation = None
-        if interpretation_service and interpretation_service.is_available():
-            logger.info("Generating interpretation")
-            interpretation = interpretation_service.generate_interpretation(
-                concept=request.concept,
-                definition=request.definition,
-                language=request.language,
-                position=(x, z),
-                neighbors=neighbors
-            )
-        else:
-            logger.info("Interpretation service not available")
-
         # Build response
         response = EmbedResponse(
             concept=request.concept,
@@ -178,7 +159,6 @@ async def embed_concept(request: EmbedRequest):
             position=position,
             weight=weight,
             neighbors=neighbors,
-            interpretation=interpretation,
             status="live"
         )
 
