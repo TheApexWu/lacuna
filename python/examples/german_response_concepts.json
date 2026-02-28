@@ -1,0 +1,642 @@
+[
+  {
+    "id": "diktat-as-imposed-authority",
+    "labels": {
+      "en": "dictated peace",
+      "de": "Diktat"
+    },
+    "definitions": {
+      "en": "A peace settlement imposed unilaterally by the victors without negotiation, denying the defeated any agency",
+      "de": "Ein einseitig von den Siegern aufgezwungener Friedensvertrag ohne Verhandlungsmöglichkeit für den Besiegten"
+    },
+    "cluster": "humiliation",
+    "position": {
+      "en": [
+        20.087383270263672,
+        -5.634244918823242
+      ],
+      "de": [
+        -10.106258392333984,
+        6.039685249328613
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "diktat-as-violated-expectation",
+    "labels": {
+      "en": "betrayal",
+      "de": "Vertrauensbruch"
+    },
+    "definitions": {
+      "en": "The violation of Germany's expectation of negotiations based on Wilson's Fourteen Points, seen as a breach of trust",
+      "de": "Der Bruch der deutschen Erwartung auf Verhandlungen basierend auf Wilsons Vierzehn Punkten, als Vertrauensmissbrauch wahrgenommen"
+    },
+    "cluster": "justice",
+    "position": {
+      "en": [
+        18.19786834716797,
+        -7.361670970916748
+      ],
+      "de": [
+        -10.986823081970215,
+        6.1990966796875
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "schandfrieden-as-shame",
+    "labels": {
+      "en": "shameful peace",
+      "de": "Schandfrieden"
+    },
+    "definitions": {
+      "en": "A peace treaty perceived as a national disgrace, marking the humiliation of the defeated nation",
+      "de": "Ein Friedensvertrag, der als nationale Schande empfunden wird und die Demütigung der besiegten Nation besiegelt"
+    },
+    "cluster": "humiliation",
+    "position": {
+      "en": [
+        18.83604621887207,
+        -6.913796901702881
+      ],
+      "de": [
+        -10.597565650939941,
+        5.801527500152588
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "schandfrieden-as-stigma",
+    "labels": {
+      "en": "stigma",
+      "de": "Stigma"
+    },
+    "definitions": {
+      "en": "The lasting mark of dishonor attached to those who accepted the treaty, tainting the Weimar Republic",
+      "de": "Das dauerhafte Makel der Schande, das den Unterzeichnern des Vertrags anhaftete und die Weimarer Republik belastete"
+    },
+    "cluster": "humiliation",
+    "position": {
+      "en": [
+        18.43609619140625,
+        -6.553840160369873
+      ],
+      "de": [
+        -9.915884017944336,
+        5.356419086456299
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "revanchismus-as-restoration",
+    "labels": {
+      "en": "revisionism",
+      "de": "Revanchismus"
+    },
+    "definitions": {
+      "en": "The political and emotional drive to revise the treaty and restore national territory and honor",
+      "de": "Der politische und emotionale Drang, den Vertrag zu revidieren und nationales Territorium sowie Ehre wiederherzustellen"
+    },
+    "cluster": "new",
+    "position": {
+      "en": [
+        19.332448959350586,
+        -6.564001083374023
+      ],
+      "de": [
+        -12.201665878295898,
+        6.031287670135498
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "revanchismus-as-revenge",
+    "labels": {
+      "en": "revenge",
+      "de": "Rache"
+    },
+    "definitions": {
+      "en": "The desire for vengeance against the victors for the perceived injustices of the treaty",
+      "de": "Das Verlangen nach Vergeltung gegenüber den Siegern für die als ungerecht empfundenen Vertragsbedingungen"
+    },
+    "cluster": "justice",
+    "position": {
+      "en": [
+        19.46380043029785,
+        -5.953608512878418
+      ],
+      "de": [
+        -12.014887809753418,
+        6.79653787612915
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "schuld-as-guilt",
+    "labels": {
+      "en": "guilt",
+      "de": "Schuld"
+    },
+    "definitions": {
+      "en": "The moral responsibility for causing the war and its consequences, a contested frame in German discourse",
+      "de": "Die moralische Verantwortung für die Verursachung des Krieges und seiner Folgen, ein umstrittener Rahmen im deutschen Diskurs"
+    },
+    "cluster": "justice",
+    "position": {
+      "en": [
+        18.126907348632812,
+        -8.649219512939453
+      ],
+      "de": [
+        -11.741787910461426,
+        8.029643058776855
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "schuld-as-debt",
+    "labels": {
+      "en": "debt",
+      "de": "Schuld"
+    },
+    "definitions": {
+      "en": "The financial obligation imposed by the treaty, framing reparations as a material burden",
+      "de": "Die finanzielle Verpflichtung, die durch den Vertrag auferlegt wurde, als materielle Last der Reparationen"
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        17.76219367980957,
+        -6.745972633361816
+      ],
+      "de": [
+        -12.573480606079102,
+        6.904070854187012
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "suehne-as-atonement",
+    "labels": {
+      "en": "atonement",
+      "de": "Sühne"
+    },
+    "definitions": {
+      "en": "The act of making amends for wrongdoing, often tied to moral or religious dimensions of responsibility",
+      "de": "Die Wiedergutmachung für begangenes Unrecht, oft verbunden mit moralischen oder religiösen Dimensionen der Verantwortung"
+    },
+    "cluster": "justice",
+    "position": {
+      "en": [
+        20.519794464111328,
+        -7.08450174331665
+      ],
+      "de": [
+        -12.55378532409668,
+        7.640544891357422
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "suehne-as-penance",
+    "labels": {
+      "en": "penance",
+      "de": "Buße"
+    },
+    "definitions": {
+      "en": "The punitive aspect of atonement, where suffering is seen as necessary to cleanse guilt",
+      "de": "Der strafende Aspekt der Sühne, bei dem Leiden als notwendig erachtet wird, um Schuld zu tilgen"
+    },
+    "cluster": "justice",
+    "position": {
+      "en": [
+        19.939828872680664,
+        -6.998185157775879
+      ],
+      "de": [
+        -12.101102828979492,
+        7.526138782501221
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "territorial-loss-as-amputation",
+    "labels": {
+      "en": "amputation",
+      "de": "Amputation"
+    },
+    "definitions": {
+      "en": "The loss of territory framed as a violent severing of national body parts, evoking trauma and mutilation",
+      "de": "Der Gebietsverlust als gewaltsame Abtrennung nationaler Körperteile, die Trauma und Verstümmelung evoziert"
+    },
+    "cluster": "humiliation",
+    "position": {
+      "en": [
+        19.545459747314453,
+        -7.419276714324951
+      ],
+      "de": [
+        -11.971844673156738,
+        5.467695713043213
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "territorial-loss-as-violated-self-determination",
+    "labels": {
+      "en": "violated self-determination",
+      "de": "verletzte Selbstbestimmung"
+    },
+    "definitions": {
+      "en": "The denial of the principle of self-determination for Germans in lost territories, seen as Allied hypocrisy",
+      "de": "Die Verweigerung des Selbstbestimmungsrechts für Deutsche in abgetretenen Gebieten, als alliierte Heuchelei wahrgenommen"
+    },
+    "cluster": "justice",
+    "position": {
+      "en": [
+        19.025705337524414,
+        -7.74322509765625
+      ],
+      "de": [
+        -11.391621589660645,
+        5.8966450691223145
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "military-limitations-as-emasculation",
+    "labels": {
+      "en": "emasculation",
+      "de": "Entmannung"
+    },
+    "definitions": {
+      "en": "The reduction of military capacity framed as a symbolic castration, stripping Germany of its power and honor",
+      "de": "Die militärische Beschränkung als symbolische Entmannung, die Deutschland seiner Macht und Ehre beraubt"
+    },
+    "cluster": "humiliation",
+    "position": {
+      "en": [
+        19.288179397583008,
+        -8.196124076843262
+      ],
+      "de": [
+        -11.13829517364502,
+        5.29001522064209
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "military-limitations-as-vulnerability",
+    "labels": {
+      "en": "vulnerability",
+      "de": "Verwundbarkeit"
+    },
+    "definitions": {
+      "en": "The strategic weakness imposed by military restrictions, leaving Germany exposed to future threats",
+      "de": "Die strategische Schwäche durch militärische Beschränkungen, die Deutschland zukünftigen Bedrohungen aussetzt"
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        18.440349578857422,
+        -8.220625877380371
+      ],
+      "de": [
+        -10.778105735778809,
+        5.135176658630371
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "occupation-as-violation",
+    "labels": {
+      "en": "violation",
+      "de": "Verletzung"
+    },
+    "definitions": {
+      "en": "The presence of foreign troops on German soil framed as an assault on national sovereignty and dignity",
+      "de": "Die Anwesenheit ausländischer Truppen auf deutschem Boden als Angriff auf nationale Souveränität und Würde"
+    },
+    "cluster": "humiliation",
+    "position": {
+      "en": [
+        18.904348373413086,
+        -8.717131614685059
+      ],
+      "de": [
+        -10.623696327209473,
+        6.861081600189209
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "occupation-as-control",
+    "labels": {
+      "en": "control",
+      "de": "Kontrolle"
+    },
+    "definitions": {
+      "en": "The practical exercise of power by the victors to enforce treaty compliance and monitor Germany",
+      "de": "Die praktische Ausübung von Macht durch die Sieger, um die Vertragseinhaltung zu erzwingen und Deutschland zu überwachen"
+    },
+    "cluster": "victory",
+    "position": {
+      "en": [
+        18.712711334228516,
+        -5.771393775939941
+      ],
+      "de": [
+        -11.469891548156738,
+        4.830878734588623
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "defiance-as-resistance",
+    "labels": {
+      "en": "resistance",
+      "de": "Widerstand"
+    },
+    "definitions": {
+      "en": "The act of refusing to comply with the victors' demands as a form of symbolic protest against injustice",
+      "de": "Die Weigerung, den Forderungen der Sieger nachzukommen, als symbolischer Protest gegen Ungerechtigkeit"
+    },
+    "cluster": "new",
+    "position": {
+      "en": [
+        20.41412925720215,
+        -5.986922740936279
+      ],
+      "de": [
+        -11.473274230957031,
+        6.687062740325928
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "defiance-as-pride",
+    "labels": {
+      "en": "pride",
+      "de": "Stolz"
+    },
+    "definitions": {
+      "en": "The preservation of national dignity through acts of non-compliance, asserting moral superiority",
+      "de": "Die Bewahrung nationaler Würde durch Akte der Nichtbefolgung, die moralische Überlegenheit behaupten"
+    },
+    "cluster": "new",
+    "position": {
+      "en": [
+        20.722719192504883,
+        -6.43696928024292
+      ],
+      "de": [
+        -11.117067337036133,
+        7.384389877319336
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "fetters-as-enslavement",
+    "labels": {
+      "en": "enslavement",
+      "de": "Versklavung"
+    },
+    "definitions": {
+      "en": "The treaty terms framed as chains that reduce Germany to a state of servitude and loss of freedom",
+      "de": "Die Vertragsbedingungen als Fesseln, die Deutschland in einen Zustand der Knechtschaft und Unfreiheit zwingen"
+    },
+    "cluster": "humiliation",
+    "position": {
+      "en": [
+        18.52979850769043,
+        -7.701950550079346
+      ],
+      "de": [
+        -10.693117141723633,
+        4.548067092895508
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "fetters-as-burden",
+    "labels": {
+      "en": "burden",
+      "de": "Last"
+    },
+    "definitions": {
+      "en": "The treaty obligations framed as an oppressive weight that Germany must bear, stifling its future",
+      "de": "Die Vertragsverpflichtungen als erdrückende Last, die Deutschlands Zukunft erstickt"
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        17.657751083374023,
+        -7.721041202545166
+      ],
+      "de": [
+        -10.229042053222656,
+        4.7142510414123535
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  }
+]
