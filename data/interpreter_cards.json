@@ -1,0 +1,183 @@
+{
+  "meta": {
+    "document": "LACUNA Interpreter Cards",
+    "description": "Pre-computed cultural and structural explanations for the 6 hero lacuna pairs. Used as fallback data for the Interpreter agent and as ground truth for output validation.",
+    "domain": "Treaty of Versailles (1919)",
+    "languages": ["en", "de", "fr"],
+    "embedding_model": "BAAI/bge-m3",
+    "threshold_delta": 0.10,
+    "prepared_by": "Octave",
+    "date": "2026-02-28"
+  },
+  "lacunae": [
+    {
+      "id": "betrayal_guilt",
+      "pair": ["betrayal", "guilt"],
+      "cluster_a": "humiliation",
+      "cluster_b": "justice",
+      "distances": {
+        "en": 0.3560,
+        "de": 0.5394,
+        "fr": null
+      },
+      "delta": 0.1834,
+      "verdict": "EN merges them. DE separates them sharply. FR sits in between.",
+      "structural_reading": {
+        "en": "In English, guilt and betrayal occupy adjacent moral space. Someone who is guilty implicitly betrays a norm — the two words share a common ethical field. Short distance: 0.356.",
+        "de": "In German, Schuld (legal/moral fault) and Verrat (political/military treason) belong to radically separate spheres. Kriegsschuld is a cold juridical imputation; Verrat is an emotional accusation of personal treachery. Long distance: 0.539.",
+        "fr": "In French, trahison and culpabilité are distinguished, but less radically than in German. France reads betrayal as a political grievance — Allies refusing promised security guarantees — rather than a moral failing. Intermediate position."
+      },
+      "why_it_matters": "This is the keystone lacuna. Germany could not accept the Kriegsschuld (Article 231) because in its conceptual structure, legal guilt and betrayal are two separate universes. Signing Article 231 forced the two concepts together in a way that was structurally incoherent in German. In English, it is a single sentence. In German, it is a contradiction.",
+      "historical_anchors": [
+        "Article 231 of the Treaty of Versailles (War Guilt Clause)",
+        "Kriegsschuld debate, 1919-1933",
+        "German domestic reaction to Versailles, June 1919"
+      ],
+      "demo_lines": {
+        "en_de": "'Germany's guilt' — two words in English. In German, that sentence forces apart two concepts that were never supposed to touch.",
+        "fr": "In French, betrayal is a political grievance aimed at the Allies who broke their promises — not a moral verdict on Germany. Three readings of the same clause."
+      }
+    },
+    {
+      "id": "obligation_sanctions",
+      "pair": ["obligation", "sanctions"],
+      "cluster_a": "justice",
+      "cluster_b": "justice",
+      "distances": {
+        "en": 0.3252,
+        "de": 0.4907,
+        "fr": null
+      },
+      "delta": 0.1655,
+      "verdict": "EN: obligation and sanctions are near-synonyms. DE: two fundamentally distinct concepts.",
+      "structural_reading": {
+        "en": "In English, obligation and sanctions share semantic space — both concern duties that must be fulfilled, with consequences if not. The logical chain 'obligation → sanctions if breached' feels entirely natural. Distance: 0.325.",
+        "de": "In German, Verpflichtung (voluntary commitment, contract) and Sanktionen (externally imposed punishment) are conceptually opposed. One implies consent; the other implies coercion. The moral difference between them is foundational. Distance: 0.490.",
+        "fr": "French distinguishes obligation (moral and juridical engagement) from sanctions (coercive measures), but France's statist tradition more readily accepts that obligations can be imposed. Slightly closer than German, but still distinct."
+      },
+      "why_it_matters": "For Anglo-American negotiators, sanctions logically followed obligations — if you do not meet your commitments, consequences apply, full stop. For Germany, the Sanktionen were never the consequence of a Verpflichtung freely entered into — they were imposed by force, without consent. Two incompatible moral grammars sat at the same negotiating table.",
+      "historical_anchors": [
+        "Reparations Commission enforcement mechanisms, 1921",
+        "Ruhr occupation by France and Belgium, 1923",
+        "German passive resistance and hyperinflation, 1923"
+      ],
+      "demo_lines": {
+        "en_de": "The Allies said: 'Meet your obligations or face sanctions.' Germany heard: 'Accept coercion disguised as contract.'",
+        "fr": "France read obligations and sanctions as a legal continuum. Germany saw a categorical difference: one implies consent, the other only force."
+      }
+    },
+    {
+      "id": "revenge_triumph",
+      "pair": ["revenge", "triumph"],
+      "cluster_a": "humiliation",
+      "cluster_b": "victory",
+      "distances": {
+        "en": 0.4390,
+        "de": 0.6045,
+        "fr": null
+      },
+      "delta": 0.1655,
+      "verdict": "EN: moderately distinct. DE: polar opposites. FR: closely linked — 'la revanche' IS a triumph.",
+      "structural_reading": {
+        "en": "In English, revenge and triumph are distinct but not opposed — you can triumph without taking revenge, but both evoke victory over an adversary. Distance: 0.439.",
+        "de": "In German, Rache (primitive personal vengeance) and Triumph (noble, legitimate victory) are at opposite ends of the moral spectrum. Rache is low and dishonorable. Triumph implies moral superiority. Accusing someone of Rache delegitimizes their victory entirely. Distance: 0.604.",
+        "fr": "In French, 'la revanche' of 1919 is culturally positive — it is the term France proudly used to describe the 1918 victory after the humiliation of 1870. Revanche and triomphe overlap in French historical narrative. Short distance."
+      },
+      "why_it_matters": "What France proudly calls 'la revanche' — a positive, legitimate, 50-year-awaited term — Germans and Anglo-Saxons read as 'Rache': primitive vengeance that disqualifies the victory morally. The same national emotion receives three completely different moral verdicts depending on the language.",
+      "historical_anchors": [
+        "French revanchism after the Franco-Prussian War, 1871",
+        "Return of Alsace-Lorraine to France, 1918",
+        "Clemenceau's public rhetoric on victory, 1919"
+      ],
+      "demo_lines": {
+        "en_de": "France called 1919 'la revanche' — a word of pride. Germany heard 'Rache' — primitive vengeance. The same feeling, three completely different moral verdicts.",
+        "fr": "The word 'revanche' in French is a source of national pride, 50 years in the making. Translated into German Rache, it becomes primitive and illegitimate. The topology makes this visible."
+      }
+    },
+    {
+      "id": "debt_triumph",
+      "pair": ["debt", "triumph"],
+      "cluster_a": "justice",
+      "cluster_b": "victory",
+      "distances": {
+        "en": 0.4331,
+        "de": 0.5976,
+        "fr": null
+      },
+      "delta": 0.1645,
+      "verdict": "EN: debt and triumph can coexist — victory creates a debt. DE: completely separate spheres.",
+      "structural_reading": {
+        "en": "In English, debt and triumph can occupy the same frame: victory creates a debt in the loser. The two concepts articulate naturally in post-war discourse. Distance: 0.433.",
+        "de": "In German, Schuld (debt/moral fault) and Triumph (triumph) belong to incompatible registers. A legitimately triumphant nation does not need the loser's shame — imposing Schuld actually undermines the moral claim to Triumph. Distance: 0.597.",
+        "fr": "In French, war debt (financial reconstruction debt) is distinct from triumph but both fit within a coherent logic of national reparation and reconstruction. Intermediate position."
+      },
+      "why_it_matters": "For Anglo-American Allies, the equation was simple: victory creates a debt in the defeated. For Germany, Sieg (the adversary's victory) and Schuld (its own debt and fault) could not coexist in the same moral frame — accepting the Schuld meant validating the legitimacy of a defeat Germany never recognized.",
+      "historical_anchors": [
+        "London Schedule of Payments, 1921 (132 billion gold marks)",
+        "John Maynard Keynes, The Economic Consequences of the Peace, 1919",
+        "German default on reparations, 1922"
+      ],
+      "demo_lines": {
+        "en_de": "In English: 'You lost, you owe.' In German: 'Your victory does not create my debt — those are different worlds.'",
+        "fr": "In French, reconstruction debt and military triumph belong to the same national narrative. In German, they cannot logically coexist."
+      }
+    },
+    {
+      "id": "subjugation_triumph",
+      "pair": ["subjugation", "triumph"],
+      "cluster_a": "humiliation",
+      "cluster_b": "victory",
+      "distances": {
+        "en": 0.3686,
+        "de": 0.5298,
+        "fr": null
+      },
+      "delta": 0.1612,
+      "verdict": "EN: close — both evoke domination. DE: separate — subjugation disqualifies triumph.",
+      "structural_reading": {
+        "en": "In English, subjugation and triumph share semantic space around domination — both evoke the superiority of one actor over another. The distinction is one of degree, not kind. Distance: 0.368.",
+        "de": "In German, Unterwerfung (forced submission, humiliating) and Triumph (noble victory) are perceived as opposing registers. A genuine triumph does not require Unterwerfung — forced submission actually disqualifies the moral victory. Distance: 0.529.",
+        "fr": "In French, subjugation and triumph are also distinct — the French international law tradition distinguishes between legitimate conquest and raw domination. Position closer to German on this specific pair."
+      },
+      "why_it_matters": "The Rhineland occupation and demilitarization clauses were, for Anglo-American Allies, the logical consequence of triumph. For Germany, Unterwerfung and Triumph were incompatible: a nation that imposes forced submission holds no title to legitimate triumph. This is the structural core of the Diktat argument against the treaty.",
+      "historical_anchors": [
+        "Rhineland occupation, 1919-1930",
+        "German demilitarization clauses, Articles 159-213",
+        "Diktat rhetoric in German press, 1919"
+      ],
+      "demo_lines": {
+        "en_de": "The Allies saw occupation as the natural consequence of triumph. Germany saw it as proof the Allies had no legitimate victory — only force.",
+        "fr": "Occupying the Rhineland was, for France, a sign of legitimate triumph and a security guarantee. For Germany, it proved the victors had no moral authority — only military power."
+      }
+    },
+    {
+      "id": "reparations_betrayal",
+      "pair": ["reparations", "betrayal"],
+      "cluster_a": "core",
+      "cluster_b": "humiliation",
+      "distances": {
+        "en": 0.4773,
+        "de": 0.6055,
+        "fr": null
+      },
+      "delta": 0.1282,
+      "verdict": "FR lacuna: reparations and betrayal are structurally close in French — a cluster that does not exist in EN or DE.",
+      "structural_reading": {
+        "en": "In English, reparations and betrayal belong to distinct registers — reparations are a legal mechanism, betrayal a moral rupture. Distance: 0.477.",
+        "de": "In German, Reparationen and Verrat are in separate worlds. The Dolchstoß narrative of Verrat is internal and political; Reparationen are an external economic imposition. Distance: 0.605.",
+        "fr": "The most distinctly French lacuna: France links reparations to Allied betrayal because Clemenceau accepted concessions on reparations in exchange for American and British security guarantees — which were then withdrawn. Reparations and betrayal occupy the same emotional space in French historical memory."
+      },
+      "why_it_matters": "This cluster does not exist in EN or DE — it is a purely French structural signal. Clemenceau traded flexibility on reparations for promised security guarantees from Wilson and Lloyd George. When both reneged, reparations became for France a symbol of Allied betrayal as much as German punishment. This double charge — punish Germany AND compensate for Allied bad faith — is invisible in both the English and German topologies.",
+      "historical_anchors": [
+        "Wilson's refusal of the Franco-American security treaty, 1919",
+        "British withdrawal from Clemenceau's security guarantees",
+        "Clemenceau's memoirs on Allied betrayal, 1929",
+        "US Senate rejection of the League of Nations, 1919"
+      ],
+      "demo_lines": {
+        "en_de": "French reparations were not just about German guilt — they were compensation for Allied betrayal. That cluster does not exist in English or German.",
+        "fr": "For France, reparations carried a double burden: punish Germany AND compensate for the broken promises of allies who had traded security guarantees for French concessions."
+      }
+    }
+  ]
+}

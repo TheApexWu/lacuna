@@ -1,0 +1,379 @@
+{
+  "meta": {
+    "domain": "Treaty of Versailles (1919)",
+    "description": "Concepts related to the Treaty of Versailles and its aftermath. Definitions are one-sentence descriptions providing embedding context.",
+    "languages": ["en", "de"],
+    "source": "curated definitions for BGE-M3 embedding",
+    "validation": {
+      "date": "2026-02-28",
+      "model": "BAAI/bge-m3",
+      "finding": "EN compresses conceptual relationships; DE differentiates them. Systematic pattern: all top divergent pairs show DE distance > EN distance.",
+      "hero_pairs": [
+        {"pair": ["betrayal", "guilt"], "delta": 0.1834, "en": 0.3560, "de": 0.5394},
+        {"pair": ["obligation", "sanctions"], "delta": 0.1655, "en": 0.3252, "de": 0.4907},
+        {"pair": ["revenge", "triumph"], "delta": 0.1655, "en": 0.4390, "de": 0.6045},
+        {"pair": ["debt", "triumph"], "delta": 0.1645, "en": 0.4331, "de": 0.5976},
+        {"pair": ["subjugation", "triumph"], "delta": 0.1612, "en": 0.3686, "de": 0.5298},
+        {"pair": ["reparations", "betrayal"], "delta": 0.1282, "en": 0.4773, "de": 0.6055}
+      ]
+    }
+  },
+  "concepts": [
+    {
+      "id": "reparations",
+      "cluster": "core",
+      "definitions": {
+        "en": "Financial payments imposed on a defeated nation as compensation for war damages and losses",
+        "de": "Finanzielle Zahlungen, die einer besiegten Nation als Entschädigung für Kriegsschäden auferlegt werden"
+      }
+    },
+    {
+      "id": "justice",
+      "cluster": "justice",
+      "definitions": {
+        "en": "The principle that those who cause harm must be held accountable and make amends",
+        "de": "Das Prinzip, dass diejenigen, die Schaden verursachen, zur Rechenschaft gezogen werden müssen"
+      }
+    },
+    {
+      "id": "accountability",
+      "cluster": "justice",
+      "definitions": {
+        "en": "The obligation to accept responsibility for one's actions and their consequences",
+        "de": "Die Pflicht, Verantwortung für das eigene Handeln und dessen Folgen zu übernehmen"
+      }
+    },
+    {
+      "id": "punishment",
+      "cluster": "justice",
+      "definitions": {
+        "en": "A penalty imposed on a wrongdoer as retribution for harmful actions",
+        "de": "Eine Strafe, die einem Übeltäter als Vergeltung für schädliche Handlungen auferlegt wird"
+      }
+    },
+    {
+      "id": "debt",
+      "cluster": "justice",
+      "definitions": {
+        "en": "An obligation to repay what is owed, whether financial or moral",
+        "de": "Eine Verpflichtung zur Rückzahlung dessen, was geschuldet wird, ob finanziell oder moralisch"
+      }
+    },
+    {
+      "id": "obligation",
+      "cluster": "justice",
+      "weight": 0.9,
+      "hero": true,
+      "definitions": {
+        "en": "A binding duty or commitment that must be fulfilled",
+        "de": "Eine verbindliche Pflicht oder Verpflichtung, die erfüllt werden muss"
+      }
+    },
+    {
+      "id": "guilt",
+      "cluster": "justice",
+      "weight": 1.0,
+      "hero": true,
+      "definitions": {
+        "en": "The state of having committed a wrong or offense against others",
+        "de": "Der Zustand, ein Unrecht oder Vergehen gegen andere begangen zu haben"
+      }
+    },
+    {
+      "id": "restitution",
+      "cluster": "justice",
+      "definitions": {
+        "en": "The act of restoring something to its rightful owner or compensating for loss",
+        "de": "Die Handlung der Wiederherstellung oder Entschädigung für einen Verlust"
+      }
+    },
+    {
+      "id": "victory",
+      "cluster": "victory",
+      "definitions": {
+        "en": "The successful conclusion of a military conflict through defeating the enemy",
+        "de": "Der erfolgreiche Abschluss eines militärischen Konflikts durch Besiegung des Feindes"
+      }
+    },
+    {
+      "id": "peace",
+      "cluster": "victory",
+      "definitions": {
+        "en": "The cessation of armed conflict and establishment of stable relations between nations",
+        "de": "Die Beendigung bewaffneter Konflikte und Herstellung stabiler Beziehungen zwischen Nationen"
+      }
+    },
+    {
+      "id": "order",
+      "cluster": "victory",
+      "definitions": {
+        "en": "A stable arrangement of power and governance that prevents future conflict",
+        "de": "Eine stabile Ordnung von Macht und Regierung, die zukünftige Konflikte verhindert"
+      }
+    },
+    {
+      "id": "triumph",
+      "cluster": "victory",
+      "weight": 0.85,
+      "hero": true,
+      "definitions": {
+        "en": "A great achievement or success, especially in overcoming an adversary",
+        "de": "Ein großer Erfolg, besonders in der Überwindung eines Gegners"
+      }
+    },
+    {
+      "id": "sovereignty",
+      "cluster": "victory",
+      "definitions": {
+        "en": "The supreme authority of a state to govern itself without external interference",
+        "de": "Die höchste Autorität eines Staates, sich ohne äußere Einmischung selbst zu regieren"
+      }
+    },
+    {
+      "id": "humiliation",
+      "cluster": "humiliation",
+      "definitions": {
+        "en": "The act of causing someone to feel deeply ashamed or degraded",
+        "de": "Die Handlung, jemanden tief zu beschämen oder zu erniedrigen"
+      }
+    },
+    {
+      "id": "betrayal",
+      "cluster": "humiliation",
+      "weight": 1.0,
+      "hero": true,
+      "definitions": {
+        "en": "The violation of trust or allegiance by those who were supposed to be allies",
+        "de": "Der Vertrauensbruch durch diejenigen, die Verbündete hätten sein sollen"
+      }
+    },
+    {
+      "id": "injustice",
+      "cluster": "humiliation",
+      "definitions": {
+        "en": "An unfair or unjust act that violates principles of fairness and equity",
+        "de": "Eine unfaire Handlung, die Grundsätze der Gerechtigkeit und Gleichheit verletzt"
+      }
+    },
+    {
+      "id": "revenge",
+      "cluster": "humiliation",
+      "weight": 0.9,
+      "hero": true,
+      "definitions": {
+        "en": "Retaliation against those who have caused harm, seeking to inflict equivalent suffering",
+        "de": "Vergeltung gegen diejenigen, die Schaden verursacht haben, um gleichwertiges Leid zuzufügen"
+      }
+    },
+    {
+      "id": "resentment",
+      "cluster": "humiliation",
+      "definitions": {
+        "en": "Deep-seated anger and bitterness resulting from perceived unfair treatment",
+        "de": "Tief verwurzelter Zorn und Verbitterung aufgrund wahrgenommener ungerechter Behandlung"
+      }
+    },
+    {
+      "id": "subjugation",
+      "cluster": "humiliation",
+      "definitions": {
+        "en": "The forceful domination and control of a people or nation by another power",
+        "de": "Die gewaltsame Unterwerfung und Kontrolle eines Volkes oder einer Nation durch eine andere Macht"
+      }
+    },
+    {
+      "id": "dolchstoss",
+      "cluster": "ghost-de",
+      "definitions": {
+        "en": "The conspiracy theory that Germany's military was betrayed by civilian politicians who surrendered unnecessarily",
+        "de": "Die Dolchstoßlegende, dass Deutschlands Militär von zivilen Politikern verraten wurde, die unnötig kapitulierten"
+      }
+    },
+    {
+      "id": "schmach",
+      "cluster": "ghost-de",
+      "definitions": {
+        "en": "A deep national disgrace that stains collective honor and demands redress",
+        "de": "Eine tiefe nationale Schmach, die die kollektive Ehre befleckt und Wiedergutmachung verlangt"
+      }
+    },
+    {
+      "id": "diktat",
+      "cluster": "ghost-de",
+      "definitions": {
+        "en": "A dictated peace imposed without negotiation by the victorious powers",
+        "de": "Ein aufgezwungener Frieden, der von den Siegermächten ohne Verhandlung diktiert wurde"
+      }
+    },
+    {
+      "id": "kriegsschuld",
+      "cluster": "ghost-de",
+      "definitions": {
+        "en": "The assignment of sole war guilt to one nation as the legal basis for reparations",
+        "de": "Die Zuweisung der alleinigen Kriegsschuld an eine Nation als rechtliche Grundlage für Reparationen"
+      }
+    },
+    {
+      "id": "volkszorn",
+      "cluster": "ghost-de",
+      "definitions": {
+        "en": "The collective rage of a people against perceived national humiliation",
+        "de": "Der kollektive Zorn eines Volkes gegen empfundene nationale Demütigung"
+      }
+    },
+    {
+      "id": "magnanimity",
+      "cluster": "ghost-en",
+      "definitions": {
+        "en": "Generosity and nobility of spirit shown by the victor toward the defeated",
+        "de": "Großmut und Edelmut des Siegers gegenüber dem Besiegten"
+      }
+    },
+    {
+      "id": "civilizing",
+      "cluster": "ghost-en",
+      "definitions": {
+        "en": "The belief that advanced nations have a duty to bring progress and order to others",
+        "de": "Der Glaube, dass fortgeschrittene Nationen die Pflicht haben, anderen Fortschritt und Ordnung zu bringen"
+      }
+    },
+    {
+      "id": "mandate",
+      "cluster": "ghost-en",
+      "definitions": {
+        "en": "International authorization to govern a territory on behalf of the League of Nations",
+        "de": "Internationale Ermächtigung, ein Gebiet im Namen des Völkerbunds zu regieren"
+      }
+    },
+    {
+      "id": "armistice",
+      "cluster": "core",
+      "definitions": {
+        "en": "A formal agreement to cease fighting, ending active hostilities before a peace treaty",
+        "de": "Ein formelles Abkommen zur Einstellung der Kampfhandlungen vor einem Friedensvertrag"
+      }
+    },
+    {
+      "id": "selfdetermination",
+      "cluster": "victory",
+      "definitions": {
+        "en": "The right of peoples to determine their own political status and form of government",
+        "de": "Das Recht der Völker, ihren eigenen politischen Status und ihre Regierungsform zu bestimmen"
+      }
+    },
+    {
+      "id": "demilitarization",
+      "cluster": "justice",
+      "definitions": {
+        "en": "The forced reduction or elimination of a nation's military capability",
+        "de": "Die erzwungene Reduzierung oder Beseitigung der militärischen Fähigkeiten einer Nation"
+      }
+    },
+    {
+      "id": "occupation",
+      "cluster": "humiliation",
+      "definitions": {
+        "en": "The military control of a defeated nation's territory by foreign forces",
+        "de": "Die militärische Kontrolle des Territoriums einer besiegten Nation durch fremde Streitkräfte"
+      }
+    },
+    {
+      "id": "propaganda",
+      "cluster": "humiliation",
+      "definitions": {
+        "en": "The systematic dissemination of information to promote a political cause or damage an opponent",
+        "de": "Die systematische Verbreitung von Informationen zur Förderung einer politischen Sache oder Schädigung eines Gegners"
+      }
+    },
+    {
+      "id": "nationalism",
+      "cluster": "humiliation",
+      "definitions": {
+        "en": "Strong identification with one's nation, often including the belief in its superiority",
+        "de": "Starke Identifikation mit der eigenen Nation, oft einschließlich des Glaubens an deren Überlegenheit"
+      }
+    },
+    {
+      "id": "honor",
+      "cluster": "core",
+      "definitions": {
+        "en": "The reputation and moral standing of a nation in the eyes of the international community",
+        "de": "Der Ruf und die moralische Stellung einer Nation in den Augen der internationalen Gemeinschaft"
+      }
+    },
+    {
+      "id": "legitimacy",
+      "cluster": "victory",
+      "definitions": {
+        "en": "The rightful authority to exercise power, recognized by other nations",
+        "de": "Die rechtmäßige Autorität zur Ausübung von Macht, anerkannt von anderen Nationen"
+      }
+    },
+    {
+      "id": "treaty",
+      "cluster": "core",
+      "definitions": {
+        "en": "A formal agreement between nations establishing terms of peace and future relations",
+        "de": "Ein formelles Abkommen zwischen Nationen, das Friedensbedingungen und zukünftige Beziehungen festlegt"
+      }
+    },
+    {
+      "id": "sanctions",
+      "cluster": "justice",
+      "weight": 0.9,
+      "hero": true,
+      "definitions": {
+        "en": "Punitive measures imposed on a nation to enforce compliance with international demands",
+        "de": "Strafmaßnahmen gegen eine Nation zur Durchsetzung internationaler Forderungen"
+      }
+    },
+    {
+      "id": "concession",
+      "cluster": "justice",
+      "definitions": {
+        "en": "Territory or rights surrendered by a defeated nation as part of peace terms",
+        "de": "Gebiet oder Rechte, die von einer besiegten Nation als Teil der Friedensbedingungen abgetreten werden"
+      }
+    },
+    {
+      "id": "revanchism",
+      "cluster": "ghost-de",
+      "definitions": {
+        "en": "A political movement seeking to reverse territorial losses through future conflict",
+        "de": "Eine politische Bewegung, die territoriale Verluste durch zukünftige Konflikte rückgängig machen will"
+      }
+    },
+    {
+      "id": "starvation",
+      "cluster": "humiliation",
+      "definitions": {
+        "en": "The deliberate deprivation of food supplies as a weapon of war or coercion",
+        "de": "Der absichtliche Entzug von Nahrungsmitteln als Kriegswaffe oder Zwangsmittel"
+      }
+    },
+    {
+      "id": "blockade",
+      "cluster": "humiliation",
+      "definitions": {
+        "en": "The naval prevention of goods reaching a nation, causing economic and humanitarian crisis",
+        "de": "Die Seeblockade zur Verhinderung von Warenlieferungen an eine Nation, die wirtschaftliche und humanitäre Krisen verursacht"
+      }
+    },
+    {
+      "id": "diplomacy",
+      "cluster": "victory",
+      "definitions": {
+        "en": "The conduct of negotiations between nations to resolve disputes and establish agreements",
+        "de": "Die Führung von Verhandlungen zwischen Nationen zur Beilegung von Streitigkeiten"
+      }
+    },
+    {
+      "id": "reconstruction",
+      "cluster": "victory",
+      "definitions": {
+        "en": "The process of rebuilding a nation's infrastructure and institutions after war",
+        "de": "Der Prozess des Wiederaufbaus der Infrastruktur und Institutionen einer Nation nach dem Krieg"
+      }
+    }
+  ]
+}
