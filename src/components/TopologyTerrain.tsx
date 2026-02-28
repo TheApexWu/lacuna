@@ -527,8 +527,8 @@ function Scene({
         onEnd={handleOrbitEnd}
       />
 
-      {/* Postprocessing — deferred by one frame so WebGL context is ready */}
-      <DeferredEffects
+      {/* Postprocessing */}
+      <PostEffects
         bloomIntensity={bloomIntensity}
         bloomThreshold={bloomThreshold}
         bloomRadius={bloomRadius}
@@ -539,11 +539,11 @@ function Scene({
   );
 }
 
-// ── DeferredEffects ──────────────────────────────────────────
-// Waits until the R3F render loop has ticked at least once before
-// mounting EffectComposer. This guarantees the WebGL context is
-// fully initialized (getContextAttributes() returns non-null).
-function DeferredEffects({
+// ── PostEffects ──────────────────────────────────────────────
+// Bloom, vignette, and chromatic aberration.
+// The getContextAttributes() null-safety patch is applied in
+// the Canvas onCreated callback (see TopologyTerrain below).
+function PostEffects({
   bloomIntensity,
   bloomThreshold,
   bloomRadius,
@@ -556,18 +556,6 @@ function DeferredEffects({
   vignetteAmount: number;
   chromaOffset: THREE.Vector2;
 }) {
-  const [ready, setReady] = useState(false);
-  const triggered = useRef(false);
-
-  useFrame(() => {
-    if (!triggered.current) {
-      triggered.current = true;
-      setReady(true);
-    }
-  });
-
-  if (!ready) return null;
-
   return (
     <EffectComposer>
       <Bloom
@@ -695,6 +683,14 @@ export default function TopologyTerrain({
           gl.setClearColor(new THREE.Color("#050508"));
           gl.toneMapping = THREE.ACESFilmicToneMapping;
           gl.toneMappingExposure = 1.2;
+
+          // Patch getContextAttributes so it never returns null.
+          // The postprocessing library reads `.alpha` from the result
+          // and crashes if null (context lost / HMR remount).
+          const ctx = gl.getContext() as WebGLRenderingContext;
+          const original = ctx.getContextAttributes.bind(ctx);
+          ctx.getContextAttributes = () =>
+            original() ?? ({ alpha: false } as WebGLContextAttributes);
         }}
         style={{ width: "100vw", height: "100vh" }}
       >

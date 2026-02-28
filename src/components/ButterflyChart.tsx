@@ -1,7 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { concepts, CLUSTER_HEX, getLabel } from "../data/versailles";
+import { useMemo, useState, useEffect } from "react";
+import { concepts, CLUSTER_HEX, getLabel, LANGUAGES } from "../data/versailles";
 
 const ROW_HEIGHT = 22;
 const BAR_HEIGHT = 12;
@@ -24,11 +24,24 @@ export default function ButterflyChart({
   onClose,
 }: ButterflyChartProps) {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [leftLang, setLeftLang] = useState("en");
+  const [rightLang, setRightLang] = useState(language === "en" ? "de" : language);
+
+  // Sync rightLang when the page's language changes
+  useEffect(() => {
+    if (language !== leftLang) {
+      setRightLang(language);
+    }
+  }, [language, leftLang]);
 
   const rows = useMemo(() => {
     return concepts
       .filter((c) => {
-        if (!showGhosts && (c.ghost.en || c.ghost.de)) return false;
+        if (!showGhosts) {
+          const ghostL = c.ghost[leftLang] ?? false;
+          const ghostR = c.ghost[rightLang] ?? false;
+          if (ghostL && ghostR) return false;
+        }
         return true;
       })
       .map((c) => ({
@@ -36,14 +49,14 @@ export default function ButterflyChart({
         label: getLabel(c, language),
         cluster: c.cluster,
         color: CLUSTER_HEX[c.cluster] || "#f59e0b",
-        weightEN: c.weight.en ?? 0,
-        weightDE: c.weight.de ?? 0,
-        diff: Math.abs((c.weight.en ?? 0) - (c.weight.de ?? 0)),
-        ghostEN: c.ghost.en ?? false,
-        ghostDE: c.ghost.de ?? false,
+        weightL: c.weight[leftLang] ?? 0,
+        weightR: c.weight[rightLang] ?? 0,
+        diff: Math.abs((c.weight[leftLang] ?? 0) - (c.weight[rightLang] ?? 0)),
+        ghostL: c.ghost[leftLang] ?? false,
+        ghostR: c.ghost[rightLang] ?? false,
       }))
       .sort((a, b) => b.diff - a.diff);
-  }, [language, showGhosts]);
+  }, [language, leftLang, rightLang, showGhosts]);
 
   // SVG dimensions
   const svgWidth = 396; // panel inner width (420 - padding)
@@ -66,10 +79,33 @@ export default function ButterflyChart({
         </button>
       </div>
 
-      {/* Column headers */}
-      <div className="flex items-center justify-between px-5 pb-2">
-        <span className="text-[10px] text-[#3b82f6] tracking-wider">EN</span>
-        <span className="text-[10px] text-[#ef4444] tracking-wider">DE</span>
+      {/* Language selectors */}
+      <div className="flex items-center justify-between px-4 pb-2">
+        <select
+          value={leftLang}
+          onChange={(e) => setLeftLang(e.target.value)}
+          className="bg-[#0a0a0a] border border-[#262626] rounded px-2 py-0.5 text-[10px] text-[#e5e5e5] tracking-wider cursor-pointer"
+          style={{ outline: "none" }}
+        >
+          {LANGUAGES.map((l) => (
+            <option key={l.code} value={l.code}>
+              {l.label}
+            </option>
+          ))}
+        </select>
+        <span className="text-[10px] text-[#737373]">vs</span>
+        <select
+          value={rightLang}
+          onChange={(e) => setRightLang(e.target.value)}
+          className="bg-[#0a0a0a] border border-[#262626] rounded px-2 py-0.5 text-[10px] text-[#e5e5e5] tracking-wider cursor-pointer"
+          style={{ outline: "none" }}
+        >
+          {LANGUAGES.map((l) => (
+            <option key={l.code} value={l.code}>
+              {l.label}
+            </option>
+          ))}
+        </select>
       </div>
 
       {/* Scrollable chart */}
@@ -101,8 +137,8 @@ export default function ButterflyChart({
             const isHovered = row.id === hoveredId;
             const highlight = isSelected || isHovered;
 
-            const enBarW = row.weightEN * maxBarWidth;
-            const deBarW = row.weightDE * maxBarWidth;
+            const lBarW = row.weightL * maxBarWidth;
+            const rBarW = row.weightR * maxBarWidth;
 
             return (
               <g
@@ -125,12 +161,12 @@ export default function ButterflyChart({
                   />
                 )}
 
-                {/* EN bar (extends left from center) */}
-                {row.ghostEN ? (
+                {/* Left bar (extends left from center) */}
+                {row.ghostL ? (
                   <rect
-                    x={centerX - enBarW}
+                    x={centerX - lBarW}
                     y={BAR_Y}
-                    width={Math.max(enBarW, 0)}
+                    width={Math.max(lBarW, 0)}
                     height={BAR_HEIGHT}
                     fill={row.color}
                     fillOpacity={0.1}
@@ -142,9 +178,9 @@ export default function ButterflyChart({
                   />
                 ) : (
                   <rect
-                    x={centerX - enBarW}
+                    x={centerX - lBarW}
                     y={BAR_Y}
-                    width={Math.max(enBarW, 0)}
+                    width={Math.max(lBarW, 0)}
                     height={BAR_HEIGHT}
                     fill={row.color}
                     fillOpacity={highlight ? 0.9 : 0.7}
@@ -152,12 +188,12 @@ export default function ButterflyChart({
                   />
                 )}
 
-                {/* DE bar (extends right from center) */}
-                {row.ghostDE ? (
+                {/* Right bar (extends right from center) */}
+                {row.ghostR ? (
                   <rect
                     x={centerX}
                     y={BAR_Y}
-                    width={Math.max(deBarW, 0)}
+                    width={Math.max(rBarW, 0)}
                     height={BAR_HEIGHT}
                     fill={row.color}
                     fillOpacity={0.1}
@@ -171,7 +207,7 @@ export default function ButterflyChart({
                   <rect
                     x={centerX}
                     y={BAR_Y}
-                    width={Math.max(deBarW, 0)}
+                    width={Math.max(rBarW, 0)}
                     height={BAR_HEIGHT}
                     fill={row.color}
                     fillOpacity={highlight ? 0.9 : 0.7}
