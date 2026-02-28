@@ -45,19 +45,20 @@ Extracts conceptual frames from historical documents, embeds them with BGE-M3, v
                               │
                               ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│  STAGE 3: VALIDATOR (Math only - no LLM)                        │
+│  STAGE 3: VALIDATOR (Mistral Large + Math)                      │
 │                                                                 │
-│  Computes distance matrices between concepts per language.      │
-│  Flags concepts that DON'T show real structural difference.     │
-│  Kills false positives before they hit the visualization.       │
+│  LLM validates:                                                 │
+│    - Semantic coherence of frame decomposition                  │
+│    - Cross-language definition quality                          │
+│    - Distinctiveness from other frames                          │
 │                                                                 │
-│  Rejection criteria:                                            │
+│  Math validates:                                                │
 │    - Duplicates: cosine similarity > 0.85 within language       │
 │    - Boring: cross-language similarity > 0.92 (no difference!)  │
 │    - Outliers: doesn't fit semantic space                       │
 │    - Low confidence: extraction confidence < 0.5                │
 │                                                                 │
-│  THE LLM NEVER DECIDES WHERE CONCEPTS GO. MATH ONLY.            │
+│  THE LLM VALIDATES QUALITY. MATH DECIDES POSITIONS.             │
 │                                                                 │
 │  Output: ValidatedFrame[]                                       │
 │    - Same fields + embeddings per language                      │
@@ -319,14 +320,17 @@ python/
 ├── pipeline.py          # Full pipeline: doc → concepts
 ├── embed.py             # Embedding & validation CLI
 ├── api.py               # FastAPI REST server
+├── visualize.py         # 2D matplotlib visualization
 ├── agents/
 │   ├── extractor.py     # Mistral frame decomposition
-│   └── validator.py     # BGE-M3 validation & filtering
+│   ├── validator.py     # Mistral + BGE-M3 validation
+│   └── interpreter.py   # Mistral lacuna explanations
 ├── lib/
 │   ├── embeddings.py    # BGE-M3 wrapper
 │   └── schemas.py       # Pydantic models
 ├── data/
 │   └── versailles.json  # Curated concepts
+├── examples/            # Example documents and outputs
 ├── requirements.txt
 ├── .env.example
 └── README.md
@@ -349,13 +353,38 @@ The extractor doesn't just find "Reparations" - it decomposes it into the concep
 
 This reveals how the same word operates differently across cultures.
 
-### 2. Math-Only Validation
+### 2. LLM Validates Quality, Math Decides Position
 
-The LLM extracts. Math validates. No LLM decides where concepts go in the visualization.
+The extractor LLM extracts frames. The validator LLM checks semantic quality. Math decides positions.
 
 Cosine distances and UMAP projections are **deterministic and reproducible**.
 
-### 3. Cross-Language Difference Detection
+### 3. Interpreter Agent for Concept Cards
+
+When you click a node in the 3D visualization, the Interpreter Agent explains WHY the lacuna exists:
+
+```bash
+python agents/interpreter.py data/versailles.json dolchstoss
+```
+
+Output:
+```json
+{
+  "cultural": "The Dolchstoßlegende emerged from German military circles...",
+  "historical": "The myth crystallized in November 1919 when Hindenburg...",
+  "structural": "German 'Dolchstoß' carries connotations of treachery...",
+  "citations": ["Hindenburg's testimony to the Reichstag, Nov 1919", ...],
+  "summary": "A uniquely German myth explaining defeat without military loss"
+}
+```
+
+The interpreter provides:
+- **Cultural explanation**: How context shapes different framings
+- **Historical explanation**: What events created the divergence
+- **Structural explanation**: How language itself shapes meaning
+- **Citations**: Specific sources illuminating the gap
+
+### 4. Cross-Language Difference Detection
 
 Concepts that embed too similarly across languages (>92% cosine similarity) are **rejected**:
 
@@ -365,7 +394,7 @@ Concepts that embed too similarly across languages (>92% cosine similarity) are 
 
 If EN and DE embeddings are nearly identical, there's no structural difference worth visualizing.
 
-### 4. Ghost Detection
+### 5. Ghost Detection
 
 A concept can be a "ghost" in one language - semantically marginal or absent:
 

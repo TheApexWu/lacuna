@@ -1,21 +1,31 @@
 """
 LACUNA Validator Agent
 
-Embeds extracted frames with BGE-M3, computes cosine distance matrix,
-and kills false positives:
-- Too uniform (boring/generic definitions)
-- Too extreme (outliers that don't fit)
-- Duplicates (cosine > 0.85)
+Uses Mistral LLM + BGE-M3 embeddings to validate extracted frames.
+
+LLM validates:
+- Semantic coherence of frame decomposition
+- Cross-language definition quality
+- Distinctiveness from other frames
+
+Math validates:
+- Cross-language embedding similarity (reject if too similar = boring)
+- Duplicate detection (cosine > 0.85)
+- Extremity scores (outlier detection)
 
 Usage:
     from agents.validator import validate_frames
     result = validate_frames(frames, reference_embeddings)
 """
 
+import json
+import os
 import sys
 from pathlib import Path
 from typing import List, Dict, Optional, Tuple
 import numpy as np
+
+from mistralai import Mistral
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
@@ -27,6 +37,119 @@ from lib.embeddings import (
     compute_uniformity_score,
     compute_extremity_score,
 )
+
+
+# Mistral client (lazy init)
+_client = None
+
+
+def get_client() -> Mistral:
+    """Get or create Mistral client."""
+    global _client
+    if _client is None:
+        api_key = os.environ.get("MISTRAL_API_KEY")
+        if not api_key:
+            raise ValueError("MISTRAL_API_KEY environment variable not set")
+        _client = Mistral(api_key=api_key)
+    return _client
+
+
+VALIDATION_SYSTEM_PROMPT = """You are a semantic validator for the LACUNA conceptual topology project.
+
+Your task is to review extracted conceptual frames and identify which should be REJECTED.
+
+REJECT frames that are:
+1. TOO GENERIC: The definition could apply to almost anything (e.g., "an important concept")
+2. REDUNDANT: Semantically identical to another frame in the batch
+3. INCOHERENT: The cross-language definitions don't match or contradict
+4. MISTRANSLATED: The German/French translation doesn't capture the same frame
+5. NOT A FRAME: It's a keyword or topic, not a distinct conceptual angle
+
+KEEP frames that:
+1. Capture a specific ANGLE on how a concept operates in discourse
+2. Show meaningful difference between language perspectives
+3. Have precise, contextualized definitions
+
+You will receive a batch of frames. Return a JSON object with:
+{
+  "rejections": [
+    {"id": "frame-id", "reason": "specific reason for rejection"},
+    ...
+  ],
+  "notes": "optional overall observations"
+}
+
+Only include frames that should be REJECTED. If all frames are valid, return {"rejections": [], "notes": "..."}.
+"""
+
+
+def llm_validate_frames(
+    frames: List[ExtractedFrame],
+    languages: List[str] = ["en", "de"],
+) -> Dict[str, str]:
+    """
+    Use Mistral LLM to validate frames semantically.
+
+    Returns:
+        Dict mapping frame_id -> rejection_reason (only for rejected frames)
+    """
+    if not frames:
+        return {}
+
+    client = get_client()
+
+    # Format frames for LLM review
+    frames_text = []
+    for f in frames:
+        frame_desc = f"ID: {f.id}\n"
+        frame_desc += f"Labels: {json.dumps(f.labels, ensure_ascii=False)}\n"
+        frame_desc += f"Definitions:\n"
+        for lang in languages:
+            if lang in f.definitions:
+                frame_desc += f"  {lang}: {f.definitions[lang]}\n"
+        frame_desc += f"Cluster: {f.cluster}\n"
+        frame_desc += f"Confidence: {f.confidence:.2f}"
+        frames_text.append(frame_desc)
+
+    user_prompt = f"""Review these {len(frames)} extracted conceptual frames:
+
+---
+{chr(10).join(f"[Frame {i+1}]{chr(10)}{ft}{chr(10)}" for i, ft in enumerate(frames_text))}
+---
+
+Identify which frames should be REJECTED and why. Return JSON only."""
+
+    print(f"[validator] LLM validating {len(frames)} frames...")
+
+    response = client.chat.complete(
+        model="mistral-large-latest",
+        messages=[
+            {"role": "system", "content": VALIDATION_SYSTEM_PROMPT},
+            {"role": "user", "content": user_prompt},
+        ],
+        response_format={"type": "json_object"},
+    )
+
+    content = response.choices[0].message.content
+
+    try:
+        result = json.loads(content)
+        rejections = result.get("rejections", [])
+
+        rejection_map = {}
+        for r in rejections:
+            if "id" in r and "reason" in r:
+                rejection_map[r["id"]] = f"LLM: {r['reason']}"
+                print(f"[validator] LLM REJECT {r['id']}: {r['reason']}")
+
+        if result.get("notes"):
+            print(f"[validator] LLM notes: {result['notes']}")
+
+        return rejection_map
+
+    except json.JSONDecodeError:
+        print(f"[validator] LLM returned invalid JSON, skipping LLM validation")
+        return {}
 
 
 # Validation thresholds
@@ -92,9 +215,10 @@ def validate_frames(
     uniformity_min: float = UNIFORMITY_MIN,
     extremity_min: float = EXTREMITY_MIN,
     confidence_min: float = CONFIDENCE_MIN,
+    use_llm: bool = True,
 ) -> ValidationResult:
     """
-    Validate extracted frames by embedding and filtering.
+    Validate extracted frames using LLM + embedding-based filtering.
 
     Args:
         frames: List of extracted frames to validate
@@ -104,6 +228,7 @@ def validate_frames(
         uniformity_min: Minimum uniformity score
         extremity_min: Minimum extremity score
         confidence_min: Minimum extraction confidence
+        use_llm: Whether to use Mistral LLM for semantic validation
 
     Returns:
         ValidationResult with valid and rejected frames
@@ -123,6 +248,15 @@ def validate_frames(
             rejection_reasons[frame.id] = f"Low confidence: {frame.confidence:.2f} < {confidence_min}"
         else:
             confident_frames.append(frame)
+
+    # LLM semantic validation
+    llm_rejections = {}
+    if use_llm and confident_frames:
+        try:
+            llm_rejections = llm_validate_frames(confident_frames, languages)
+            rejection_reasons.update(llm_rejections)
+        except Exception as e:
+            print(f"[validator] LLM validation failed: {e}, continuing with math only")
 
     if not confident_frames:
         return ValidationResult(
@@ -202,6 +336,11 @@ def validate_frames(
 
     # Final validation pass
     for frame in confident_frames:
+        # Check if LLM rejected
+        if frame.id in llm_rejections:
+            rejected.append(frame)
+            continue
+
         # Check if duplicate
         if frame.id in duplicate_ids:
             rejected.append(frame)
