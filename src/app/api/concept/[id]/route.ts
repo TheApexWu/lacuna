@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { concepts, CLUSTER_HEX, getLabel } from "../../../../data/versailles";
 import { getInterpreterAgentId, callAgent } from "../../../../lib/mistral";
 
+const PYTHON_SERVICE_URL =
+  process.env.PYTHON_SERVICE_URL || "http://127.0.0.1:8000";
+
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -44,7 +47,7 @@ export async function GET(
     neighbors[l] = dists.slice(0, 8);
   }
 
-  // Optional inline interpretation
+  // Optional inline interpretation via Mistral Agents API
   let interpretation: string | null = null;
   if (doInterpret) {
     try {

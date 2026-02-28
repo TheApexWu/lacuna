@@ -6,7 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "dev:python": "cd python && source .venv/bin/activate && uvicorn app.main:app --reload --port 8000",
+    "dev:all": "concurrently \"npm run dev\" \"npm run dev:python\"",
+    "python:setup": "cd python && uv pip install -r requirements.txt",
+    "python:export": "node scripts/export_concepts.js",
+    "python:extract": "cd python && source .venv/bin/activate && python scripts/extract_embeddings.py",
+    "python:fit": "cd python && source .venv/bin/activate && python scripts/fit_umap.py"
   },
   "dependencies": {
     "@mistralai/mistralai": "^1.14.1",
@@ -27,6 +33,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "concurrently": "^9.2.1",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "tailwindcss": "^4",

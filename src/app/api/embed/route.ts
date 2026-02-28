@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 
-// Live embedding endpoint scaffold.
-// Connects to BGE-M3 pipeline on Mac Mini for real-time concept embedding.
-// TODO: Wire to Brendan's embed.py via HTTP or direct Python subprocess.
+// Live embedding endpoint - calls Python BGE-M3 service
+const PYTHON_SERVICE_URL =
+  process.env.PYTHON_SERVICE_URL || "http://127.0.0.1:8000";
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
@@ -19,16 +19,47 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  // Scaffold response with expected shape
-  // Replace with real pipeline call when embed.py is running
-  return NextResponse.json({
-    concept,
-    language,
-    definition: definition || null,
-    embedding: null, // Float32Array from BGE-M3, 1024-dim
-    position: null, // [x, z] after UMAP projection
-    weight: null, // 0-1 normalized
-    neighbors: [], // Nearest concepts by cosine distance
-    status: "scaffold", // Changes to "live" when pipeline connected
-  });
+  try {
+    // Call Python embedding service
+    const response = await fetch(`${PYTHON_SERVICE_URL}/embed`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        concept,
+        language,
+        definition: definition || concept, // Use concept as fallback
+      }),
+      signal: AbortSignal.timeout(30000), // 30s timeout for first request (model warmup)
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      return NextResponse.json(
+        {
+          error: error.detail || "Python service error",
+          status: "error",
+        },
+        { status: response.status }
+      );
+    }
+
+    const data = await response.json();
+    return NextResponse.json(data);
+  } catch (error) {
+    console.error("Python service error:", error);
+
+    // Return error with helpful message
+    return NextResponse.json(
+      {
+        error:
+          error instanceof Error && error.name === "TimeoutError"
+            ? "Request timeout - model may be loading"
+            : "Python service unavailable. Start with: cd python && uvicorn app.main:app --reload --port 8000",
+        status: "offline",
+      },
+      { status: 503 }
+    );
+  }
 }

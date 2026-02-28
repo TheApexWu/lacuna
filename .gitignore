@@ -31,7 +31,11 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # env files (can opt-in for committing if needed)
-.env*
+.env
+.env.local
+.env.*.local
+!.env.example
+!python/.env.example
 
 # vercel
 .vercel
@@ -39,3 +43,17 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# python
+python/.venv/
+python/__pycache__/
+python/**/__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+python/stage*.json
+python/test_*.json
+python/test_*.txt
+python/test_*.py
+*.npy
+*.pkl
