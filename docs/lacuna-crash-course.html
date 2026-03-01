@@ -122,23 +122,56 @@
 <h1>LACUNA <span>crash course</span></h1>
 <div class="subtitle">Team L'ECART -- Mistral Hackathon NYC 2026</div>
 
-<div class="oneliner">
-  Same document, two languages, different conceptual topology.<br>
-  We show you exactly <span class="amber">where</span> understanding breaks down and <span class="amber">why</span>.
-</div>
-
-<h2>What LACUNA does (30 seconds)</h2>
+<h2>The Thesis</h2>
 
 <p>
-  Take <span class="highlight">one document</span> (Treaty of Versailles, Article 231).
-  Read it in English. Read it in German. Same words, same treaty.
-  But the concepts mean different things to each language.
+  When the same text is processed by a multilingual AI model in two different languages,
+  the model does not treat every concept equally. Some concepts activate stronger in one
+  language than the other. That asymmetry is not random. It reflects how each language
+  encodes history, power, and cultural memory into its vocabulary.
 </p>
 <p>
-  LACUNA finds <span class="highlight">where</span> the meaning fractures,
-  <span class="highlight">how much</span> it fractures, and uses Mistral to explain
-  <span class="highlight">why</span>.
+  <span class="highlight">LACUNA is the instrument that detects, quantifies, and visualizes
+  those asymmetries.</span>
 </p>
+
+<h2>The Pipeline (plain English)</h2>
+
+<p>
+  1. Pick a document. Define 43 key concepts from it -- not by translating, but by writing
+  each definition natively in each language.<br>
+  2. Feed those definitions into an embedding model (BGE-M3). Each definition becomes a
+  list of 1024 numbers that captures its meaning.<br>
+  3. Project those numbers onto a 2D map (UMAP). That map becomes the 3D terrain.<br>
+  4. Give the user a text input. Embed their text (mistral-embed). Compare it against
+  all 43 concept vectors in Language A and Language B. Report which concepts activate
+  differently.<br>
+  5. The difference between the two activations is the <span class="amber">divergence</span>.
+  Sort by divergence. The biggest gaps are the findings.
+</p>
+
+<h2>Why It Matters</h2>
+
+<p>
+  Every multilingual AI system -- translation, search, content moderation, legal analysis --
+  treats concepts as if they are universal across languages. They are not. The word "accountability"
+  in English and the closest Arabic equivalent do not occupy the same region of meaning.
+  When the Sykes-Picot Agreement is processed in English, the model activates concepts like
+  mandate, honor, and self-determination. In Arabic, it activates subjugation, humiliation,
+  and resentment. Same text. Same model. Different reading.
+</p>
+<p>
+  Before LACUNA, there was no way to see this. No tool that takes a sentence, two languages,
+  and returns a ranked list of where the conceptual activation diverges. LACUNA is the first
+  instrument that reads cross-lingual divergence out of embedding space and makes it
+  interactive, measurable, and explainable in real time.
+</p>
+<p>
+  If you deploy AI in 10 languages without checking for this, you are silently collapsing
+  distinctions that reshape legal liability, medical risk, and political intent.
+</p>
+
+<hr>
 
 <h2>Concepts vs Clusters vs Terrain (know the difference)</h2>
 
