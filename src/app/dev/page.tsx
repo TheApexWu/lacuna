@@ -15,6 +15,24 @@ interface Dataset {
   source: string;
 }
 
+interface ModelInfo {
+  key: string;
+  name: string;
+  dimensions: number;
+  type: string;
+  notes: string;
+  available: boolean;
+  hasData: boolean;
+}
+
+interface BenchmarkMetrics {
+  model_key: string;
+  clas: { score: number; per_concept: Record<string, number> };
+  topology: { preservation: number; p_value: number };
+  cluster_coherence: { per_cluster: Record<string, Record<string, number>>; average: number };
+  ghost_detection: { rate: number; per_ghost: Record<string, Record<string, number>> };
+}
+
 interface CachedData {
   concepts: Concept[];
   hash: string;
@@ -33,19 +51,73 @@ function hashData(data: unknown): string {
   return hash.toString(36);
 }
 
+// Normalize positions across all languages to fit terrain
+// Uses global bounds so language switching is coherent
+function normalizePositions(concepts: Concept[], targetRange = 40): Concept[] {
+  if (concepts.length === 0) return concepts;
+
+  // Find global bounds across ALL languages
+  let minX = Infinity, maxX = -Infinity;
+  let minZ = Infinity, maxZ = -Infinity;
+
+  for (const concept of concepts) {
+    for (const lang of Object.keys(concept.position)) {
+      const [x, z] = concept.position[lang];
+      minX = Math.min(minX, x);
+      maxX = Math.max(maxX, x);
+      minZ = Math.min(minZ, z);
+      maxZ = Math.max(maxZ, z);
+    }
+  }
+
+  // Calculate scale to fit within targetRange while preserving aspect ratio
+  const rangeX = maxX - minX || 1;
+  const rangeZ = maxZ - minZ || 1;
+  const maxRange = Math.max(rangeX, rangeZ);
+  const scale = (targetRange * 2) / maxRange;
+
+  // Center offsets
+  const centerX = (minX + maxX) / 2;
+  const centerZ = (minZ + maxZ) / 2;
+
+  // Apply normalization to all concepts
+  return concepts.map((concept) => {
+    const newPosition: Record<string, [number, number]> = {};
+    for (const [lang, pos] of Object.entries(concept.position)) {
+      const [x, z] = pos as [number, number];
+      newPosition[lang] = [(x - centerX) * scale, (z - centerZ) * scale];
+    }
+    return { ...concept, position: newPosition };
+  });
+}
+
 const CACHE_KEY = "lacuna_dev_cache";
 const CACHE_MAX_AGE = 1000 * 60 * 60; // 1 hour
 
 export default function DevPage() {
   const [datasets, setDatasets] = useState<Dataset[]>([]);
+  const [models, setModels] = useState<ModelInfo[]>([]);
   const [selectedDataset, setSelectedDataset] = useState<string>("");
+  const [selectedModel, setSelectedModel] = useState<string>("");
   const [concepts, setConcepts] = useState<Concept[]>([]);
+  const [metrics, setMetrics] = useState<BenchmarkMetrics | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [language, setLanguage] = useState("en");
   const [showGhosts, setShowGhosts] = useState(false);
   const [selectedConcept, setSelectedConcept] = useState<string | null>(null);
   const [cacheStatus, setCacheStatus] = useState<string>("");
+  const [showMetrics, setShowMetrics] = useState(true);
+
+  // Load available models on mount
+  useEffect(() => {
+    fetch("/api/concepts?action=list-models")
+      .then((r) => r.json())
+      .then((data) => {
+        setModels(data.models || []);
+      })
+      .catch((e) => console.error("Failed to load models:", e));
+  }, []);
 
   // Load available datasets on mount
   useEffect(() => {
@@ -61,13 +133,60 @@ export default function DevPage() {
       .catch((e) => setError("Failed to load datasets"));
   }, []);
 
-  // Load concepts when dataset changes
+  // Load concepts when model changes (takes priority over dataset)
   useEffect(() => {
-    if (!selectedDataset) return;
+    if (!selectedModel) return;
+
+    const loadModelData = async () => {
+      setLoading(true);
+      setError(null);
+      setMetrics(null);
+
+      try {
+        const response = await fetch(
+          `/api/concepts?action=load-model&model=${encodeURIComponent(selectedModel)}`
+        );
+        const data = await response.json();
+
+        if (data.error) {
+          throw new Error(data.error);
+        }
+
+        // Normalize concepts
+        const typedConcepts: Concept[] = data.concepts.map((c: Record<string, unknown>) => ({
+          ...c,
+          source: (c.source === "curated" ? "curated" : "embedding") as "curated" | "embedding",
+          ghost: c.ghost || {},
+          weight: c.weight || {},
+        })) as Concept[];
+
+        const normalizedConcepts = normalizePositions(typedConcepts);
+        setConcepts(normalizedConcepts);
+
+        // Set metrics if available
+        if (data.metrics) {
+          setMetrics(data.metrics);
+        }
+
+        setCacheStatus(`Loaded ${selectedModel} (${data.count} concepts)`);
+      } catch (e) {
+        setError(e instanceof Error ? e.message : "Failed to load model data");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadModelData();
+  }, [selectedModel]);
+
+  // Load concepts when dataset changes (only if no model selected)
+  useEffect(() => {
+    if (!selectedDataset || selectedModel) return;
 
     const loadData = async () => {
       setLoading(true);
       setError(null);
+      setMetrics(null);
 
       try {
         // Fetch fresh data from server
@@ -108,12 +227,15 @@ export default function DevPage() {
         }
 
         // Normalize concepts to match Concept type
-        const normalizedConcepts: Concept[] = data.concepts.map((c: Record<string, unknown>) => ({
+        const typedConcepts: Concept[] = data.concepts.map((c: Record<string, unknown>) => ({
           ...c,
           source: (c.source === "curated" ? "curated" : "embedding") as "curated" | "embedding",
           ghost: c.ghost || {},
           weight: c.weight || {},
         })) as Concept[];
+
+        // Normalize positions across all languages for consistent visualization
+        const normalizedConcepts = normalizePositions(typedConcepts);
 
         // Store in cache
         const cacheData: CachedData = {
@@ -125,6 +247,11 @@ export default function DevPage() {
 
         setConcepts(normalizedConcepts);
         setCacheStatus(`Loaded fresh (${data.count} concepts)`);
+
+        // Set metrics if available (for benchmark datasets)
+        if (data.metrics) {
+          setMetrics(data.metrics);
+        }
       } catch (e) {
         setError(e instanceof Error ? e.message : "Failed to load concepts");
       } finally {
@@ -133,7 +260,7 @@ export default function DevPage() {
     };
 
     loadData();
-  }, [selectedDataset]);
+  }, [selectedDataset, selectedModel]);
 
   // Get available languages from loaded concepts
   const availableLanguages = concepts.length > 0
@@ -157,6 +284,9 @@ export default function DevPage() {
     return acc;
   }, {} as Record<string, number>);
 
+  // Models with data available
+  const modelsWithData = models.filter((m) => m.hasData);
+
   return (
     <div className="flex h-screen bg-[#0a0a0a]">
       {/* Sidebar */}
@@ -165,15 +295,52 @@ export default function DevPage() {
           <h1 className="text-lg font-bold text-[#e5e5e5] tracking-wide">
             LACUNA DEV
           </h1>
-          <p className="text-xs text-[#737373] mt-1">Pipeline Test Visualizer</p>
+          <p className="text-xs text-[#737373] mt-1">Multi-Model Embedding Benchmark</p>
         </div>
+
+        {/* Model selector */}
+        {modelsWithData.length > 0 && (
+          <div>
+            <label className="text-xs text-[#737373] block mb-1">
+              Embedding Model
+              <span className="text-[#525252] ml-1">({modelsWithData.length} benchmarked)</span>
+            </label>
+            <select
+              value={selectedModel}
+              onChange={(e) => {
+                setSelectedModel(e.target.value);
+                if (e.target.value) {
+                  setSelectedDataset(""); // Clear dataset when model selected
+                }
+              }}
+              className="w-full bg-[#1a1a1a] border border-[#333] text-[#e5e5e5] text-sm px-3 py-2 rounded"
+            >
+              <option value="">Select model...</option>
+              {modelsWithData.map((m) => (
+                <option key={m.key} value={m.key}>
+                  {m.name}
+                </option>
+              ))}
+            </select>
+            {selectedModel && (
+              <p className="text-xs text-[#525252] mt-1">
+                {models.find((m) => m.key === selectedModel)?.notes}
+              </p>
+            )}
+          </div>
+        )}
 
         {/* Dataset selector */}
         <div>
           <label className="text-xs text-[#737373] block mb-1">Dataset</label>
           <select
             value={selectedDataset}
-            onChange={(e) => setSelectedDataset(e.target.value)}
+            onChange={(e) => {
+              setSelectedDataset(e.target.value);
+              if (e.target.value) {
+                setSelectedModel(""); // Clear model when dataset selected
+              }
+            }}
             className="w-full bg-[#1a1a1a] border border-[#333] text-[#e5e5e5] text-sm px-3 py-2 rounded"
           >
             <option value="">Select dataset...</option>
@@ -218,6 +385,72 @@ export default function DevPage() {
             {showGhosts ? "HIDE GHOSTS" : "SHOW GHOSTS"}
           </button>
         </div>
+
+        {/* Metrics panel */}
+        {metrics && (
+          <div className="border-t border-[#262626] pt-4">
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="text-xs text-[#737373]">Benchmark Metrics</h3>
+              <button
+                onClick={() => setShowMetrics((s) => !s)}
+                className="text-xs text-[#525252] hover:text-[#737373]"
+              >
+                {showMetrics ? "Hide" : "Show"}
+              </button>
+            </div>
+            {showMetrics && (
+              <div className="space-y-2 text-xs">
+                <div className="bg-[#1a1a1a] rounded p-2">
+                  <div className="flex justify-between items-center">
+                    <span className="text-[#a3a3a3]">CLAS</span>
+                    <span className={`font-mono ${metrics.clas.score > 0.8 ? "text-[#ef4444]" : metrics.clas.score > 0.6 ? "text-[#f59e0b]" : "text-[#22c55e]"}`}>
+                      {metrics.clas.score.toFixed(4)}
+                    </span>
+                  </div>
+                  <p className="text-[#525252] text-[10px] mt-1">
+                    Cross-lingual alignment (lower = preserves differences)
+                  </p>
+                </div>
+
+                <div className="bg-[#1a1a1a] rounded p-2">
+                  <div className="flex justify-between items-center">
+                    <span className="text-[#a3a3a3]">Topology</span>
+                    <span className={`font-mono ${metrics.topology.preservation > 0.7 ? "text-[#22c55e]" : metrics.topology.preservation > 0.4 ? "text-[#f59e0b]" : "text-[#ef4444]"}`}>
+                      {metrics.topology.preservation.toFixed(4)}
+                    </span>
+                  </div>
+                  <p className="text-[#525252] text-[10px] mt-1">
+                    Structure preservation across languages
+                  </p>
+                </div>
+
+                <div className="bg-[#1a1a1a] rounded p-2">
+                  <div className="flex justify-between items-center">
+                    <span className="text-[#a3a3a3]">Coherence</span>
+                    <span className={`font-mono ${metrics.cluster_coherence.average > 0.3 ? "text-[#22c55e]" : metrics.cluster_coherence.average > 0 ? "text-[#f59e0b]" : "text-[#ef4444]"}`}>
+                      {metrics.cluster_coherence.average.toFixed(4)}
+                    </span>
+                  </div>
+                  <p className="text-[#525252] text-[10px] mt-1">
+                    Cluster silhouette score
+                  </p>
+                </div>
+
+                <div className="bg-[#1a1a1a] rounded p-2">
+                  <div className="flex justify-between items-center">
+                    <span className="text-[#a3a3a3]">Ghost Detection</span>
+                    <span className={`font-mono ${metrics.ghost_detection.rate > 0.5 ? "text-[#22c55e]" : metrics.ghost_detection.rate > 0.2 ? "text-[#f59e0b]" : "text-[#ef4444]"}`}>
+                      {(metrics.ghost_detection.rate * 100).toFixed(1)}%
+                    </span>
+                  </div>
+                  <p className="text-[#525252] text-[10px] mt-1">
+                    Lacunae correctly identified
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Stats */}
         {concepts.length > 0 && (
@@ -324,6 +557,15 @@ export default function DevPage() {
                   <div className="mt-2 text-xs text-[#525252]">
                     pos: [{c.position[language]?.map((n) => n.toFixed(1)).join(", ")}]
                   </div>
+                  {/* Show CLAS for this concept if metrics available */}
+                  {metrics?.clas?.per_concept?.[c.id] !== undefined && (
+                    <div className="mt-2 text-xs">
+                      <span className="text-[#525252]">CLAS: </span>
+                      <span className={`font-mono ${metrics.clas.per_concept[c.id] > 0.9 ? "text-[#ef4444]" : "text-[#22c55e]"}`}>
+                        {metrics.clas.per_concept[c.id].toFixed(4)}
+                      </span>
+                    </div>
+                  )}
                 </>
               );
             })()}

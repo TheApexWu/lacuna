@@ -2,15 +2,25 @@
 """
 LACUNA Embedding Pipeline
 
-Takes concept definitions from concepts.json, embeds them with BGE-M3,
+Takes concept definitions from concepts.json, embeds them with a selected model,
 computes distance matrices, projects to 2D, and outputs JSON matching
 the frontend Concept[] shape.
 
 Usage:
-    python embed.py                    # Full pipeline
+    python embed.py                    # Full pipeline with default model (bge-m3)
+    python embed.py --model e5-large   # Use different embedding model
     python embed.py --validate-only    # Just show distance matrices, no output
     python embed.py --output out.json  # Custom output path
     python embed.py --input data/versailles.json  # Custom input
+    python embed.py --list-models      # Show available models
+
+Available models:
+    bge-m3        - BGE-M3 (default, BAAI multilingual)
+    e5-large      - Multilingual E5 Large (Microsoft)
+    mistral-embed - Mistral Embed (API, requires MISTRAL_API_KEY)
+    cohere-embed  - Cohere Embed v3 (API, requires COHERE_API_KEY)
+    sonar         - SONAR (Meta, 200+ languages)
+    nv-embed      - NV-Embed-v2 (NVIDIA, decoder architecture)
 
 Prerequisites:
     pip install -r requirements.txt
@@ -26,14 +36,24 @@ from typing import List, Dict, Tuple, Optional
 
 import numpy as np
 
+# Load environment variables
+from dotenv import load_dotenv
+load_dotenv()
+
 # Add lib to path
 sys.path.insert(0, str(Path(__file__).parent))
 
 from lib.embeddings import (
-    embed_texts,
+    embed_texts as embed_texts_default,
     cosine_similarity_matrix,
     find_duplicates,
     compute_embedding_weight,
+)
+from lib.models import (
+    list_models,
+    get_provider,
+    get_model_config,
+    get_available_providers,
 )
 
 
@@ -191,6 +211,37 @@ def update_concepts_with_embeddings(
     return list(id_to_concept.values())
 
 
+def embed_with_model(
+    texts: List[str],
+    model_key: str = "bge-m3",
+    batch_size: int = 8
+) -> np.ndarray:
+    """
+    Embed texts using the specified model.
+
+    Args:
+        texts: List of strings to embed
+        model_key: Model identifier (e.g., "bge-m3", "mistral-embed")
+        batch_size: Batch size for embedding
+
+    Returns:
+        np.ndarray of shape (len(texts), dimensions)
+    """
+    if model_key == "bge-m3":
+        # Use the existing optimized implementation
+        return embed_texts_default(texts, batch_size)
+
+    # Use the provider abstraction
+    provider = get_provider(model_key)
+    if provider is None:
+        raise ValueError(
+            f"Model '{model_key}' not available. "
+            f"Available models: {list_models()}"
+        )
+
+    return provider.embed(texts, batch_size)
+
+
 def main():
     parser = argparse.ArgumentParser(description="LACUNA Embedding Pipeline")
     parser.add_argument(
@@ -204,6 +255,17 @@ def main():
         type=Path,
         default=None,
         help="Output JSON file (default: overwrite input)"
+    )
+    parser.add_argument(
+        "--model", "-m",
+        type=str,
+        default="bge-m3",
+        help="Embedding model to use (default: bge-m3)"
+    )
+    parser.add_argument(
+        "--list-models",
+        action="store_true",
+        help="List available embedding models and exit"
     )
     parser.add_argument(
         "--validate-only", "-v",
@@ -225,6 +287,30 @@ def main():
 
     args = parser.parse_args()
 
+    # Handle --list-models
+    if args.list_models:
+        print("\nAvailable embedding models:")
+        print("-" * 60)
+        for key in list_models():
+            config = get_model_config(key)
+            provider = get_provider(key)
+            status = "available" if provider else "unavailable"
+            print(f"  {key:15s} - {config.name}")
+            print(f"                   dims={config.dimensions}, type={config.provider_type.value}, [{status}]")
+            if config.notes:
+                print(f"                   {config.notes}")
+        print()
+        return
+
+    # Validate model selection
+    if args.model not in list_models():
+        print(f"[embed] Error: Unknown model '{args.model}'")
+        print(f"[embed] Available models: {', '.join(list_models())}")
+        sys.exit(1)
+
+    model_config = get_model_config(args.model)
+    print(f"[embed] Using model: {model_config.name} ({args.model})")
+
     # Load concepts
     print(f"[embed] Loading concepts from {args.input}")
     concepts = load_concepts(args.input)
@@ -244,9 +330,9 @@ def main():
 
         print(f"\n[embed] Processing {lang}: {len(definitions)} definitions")
 
-        # Embed
-        print(f"[embed] Embedding with BGE-M3...")
-        embeddings = embed_texts(definitions)
+        # Embed with selected model
+        print(f"[embed] Embedding with {model_config.name}...")
+        embeddings = embed_with_model(definitions, args.model)
         print(f"[embed] Embeddings shape: {embeddings.shape}")
 
         # Compute similarity matrix

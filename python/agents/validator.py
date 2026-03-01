@@ -154,7 +154,9 @@ Identify which frames should be REJECTED and why. Return JSON only."""
 
 # Validation thresholds
 DUPLICATE_THRESHOLD = 0.85  # Cosine similarity above this = duplicate
-CROSS_LANG_SIMILARITY_MAX = 0.92  # If EN/DE embeddings too similar = no structural difference (boring)
+# NOTE: BGE-M3 runs hot on multilingual cosine (mean ~0.89, median ~0.91 for Versailles concepts).
+# At 0.92 we'd kill 46% of valid concepts. Threshold 0.96 keeps ~95% while rejecting truly identical pairs.
+CROSS_LANG_SIMILARITY_MAX = 0.96  # If EN/DE embeddings too similar = no structural difference (boring)
 UNIFORMITY_MIN = 0.3  # Below this = too generic
 EXTREMITY_MIN = 0.35  # Below this = outlier
 CONFIDENCE_MIN = 0.5  # Extraction confidence minimum

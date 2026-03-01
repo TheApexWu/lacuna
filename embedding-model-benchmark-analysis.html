@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LACUNA: Embedding Model Benchmark Analysis</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'SF Mono', 'Fira Code', monospace; background: #0a0a0a; color: #d4d4d4; line-height: 1.6; }
+
+  /* Nav sidebar */
+  nav { position: fixed; left: 0; top: 0; bottom: 0; width: 240px; background: #111; border-right: 1px solid #262626; padding: 20px 16px; overflow-y: auto; z-index: 10; }
+  nav h2 { color: #e5e5e5; font-size: 14px; letter-spacing: 2px; margin-bottom: 16px; }
+  nav a { display: block; color: #737373; text-decoration: none; font-size: 11px; padding: 6px 8px; border-radius: 4px; margin-bottom: 2px; transition: all 0.2s; }
+  nav a:hover { color: #e5e5e5; background: #1a1a1a; }
+  nav a.sub { padding-left: 20px; font-size: 10px; }
+  nav .divider { border-top: 1px solid #262626; margin: 10px 0; }
+
+  /* Main content */
+  main { margin-left: 240px; max-width: 800px; padding: 40px 40px 100px; }
+
+  h1 { color: #e5e5e5; font-size: 22px; letter-spacing: 3px; margin-bottom: 8px; }
+  .subtitle { color: #737373; font-size: 12px; margin-bottom: 32px; }
+
+  h2 { color: #f59e0b; font-size: 15px; letter-spacing: 2px; margin: 40px 0 16px; padding-top: 20px; border-top: 1px solid #262626; }
+  h3 { color: #3b82f6; font-size: 13px; margin: 24px 0 10px; }
+  h4 { color: #a3a3a3; font-size: 12px; margin: 16px 0 8px; }
+
+  p { font-size: 12px; margin-bottom: 12px; }
+  strong { color: #e5e5e5; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 11px; }
+  th { background: #1a1a1a; color: #f59e0b; text-align: left; padding: 8px 10px; border: 1px solid #262626; font-weight: 600; letter-spacing: 1px; }
+  td { padding: 6px 10px; border: 1px solid #262626; }
+  tr:hover td { background: #141414; }
+  .priority-must { color: #ef4444; font-weight: bold; }
+  .priority-nice { color: #f59e0b; }
+  .priority-post { color: #737373; }
+
+  /* Code blocks */
+  pre { background: #141414; border: 1px solid #262626; border-radius: 4px; padding: 12px 16px; margin: 10px 0 16px; overflow-x: auto; font-size: 11px; line-height: 1.5; }
+  code { color: #a78bfa; }
+
+  /* Architecture diagrams */
+  .diagram { background: #0f0f0f; border: 1px solid #333; border-radius: 6px; padding: 16px 20px; margin: 12px 0 16px; font-size: 11px; white-space: pre; line-height: 1.4; color: #78716c; }
+  .diagram strong { color: #3b82f6; }
+
+  /* Callouts */
+  .callout { border-left: 3px solid #f59e0b; background: #141414; padding: 12px 16px; margin: 16px 0; font-size: 11px; }
+  .callout.tilde { border-color: #ef4444; }
+  .callout.key { border-color: #22c55e; }
+
+  /* Hypothesis blocks */
+  .hypothesis { background: #111; border: 1px solid #262626; border-radius: 4px; padding: 12px 16px; margin: 8px 0; }
+  .hypothesis .label { color: #3b82f6; font-size: 11px; font-weight: bold; margin-bottom: 4px; }
+  .hypothesis p { font-size: 11px; margin-bottom: 6px; }
+
+  /* Metric cards */
+  .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 12px 0; }
+  .metric-card { background: #111; border: 1px solid #262626; border-radius: 4px; padding: 12px; }
+  .metric-card .name { color: #f59e0b; font-size: 11px; font-weight: bold; margin-bottom: 4px; }
+  .metric-card .desc { color: #a3a3a3; font-size: 10px; }
+
+  /* Model list */
+  .model-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 12px 0; }
+  .model-item { background: #111; border: 1px solid #262626; border-radius: 4px; padding: 10px 12px; }
+  .model-item .name { color: #e5e5e5; font-size: 11px; font-weight: bold; }
+  .model-item .detail { color: #737373; font-size: 10px; margin-top: 2px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <h2>LACUNA</h2>
+  <a href="#context">Context</a>
+  <div class="divider"></div>
+  <a href="#benchmark">1. Benchmark Framework</a>
+  <a href="#models" class="sub">Target Models</a>
+  <a href="#metrics" class="sub">5 Metrics</a>
+  <a href="#predictions" class="sub">Predictions</a>
+  <div class="divider"></div>
+  <a href="#mechanistic">2. Mechanistic (Cat/Panther)</a>
+  <a href="#methods" class="sub">5 Methods</a>
+  <a href="#betrayal-guilt" class="sub">Betrayal/Guilt Applied</a>
+  <div class="divider"></div>
+  <a href="#temporal">3. Temporal Evolution</a>
+  <div class="divider"></div>
+  <a href="#tilde">4. Tilde Prize Strategy</a>
+  <a href="#architecture" class="sub">3-Layer Architecture</a>
+  <a href="#pitch" class="sub">The Pitch</a>
+  <div class="divider"></div>
+  <a href="#implementation">5. Implementation Plan</a>
+  <a href="#priority-table" class="sub">Priority Table</a>
+  <div class="divider"></div>
+  <a href="#viz">6. Visualization Concepts</a>
+  <div class="divider"></div>
+  <a href="#summary">Summary</a>
+</nav>
+
+<main>
+
+<h1>EMBEDDING MODEL BENCHMARK ANALYSIS</h1>
+<p class="subtitle">Post-Dewulf Strategy for Tilde Research Prize | Feb 28, 2026</p>
+
+<div class="callout" id="context">
+  <strong>Context:</strong> Alex Dewulf (MTS, Tilde Research) suggested LACUNA could benchmark embedding models and explain WHY connections form (his example: cat to panther). Tilde sponsors "Best Architectural Modification." Two of seven judges are Tilde. This doc is the playbook.
+</div>
+
+<!-- SECTION 1 -->
+<h2 id="benchmark">1. BENCHMARK FRAMEWORK</h2>
+
+<p>Same 43 concepts. Six different models. Compare what each "sees."</p>
+
+<h3 id="models">Target Models</h3>
+<div class="model-list">
+  <div class="model-item"><span class="name">BGE-M3</span><span class="detail">1024-dim. Our baseline. Dense+sparse+ColBERT retrieval. Local.</span></div>
+  <div class="model-item"><span class="name">multilingual-e5-large</span><span class="detail">1024-dim. Microsoft. Contrastive learning. Local.</span></div>
+  <div class="model-item"><span class="name">Mistral-embed</span><span class="detail">1024-dim. API-only. Required for track alignment.</span></div>
+  <div class="model-item"><span class="name">Cohere embed-v3</span><span class="detail">1024-dim. Production multilingual. API.</span></div>
+  <div class="model-item"><span class="name">SONAR (Meta)</span><span class="detail">200+ languages. Explicitly cross-lingual. Local.</span></div>
+  <div class="model-item"><span class="name">NV-Embed-v2</span><span class="detail">4096-dim. Decoder architecture. Different paradigm. Local.</span></div>
+</div>
+
+<h3 id="metrics">5 Metrics Per Model</h3>
+<div class="metrics">
+  <div class="metric-card">
+    <div class="name">CLAS (Cross-Lingual Alignment)</div>
+    <div class="desc">Average cosine similarity between EN and DE embeddings of the same concept. High = model collapses differences. Low = model treats languages as separate spaces.</div>
+  </div>
+  <div class="metric-card">
+    <div class="name">Topology Preservation (Mantel)</div>
+    <div class="desc">Correlation between EN and DE distance matrices. High = same structure both languages. Low = language genuinely restructures concepts.</div>
+  </div>
+  <div class="metric-card">
+    <div class="name">Cluster Coherence (Silhouette)</div>
+    <div class="desc">Do our 6 clusters hold together? Does German "humiliation" cluster tighter than English? Measured per language.</div>
+  </div>
+  <div class="metric-card">
+    <div class="name">Ghost Detection Rate</div>
+    <div class="desc">Ghost concepts should be close to neighbors in home language, orphaned in foreign language. Measures if the model sees lacunae.</div>
+  </div>
+</div>
+<p>Plus raw 43x43 pairwise cosine distance matrices (12 total: 6 models x 2 languages).</p>
+
+<h3 id="predictions">Predictions</h3>
+<p><strong>SONAR</strong> will erase the topology differences (highest CLAS). It is anti-LACUNA.</p>
+<p><strong>NV-Embed-v2</strong> uses a decoder architecture. If it agrees with encoder models on divergent pairs, the divergence is real, not an architecture artifact.</p>
+<p><strong>Where all models agree, the topology is real. Where they disagree, it is a model artifact.</strong> LACUNA separates the two.</p>
+
+<!-- SECTION 2 -->
+<h2 id="mechanistic">2. MECHANISTIC INTERPRETABILITY (CAT TO PANTHER)</h2>
+
+<p>Not just THAT embeddings connect. WHY and HOW. This is what Dewulf cares about.</p>
+
+<h3 id="methods">5 Investigation Methods</h3>
+
+<h4>Method 1: Attention Head Analysis</h4>
+<p>Extract attention patterns with <code>output_attentions=True</code>. 24 layers x 16 heads = 384 patterns. Which heads activate for "betrayal+guilt" in EN vs "Verrat+Schuld" in DE? Different heads = different mechanisms per language.</p>
+
+<h4>Method 2: Layer-wise Trajectories</h4>
+<p>Track cosine distance between a concept pair at each transformer layer. Plot EN vs DE. The layer where they split tells you where language-specific processing starts.</p>
+
+<h4>Method 3: Probing Classifiers</h4>
+<p>Train linear classifiers on intermediate layers for dimensions: moral valence, agency, temporal orientation, collective/individual. If moral valence separates at layer 8 in EN but layer 14 in DE, English resolves moral reasoning earlier (compresses the cluster).</p>
+
+<h4>Method 4: Sparse Autoencoders</h4>
+<p>Tilde's core method. Decompose embeddings into sparse interpretable features. "Betrayal" in EN might activate [moral_violation, trust, emotional_intensity]. "Verrat" in DE might activate [political_treachery, national_betrayal, military_context]. The feature shift IS the mechanism.</p>
+<div class="callout tilde">SAE training requires 20+ hours. Post-hackathon. But mention it as a Tilde collaboration hook: "We built the measurement instrument. You built the interpretability tools. Together they do something neither can do alone."</div>
+
+<h4>Method 5: Concept Activation Vectors</h4>
+<p>Define directions in embedding space: [moral positive] to [moral negative], [active] to [passive]. Project concepts onto these directions. Where EN and DE projections diverge, that dimension restructures across languages.</p>
+
+<h3 id="betrayal-guilt">Applied: Betrayal and Guilt</h3>
+<p>d_EN(betrayal, guilt) = 0.356. d_DE(Verrat, Schuld) = 0.539. Delta = 0.183. Four hypotheses:</p>
+
+<div class="hypothesis">
+  <div class="label">H1: Co-occurrence</div>
+  <p>EN: "betrayal" and "guilt" co-occur in moral narrative. DE: "Verrat" = political/military, "Schuld" = legal/financial. Different registers.</p>
+</div>
+<div class="hypothesis">
+  <div class="label">H2: Morphological (Schuld = guilt AND debt)</div>
+  <p>"Schuld" carries financial semantics. "Schulden" (debts) shares the root. Pulls "Schuld" toward reparations/obligation cluster, away from "Verrat."</p>
+</div>
+<div class="hypothesis">
+  <div class="label">H3: Emotional valence compression</div>
+  <p>English compresses negative-affect concepts into one cluster. German keeps them separated along moral/legal/political axes. Our "EN compresses, DE differentiates" finding IS this hypothesis, measured.</p>
+</div>
+<div class="hypothesis">
+  <div class="label">H4: Training data bias</div>
+  <p>Test by running multiple models. If divergence persists across models with different training data, it is linguistic, not an artifact.</p>
+</div>
+
+<!-- SECTION 3 -->
+<h2 id="temporal">3. TEMPORAL EVOLUTION</h2>
+
+<p>Languages restructure over time, not just across languages. Future direction, mention in presentation.</p>
+
+<p><strong>Method:</strong> Prepend era-specific context to concept definitions before embedding. Track how "reparations" migrates from punishment cluster (1919) to justice cluster (2025).</p>
+
+<p><strong>Example:</strong> "Freedom" in American English: proximate to liberty/revolution (1776), to emancipation (1865), to defense/sacrifice (1941), to security/surveillance (2001), to autonomy/privacy (2025). The terrain shifts. The doors the room used to have that it lost.</p>
+
+<div class="callout">Post-hackathon. Requires historical corpora. Mention as "what's next" in demo. Zero engineering needed for the slide.</div>
+
+<!-- SECTION 4 -->
+<h2 id="tilde">4. TILDE PRIZE STRATEGY</h2>
+
+<h3 id="architecture">3-Layer Architecture</h3>
+
+<div class="diagram"><strong>Layer 1: Base Pipeline</strong>
+Input -> [Extractor] -> [Embedder] -> [Validator] -> [Projector] -> [Terrain] -> [Interpreter] -> Output
+Not a wrapper. A measurement instrument. Each stage transforms the signal.
+
+<strong>Layer 2: Benchmark Meta-Architecture</strong>
+Same concepts -> [BGE-M3 | E5 | Mistral | Cohere | SONAR] -> [Comparative Analyzer] -> Multi-Model Terrain
+Single-model instrument becomes multi-model observatory.
+
+<strong>Layer 3: Interpretability</strong>
+Concept -> [Tokenizer] -> [Layer 0..N: extract hidden states + attention] -> [SAE] -> [Feature Attribution]
+Goes inside the model. Answers WHY, not just WHAT.</div>
+
+<h3 id="pitch">The Pitch to Tilde</h3>
+<div class="callout tilde">
+"We built a measurement instrument that detects cross-lingual topology divergence. You built the tools to explain why that divergence exists inside the model. LACUNA is the microscope. SAEs are the staining technique. Together they do something neither can do alone."
+</div>
+
+<!-- SECTION 5 -->
+<h2 id="implementation">5. IMPLEMENTATION PLAN</h2>
+
+<h3 id="priority-table">Priority Table</h3>
+<table>
+  <tr><th>Component</th><th>What</th><th>Time</th><th>Priority</th><th>Depends On</th></tr>
+  <tr><td>A</td><td>Multi-model embedding script</td><td>5h</td><td class="priority-must">MUST</td><td>Mac Mini, API keys</td></tr>
+  <tr><td>B</td><td>Metric comparison script</td><td>2h</td><td class="priority-must">MUST</td><td>A</td></tr>
+  <tr><td>F</td><td>Model terrain toggle (dropdown)</td><td>2h</td><td class="priority-must">MUST</td><td>B</td></tr>
+  <tr><td>C</td><td>Attention head analysis</td><td>4h</td><td class="priority-nice">NICE</td><td>BGE-M3 local</td></tr>
+  <tr><td>D</td><td>Layer-wise trajectories</td><td>2h</td><td class="priority-nice">NICE</td><td>BGE-M3 local</td></tr>
+  <tr><td>G</td><td>Connection explanation cards</td><td>3h</td><td class="priority-nice">NICE</td><td>A, B, C</td></tr>
+  <tr><td>H</td><td>Model agreement heatmap</td><td>2h</td><td class="priority-nice">NICE</td><td>B</td></tr>
+  <tr><td>E</td><td>SAE training</td><td>20h+</td><td class="priority-post">POST</td><td>GPU, corpus</td></tr>
+</table>
+
+<p><strong>Critical path:</strong> A -> B -> F = 9 hours. Gives benchmark story with visualization.</p>
+<p><strong>Stretch:</strong> C + D = 6 more hours. Gives Tilde interpretability angle.</p>
+
+<!-- SECTION 6 -->
+<h2 id="viz">6. VISUALIZATION CONCEPTS</h2>
+
+<h4>Multi-Model Terrain (2x2 grid)</h4>
+<p>Four terrains, same concepts, different models, linked camera. Where they agree = real. Where they differ = artifact.</p>
+
+<h4>Connection Explanation Cards</h4>
+<p>Click an edge. See: cosine distance per language, model agreement count, Interpreter explanation, feature decomposition.</p>
+
+<h4>Layer-by-Layer Animation</h4>
+<p>Slider from layer 0 to 24. Terrain morphs to show how topology evolves through the transformer. Early = surface. Late = semantic.</p>
+
+<h4>Model Agreement Heatmap</h4>
+<p>43x43 grid. Green = all models agree. Red = models disagree. Hero pairs highlighted.</p>
+
+<!-- SUMMARY -->
+<h2 id="summary">SUMMARY</h2>
+
+<div class="callout key">
+<strong>Three layers:</strong><br>
+1. <strong>Benchmark</strong> = compare models, find what's universal vs artifact. (Hackathon: MUST.)<br>
+2. <strong>Mechanistic</strong> = go inside models, explain connections. (Hackathon: stretch. Tilde prize play.)<br>
+3. <strong>Temporal</strong> = track concepts through time. (Post-hackathon. Mention in presentation.)<br><br>
+<strong>The sentence for judges:</strong> "LACUNA does not just measure how languages structure concepts differently. It measures how embedding models structure concepts differently, and by comparing the two, it separates genuine linguistic topology from model artifacts. This is the first tool that can do both."
+</div>
+
+</main>
+</body>
+</html>

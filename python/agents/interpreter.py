@@ -154,16 +154,15 @@ DEFINITIONS:
 
 LACUNA TYPE: {lacuna_type}
 
-POSITION:
+VISUALIZATION POSITION (UMAP projection):
 - {primary_language.upper()}: ({primary_pos[0]:.1f}, {primary_pos[1]:.1f})
 - {comparison_language.upper()}: ({comparison_pos[0]:.1f}, {comparison_pos[1]:.1f})
 
-NEAREST NEIGHBORS:
+SEMANTICALLY NEAREST NEIGHBORS (by embedding cosine similarity):
 - {primary_language.upper()}: {primary_neighbor_str}
 - {comparison_language.upper()}: {comparison_neighbor_str}
 
-Explain WHY this conceptual gap exists. Focus on Treaty of Versailles / WWI context.
-Be specific with historical details and citations."""
+Explain WHY this conceptual gap exists. Be specific with historical details and citations."""
 
     print(f"[interpreter] Generating interpretation for {concept_id}...")
 
@@ -223,34 +222,54 @@ def interpret_concept_card(
     from lib.embeddings import embed_texts
     import numpy as np
 
-    # Get neighbors by position proximity
-    def get_neighbors(lang: str) -> List[Dict]:
-        pos = concept["position"].get(lang)
-        if not pos:
+    def cosine_sim(a: np.ndarray, b: np.ndarray) -> float:
+        """Compute cosine similarity between two vectors."""
+        return float(np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b) + 1e-10))
+
+    def get_neighbors_by_embedding(lang: str) -> List[Dict]:
+        """Get neighbors using actual embedding cosine similarity."""
+        # Get target concept's definition
+        target_def = concept.get("definitions", {}).get(lang)
+        if not target_def:
             return []
 
-        neighbors = []
+        # Collect all definitions for this language
+        other_concepts = []
+        other_definitions = []
         for c in all_concepts:
             if c["id"] == concept["id"]:
                 continue
-            c_pos = c["position"].get(lang)
-            if not c_pos:
-                continue
+            c_def = c.get("definitions", {}).get(lang)
+            if c_def:
+                other_concepts.append(c)
+                other_definitions.append(c_def)
 
-            dist = ((pos[0] - c_pos[0])**2 + (pos[1] - c_pos[1])**2)**0.5
+        if not other_definitions:
+            return []
+
+        # Embed target and all others
+        all_defs = [target_def] + other_definitions
+        embeddings = embed_texts(all_defs)
+        target_emb = embeddings[0]
+        other_embs = embeddings[1:]
+
+        # Compute similarities
+        neighbors = []
+        for c, emb in zip(other_concepts, other_embs):
+            sim = cosine_sim(target_emb, emb)
             neighbors.append({
                 "id": c["id"],
                 "label": c["labels"].get(lang, c["id"]),
-                "similarity": 1 / (1 + dist),  # Convert distance to similarity-like score
-                "distance": dist,
+                "similarity": sim,
             })
 
-        neighbors.sort(key=lambda x: x["distance"])
+        # Sort by similarity (highest first)
+        neighbors.sort(key=lambda x: x["similarity"], reverse=True)
         return neighbors[:k_neighbors]
 
     neighbors = {
-        language: get_neighbors(language),
-        comparison_language: get_neighbors(comparison_language),
+        language: get_neighbors_by_embedding(language),
+        comparison_language: get_neighbors_by_embedding(comparison_language),
     }
 
     return interpret_lacuna(
