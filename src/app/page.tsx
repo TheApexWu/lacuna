@@ -351,11 +351,21 @@ export default function Home() {
         )
       )}
 
+      {/* Terrain legend */}
+      <div className="absolute top-6 left-6 z-30 mt-24 bg-[#0a0a0a]/70 backdrop-blur-sm rounded px-3 py-2 space-y-1 pointer-events-none">
+        <p className="text-[9px] text-[#737373] tracking-wider mb-1">READING THE TERRAIN</p>
+        <p className="text-[9px] text-[#525252]"><span className="text-[#a3a3a3]">height</span> = conceptual weight / centrality</p>
+        <p className="text-[9px] text-[#525252]"><span className="text-[#a3a3a3]">position</span> = semantic proximity (UMAP)</p>
+        <p className="text-[9px] text-[#525252]"><span className="text-[#a3a3a3]">color</span> = concept cluster</p>
+        <p className="text-[9px] text-[#525252]"><span className="text-[#a3a3a3]">depression</span> = lacuna (absent concept)</p>
+      </div>
+
       {/* 3D terrain (fullscreen) */}
       <TopologyTerrain
         language={language}
         showLacunae={showLacunae}
         onConceptClick={handleConceptClick}
+        onBackgroundClick={() => setSelectedConcept(null)}
         positionOverride={isEmbedding ? modelData.positions : undefined}
         weightOverride={isEmbedding ? modelData.weights : undefined}
         clusterOverride={effectiveClusters}

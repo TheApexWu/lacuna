@@ -111,7 +111,7 @@ function computeTerrain(
         const g = gaussian(dx, dz, sigma) * cw;
 
         if (isLacuna) {
-          h -= g * 0.3; // Depressions where absent concepts would be
+          h -= g * 0.7; // Deep depressions where absent concepts would be
         } else {
           h += g;
           if (g > maxContrib) {
@@ -317,7 +317,7 @@ function ConceptLabels({
       const isLacuna = lacunaOverride?.[concept.id]?.[language] ?? concept.lacuna[language] ?? false;
 
       // Peak height at concept center (gaussian = 1 at center)
-      const rawH = isLacuna ? -(weight * 0.3) : weight;
+      const rawH = isLacuna ? -(weight * 0.7) : weight;
       const sculpted = Math.sign(rawH) * Math.pow(Math.abs(rawH), 1.3);
       const y = sculpted * heightScale + 2;
 
@@ -405,7 +405,7 @@ function ConceptLabels({
               document.body.style.cursor = "default";
             }}
           >
-            {getLabel(concept, language)}
+            {getLabel(concept, "en")}
           </Text>
         );
       })}
@@ -701,6 +701,7 @@ export default function TopologyTerrain({
   language,
   showLacunae,
   onConceptClick,
+  onBackgroundClick,
   positionOverride,
   weightOverride,
   clusterOverride,
@@ -710,6 +711,7 @@ export default function TopologyTerrain({
   language: string;
   showLacunae: boolean;
   onConceptClick: (id: string) => void;
+  onBackgroundClick?: () => void;
   positionOverride?: Record<string, Record<string, [number, number]>>;
   weightOverride?: Record<string, Record<string, number>>;
   clusterOverride?: Record<string, Record<string, number | string>>;
@@ -757,6 +759,7 @@ export default function TopologyTerrain({
             original() ?? ({ alpha: false } as WebGLContextAttributes);
         }}
         style={{ width: "100vw", height: "100vh" }}
+        onPointerMissed={onBackgroundClick}
       >
         <Scene
           language={language}

@@ -106,77 +106,66 @@ export default function ConceptCard({
 
       {/* Definition */}
       {data.definition && (
-        <p className="text-[#a3a3a3] text-xs leading-relaxed mb-4">
+        <p className="text-[#a3a3a3] text-xs leading-relaxed mb-3">
           {data.definition}
         </p>
       )}
 
-      {/* Metadata rows */}
-      <div className="space-y-1.5 mb-4 text-xs">
-        <Row label="cluster" value={data.cluster} />
-        <Row label="source" value={data.source} />
-        {data.hero && <Row label="hero" value="true" accent />}
-        {Object.entries(data.weight).map(([lang, w]) => (
-          <Row key={lang} label={`weight.${lang}`} value={w.toFixed(2)} />
-        ))}
-        {Object.entries(data.position).map(([lang, pos]) => (
-          <Row
-            key={lang}
-            label={`pos.${lang}`}
-            value={`[${pos[0].toFixed(1)}, ${pos[1].toFixed(1)}]`}
-          />
-        ))}
-        {Object.entries(data.lacuna).map(
-          ([lang, isLacuna]) =>
-            isLacuna && (
-              <Row key={lang} label={`lacuna.${lang}`} value="true" accent />
-            )
-        )}
-      </div>
-
-      {/* Nearest neighbors per language */}
-      {data.neighbors &&
-        Object.entries(data.neighbors).map(([lang, neighbors]) => (
-          <div key={lang} className="mb-3">
-            <p className="text-[#737373] text-xs mb-1">nearest ({lang})</p>
-            <div className="space-y-0.5">
-              {neighbors.slice(0, 5).map((n) => (
-                <div
-                  key={n.id}
-                  className="flex justify-between text-xs"
-                >
-                  <span className="text-[#a3a3a3]">{n.label}</span>
-                  <span className="text-[#737373] tabular-nums">
-                    {n.distance.toFixed(3)}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-
-      {/* Interpretation from Mistral agent */}
-      <div className="mt-3 pt-3 border-t border-[#262626]">
-        <p className="text-[#737373] text-xs mb-1">
-          interpretation
-          {interpreting && (
-            <span className="ml-2 text-[#f59e0b] animate-pulse">
-              interpreting...
-            </span>
-          )}
-        </p>
-        {interpretation ? (
+      {/* Interpretation from Mistral agent (lead with this) */}
+      <div className="mb-3 pb-3 border-b border-[#262626]">
+        {interpreting ? (
+          <p className="text-[#f59e0b] text-xs animate-pulse">
+            interpreting...
+          </p>
+        ) : interpretation ? (
           <p className="text-[#a3a3a3] text-xs leading-relaxed">
             {interpretation}
           </p>
         ) : (
-          !interpreting && (
-            <p className="text-[#737373] text-xs italic">
-              Interpretation unavailable
-            </p>
-          )
+          <p className="text-[#737373] text-xs italic">
+            Interpretation unavailable
+          </p>
         )}
       </div>
+
+      {/* Key metadata */}
+      <div className="space-y-1.5 mb-3 text-xs">
+        <Row label="cluster" value={data.cluster} />
+        {data.hero && <Row label="hero" value="true" accent />}
+        {(["en", "de"] as const).map((lang) => {
+          const w = data.weight[lang];
+          if (w === undefined || w === 0) return null;
+          return <Row key={lang} label={`weight.${lang}`} value={w.toFixed(2)} />;
+        })}
+        {(["en", "de"] as const).map((lang) =>
+          data.lacuna[lang] ? (
+            <Row key={lang} label={`lacuna.${lang}`} value="true" accent />
+          ) : null
+        )}
+      </div>
+
+      {/* Nearest neighbors (EN and DE only) */}
+      {data.neighbors &&
+        (["en", "de"] as const)
+          .filter((lang) => data.neighbors[lang])
+          .map((lang) => (
+            <div key={lang} className="mb-3">
+              <p className="text-[#737373] text-xs mb-1">nearest ({lang})</p>
+              <div className="space-y-0.5">
+                {data.neighbors[lang].slice(0, 5).map((n) => (
+                  <div
+                    key={n.id}
+                    className="flex justify-between text-xs"
+                  >
+                    <span className="text-[#a3a3a3]">{n.label}</span>
+                    <span className="text-[#737373] tabular-nums">
+                      {n.distance.toFixed(3)}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
     </div>
   );
 }
