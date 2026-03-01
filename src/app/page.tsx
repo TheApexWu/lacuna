@@ -13,6 +13,7 @@ import ClusterEditor from "../components/ClusterEditor";
 import { CLUSTER_HEX, LANGUAGES, DYNAMIC_CLUSTER_PALETTE, concepts } from "../data/versailles";
 import { useModelData } from "../hooks/useModelData";
 import { getModel } from "../data/embeddings/models";
+import { Leva } from "leva";
 
 // DO NOT use SSR for Three.js
 const TopologyTerrain = dynamic(
@@ -78,9 +79,9 @@ export default function Home() {
   const [showMetrics, setShowMetrics] = useState(false);
   const [showAgreement, setShowAgreement] = useState(false);
   const [showConnections, setShowConnections] = useState(false);
-  const [activeModel, setActiveModel] = useState("curated");
+  const [activeModel, setActiveModel] = useState("bge-m3");
   const [showClusterEditor, setShowClusterEditor] = useState(false);
-  const [showQuery, setShowQuery] = useState(false);
+  const [showQuery, setShowQuery] = useState(true);
   const [showMore, setShowMore] = useState(false);
 
   // Explicit query language pair (user can override)
@@ -275,6 +276,12 @@ export default function Home() {
     setQueryLangBOverride(langB);
     setQuerying(true);
     setQueryError(null);
+
+    // Switch terrain to lang_b so the audience sees the landscape shift
+    if (language !== langB) {
+      setLanguage(langB);
+    }
+
     try {
       const res = await fetch("/api/query", {
         method: "POST",
@@ -295,7 +302,7 @@ export default function Home() {
     } finally {
       setQuerying(false);
     }
-  }, [querying]);
+  }, [querying, language]);
 
   const handleProbe = useCallback(() => {
     fireProbe(queryText, queryLangA, queryLangB);
@@ -305,14 +312,31 @@ export default function Home() {
     setQueryText("");
     setQueryResults(null);
     setQueryError(null);
+    setQueryLangAOverride(null);
+    setQueryLangBOverride(null);
+    setLanguage("en");
     queryInputRef.current?.focus();
   }, []);
 
   // Highlight top 10 concepts by divergence
+  // Filter out lacuna concepts when their home language isn't in the probe
   const highlightedConcepts = useMemo(() => {
     if (!queryResults) return undefined;
     const { lang_a, lang_b } = queryResults;
-    const top = queryResults.activations.slice(0, 10);
+    const probeLangs = new Set([lang_a, lang_b]);
+
+    // German-only lacuna concepts should only highlight when DE is in the probe
+    const lacunaHomeLangs: Record<string, string> = {
+      dolchstoss: "de", schmach: "de", diktat: "de", kriegsschuld: "de", volkszorn: "de",
+    };
+
+    const filtered = queryResults.activations.filter((act) => {
+      const home = lacunaHomeLangs[act.conceptId];
+      if (home && !probeLangs.has(home)) return false;
+      return true;
+    });
+
+    const top = filtered.slice(0, 10);
     const result: Record<string, { similarity: number; divergence: number }> = {};
     for (const act of top) {
       const simA = (act[`similarity_${lang_a}`] as number) ?? 0;
@@ -325,11 +349,26 @@ export default function Home() {
     return result;
   }, [queryResults]);
 
+  // Filter activations for the results panel (remove irrelevant lacuna concepts)
+  const filteredActivations = useMemo(() => {
+    if (!queryResults) return [];
+    const probeLangs = new Set([queryResults.lang_a, queryResults.lang_b]);
+    const lacunaHomeLangs: Record<string, string> = {
+      dolchstoss: "de", schmach: "de", diktat: "de", kriegsschuld: "de", volkszorn: "de",
+    };
+    return queryResults.activations.filter((act) => {
+      const home = lacunaHomeLangs[act.conceptId];
+      if (home && !probeLangs.has(home)) return false;
+      return true;
+    });
+  }, [queryResults]);
+
   const currentLangName =
     LANGUAGES.find((l) => l.code === language)?.name ?? language.toUpperCase();
 
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-[#0a0a0a]">
+      <Leva hidden />
       {/* Header */}
       <header className="absolute top-0 left-0 z-40 p-6">
         <h1 className="text-2xl font-bold tracking-widest text-[#e5e5e5]">
@@ -445,12 +484,12 @@ export default function Home() {
               <span className="w-[36px] text-right text-[#ef4444]">{queryResults.lang_b.toUpperCase()}</span>
               <span className="flex-1 text-right">DIVERGENCE</span>
             </div>
-            {queryResults.activations.slice(0, 15).map((act, i) => {
+            {filteredActivations.slice(0, 15).map((act, i) => {
               const simA = (act[`similarity_${queryResults.lang_a}`] as number) ?? 0;
               const simB = (act[`similarity_${queryResults.lang_b}`] as number) ?? 0;
               const isNeutral = act.direction === "neutral";
               const aLeaning = act.direction === queryResults.lang_a;
-              const maxDiv = queryResults.activations[0]?.divergence || 1;
+              const maxDiv = filteredActivations[0]?.divergence || 1;
               return (
                 <button
                   key={act.conceptId}
@@ -673,39 +712,6 @@ export default function Home() {
             ))}
           </div>
 
-          <button
-            onClick={() => setShowLacunae((g) => !g)}
-            className="px-4 py-2 text-xs tracking-wider rounded border transition-all"
-            style={{
-              borderColor: showLacunae ? "#78716c" : "#262626",
-              color: showLacunae ? "#e5e5e5" : "#737373",
-              background: showLacunae ? "rgba(120, 113, 108, 0.15)" : "rgba(10, 10, 10, 0.8)",
-            }}
-          >
-            {showLacunae ? "HIDE LACUNAE" : "LACUNAE"}
-          </button>
-
-          <button
-            onClick={() => {
-              const next = !showQuery;
-              setShowQuery(next);
-              if (next) {
-                setTimeout(() => queryInputRef.current?.focus(), 100);
-              } else {
-                setQueryResults(null);
-                setQueryError(null);
-              }
-            }}
-            className="px-4 py-2 text-xs tracking-wider rounded border transition-all"
-            style={{
-              borderColor: showQuery ? "#f59e0b" : !queryResults ? "rgba(245, 158, 11, 0.3)" : "#262626",
-              color: showQuery ? "#e5e5e5" : !queryResults ? "#d97706" : "#737373",
-              background: showQuery ? "rgba(245, 158, 11, 0.15)" : "rgba(10, 10, 10, 0.8)",
-            }}
-          >
-            {showQuery ? "HIDE QUERY" : "QUERY"}
-          </button>
-
           {/* MORE dropdown: research tools */}
           <div className="relative">
             <button
@@ -722,6 +728,7 @@ export default function Home() {
             {showMore && (
               <div className="absolute bottom-full left-0 mb-2 flex items-center gap-2 bg-[#0a0a0a]/95 backdrop-blur-md border border-[#262626] rounded-lg px-2 py-2">
                 {[
+                  { key: "lacunae", label: "LACUNAE", state: showLacunae, set: setShowLacunae, color: "#78716c" },
                   { key: "butterfly", label: "DIVERGENCE", state: showButterfly, set: setShowButterfly, color: "#f59e0b" },
                   { key: "network", label: "NETWORK", state: showNetwork, set: setShowNetwork, color: "#f59e0b" },
                   { key: "metrics", label: "METRICS", state: showMetrics, set: setShowMetrics, color: "#3b82f6" },
