@@ -140,6 +140,112 @@
   <span class="highlight">why</span>.
 </p>
 
+<h2>Concepts vs Clusters vs Terrain (know the difference)</h2>
+
+<div class="step">
+  <div class="step-num">CONCEPT</div>
+  <h3>A single idea with a definition</h3>
+  <p>
+    There are <span class="highlight">43 concepts</span> in LACUNA. Each one is a distinct idea
+    extracted from the Treaty of Versailles: reparations, honor, betrayal, subjugation, etc.
+    Each concept has a <span class="highlight">definition written separately in each language</span> --
+    not translated, but defined using the native term and cultural framing.
+  </p>
+  <p>
+    Each concept becomes a <span class="highlight">1024-dimensional vector</span> when embedded.
+    That vector is its position in meaning-space. The terrain shows these as
+    <span class="amber">labeled text floating above peaks</span>.
+  </p>
+  <p>
+    Think of a concept as one data point. "reparations" is one concept. "honor" is another. 43 total.
+  </p>
+</div>
+
+<div class="step">
+  <div class="step-num">CLUSTER</div>
+  <h3>A color group of related concepts</h3>
+  <p>
+    Clusters are <span class="highlight">thematic groupings</span> that organize the 43 concepts
+    into categories. They determine the <span class="highlight">color</span> of the terrain
+    and labels. That's it. They have zero effect on the probe, the divergence scores, or any analysis.
+  </p>
+  <p>There are 6 clusters:</p>
+  <table class="viz-table">
+    <tr>
+      <td><span class="amber">Core</span></td>
+      <td>Central treaty concepts: reparations, armistice, honor, treaty (4 concepts)</td>
+    </tr>
+    <tr>
+      <td><span class="blue">Justice</span></td>
+      <td>Legal/moral frame: justice, accountability, punishment, debt, guilt, restitution, sanctions, concession, demilitarization, obligation (10 concepts)</td>
+    </tr>
+    <tr>
+      <td><span class="green">Victory</span></td>
+      <td>Victor's frame: victory, peace, order, triumph, sovereignty, self-determination, legitimacy, diplomacy, reconstruction (9 concepts)</td>
+    </tr>
+    <tr>
+      <td><span class="red">Humiliation</span></td>
+      <td>Defeated party's frame: humiliation, betrayal, injustice, revenge, resentment, subjugation, occupation, propaganda, nationalism, starvation, blockade (11 concepts)</td>
+    </tr>
+    <tr>
+      <td><span style="color:#78716c">Lacuna-DE</span></td>
+      <td>Concepts that exist only in German: dolchstoss, schmach, diktat, kriegsschuld, volkszorn, revanchism (6 concepts)</td>
+    </tr>
+    <tr>
+      <td><span style="color:#78716c">Lacuna-EN</span></td>
+      <td>Concepts that exist only in English: magnanimity, civilizing, mandate (3 concepts)</td>
+    </tr>
+  </table>
+  <p>
+    <span class="amber">How are clusters determined?</span> They are curated by the team based on
+    thematic analysis of the Treaty of Versailles. They reflect how the concepts relate to the
+    treaty's power dynamics: the victors' frame (justice, victory) vs the defeated's frame
+    (humiliation). They are NOT algorithmically derived -- they are a research decision.
+  </p>
+  <p>
+    When using BGE-M3 model, clusters can also be computed via HDBSCAN (algorithmic clustering
+    of the embedding space). But for the demo, the curated clusters are used because they
+    tell a clearer story.
+  </p>
+</div>
+
+<div class="step">
+  <div class="step-num">TERRAIN</div>
+  <h3>The 3D visualization of all concepts</h3>
+  <p>
+    The terrain is <span class="highlight">the embeddings, visualized</span>. Each concept's
+    1024-dimensional vector gets projected to a 2D position via UMAP, then rendered in 3D:
+  </p>
+  <p>
+    <span class="highlight">Position</span> (where on the map) = UMAP projection of the embedding vector.
+    Concepts close together are semantically similar.<br>
+    <span class="highlight">Height</span> (how tall the peak) = the concept's importance weight.<br>
+    <span class="highlight">Color</span> = which cluster it belongs to. Purely visual.<br>
+    <span class="highlight">Switch languages</span> = new embedding vectors = new UMAP positions = terrain reshapes.
+  </p>
+  <p>
+    The terrain does NOT change when you fire a probe. The probe only highlights which concepts
+    on the existing terrain have the most divergence (amber glow = high divergence, dimmed = low).
+    The terrain shifts when you switch <span class="amber">languages</span>, not when you switch probes.
+  </p>
+</div>
+
+<div class="step">
+  <div class="step-num">THE FULL STACK</div>
+  <h3>Two models, two jobs</h3>
+  <p>
+    <span class="highlight">BGE-M3</span> embeddings &rarr; UMAP &rarr; terrain positions (what you <span class="amber">see</span>)<br>
+    <span class="highlight">mistral-embed</span> &rarr; cosine similarity &rarr; probe results (what you <span class="amber">measure</span>)
+  </p>
+  <p>
+    The terrain is the map. The probe is the measurement taken on the map.
+    Two different embedding models from two different sources, both pointing
+    at the same 43 concepts, both showing the same patterns.
+  </p>
+</div>
+
+<hr>
+
 <h2>The Pipeline (7 steps)</h2>
 
 <div class="step">
@@ -457,38 +563,47 @@
 
 <div class="step">
   <div class="step-num">0:00 - 0:15</div>
-  <h3>Open on terrain, English</h3>
-  <p>"This is the conceptual topology of the Treaty of Versailles. 43 concepts, positioned by semantic proximity, height by centrality."</p>
+  <h3>The Hook</h3>
+  <p>"Wittgenstein said the limits of my language are the limits of my world. Which means when two languages read the same text, they're reading two different worlds. LACUNA is the instrument that shows you exactly where those worlds diverge."</p>
 </div>
 
 <div class="step">
-  <div class="step-num">0:15 - 0:30</div>
-  <h3>Switch to German</h3>
-  <p>Terrain morphs. "Same treaty. Same concepts. Different shape. The topology shifts because the concepts occupy different positions in German semantic space."</p>
+  <div class="step-num">0:15 - 0:25</div>
+  <h3>What it does</h3>
+  <p>"You give it a sentence and two languages. It tells you what each language hears differently. Not translation. Activation. Which concepts light up, which stay dark, and which direction they lean."</p>
 </div>
 
 <div class="step">
-  <div class="step-num">0:30 - 0:45</div>
-  <h3>Toggle lacunae</h3>
-  <p>Depressions appear. "These gaps are lacunae -- concepts that exist in one language but are structurally absent in the other. Dolchstoss, the stab-in-the-back myth, has no English equivalent."</p>
+  <div class="step-num">0:25 - 0:45</div>
+  <h3>The Terrain (on screen: terrain in English, switch to German)</h3>
+  <p>"This is the Treaty of Versailles, 43 concepts mapped into a 3D topology. Height is importance. Position is meaning -- computed from BGE-M3 embeddings projected through UMAP. Switch from English to German -- watch the landscape reshape. Same treaty. Different conceptual territory."</p>
 </div>
 
 <div class="step">
-  <div class="step-num">0:45 - 1:20</div>
-  <h3>Fire the Sykes-Picot probe</h3>
-  <p>Click QUERY. Click Sykes-Picot button. Terrain highlights. Results panel appears. "I just pasted a sentence from the Sykes-Picot Agreement -- the 1916 deal that carved up the Middle East. English and Arabic. Same text." Point at results. "English pulls accountability, mandate, honor. Arabic pulls subjugation, humiliation, resentment. The colonial language reads protection. The colonized language reads domination."</p>
+  <div class="step-num">0:45 - 1:25</div>
+  <h3>Fire the Sykes-Picot probe (CENTER OF THE DEMO)</h3>
+  <p>Click Sykes-Picot probe button. Terrain shifts to Arabic. Results panel appears. Let the split land before narrating.</p>
+  <p>"I'm feeding LACUNA a sentence from the Sykes-Picot Agreement -- the 1916 deal that carved up the Middle East. English versus Arabic. Same sentence. Watch."</p>
+  <p>(pause, let results appear)</p>
+  <p>"English hears accountability, mandate, honor, self-determination. Arabic hears restitution, resentment, humiliation, subjugation. The colonial language reads protection. The colonized language reads domination. Same text. Same model. The gap is the finding."</p>
 </div>
 
 <div class="step">
-  <div class="step-num">1:20 - 1:40</div>
+  <div class="step-num">1:25 - 1:40</div>
+  <h3>The Pattern</h3>
+  <p>"This isn't one example. We ran 5 historical texts across 5 language pairs. English-German, English-Chinese, English-Japanese, English-Arabic, English-Korean. The pattern holds every time. Imperial languages hear justice and honor. Colonized languages hear shame and debt."</p>
+</div>
+
+<div class="step">
+  <div class="step-num">1:40 - 1:50</div>
   <h3>Click a concept, interpreter fires</h3>
-  <p>Click "subjugation" in results. ConceptCard opens. Interpreter generates explanation. "Mistral's interpreter agent explains WHY this concept diverges -- in real time, grounded in the embedding distances."</p>
+  <p>Click any concept in results. ConceptCard opens. "Click any concept and our Mistral interpreter agent explains why it diverges -- in real time, grounded in the embedding distances."</p>
 </div>
 
 <div class="step">
-  <div class="step-num">1:40 - 2:00</div>
-  <h3>Close</h3>
-  <p>"Same text. Same model. Different conceptual activation. LACUNA reads the gap. The last time this kind of gap went unread, it shaped a century."</p>
+  <div class="step-num">1:50 - 2:00</div>
+  <h3>The Close</h3>
+  <p>"Before you deploy AI in 10 languages, LACUNA shows you where your content lands differently across cultures. Same text. Different world. We built the instrument that reads the gap."</p>
 </div>
 
 <hr>
@@ -496,6 +611,12 @@
 <h2>Vocabulary (know these cold)</h2>
 
 <dl class="vocab">
+  <dt>Concept</dt>
+  <dd>One of the 43 ideas extracted from the Treaty of Versailles. Each has a definition in each language (not translated -- natively defined). Shows as a labeled text on the terrain. Example: "reparations", "honor", "subjugation".</dd>
+
+  <dt>Cluster</dt>
+  <dd>A thematic color group of related concepts. 6 clusters: core (amber), justice (blue), victory (green), humiliation (red), lacuna-de (grey), lacuna-en (grey). Determines terrain color only. Has zero effect on probes or divergence. Curated by the team, not algorithmic.</dd>
+
   <dt>Weight</dt>
   <dd>How central a concept is in a language's semantic space. Mean cosine similarity to all other concepts.</dd>
 
