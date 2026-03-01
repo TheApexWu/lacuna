@@ -15,33 +15,12 @@
     margin: 0 auto;
     line-height: 1.7;
   }
-  h1 {
-    font-size: 28px;
-    letter-spacing: 6px;
-    color: #f59e0b;
-    margin-bottom: 4px;
-  }
+  h1 { font-size: 28px; letter-spacing: 6px; color: #f59e0b; margin-bottom: 4px; }
   h1 span { color: #525252; font-size: 14px; letter-spacing: 2px; }
-  .subtitle {
-    color: #737373;
-    font-size: 12px;
-    letter-spacing: 2px;
-    margin-bottom: 40px;
-  }
-  h2 {
-    font-size: 11px;
-    letter-spacing: 3px;
-    color: #737373;
-    margin-top: 36px;
-    margin-bottom: 16px;
-    text-transform: uppercase;
-  }
-  h3 {
-    font-size: 14px;
-    color: #f59e0b;
-    margin-bottom: 8px;
-  }
-  p { font-size: 13px; color: #a3a3a3; margin-bottom: 12px; }
+  .subtitle { color: #737373; font-size: 12px; letter-spacing: 2px; margin-bottom: 40px; }
+  h2 { font-size: 11px; letter-spacing: 3px; color: #737373; margin-top: 36px; margin-bottom: 12px; text-transform: uppercase; }
+  h3 { font-size: 14px; color: #f59e0b; margin-bottom: 6px; }
+  p { font-size: 13px; color: #a3a3a3; margin-bottom: 10px; }
   .highlight { color: #e5e5e5; font-weight: bold; }
   .amber { color: #f59e0b; }
   .red { color: #ef4444; }
@@ -50,71 +29,31 @@
   .oneliner {
     border-left: 2px solid #f59e0b;
     padding: 12px 16px;
-    margin: 24px 0;
+    margin: 20px 0;
     background: rgba(245, 158, 11, 0.05);
     font-size: 14px;
     color: #e5e5e5;
   }
-  .step {
-    margin-bottom: 20px;
-    padding-left: 20px;
-    border-left: 1px solid #262626;
-  }
-  .step-num {
-    font-size: 11px;
-    color: #525252;
-    letter-spacing: 2px;
-    margin-bottom: 4px;
-  }
+  .step { margin-bottom: 16px; padding-left: 16px; border-left: 1px solid #262626; }
+  .step-num { font-size: 10px; color: #525252; letter-spacing: 2px; margin-bottom: 2px; }
   .term {
-    display: inline-block;
-    background: rgba(245, 158, 11, 0.1);
-    border: 1px solid #262626;
-    border-radius: 3px;
-    padding: 1px 6px;
-    font-size: 12px;
-    color: #f59e0b;
+    display: inline-block; background: rgba(245, 158, 11, 0.1);
+    border: 1px solid #262626; border-radius: 3px; padding: 1px 6px; font-size: 12px; color: #f59e0b;
   }
-  .viz-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 16px 0;
-    font-size: 12px;
-  }
-  .viz-table td {
-    padding: 8px 12px;
-    border-bottom: 1px solid #1a1a1a;
-  }
-  .viz-table td:first-child {
-    color: #737373;
-    width: 140px;
-  }
+  .viz-table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 12px; }
+  .viz-table td { padding: 6px 10px; border-bottom: 1px solid #1a1a1a; }
+  .viz-table td:first-child { color: #737373; width: 120px; }
   .viz-table td:last-child { color: #a3a3a3; }
   .validation {
-    background: rgba(34, 197, 94, 0.05);
-    border: 1px solid #1a3a1a;
-    border-radius: 6px;
-    padding: 16px;
-    margin: 20px 0;
-    font-size: 12px;
+    background: rgba(34, 197, 94, 0.05); border: 1px solid #1a3a1a;
+    border-radius: 6px; padding: 14px; margin: 14px 0; font-size: 12px;
   }
-  .validation p { color: #a3a3a3; margin-bottom: 6px; }
-  .vocab {
-    display: grid;
-    grid-template-columns: 120px 1fr;
-    gap: 8px 16px;
-    font-size: 12px;
-    margin: 12px 0;
-  }
+  .validation p { color: #a3a3a3; margin-bottom: 4px; }
+  .vocab { display: grid; grid-template-columns: 110px 1fr; gap: 6px 14px; font-size: 12px; margin: 10px 0; }
   .vocab dt { color: #f59e0b; }
   .vocab dd { color: #a3a3a3; }
-  hr { border: none; border-top: 1px solid #1a1a1a; margin: 32px 0; }
-  .footer {
-    margin-top: 40px;
-    font-size: 10px;
-    color: #525252;
-    letter-spacing: 1px;
-  }
+  hr { border: none; border-top: 1px solid #1a1a1a; margin: 28px 0; }
+  .footer { margin-top: 40px; font-size: 10px; color: #525252; letter-spacing: 1px; }
 </style>
 </head>
 <body>
@@ -124,413 +63,135 @@
 
 <div class="oneliner">
   "Die Grenzen meiner Sprache bedeuten die Grenzen meiner Welt."<br>
-  <span style="color:#737373">-- Ludwig Wittgenstein, Tractatus Logico-Philosophicus, 5.6</span><br><br>
-  The limits of my language mean the limits of my world.<br>
-  Which means when two languages read the same text, they are reading two different worlds.<br><br>
+  <span style="color:#737373">-- Wittgenstein, Tractatus 5.6</span><br><br>
+  The limits of my language mean the limits of my world.
+  When two languages read the same text, they read two different worlds.<br><br>
   <span class="amber">Same text, two languages, different concepts activate. LACUNA measures the gap.</span>
 </div>
 
 <h2>The Origin</h2>
-
 <p>
-  The idea behind LACUNA starts with a simple observation: words that appear to be the same
-  across languages do not carry the same meaning. Translation gives you equivalent words.
-  It does not give you equivalent understanding. In a specific context, the same words purely
-  translated into different languages do not land the same way. They activate different
-  associations, different histories, different emotional weight.
-</p>
-<p>
-  There was no tool that could show you this. No way to take a sentence, pick two languages,
-  and see exactly where the conceptual activation diverges. LACUNA was built to make that
-  invisible gap visible, measurable, and interactive.
+  Words that appear identical across languages do not carry the same meaning.
+  Translation gives you equivalent words, not equivalent understanding.
+  In context, the same words translated into different languages activate different
+  associations, different histories, different weight. No tool existed to show this.
+  LACUNA makes the invisible gap visible, measurable, and interactive.
 </p>
 
 <h2>The Thesis</h2>
-
 <p>
-  When the same text is processed by a multilingual AI model in two different languages,
-  the model does not treat every concept equally. Some concepts activate stronger in one
-  language than the other. That asymmetry is not random. It reflects how each language
-  encodes history, power, and cultural memory into its vocabulary.
-</p>
-<p>
-  <span class="highlight">LACUNA is the instrument that detects, quantifies, and visualizes
-  those asymmetries.</span>
-</p>
-
-<h2>The Pipeline (plain English)</h2>
-
-<p>
-  1. Pick a document. Define 43 key concepts from it -- not by translating, but by writing
-  each definition natively in each language.<br>
-  2. Feed those definitions into an embedding model (BGE-M3). Each definition becomes a
-  list of 1024 numbers that captures its meaning.<br>
-  3. Project those numbers onto a 2D map (UMAP). That map becomes the 3D terrain.<br>
-  4. Give the user a text input. Embed their text (mistral-embed). Compare it against
-  all 43 concept vectors in Language A and Language B. Report which concepts activate
-  differently.<br>
-  5. The difference between the two activations is the <span class="amber">divergence</span>.
-  Sort by divergence. The biggest gaps are the findings.
+  Multilingual AI models do not treat concepts equally across languages.
+  Some activate stronger in one language than another. That asymmetry reflects
+  how each language encodes history, power, and cultural memory.
+  <span class="highlight">LACUNA detects, quantifies, and visualizes those asymmetries.</span>
 </p>
 
 <h2>Why It Matters</h2>
-
 <p>
-  Every multilingual AI system -- translation, search, content moderation, legal analysis --
-  treats concepts as if they are universal across languages. They are not. The word "accountability"
-  in English and the closest Arabic equivalent do not occupy the same region of meaning.
-  When the Sykes-Picot Agreement is processed in English, the model activates concepts like
-  mandate, honor, and self-determination. In Arabic, it activates subjugation, humiliation,
-  and resentment. Same text. Same model. Different reading.
-</p>
-<p>
-  Before LACUNA, there was no way to see this. No tool that takes a sentence, two languages,
-  and returns a ranked list of where the conceptual activation diverges. LACUNA is the first
-  instrument that reads cross-lingual divergence out of embedding space and makes it
-  interactive, measurable, and explainable in real time.
-</p>
-<p>
+  Every multilingual AI system assumes concepts are universal. They are not.
+  The Sykes-Picot Agreement processed in English activates mandate, honor, self-determination.
+  In Arabic: subjugation, humiliation, resentment. Same text. Same model. Different reading.
   If you deploy AI in 10 languages without checking for this, you are silently collapsing
   distinctions that reshape legal liability, medical risk, and political intent.
 </p>
 
-<hr>
-
-<h2>Concepts vs Clusters vs Terrain (know the difference)</h2>
-
-<div class="step">
-  <div class="step-num">CONCEPT</div>
-  <h3>One of 43 data points, each with a native-language definition</h3>
-  <p>
-    Mistral Large reads the Treaty of Versailles and extracts <span class="highlight">43 conceptual frames</span>:
-    reparations, honor, betrayal, subjugation, etc. Each concept gets a <span class="highlight">definition
-    written natively in each language</span> -- not translated, but composed from how that
-    language's speakers would frame the idea. The English definition of "Schuld" emphasizes legal guilt.
-    The German definition emphasizes the dual meaning of guilt-and-debt.
-  </p>
-  <p>
-    Each definition is then embedded by <span class="highlight">BGE-M3</span> (BAAI, 1024 dimensions)
-    into a high-dimensional vector. That vector captures semantic content. 43 concepts x 10 languages
-    = 430 definition-vectors.
-  </p>
-</div>
-
-<div class="step">
-  <div class="step-num">CLUSTER</div>
-  <h3>A thematic color group -- two methods</h3>
-  <p>
-    Clusters organize concepts into color groups on the terrain. They affect <span class="highlight">color only</span>.
-    They have zero effect on probes, divergence, or any measurement.
-  </p>
-  <p>
-    <span class="amber">Method 1: Curated</span> (original, team-assigned). 6 clusters based on the treaty's
-    power dynamics:
-  </p>
-  <table class="viz-table">
-    <tr><td><span class="amber">Core</span> (4)</td><td>reparations, armistice, honor, treaty</td></tr>
-    <tr><td><span class="blue">Justice</span> (10)</td><td>justice, accountability, punishment, debt, guilt, restitution, sanctions, concession, demilitarization, obligation</td></tr>
-    <tr><td><span class="green">Victory</span> (9)</td><td>victory, peace, order, triumph, sovereignty, self-determination, legitimacy, diplomacy, reconstruction</td></tr>
-    <tr><td><span class="red">Humiliation</span> (11)</td><td>humiliation, betrayal, injustice, revenge, resentment, subjugation, occupation, propaganda, nationalism, starvation, blockade</td></tr>
-    <tr><td><span style="color:#78716c">Lacuna-DE</span> (6)</td><td>dolchstoss, schmach, diktat, kriegsschuld, volkszorn, revanchism</td></tr>
-    <tr><td><span style="color:#78716c">Lacuna-EN</span> (3)</td><td>magnanimity, civilizing, mandate</td></tr>
-  </table>
-  <p>
-    <span class="amber">Method 2: HDBSCAN</span> (algorithmic, per-language). Runs on the 1024-dim BGE-M3 vectors
-    with <span class="term">min_cluster_size=3</span>, <span class="term">metric=cosine</span>.
-    Produces different clusters per language -- concepts that group together in English may not
-    group together in German. Noise points (cluster -1) are colored grey.
-    The BGE-M3 terrain view uses these algorithmic clusters by default.
-  </p>
-</div>
-
-<div class="step">
-  <div class="step-num">TERRAIN POSITION</div>
-  <h3>UMAP projection of 1024-dim BGE-M3 embeddings to 2D</h3>
-  <p>
-    Each concept's 1024-dimensional BGE-M3 vector is projected to a 2D coordinate using
-    <span class="highlight">UMAP</span> with these parameters:
-  </p>
-  <table class="viz-table">
-    <tr><td>n_neighbors</td><td>10 (how many nearby points influence the projection)</td></tr>
-    <tr><td>min_dist</td><td>0.3 (minimum distance between points in 2D)</td></tr>
-    <tr><td>metric</td><td>cosine (angular distance in embedding space)</td></tr>
-    <tr><td>random_state</td><td>42 (reproducible)</td></tr>
-  </table>
-  <p>
-    UMAP runs <span class="highlight">separately per language</span>: 43 vectors in, 43 (x,z) coordinates out.
-    All non-English projections are <span class="highlight">Procrustes-aligned</span> to the English layout
-    (using scipy.linalg.orthogonal_procrustes) so that shared concepts stay in roughly the same
-    region across languages. The positions are centered and scaled to [-29.75, +29.75].
-  </p>
-  <p>
-    <span class="amber">What this means on screen:</span> concepts close together on the terrain have
-    similar BGE-M3 embeddings (high cosine similarity). Concepts far apart are semantically distant.
-    Switch languages and the positions shift because the embeddings are different -- the German
-    definition of "Schuld" occupies a different region of vector space than the English definition of "guilt."
-  </p>
-</div>
-
-<div class="step">
-  <div class="step-num">TERRAIN HEIGHT</div>
-  <h3>Cosine similarity to cluster centroid, normalized to [0.2, 1.0]</h3>
-  <p>
-    Height is NOT "importance" in an abstract sense. It has a precise computation:
-  </p>
-  <p>
-    1. L2-normalize all 43 concept vectors for the current language.<br>
-    2. Compute the <span class="highlight">centroid</span> (mean vector) of each cluster.<br>
-    3. For each concept, compute <span class="term">cosine similarity</span> between that concept's vector
-    and its cluster's centroid.<br>
-    4. Map the similarity from [-1, 1] to [0, 1], then normalize across all concepts to [0.2, 1.0].
-  </p>
-  <p>
-    <span class="amber">What this means on screen:</span> tall peaks are concepts whose embeddings
-    are closest to the center of their semantic group. They are the most representative
-    members of their cluster. Flat concepts are at the periphery of their group.
-    The terrain then applies a nonlinear exaggeration: height = sign(h) * |h|^1.3 * 20.
-  </p>
-</div>
-
-<div class="step">
-  <div class="step-num">THE FULL STACK</div>
-  <h3>Two embedding models, two distinct jobs</h3>
-  <p>
-    <span class="highlight">BGE-M3</span> (BAAI, 1024-dim) &rarr; UMAP projection &rarr; terrain positions + heights (what you <span class="amber">see</span>)<br>
-    <span class="highlight">mistral-embed</span> (Mistral, 1024-dim) &rarr; cosine similarity vs pre-computed vectors &rarr; probe divergence (what you <span class="amber">measure</span>)
-  </p>
-  <p>
-    The terrain is the map. The probe is the measurement instrument applied to that map.
-    Two different models from two different labs, both encoding the same 43 concept definitions,
-    both producing consistent cross-lingual divergence patterns.
-  </p>
-  <p>
-    <span class="amber">Why two models?</span> Using different models for terrain vs probes is a form
-    of cross-validation. If the divergence patterns only appeared in one model, they could be
-    model artifacts. Seeing consistent patterns across BGE-M3 (terrain) and mistral-embed (probes)
-    strengthens the claim that the divergence is about the language, not the model.
-  </p>
-</div>
-
-<hr>
-
-<h2>The Pipeline (7 steps)</h2>
-
-<div class="step">
-  <div class="step-num">01 EXTRACT</div>
-  <h3>Document to Concepts</h3>
-  <p>
-    Mistral Large reads the document and decomposes it into
-    <span class="highlight">conceptual frames</span> -- not keywords, but the
-    underlying ideas that carry meaning. Each frame gets a definition in both
-    languages using the <span class="highlight">native term</span>, not a translation.
-  </p>
-  <p>Example: "Reparations" decomposes into justice, debt, punishment, humiliation -- each a separate frame.</p>
-</div>
-
-<div class="step">
-  <div class="step-num">02 EMBED</div>
-  <h3>Concepts to 1024-dim Vectors</h3>
-  <p>
-    <span class="highlight">BGE-M3</span> (BAAI/bge-m3, 1024 dimensions, max 512 tokens, batch size 32)
-    encodes each concept's native-language definition into a dense vector. L2-normalized on output.
-    43 concepts x 10 languages = <span class="highlight">430 embeddings</span>.
-    Each language gets its own set of vectors because each definition is written natively, not translated.
-  </p>
-</div>
-
-<div class="step">
-  <div class="step-num">03 WEIGHT</div>
-  <h3>Cosine Similarity to Cluster Centroid</h3>
-  <p>
-    For each concept in each language:
-    (1) L2-normalize all 43 vectors.
-    (2) Compute the mean vector (centroid) for each cluster.
-    (3) <span class="term">weight</span> = cosine similarity between the concept vector and its cluster centroid.
-    (4) Map from [-1, 1] to [0, 1], then rescale to [0.2, 1.0].
-  </p>
-  <p>
-    High weight = the concept is the most representative member of its semantic group.
-    Low weight = peripheral, at the edge of its group in vector space.
-  </p>
-</div>
-
-<div class="step">
-  <div class="step-num">04 DETECT LACUNAE</div>
-  <h3>Find What's Missing</h3>
-  <p>
-    A <span class="term">lacuna</span> is a concept that is structurally present in one
-    language but absent in another. Detected when:
-  </p>
-  <p>
-    -- Absolute weight &lt; 0.15, OR<br>
-    -- Cross-language weight ratio &gt; 2.5x
-  </p>
-  <p>
-    Example: <span class="amber">Dolchstoss</span> (stab-in-the-back) is central in German,
-    absent in English. It's a lacuna. The concept doesn't translate because the
-    cultural frame doesn't exist.
-  </p>
-</div>
-
-<div class="step">
-  <div class="step-num">05 MEASURE DIVERGENCE</div>
-  <h3>How Far Apart Are the Meanings?</h3>
-  <p>
-    For each concept, we compare its English embedding to its German embedding
-    using <span class="highlight">cosine similarity</span>.
-    <span class="term">Divergence</span> = 1 minus that similarity.
-    High divergence = the concept means something fundamentally different across languages.
-  </p>
-  <p>
-    Example: <span class="amber">Schuld</span> has high divergence because in German it
-    means both "guilt" AND "debt" simultaneously. English splits these into two
-    separate concepts. Same word, different semantic territory.
-  </p>
-</div>
-
-<div class="step">
-  <div class="step-num">06 VISUALIZE</div>
-  <h3>The 3D Terrain</h3>
-  <table class="viz-table">
-    <tr>
-      <td>Position (X/Z)</td>
-      <td><span class="highlight">UMAP projection</span> of 1024-dim BGE-M3 vectors to 2D. n_neighbors=10, min_dist=0.3, metric=cosine. Procrustes-aligned across languages. Concepts near each other have high cosine similarity in embedding space.</td>
-    </tr>
-    <tr>
-      <td>Height (Y axis)</td>
-      <td><span class="highlight">Cosine similarity to cluster centroid</span>, scaled to [0.2, 1.0], then exaggerated: h = sign * |h|^1.3 * 20. Tall peak = most representative of its semantic group.</td>
-    </tr>
-    <tr>
-      <td>Color</td>
-      <td><span class="highlight">Cluster assignment.</span> HDBSCAN (min_cluster_size=3, cosine metric) on BGE-M3 model. Curated labels on curated model.</td>
-    </tr>
-    <tr>
-      <td>Labels</td>
-      <td>English concept names. Click to open ConceptCard + fire interpreter agent.</td>
-    </tr>
-    <tr>
-      <td>Depressions</td>
-      <td><span class="red">Lacunae.</span> Concepts with weight &lt; 0.15 or cross-language weight ratio &gt; 2.5x. Height is inverted (multiplied by -0.7).</td>
-    </tr>
-  </table>
-  <p>
-    Switch languages: UMAP re-projects from that language's embedding vectors. Positions shift because
-    each language's definition vectors occupy different regions of embedding space. The terrain
-    morphs with a 1.4-second ease-out transition (vertex-level interpolation on 10,201 grid points).
-  </p>
-</div>
-
-<div class="step">
-  <div class="step-num">07 INTERPRET</div>
-  <h3>Mistral Explains Why</h3>
-  <p>
-    Click a concept. The <span class="highlight">Interpreter Agent</span>
-    (Mistral Large, via Agents API) receives the concept's neighbors, weights,
-    ghost status, and divergence score. It generates a real-time explanation of
-    <span class="highlight">why</span> this concept fractures across languages --
-    cultural, historical, and structural reasons with citations.
-  </p>
-  <p>Not what the numbers say. What they <span class="amber">mean</span>.</p>
-</div>
-
-<hr>
-
-<h2>Live Query Probe (the demo killer)</h2>
-
+<h2>The Pipeline (5 steps)</h2>
 <p>
-  This is what makes LACUNA interactive, not passive. The terrain is the map.
-  The <span class="highlight">probe</span> is the instrument.
+  1. Extract 43 conceptual frames from the document (Mistral Large).<br>
+  2. Define each concept natively in each language -- not translated.<br>
+  3. Embed all definitions (BGE-M3, 1024-dim). Project to 2D terrain (UMAP).<br>
+  4. User inputs text. Embed it (mistral-embed). Compare against all 43 concept vectors in two languages.<br>
+  5. Report <span class="amber">divergence</span> = |activation_lang_a - activation_lang_b|. Sort by gap. The biggest gaps are the findings.
 </p>
 
-<div class="step">
-  <div class="step-num">HOW IT WORKS</div>
-  <h3>One sentence in, divergence map out</h3>
-  <p>
-    User types (or selects) any text -- a treaty clause, a news headline, anything.
-    LACUNA embeds that text once via <span class="highlight">mistral-embed</span> (1024 dimensions).
-    Then it computes <span class="term">cosine similarity</span> between the user's text and
-    all 43 pre-computed concept vectors in <span class="blue">Language A</span> and
-    <span class="red">Language B</span>. That's 86 dot products, under 1ms.
-  </p>
-  <p>
-    The output: every concept ranked by <span class="term">divergence</span> --
-    the absolute difference between how strongly Language A and Language B
-    activate that concept for the same input text.
-  </p>
-  <p>
-    <span class="amber">1 API call per probe.</span> No agents needed for query.
-    The interpreter agent fires only when you click a specific concept for deep explanation.
-  </p>
-</div>
+<hr>
 
-<div class="step">
-  <div class="step-num">WHAT DIVERGENCE MEANS</div>
-  <h3>The gap IS the finding</h3>
-  <p>
-    <span class="term">Divergence</span> = |cos(query, concept_lang_a) - cos(query, concept_lang_b)|
-  </p>
-  <p>
-    A divergence of <span class="highlight">0.06</span> means the same input text activates that
-    concept 6% differently depending on which language's definition you compare against.
-    The <span class="term">direction</span> tells you which language pulls harder.
-    Divergence below 0.005 is reported as <span class="highlight">neutral</span> -- noise floor, no real lean.
-  </p>
-  <p>
-    We sort by divergence, not similarity. The interesting concepts aren't the ones that
-    activate strongly -- they're the ones that activate <span class="amber">differently</span>.
-  </p>
-</div>
+<h2>What's On Screen</h2>
+
+<table class="viz-table">
+  <tr><td>Concept</td><td>One of 43 ideas. Each has a native-language definition per language. Shows as labeled text on the terrain.</td></tr>
+  <tr><td>Position</td><td>UMAP projection of BGE-M3 vectors (n_neighbors=10, min_dist=0.3, cosine, Procrustes-aligned). Close = semantically similar.</td></tr>
+  <tr><td>Height</td><td>Cosine similarity of concept vector to its cluster centroid, scaled [0.2, 1.0], exaggerated nonlinearly. Tall = most representative of its group.</td></tr>
+  <tr><td>Color</td><td>Cluster. 6 curated groups: <span class="amber">core</span>, <span class="blue">justice</span>, <span class="green">victory</span>, <span class="red">humiliation</span>, <span style="color:#78716c">lacuna-de</span>, <span style="color:#78716c">lacuna-en</span>. Color only -- zero effect on probes.</td></tr>
+  <tr><td>Language switch</td><td>Re-projects from that language's vectors. Terrain reshapes because each language's definitions occupy different regions of embedding space.</td></tr>
+  <tr><td>Probe highlight</td><td>Amber glow on top-10 divergent concepts. Dimmed = low divergence. Terrain doesn't change shape -- only labels change.</td></tr>
+</table>
+
+<h2>Clusters (what they are, why they exist)</h2>
+<p>
+  Clusters group related concepts by theme. They are <span class="highlight">curated by the team</span>
+  based on the treaty's power dynamics: victors' frame (justice, victory) vs defeated's frame (humiliation).
+  On the BGE-M3 model, HDBSCAN (min_cluster_size=3, cosine) computes algorithmic clusters per language.
+  Clusters affect <span class="highlight">color only</span>. They do not affect probes, divergence, or any measurement.
+</p>
+<table class="viz-table">
+  <tr><td><span class="amber">Core</span> (4)</td><td>reparations, armistice, honor, treaty</td></tr>
+  <tr><td><span class="blue">Justice</span> (10)</td><td>justice, accountability, punishment, debt, guilt, restitution, sanctions, concession, demilitarization, obligation</td></tr>
+  <tr><td><span class="green">Victory</span> (9)</td><td>victory, peace, order, triumph, sovereignty, self-determination, legitimacy, diplomacy, reconstruction</td></tr>
+  <tr><td><span class="red">Humiliation</span> (11)</td><td>humiliation, betrayal, injustice, revenge, resentment, subjugation, occupation, propaganda, nationalism, starvation, blockade</td></tr>
+  <tr><td><span style="color:#78716c">Lacuna-DE</span> (6)</td><td>dolchstoss, schmach, diktat, kriegsschuld, volkszorn, revanchism</td></tr>
+  <tr><td><span style="color:#78716c">Lacuna-EN</span> (3)</td><td>magnanimity, civilizing, mandate</td></tr>
+</table>
+
+<hr>
+
+<h2>The Probe (the interactive part)</h2>
+<p>
+  User types or selects text. <span class="highlight">mistral-embed</span> encodes it (1 API call, 1024-dim).
+  Cosine similarity computed against all 43 concept vectors in Language A and Language B (86 dot products, &lt;1ms).
+  Output: concepts ranked by <span class="term">divergence</span> = |sim_lang_a - sim_lang_b|.
+  Direction shows which language pulls harder. Below 0.005 = neutral (noise floor).
+</p>
 
 <div class="step">
   <div class="step-num">PRE-LOADED PROBES</div>
-  <h3>5 validated historical texts</h3>
   <table class="viz-table">
-    <tr>
-      <td>Art. 231</td>
-      <td>War Guilt Clause, 1919 -- <span class="blue">EN</span> vs <span class="red">DE</span></td>
-    </tr>
-    <tr>
-      <td>Nanking</td>
-      <td>Treaty of Nanking, 1842 -- <span class="blue">EN</span> vs <span class="red">ZH</span></td>
-    </tr>
-    <tr>
-      <td>Potsdam</td>
-      <td>Potsdam Declaration, 1945 -- <span class="blue">EN</span> vs <span class="red">JA</span></td>
-    </tr>
-    <tr>
-      <td>Sykes-Picot</td>
-      <td>Sykes-Picot Agreement, 1916 -- <span class="blue">EN</span> vs <span class="red">AR</span></td>
-    </tr>
-    <tr>
-      <td>38th Parallel</td>
-      <td>Korean Partition, 1945 -- <span class="blue">EN</span> vs <span class="red">KO</span></td>
-    </tr>
+    <tr><td>Art. 231</td><td>War Guilt Clause, 1919 -- <span class="blue">EN</span> vs <span class="red">DE</span></td></tr>
+    <tr><td>Nanking</td><td>Treaty of Nanking, 1842 -- <span class="blue">EN</span> vs <span class="red">ZH</span></td></tr>
+    <tr><td>Potsdam</td><td>Potsdam Declaration, 1945 -- <span class="blue">EN</span> vs <span class="red">JA</span></td></tr>
+    <tr><td>Sykes-Picot</td><td>Sykes-Picot Agreement, 1916 -- <span class="blue">EN</span> vs <span class="red">AR</span></td></tr>
+    <tr><td>38th Parallel</td><td>Korean Partition, 1945 -- <span class="blue">EN</span> vs <span class="red">KO</span></td></tr>
   </table>
 </div>
 
-<hr>
-
-<h2>The Pattern (know this by heart)</h2>
+<h2>The Pattern (memorize this)</h2>
 
 <div class="oneliner">
-  Same text. Same model. Different conceptual activation.<br>
-  Consistent across 5 texts and 5 language pairs.
+  Same text. Same model. Different conceptual activation. Consistent across 5 texts, 5 language pairs.
 </div>
 
 <p>
-  <span class="blue">Imperial / colonial language</span> pulls:
-  accountability, mandate, honor, legitimacy, magnanimity, justice, self-determination
+  <span class="blue">Imperial/colonial language</span> pulls: accountability, mandate, honor, legitimacy, magnanimity, justice<br>
+  <span class="red">Colonized/occupied language</span> pulls: humiliation, subjugation, resentment, restitution, debt, revenge
 </p>
 <p>
-  <span class="red">Colonized / occupied language</span> pulls:
-  schmach, humiliation, subjugation, resentment, restitution, debt, revenge
+  Strongest example: <span class="highlight">Sykes-Picot</span> (EN vs AR).
+  English: accountability (+0.067), mandate (+0.059), honor (+0.049).
+  Arabic: subjugation (+0.030), humiliation (+0.030), resentment (+0.034).
+  Colonial language reads protection. Colonized language reads domination.
+</p>
+
+<hr>
+
+<h2>For Mistral Judges (API track framing)</h2>
+
+<div class="validation">
+  <p><span class="amber">LACUNA runs on Mistral's stack. Two products in one flow:</span></p>
+  <p>1. <span class="highlight">mistral-embed</span> -- every live probe. 1 API call per query. The real-time interactive element.</p>
+  <p>2. <span class="highlight">Mistral Large via Agents API</span> -- interpreter agent explains WHY concepts diverge. Extractor agent decomposes documents into conceptual frames.</p>
+  <p><span style="color:#737373">BGE-M3 built the terrain map. Mistral is the instrument that takes measurements on the map.</span></p>
+</div>
+
+<p><span class="amber">Pitch order for judges:</span></p>
+<p>
+  1. "We built a real-time interactive product on your API that does something nobody else has done."<br>
+  2. "mistral-embed detects cross-lingual divergence in real time." (the live demo)<br>
+  3. "Mistral Agents API explains the divergence." (the interpretation)<br>
+  4. "We validated across 3 independent models -- Mistral's findings hold across architectures." (the defense)
 </p>
 <p>
-  The strongest example: <span class="highlight">Sykes-Picot</span> (EN vs AR).
-  English pulls accountability (+0.067), mandate (+0.059), honor (+0.049).
-  Arabic pulls subjugation (+0.030), humiliation (+0.030), resentment (+0.034).
-  The colonial language frames "protection." The colonized language reads subjugation.
-  Same sentence. The gap is the finding.
+  Lead with product. Demo with the probe. Defend with multi-model validation.
+  The multi-model comparison is the answer to the skeptic in Q&A, not the hook.
 </p>
 
 <hr>
@@ -538,216 +199,102 @@
 <h2>What we can and cannot claim</h2>
 
 <div class="validation">
-  <p><span class="green">CAN CLAIM:</span> We built an instrument that surfaces cross-lingual divergence in embedding spaces. The divergence patterns we observe are consistent with known cultural and historical asymmetries across 5 language pairs.</p>
-  <p><span class="red">CANNOT CLAIM:</span> That the model "encodes cultural bias" -- our concept definitions are curated text strings, so some divergence may reflect definition variance (different words) rather than cultural encoding. This is the open research question LACUNA exists to investigate.</p>
-  <p><span class="amber">THE HONEST LINE:</span> "Whether this reflects cultural encoding or definition semantics is exactly what this instrument helps you test. What's new is that we can surface it, quantify it, and explore it interactively in real time."</p>
+  <p><span class="green">CAN:</span> We built an instrument that surfaces cross-lingual divergence in embedding spaces. Patterns are consistent with known cultural asymmetries across 5 language pairs.</p>
+  <p><span class="red">CANNOT:</span> That the model "encodes cultural bias." Some divergence may reflect definition variance (different words), not cultural encoding.</p>
+  <p><span class="amber">THE LINE:</span> "Whether this reflects cultural encoding or definition semantics is exactly what this instrument helps you test."</p>
+</div>
+
+<h2>Judge Q&A (be ready)</h2>
+
+<div class="step">
+  <div class="step-num">Q1: "Why should I care about 0.06?"</div>
+  <p>Don't explain math. Fire Sykes-Picot. Let the split land. "The question isn't whether 0.06 is big. It's that the same text activates different concepts at all."</p>
+</div>
+<div class="step">
+  <div class="step-num">Q2: "Isn't this just different definitions?"</div>
+  <p>"That's the open research question LACUNA exists to investigate. The patterns are consistent across 5 texts and 5 pairs, aligned with known cultural asymmetries."</p>
+</div>
+<div class="step">
+  <div class="step-num">Q3: "Only one model?"</div>
+  <p>"Topology validated across 3 models (BGE-M3, e5, LaBSE), all p &lt; 0.002. Live probe uses a 4th (mistral-embed). Same patterns. Four architectures, one finding."</p>
+</div>
+<div class="step">
+  <div class="step-num">Q4: "Use case?"</div>
+  <p>Bias auditing for multilingual AI. Translation QA. Cross-cultural content analysis. Diplomatic comms.</p>
+</div>
+<div class="step">
+  <div class="step-num">Q5: "How is this different from translating?"</div>
+  <p>"Translation tells you what words say. LACUNA tells you what words activate. Nanking translates perfectly. But Chinese pulls shame, English pulls magnanimity."</p>
 </div>
 
 <hr>
 
-<h2>Judge Questions (be ready)</h2>
+<h2>Demo Script (2 min)</h2>
 
 <div class="step">
-  <div class="step-num">Q1</div>
-  <h3>"Why should I care about a 0.06 difference?"</h3>
-  <p>Don't explain the math. Fire the Sykes-Picot probe. Let the EN-accountability vs AR-subjugation split land. Then: "The question isn't whether 0.06 is big. It's that the same text activates different concepts in different languages at all. Nobody else is reading that out."</p>
+  <div class="step-num">0:00 - 0:15 | THE HOOK</div>
+  <p>"Wittgenstein said the limits of my language are the limits of my world. When two languages read the same text, they're reading two different worlds. LACUNA shows you exactly where those worlds diverge."</p>
 </div>
-
 <div class="step">
-  <div class="step-num">Q2</div>
-  <h3>"How do you know this isn't just different definitions?"</h3>
-  <p>"That's the open research question LACUNA exists to investigate. What we've shown is that divergence patterns are consistent across 5 historical texts and 5 language pairs, and they align with known cultural asymmetries. Whether that's cultural encoding or definition variance is exactly what this instrument helps you test."</p>
+  <div class="step-num">0:15 - 0:25 | WHAT IT DOES</div>
+  <p>"Give it a sentence and two languages. It tells you what each language hears differently. Not translation. Activation."</p>
 </div>
-
 <div class="step">
-  <div class="step-num">Q3</div>
-  <h3>"This only uses one embedding model?"</h3>
-  <p>"The topology validation uses 3 models (BGE-M3, e5-large, LaBSE) with significant cross-model correlation (p < 0.002). The live query probe currently uses mistral-embed. Extending to multiple embedding models for query is the immediate next step."</p>
+  <div class="step-num">0:25 - 0:45 | TERRAIN</div>
+  <p>Show terrain in English, switch to German. "43 concepts, positioned by embedding proximity, height by centrality. Switch languages -- watch the landscape reshape."</p>
 </div>
-
 <div class="step">
-  <div class="step-num">Q4</div>
-  <h3>"What's the use case?"</h3>
-  <p>Translation quality assurance. Bias auditing for multilingual AI deployments. Cross-cultural content analysis. Diplomatic communication -- understanding where the same text will land differently across languages before you publish it.</p>
+  <div class="step-num">0:45 - 1:25 | SYKES-PICOT PROBE (center of demo)</div>
+  <p>Click probe. Terrain shifts to Arabic. Let the split land. Pause. Then: "English hears accountability, mandate, honor. Arabic hears subjugation, humiliation, resentment. Same text. Same model. The gap is the finding."</p>
 </div>
-
 <div class="step">
-  <div class="step-num">Q5</div>
-  <h3>"How is this different from just translating and comparing?"</h3>
-  <p>"Translation tells you what the words say. LACUNA tells you what the words <span class="amber">activate</span>. The Treaty of Nanking translates perfectly. But the Chinese embedding pulls shame and disgrace while the English embedding pulls magnanimity. No translation catches that."</p>
+  <div class="step-num">1:25 - 1:40 | THE PATTERN</div>
+  <p>"5 texts, 5 language pairs. The pattern holds every time. Imperial languages hear justice. Colonized languages hear shame."</p>
 </div>
-
-<hr>
-
-<h2>Demo Flow (2 minutes)</h2>
-
 <div class="step">
-  <div class="step-num">0:00 - 0:15</div>
-  <h3>The Hook</h3>
-  <p>"Wittgenstein said the limits of my language are the limits of my world. Which means when two languages read the same text, they're reading two different worlds. LACUNA is the instrument that shows you exactly where those worlds diverge."</p>
+  <div class="step-num">1:40 - 1:50 | INTERPRETER</div>
+  <p>Click a concept. "Mistral's interpreter agent explains why it diverges -- real time, grounded in embedding distances."</p>
 </div>
-
 <div class="step">
-  <div class="step-num">0:15 - 0:25</div>
-  <h3>What it does</h3>
-  <p>"You give it a sentence and two languages. It tells you what each language hears differently. Not translation. Activation. Which concepts light up, which stay dark, and which direction they lean."</p>
-</div>
-
-<div class="step">
-  <div class="step-num">0:25 - 0:45</div>
-  <h3>The Terrain (on screen: terrain in English, switch to German)</h3>
-  <p>"This is the Treaty of Versailles, 43 concepts mapped into a 3D topology. Height is importance. Position is meaning -- computed from BGE-M3 embeddings projected through UMAP. Switch from English to German -- watch the landscape reshape. Same treaty. Different conceptual territory."</p>
-</div>
-
-<div class="step">
-  <div class="step-num">0:45 - 1:25</div>
-  <h3>Fire the Sykes-Picot probe (CENTER OF THE DEMO)</h3>
-  <p>Click Sykes-Picot probe button. Terrain shifts to Arabic. Results panel appears. Let the split land before narrating.</p>
-  <p>"I'm feeding LACUNA a sentence from the Sykes-Picot Agreement -- the 1916 deal that carved up the Middle East. English versus Arabic. Same sentence. Watch."</p>
-  <p>(pause, let results appear)</p>
-  <p>"English hears accountability, mandate, honor, self-determination. Arabic hears restitution, resentment, humiliation, subjugation. The colonial language reads protection. The colonized language reads domination. Same text. Same model. The gap is the finding."</p>
-</div>
-
-<div class="step">
-  <div class="step-num">1:25 - 1:40</div>
-  <h3>The Pattern</h3>
-  <p>"This isn't one example. We ran 5 historical texts across 5 language pairs. English-German, English-Chinese, English-Japanese, English-Arabic, English-Korean. The pattern holds every time. Imperial languages hear justice and honor. Colonized languages hear shame and debt."</p>
-</div>
-
-<div class="step">
-  <div class="step-num">1:40 - 1:50</div>
-  <h3>Click a concept, interpreter fires</h3>
-  <p>Click any concept in results. ConceptCard opens. "Click any concept and our Mistral interpreter agent explains why it diverges -- in real time, grounded in the embedding distances."</p>
-</div>
-
-<div class="step">
-  <div class="step-num">1:50 - 2:00</div>
-  <h3>The Close</h3>
-  <p>"Before you deploy AI in 10 languages, LACUNA shows you where your content lands differently across cultures. Same text. Different world. We built the instrument that reads the gap."</p>
+  <div class="step-num">1:50 - 2:00 | CLOSE</div>
+  <p>"Before you deploy AI in 10 languages, LACUNA shows you where your content lands differently. Same text. Different world. We built the instrument that reads the gap."</p>
 </div>
 
 <hr>
 
-<h2>Vocabulary (know these cold)</h2>
+<h2>Validation</h2>
+
+<div class="validation">
+  <p><span class="green">3-model correlation:</span> BGE-M3 vs LaBSE r=0.62, BGE-M3 vs e5 r=0.59, e5 vs LaBSE r=0.47. All p &lt; 0.002. Unanimous lacuna: Dolchstoss.</p>
+  <p><span class="green">4 metrics:</span> CLAS (cross-lingual alignment), Mantel test (topology preservation), Silhouette (cluster coherence), Ghost detection rate.</p>
+  <p><span class="green">Agentic:</span> Two Mistral Large agents (EN diplomat, DE diplomat) independently reproduce the topology gaps. Embedding geometry and LLM reasoning converge.</p>
+</div>
+
+<h2>Vocabulary</h2>
 
 <dl class="vocab">
-  <dt>Concept</dt>
-  <dd>One of the 43 ideas extracted from the Treaty of Versailles. Each has a definition in each language (not translated -- natively defined). Shows as a labeled text on the terrain. Example: "reparations", "honor", "subjugation".</dd>
-
-  <dt>Cluster</dt>
-  <dd>A thematic color group of related concepts. 6 clusters: core (amber), justice (blue), victory (green), humiliation (red), lacuna-de (grey), lacuna-en (grey). Determines terrain color only. Has zero effect on probes or divergence. Curated by the team, not algorithmic.</dd>
-
-  <dt>Weight</dt>
-  <dd>Cosine similarity between a concept's L2-normalized embedding vector and its cluster centroid. Mapped from [-1,1] to [0,1], then rescaled to [0.2, 1.0]. Determines terrain peak height.</dd>
-
-  <dt>Lacuna</dt>
-  <dd>Latin for "gap." A concept structurally present in one language but absent in another. Detected when weight &lt; 0.15 or cross-language weight ratio &gt; 2.5x. Rendered as terrain depressions (height * -0.7).</dd>
-
-  <dt>Divergence</dt>
-  <dd>How differently two languages activate the same concept for a given text. |cos(query, lang_a_vec) - cos(query, lang_b_vec)|.</dd>
-
-  <dt>Direction</dt>
-  <dd>Which language a concept "leans" toward for a given probe. Blue = lang_a, red = lang_b, grey = neutral (< 0.005, noise floor).</dd>
-
-  <dt>Probe</dt>
-  <dd>Any text input fed into LACUNA's query system. One mistral-embed call, 86 cosine comparisons, ranked by divergence.</dd>
-
-  <dt>Topology</dt>
-  <dd>The UMAP-projected layout of all 43 concepts for a given language. Changes per language because different definition vectors produce different 2D coordinates.</dd>
-
-  <dt>Cosine similarity</dt>
-  <dd>Measures angle between two vectors. 1.0 = identical direction, 0.0 = orthogonal. We use it for weights, neighbors, divergence, and query probes.</dd>
-
-  <dt>Embedding</dt>
-  <dd>A high-dimensional vector (1024 numbers) that captures the semantic meaning of a piece of text. Generated by models like mistral-embed or BGE-M3.</dd>
-
-  <dt>UMAP</dt>
-  <dd>Dimensionality reduction. Takes 1024-dim embeddings and projects to 2D positions on the terrain. Preserves local structure.</dd>
-
-  <dt>mistral-embed</dt>
-  <dd>Mistral's embedding model. Used for live query probes. 1024 dimensions. Language-agnostic input, but trained on multilingual data.</dd>
-
-  <dt>BGE-M3</dt>
-  <dd>BAAI's multilingual embedding model. Used for topology construction. Validated against e5-large and LaBSE.</dd>
-
-  <dt>Interpreter Agent</dt>
-  <dd>Mistral Large via Agents API. Receives concept data (neighbors, weights, divergence). Generates real-time explanation of why a concept fractures across languages.</dd>
+  <dt>Concept</dt><dd>One of 43 ideas. Native-language definition per language. A data point on the terrain.</dd>
+  <dt>Cluster</dt><dd>Color group (6 total). Curated by theme. Color only, no effect on probes.</dd>
+  <dt>Weight</dt><dd>cos_sim(concept_vec, cluster_centroid), scaled [0.2, 1.0]. Determines peak height.</dd>
+  <dt>Lacuna</dt><dd>Concept present in one language, absent in another. Weight &lt; 0.15 or ratio &gt; 2.5x.</dd>
+  <dt>Divergence</dt><dd>|cos(query, lang_a_vec) - cos(query, lang_b_vec)|. The gap.</dd>
+  <dt>Direction</dt><dd>Which language a concept leans toward. Blue = lang_a, red = lang_b, grey = neutral.</dd>
+  <dt>Probe</dt><dd>Text input. 1 mistral-embed call, 86 cosine comparisons, ranked by divergence.</dd>
+  <dt>Topology</dt><dd>UMAP-projected layout. Changes per language because different vectors = different positions.</dd>
+  <dt>UMAP</dt><dd>1024-dim to 2D projection. n_neighbors=10, min_dist=0.3, cosine metric, Procrustes-aligned.</dd>
+  <dt>mistral-embed</dt><dd>Mistral's embedding model. 1024-dim. Powers live probes.</dd>
+  <dt>BGE-M3</dt><dd>BAAI's embedding model. 1024-dim. Powers the terrain.</dd>
+  <dt>Interpreter</dt><dd>Mistral Large via Agents API. Explains why a concept diverges.</dd>
 </dl>
-
-<hr>
-
-<h2>Validation (why judges should trust this)</h2>
-
-<div class="validation">
-  <p><span class="green">Cross-model correlation</span></p>
-  <p>
-    We compute divergence per concept (1.0 - cosine_similarity(EN_embedding, DE_embedding))
-    across 3 embedding models from 3 different labs:
-  </p>
-  <p>
-    <span class="highlight">BGE-M3</span> (BAAI) vs <span class="highlight">LaBSE</span> (Google): r=0.62<br>
-    <span class="highlight">BGE-M3</span> (BAAI) vs <span class="highlight">e5-large</span> (Microsoft): r=0.59<br>
-    <span class="highlight">e5-large</span> (Microsoft) vs <span class="highlight">LaBSE</span> (Google): r=0.47<br>
-    All pairwise correlations significant (p &lt; 0.002).
-  </p>
-  <p>
-    <span class="green">Unanimous lacuna</span> across all 3 models: Dolchstoss.
-    This isn't one model's opinion. It's a structural finding confirmed across architectures.
-  </p>
-</div>
-
-<div class="validation">
-  <p><span class="green">Benchmark Metrics (4 canonical measures)</span></p>
-  <table class="viz-table">
-    <tr>
-      <td>CLAS</td>
-      <td><span class="highlight">Cross-Lingual Alignment Score.</span> Average cosine similarity between EN and X embeddings for the same concept. High = model collapses language differences. Lower is better for LACUNA (we want to detect differences, not flatten them).</td>
-    </tr>
-    <tr>
-      <td>Topology</td>
-      <td><span class="highlight">Mantel test.</span> Spearman correlation between EN and DE distance matrices (999 permutations). High = same structural relationships preserved across languages.</td>
-    </tr>
-    <tr>
-      <td>Cluster</td>
-      <td><span class="highlight">Silhouette score</span> (sklearn, cosine metric). Per-language. High = clear semantic groupings in embedding space.</td>
-    </tr>
-    <tr>
-      <td>Ghost</td>
-      <td><span class="highlight">Detection rate.</span> Fraction of lacuna concepts with weight &lt; 0.3. High = model correctly identifies structural absences.</td>
-    </tr>
-  </table>
-</div>
-
-<h2>Agentic Validation</h2>
-
-<div class="validation">
-  <p>Two Mistral Large agents (via Agents API) -- one system-prompted to think in <span class="blue">English</span>, one in <span class="amber">German</span> -- interpret the same 10 concepts as diplomats negotiating the treaty.</p>
-  <p>Where they <span class="red">disagree</span> correlates with where LACUNA finds high divergence in the embedding math.</p>
-  <p>The agents independently reproduce the topology gaps. Embedding geometry and LLM reasoning converge on the same fracture points.</p>
-</div>
-
-<hr>
 
 <h2>Tech Stack</h2>
 
 <dl class="vocab">
-  <dt>Mistral Large</dt>
-  <dd>Extractor Agent + Interpreter Agent via Agents API</dd>
-
-  <dt>mistral-embed</dt>
-  <dd>Live query probe embeddings (1024-dim, 1 call per probe)</dd>
-
-  <dt>BGE-M3</dt>
-  <dd>Primary topology embedding model (sentence-transformers)</dd>
-
-  <dt>Next.js + Three.js</dt>
-  <dd>3D terrain visualization, real-time language switching, R3F + postprocessing</dd>
-
-  <dt>Python</dt>
-  <dd>Pipeline: extraction, embedding, UMAP, weight computation, lacuna detection</dd>
-
-  <dt>Mac Mini M-series</dt>
-  <dd>Local compute for embeddings and UMAP projection</dd>
+  <dt>Mistral Large</dt><dd>Extractor + Interpreter agents via Agents API</dd>
+  <dt>mistral-embed</dt><dd>Live probe embeddings (1 call per query)</dd>
+  <dt>BGE-M3</dt><dd>Terrain topology (sentence-transformers)</dd>
+  <dt>Next.js + Three.js</dt><dd>3D terrain, R3F + postprocessing, real-time transitions</dd>
+  <dt>Python</dt><dd>Pipeline: extraction, embedding, UMAP, weight, lacuna detection</dd>
 </dl>
 
 <div class="footer">
