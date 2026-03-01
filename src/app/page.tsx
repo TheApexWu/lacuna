@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useState, useCallback, useMemo, useEffect } from "react";
+import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import ConceptCard from "../components/ConceptCard";
 import ButterflyChart from "../components/ButterflyChart";
 import ConceptNetworkGraph from "../components/ConceptNetworkGraph";
@@ -29,6 +29,44 @@ const CURATED_LEGEND = [
   { cluster: "lacuna-en", label: "Lacuna (EN)" },
 ];
 
+const DEMO_PROBES = [
+  {
+    label: "Art. 231",
+    desc: "War Guilt Clause, 1919",
+    lang_a: "en",
+    lang_b: "de",
+    text: "The Allied and Associated Governments affirm and Germany accepts the responsibility of Germany and her allies for causing all the loss and damage to which the Allied and Associated Governments and their nationals have been subjected as a consequence of the war imposed upon them by the aggression of Germany and her allies.",
+  },
+  {
+    label: "Nanking",
+    desc: "Treaty of Nanking, 1842",
+    lang_a: "en",
+    lang_b: "zh",
+    text: "Her Majesty the Queen of the United Kingdom of Great Britain and Ireland and the Emperor of China agree that the Island of Hong Kong shall be ceded to Her Britannic Majesty, and shall be possessed in perpetuity.",
+  },
+  {
+    label: "Potsdam",
+    desc: "Potsdam Declaration, 1945",
+    lang_a: "en",
+    lang_b: "ja",
+    text: "We call upon the Government of Japan to proclaim the unconditional surrender of all Japanese armed forces. The alternative for Japan is prompt and utter destruction.",
+  },
+  {
+    label: "Sykes-Picot",
+    desc: "Sykes-Picot Agreement, 1916",
+    lang_a: "en",
+    lang_b: "ar",
+    text: "France and Great Britain are prepared to recognize and protect an independent Arab state or a confederation of Arab states under the suzerainty of an Arab chief.",
+  },
+  {
+    label: "38th Parallel",
+    desc: "Korean Partition, 1945",
+    lang_a: "en",
+    lang_b: "ko",
+    text: "The Soviet Union shall occupy the area north of the 38th parallel and the United States shall occupy the area south of the 38th parallel for the purpose of accepting the surrender of Japanese forces.",
+  },
+];
+
 export default function Home() {
   const [language, setLanguage] = useState("en");
   const [showLacunae, setShowLacunae] = useState(false);
@@ -42,6 +80,31 @@ export default function Home() {
   const [showConnections, setShowConnections] = useState(false);
   const [activeModel, setActiveModel] = useState("curated");
   const [showClusterEditor, setShowClusterEditor] = useState(false);
+  const [showQuery, setShowQuery] = useState(false);
+  const [showMore, setShowMore] = useState(false);
+
+  // Explicit query language pair (user can override)
+  const [queryLangAOverride, setQueryLangAOverride] = useState<string | null>(null);
+  const [queryLangBOverride, setQueryLangBOverride] = useState<string | null>(null);
+
+  // Query probe state
+  type QueryActivation = {
+    conceptId: string;
+    divergence: number;
+    direction: string;
+    [key: string]: string | number;
+  };
+  type QueryResult = {
+    query: string;
+    lang_a: string;
+    lang_b: string;
+    activations: QueryActivation[];
+  };
+  const [queryText, setQueryText] = useState("");
+  const [queryResults, setQueryResults] = useState<QueryResult | null>(null);
+  const [querying, setQuerying] = useState(false);
+  const [queryError, setQueryError] = useState<string | null>(null);
+  const queryInputRef = useRef<HTMLInputElement>(null);
 
   // Cluster editor state: user overrides layered on top of model data
   const [clusterEdits, setClusterEdits] = useState<
@@ -202,6 +265,66 @@ export default function Home() {
     setCustomClusters([]);
   }, []);
 
+  const queryLangA = queryLangAOverride || language;
+  const queryLangB = queryLangBOverride || (language === "en" ? "de" : "en");
+
+  const fireProbe = useCallback(async (text: string, langA: string, langB: string) => {
+    if (!text.trim() || querying) return;
+    setQueryText(text);
+    setQueryLangAOverride(langA);
+    setQueryLangBOverride(langB);
+    setQuerying(true);
+    setQueryError(null);
+    try {
+      const res = await fetch("/api/query", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          text: text.trim(),
+          lang_a: langA,
+          lang_b: langB,
+        }),
+      });
+      if (!res.ok) {
+        const errData = await res.json();
+        throw new Error(errData.error || `HTTP ${res.status}`);
+      }
+      setQueryResults(await res.json());
+    } catch (err) {
+      setQueryError(err instanceof Error ? err.message : "Query failed");
+    } finally {
+      setQuerying(false);
+    }
+  }, [querying]);
+
+  const handleProbe = useCallback(() => {
+    fireProbe(queryText, queryLangA, queryLangB);
+  }, [fireProbe, queryText, queryLangA, queryLangB]);
+
+  const handleClearQuery = useCallback(() => {
+    setQueryText("");
+    setQueryResults(null);
+    setQueryError(null);
+    queryInputRef.current?.focus();
+  }, []);
+
+  // Highlight top 10 concepts by divergence
+  const highlightedConcepts = useMemo(() => {
+    if (!queryResults) return undefined;
+    const { lang_a, lang_b } = queryResults;
+    const top = queryResults.activations.slice(0, 10);
+    const result: Record<string, { similarity: number; divergence: number }> = {};
+    for (const act of top) {
+      const simA = (act[`similarity_${lang_a}`] as number) ?? 0;
+      const simB = (act[`similarity_${lang_b}`] as number) ?? 0;
+      result[act.conceptId] = {
+        similarity: Math.max(simA, simB),
+        divergence: act.divergence,
+      };
+    }
+    return result;
+  }, [queryResults]);
+
   const currentLangName =
     LANGUAGES.find((l) => l.code === language)?.name ?? language.toUpperCase();
 
@@ -213,7 +336,7 @@ export default function Home() {
           LACUNA
         </h1>
         <p className="text-xs text-[#737373] mt-1 tracking-wide">
-          Conceptual Topology Mapper
+          Cross-Lingual Divergence Explorer
         </p>
         <div className="flex items-center gap-2 mt-2">
           <span className="text-xs text-[#737373]">viewing</span>
@@ -232,6 +355,161 @@ export default function Home() {
           <p className="text-sm text-[#f59e0b] tracking-wide animate-pulse">
             {subtitle}
           </p>
+        </div>
+      )}
+
+      {/* Query input bar */}
+      {showQuery && (
+        <div className="absolute top-6 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center gap-1.5">
+          <div className="flex items-center bg-[#141414]/90 backdrop-blur-md border border-[#262626] rounded-lg overflow-hidden">
+            <input
+              ref={queryInputRef}
+              type="text"
+              value={queryText}
+              onChange={(e) => setQueryText(e.target.value)}
+              onKeyDown={(e) => { if (e.key === "Enter") handleProbe(); }}
+              placeholder={`Probe ${queryLangA.toUpperCase()} vs ${queryLangB.toUpperCase()} topology...`}
+              className="bg-transparent text-sm text-[#e5e5e5] placeholder-[#525252] px-4 py-2.5 w-[400px] outline-none font-mono tracking-wide"
+            />
+            <select
+              value={queryLangA}
+              onChange={(e) => setQueryLangAOverride(e.target.value)}
+              className="bg-transparent text-[10px] text-[#3b82f6] font-bold tracking-wider border-l border-[#262626] px-2 py-2.5 outline-none cursor-pointer"
+            >
+              {LANGUAGES.map((l) => <option key={l.code} value={l.code} className="bg-[#141414]">{l.label}</option>)}
+            </select>
+            <span className="text-[10px] text-[#525252] px-1">vs</span>
+            <select
+              value={queryLangB}
+              onChange={(e) => setQueryLangBOverride(e.target.value)}
+              className="bg-transparent text-[10px] text-[#ef4444] font-bold tracking-wider border-r border-[#262626] px-2 py-2.5 outline-none cursor-pointer"
+            >
+              {LANGUAGES.map((l) => <option key={l.code} value={l.code} className="bg-[#141414]">{l.label}</option>)}
+            </select>
+            <button
+              onClick={handleProbe}
+              disabled={querying || !queryText.trim()}
+              className="px-4 py-2.5 text-xs font-bold tracking-widest border-l border-[#262626] transition-all"
+              style={{
+                color: querying ? "#525252" : "#f59e0b",
+                background: querying ? "transparent" : "rgba(245, 158, 11, 0.1)",
+              }}
+            >
+              {querying ? "..." : "PROBE"}
+            </button>
+            {queryResults && (
+              <button
+                onClick={handleClearQuery}
+                className="px-3 py-2.5 text-xs text-[#525252] hover:text-[#737373] border-l border-[#262626] transition-colors"
+              >
+                CLEAR
+              </button>
+            )}
+          </div>
+          {queryError && (
+            <span className="text-xs text-red-400 font-mono">{queryError}</span>
+          )}
+          {!queryResults && !querying && (
+            <div className="flex items-center gap-2">
+              <span className="text-[9px] text-[#404040] tracking-wider mr-1">PROBES</span>
+              {DEMO_PROBES.map((probe) => (
+                <button
+                  key={probe.label}
+                  onClick={() => fireProbe(probe.text, probe.lang_a, probe.lang_b)}
+                  className="group flex items-center gap-1.5 px-2.5 py-1 rounded border border-[#262626] hover:border-[#404040] transition-all"
+                  title={probe.desc}
+                >
+                  <span className="text-[10px] text-[#737373] group-hover:text-[#a3a3a3] tracking-wide">{probe.label}</span>
+                  <span className="text-[8px] text-[#333] group-hover:text-[#525252]">{probe.lang_a.toUpperCase()}/{probe.lang_b.toUpperCase()}</span>
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Query results panel */}
+      {showQuery && queryResults && (
+        <div className="absolute right-4 top-16 bottom-16 w-[340px] z-40 bg-[#141414]/90 backdrop-blur-md border border-[#262626] rounded-lg flex flex-col font-mono overflow-hidden">
+          <div className="px-4 py-3 border-b border-[#262626]">
+            <p className="text-[10px] text-[#737373] tracking-widest">QUERY ACTIVATIONS <span className="text-[#404040]">/ 43 concepts</span></p>
+            <p className="text-xs text-[#a3a3a3] mt-1 truncate">
+              &ldquo;{queryResults.query}&rdquo;
+            </p>
+          </div>
+          <div className="flex-1 overflow-y-auto">
+            <div className="px-4 py-2 flex items-center gap-2 text-[9px] text-[#525252] tracking-wider border-b border-[#1a1a1a]">
+              <span className="w-[18px]">#</span>
+              <span className="w-[76px]">CONCEPT</span>
+              <span className="w-[36px] text-right text-[#3b82f6]">{queryResults.lang_a.toUpperCase()}</span>
+              <span className="w-[36px] text-right text-[#ef4444]">{queryResults.lang_b.toUpperCase()}</span>
+              <span className="flex-1 text-right">DIVERGENCE</span>
+            </div>
+            {queryResults.activations.slice(0, 15).map((act, i) => {
+              const simA = (act[`similarity_${queryResults.lang_a}`] as number) ?? 0;
+              const simB = (act[`similarity_${queryResults.lang_b}`] as number) ?? 0;
+              const isNeutral = act.direction === "neutral";
+              const aLeaning = act.direction === queryResults.lang_a;
+              const maxDiv = queryResults.activations[0]?.divergence || 1;
+              return (
+                <button
+                  key={act.conceptId}
+                  onClick={() => handleConceptClick(act.conceptId)}
+                  className="w-full px-4 py-2 flex items-center gap-2 text-left hover:bg-[#1a1a1a] transition-colors border-b border-[#1a1a1a]/50"
+                >
+                  <span className="w-[18px] text-[10px] text-[#404040] tabular-nums">
+                    {i + 1}
+                  </span>
+                  <span className="w-[76px] text-[11px] truncate text-[#f59e0b]">
+                    {act.conceptId}
+                  </span>
+                  <span className="w-[36px] text-[11px] text-right" style={{ color: isNeutral ? "#525252" : aLeaning ? "#3b82f6" : "#1e3a5f" }}>
+                    {simA.toFixed(2)}
+                  </span>
+                  <span className="w-[36px] text-[11px] text-right" style={{ color: isNeutral ? "#525252" : !aLeaning ? "#ef4444" : "#5f1e1e" }}>
+                    {simB.toFixed(2)}
+                  </span>
+                  <div className="flex-1 flex items-center gap-1.5">
+                    <div className="flex-1 h-2 bg-[#1a1a1a] rounded overflow-hidden relative">
+                      <div
+                        className="absolute inset-y-0 left-0 rounded"
+                        style={{
+                          width: `${maxDiv > 0 ? (act.divergence / maxDiv) * 100 : 0}%`,
+                          background: isNeutral
+                            ? "rgba(82, 82, 82, 0.5)"
+                            : aLeaning
+                              ? "rgba(59, 130, 246, 0.7)"
+                              : "rgba(239, 68, 68, 0.7)",
+                        }}
+                      />
+                    </div>
+                    <span
+                      className="text-[10px] w-[28px] text-right font-mono"
+                      style={{ color: act.divergence > 0.04 ? '#f59e0b' : act.divergence > 0.02 ? '#a3a3a3' : '#525252' }}
+                    >
+                      {act.divergence.toFixed(2)}
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+          <div className="px-4 py-2 border-t border-[#262626] space-y-1.5">
+            <div className="flex items-center gap-4 text-[9px]">
+              <span className="flex items-center gap-1">
+                <span className="w-2 h-2 rounded-full bg-[#3b82f6]" />
+                <span className="text-[#525252]">{queryResults.lang_a.toUpperCase()}-leaning</span>
+              </span>
+              <span className="flex items-center gap-1">
+                <span className="w-2 h-2 rounded-full bg-[#ef4444]" />
+                <span className="text-[#525252]">{queryResults.lang_b.toUpperCase()}-leaning</span>
+              </span>
+              <span className="text-[#404040] ml-auto">sorted by divergence</span>
+            </div>
+            <p className="text-[8px] text-[#333] leading-tight">
+              Divergence reflects model representation of curated concept definitions, not cognitive structure. Click any concept for interpreter analysis.
+            </p>
+          </div>
         </div>
       )}
 
@@ -371,11 +649,11 @@ export default function Home() {
         clusterOverride={effectiveClusters}
         lacunaOverride={isEmbedding ? modelData.lacunae : undefined}
         clusterColors={effectiveClusterColors}
+        highlightedConcepts={highlightedConcepts}
       />
 
       {/* Bottom control bar */}
       <div className="absolute bottom-0 left-0 right-0 z-40 p-4 flex items-center justify-between">
-        {/* Left: language selector + toggles */}
         <div className="flex items-center gap-3">
           {/* Language selector */}
           <div className="flex items-center gap-1 bg-[#0a0a0a]/80 rounded px-1 py-1">
@@ -385,16 +663,9 @@ export default function Home() {
                 onClick={() => handleLanguageSelect(lang.code)}
                 className="px-2 py-1 text-[10px] font-bold tracking-wider rounded transition-all"
                 style={{
-                  color:
-                    language === lang.code ? "#e5e5e5" : "#737373",
-                  background:
-                    language === lang.code
-                      ? "rgba(245, 158, 11, 0.25)"
-                      : "transparent",
-                  borderBottom:
-                    language === lang.code
-                      ? "2px solid #f59e0b"
-                      : "2px solid transparent",
+                  color: language === lang.code ? "#e5e5e5" : "#737373",
+                  background: language === lang.code ? "rgba(245, 158, 11, 0.25)" : "transparent",
+                  borderBottom: language === lang.code ? "2px solid #f59e0b" : "2px solid transparent",
                 }}
               >
                 {lang.label}
@@ -408,114 +679,81 @@ export default function Home() {
             style={{
               borderColor: showLacunae ? "#78716c" : "#262626",
               color: showLacunae ? "#e5e5e5" : "#737373",
-              background: showLacunae
-                ? "rgba(120, 113, 108, 0.15)"
-                : "rgba(10, 10, 10, 0.8)",
+              background: showLacunae ? "rgba(120, 113, 108, 0.15)" : "rgba(10, 10, 10, 0.8)",
             }}
           >
-            {showLacunae ? "HIDE LACUNAE" : "REVEAL LACUNAE"}
+            {showLacunae ? "HIDE LACUNAE" : "LACUNAE"}
           </button>
 
           <button
-            onClick={() => setShowButterfly((b) => !b)}
+            onClick={() => {
+              const next = !showQuery;
+              setShowQuery(next);
+              if (next) {
+                setTimeout(() => queryInputRef.current?.focus(), 100);
+              } else {
+                setQueryResults(null);
+                setQueryError(null);
+              }
+            }}
             className="px-4 py-2 text-xs tracking-wider rounded border transition-all"
             style={{
-              borderColor: showButterfly ? "#f59e0b" : "#262626",
-              color: showButterfly ? "#e5e5e5" : "#737373",
-              background: showButterfly
-                ? "rgba(245, 158, 11, 0.15)"
-                : "rgba(10, 10, 10, 0.8)",
+              borderColor: showQuery ? "#f59e0b" : !queryResults ? "rgba(245, 158, 11, 0.3)" : "#262626",
+              color: showQuery ? "#e5e5e5" : !queryResults ? "#d97706" : "#737373",
+              background: showQuery ? "rgba(245, 158, 11, 0.15)" : "rgba(10, 10, 10, 0.8)",
             }}
           >
-            {showButterfly ? "HIDE DIVERGENCE" : "DIVERGENCE"}
+            {showQuery ? "HIDE QUERY" : "QUERY"}
           </button>
 
-          <button
-            onClick={() => setShowNetwork((n) => !n)}
-            className="px-4 py-2 text-xs tracking-wider rounded border transition-all"
-            style={{
-              borderColor: showNetwork ? "#f59e0b" : "#262626",
-              color: showNetwork ? "#e5e5e5" : "#737373",
-              background: showNetwork
-                ? "rgba(245, 158, 11, 0.15)"
-                : "rgba(10, 10, 10, 0.8)",
-            }}
-          >
-            {showNetwork ? "HIDE NETWORK" : "NETWORK"}
-          </button>
-
-          <button
-            onClick={() => setShowMetrics((m) => !m)}
-            className="px-4 py-2 text-xs tracking-wider rounded border transition-all"
-            style={{
-              borderColor: showMetrics ? "#3b82f6" : "#262626",
-              color: showMetrics ? "#e5e5e5" : "#737373",
-              background: showMetrics
-                ? "rgba(59, 130, 246, 0.15)"
-                : "rgba(10, 10, 10, 0.8)",
-            }}
-          >
-            {showMetrics ? "HIDE METRICS" : "METRICS"}
-          </button>
-
-          <button
-            onClick={() => setShowAgreement((a) => !a)}
-            className="px-4 py-2 text-xs tracking-wider rounded border transition-all"
-            style={{
-              borderColor: showAgreement ? "#22c55e" : "#262626",
-              color: showAgreement ? "#e5e5e5" : "#737373",
-              background: showAgreement
-                ? "rgba(34, 197, 94, 0.15)"
-                : "rgba(10, 10, 10, 0.8)",
-            }}
-          >
-            {showAgreement ? "HIDE AGREEMENT" : "AGREEMENT"}
-          </button>
-
-          <button
-            onClick={() => setShowConnections((c) => !c)}
-            className="px-4 py-2 text-xs tracking-wider rounded border transition-all"
-            style={{
-              borderColor: showConnections ? "#a78bfa" : "#262626",
-              color: showConnections ? "#e5e5e5" : "#737373",
-              background: showConnections
-                ? "rgba(167, 139, 250, 0.15)"
-                : "rgba(10, 10, 10, 0.8)",
-            }}
-          >
-            {showConnections ? "HIDE CONNECT" : "CONNECT"}
-          </button>
-
-          <button
-            onClick={() => setShowClusterEditor((c) => !c)}
-            className="px-4 py-2 text-xs tracking-wider rounded border transition-all"
-            style={{
-              borderColor: showClusterEditor ? "#ec4899" : "#262626",
-              color: showClusterEditor ? "#e5e5e5" : "#737373",
-              background: showClusterEditor
-                ? "rgba(236, 72, 153, 0.15)"
-                : "rgba(10, 10, 10, 0.8)",
-            }}
-          >
-            {showClusterEditor ? "HIDE CLUSTERS" : "CLUSTERS"}
-          </button>
-
-          <div className="w-px h-6 bg-[#262626]" />
-
-          <ModelSelector
-            activeModel={activeModel}
-            onModelChange={setActiveModel}
-          />
+          {/* MORE dropdown: research tools */}
+          <div className="relative">
+            <button
+              onClick={() => setShowMore((m) => !m)}
+              className="px-4 py-2 text-xs tracking-wider rounded border transition-all"
+              style={{
+                borderColor: showMore ? "#525252" : "#262626",
+                color: showMore ? "#e5e5e5" : "#525252",
+                background: showMore ? "rgba(82, 82, 82, 0.15)" : "rgba(10, 10, 10, 0.8)",
+              }}
+            >
+              {showMore ? "LESS" : "MORE"}
+            </button>
+            {showMore && (
+              <div className="absolute bottom-full left-0 mb-2 flex items-center gap-2 bg-[#0a0a0a]/95 backdrop-blur-md border border-[#262626] rounded-lg px-2 py-2">
+                {[
+                  { key: "butterfly", label: "DIVERGENCE", state: showButterfly, set: setShowButterfly, color: "#f59e0b" },
+                  { key: "network", label: "NETWORK", state: showNetwork, set: setShowNetwork, color: "#f59e0b" },
+                  { key: "metrics", label: "METRICS", state: showMetrics, set: setShowMetrics, color: "#3b82f6" },
+                  { key: "agreement", label: "AGREEMENT", state: showAgreement, set: setShowAgreement, color: "#22c55e" },
+                  { key: "connections", label: "CONNECT", state: showConnections, set: setShowConnections, color: "#a78bfa" },
+                  { key: "clusters", label: "CLUSTERS", state: showClusterEditor, set: setShowClusterEditor, color: "#ec4899" },
+                ].map((item) => (
+                  <button
+                    key={item.key}
+                    onClick={() => item.set((v: boolean) => !v)}
+                    className="px-3 py-1.5 text-[10px] tracking-wider rounded border transition-all whitespace-nowrap"
+                    style={{
+                      borderColor: item.state ? item.color : "#262626",
+                      color: item.state ? "#e5e5e5" : "#737373",
+                      background: item.state ? `${item.color}22` : "transparent",
+                    }}
+                  >
+                    {item.state ? `HIDE ${item.label}` : item.label}
+                  </button>
+                ))}
+                <div className="w-px h-5 bg-[#262626]" />
+                <ModelSelector activeModel={activeModel} onModelChange={setActiveModel} />
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Right: color legend */}
         <div className="flex items-center gap-4 bg-[#0a0a0a]/80 px-4 py-2 rounded">
           {legendItems.map((item) => (
             <div key={item.key} className="flex items-center gap-1.5">
-              <span
-                className="w-2 h-2 rounded-full"
-                style={{ background: item.color }}
-              />
+              <span className="w-2 h-2 rounded-full" style={{ background: item.color }} />
               <span className="text-[10px] text-[#737373]">{item.label}</span>
             </div>
           ))}

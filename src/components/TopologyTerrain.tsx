@@ -286,6 +286,7 @@ function ConceptLabels({
   clusterOverride,
   lacunaOverride,
   clusterColors,
+  highlightedConcepts,
 }: {
   language: string;
   showLacunae: boolean;
@@ -299,6 +300,7 @@ function ConceptLabels({
   clusterOverride?: Record<string, Record<string, number | string>>;
   lacunaOverride?: Record<string, Record<string, boolean>>;
   clusterColors?: Record<string, string>;
+  highlightedConcepts?: Record<string, { similarity: number; divergence: number }>;
 }) {
   const groupRef = useRef<THREE.Group>(null);
   const targetPos = useRef<Record<string, [number, number, number]>>({});
@@ -380,9 +382,32 @@ function ConceptLabels({
       {visibleConcepts.map((concept) => {
         const isLacuna = lacunaOverride?.[concept.id]?.[language] ?? concept.lacuna[language] ?? false;
         const clusterLabel = clusterOverride?.[concept.id]?.[language] ?? concept.cluster;
-        const hex = isLacuna
-          ? "#78716c"
-          : getClusterColor(clusterLabel, clusterColors);
+        const hasHighlights = highlightedConcepts && Object.keys(highlightedConcepts).length > 0;
+        const highlight = highlightedConcepts?.[concept.id];
+        const isHighlighted = !!highlight;
+
+        let hex: string;
+        let opacity: number;
+        let fontSize: number;
+
+        if (hasHighlights) {
+          if (isHighlighted) {
+            hex = "#f59e0b";
+            opacity = 1;
+            // Scale font by divergence: base 1.8, up to 3.2 for high divergence
+            fontSize = 1.8 + highlight.divergence * 14;
+            if (fontSize > 3.2) fontSize = 3.2;
+          } else {
+            hex = isLacuna ? "#78716c" : getClusterColor(clusterLabel, clusterColors);
+            opacity = 0.15;
+            fontSize = 1.8;
+          }
+        } else {
+          hex = isLacuna ? "#78716c" : getClusterColor(clusterLabel, clusterColors);
+          opacity = isLacuna ? lacunaOpacity : 1;
+          fontSize = concept.id === "reparations" ? 2.8 : 1.8;
+        }
+
         const pos = currentPos.current[concept.id] || [0, 2, 0];
 
         return (
@@ -390,11 +415,11 @@ function ConceptLabels({
             key={concept.id}
             userData={{ conceptId: concept.id }}
             position={pos as [number, number, number]}
-            fontSize={concept.id === "reparations" ? 2.8 : 1.8}
+            fontSize={fontSize}
             color={hex}
             anchorX="center"
             anchorY="bottom"
-            fillOpacity={isLacuna ? lacunaOpacity : 1}
+            fillOpacity={opacity}
             outlineWidth={0.06}
             outlineColor="#000000"
             onClick={() => onConceptClick(concept.id)}
@@ -458,6 +483,7 @@ function Scene({
   clusterOverride,
   lacunaOverride,
   clusterColors,
+  highlightedConcepts,
 }: {
   language: string;
   showLacunae: boolean;
@@ -467,6 +493,7 @@ function Scene({
   clusterOverride?: Record<string, Record<string, number | string>>;
   lacunaOverride?: Record<string, Record<string, boolean>>;
   clusterColors?: Record<string, string>;
+  highlightedConcepts?: Record<string, { similarity: number; divergence: number }>;
 }) {
   const { scene } = useThree();
 
@@ -563,6 +590,7 @@ function Scene({
         clusterOverride={clusterOverride}
         lacunaOverride={lacunaOverride}
         clusterColors={clusterColors}
+        highlightedConcepts={highlightedConcepts}
       />
 
       {/* Ground reference grid */}
@@ -707,6 +735,7 @@ export default function TopologyTerrain({
   clusterOverride,
   lacunaOverride,
   clusterColors,
+  highlightedConcepts,
 }: {
   language: string;
   showLacunae: boolean;
@@ -717,6 +746,7 @@ export default function TopologyTerrain({
   clusterOverride?: Record<string, Record<string, number | string>>;
   lacunaOverride?: Record<string, Record<string, boolean>>;
   clusterColors?: Record<string, string>;
+  highlightedConcepts?: Record<string, { similarity: number; divergence: number }>;
 }) {
   // Mounted guard: prevents WebGL context null error during SSR/HMR
   const [mounted, setMounted] = useState(false);
@@ -770,6 +800,7 @@ export default function TopologyTerrain({
           clusterOverride={clusterOverride}
           lacunaOverride={lacunaOverride}
           clusterColors={clusterColors}
+          highlightedConcepts={highlightedConcepts}
         />
       </Canvas>
     </CanvasErrorBoundary>
