@@ -53,7 +53,9 @@ function computeTerrain(
   heightScale: number,
   emissiveStrength: number,
   referenceLanguage?: string,
-  deltaScale?: number
+  deltaScale?: number,
+  positionOverride?: Record<string, Record<string, [number, number]>>,
+  weightOverride?: Record<string, Record<string, number>>
 ): { heights: Float32Array; colors: Float32Array } {
   const heights = new Float32Array(VERTEX_COUNT);
   const colors = new Float32Array(VERTEX_COUNT * 3);
@@ -71,23 +73,29 @@ function computeTerrain(
       let dominant = "core";
 
       for (const concept of concepts) {
-        // Resolve position and weight, with optional delta amplification
+        // Resolve position and weight, with optional override and delta amplification
         let cx: number, cz: number, cw: number;
 
+        // Use overrides if provided, else fall back to curated data
+        const getPos = (lang: string) =>
+          positionOverride?.[concept.id]?.[lang] ?? concept.position[lang];
+        const getWeight = (lang: string) =>
+          weightOverride?.[concept.id]?.[lang] ?? concept.weight[lang] ?? 0;
+
         if (referenceLanguage && deltaScale !== undefined && deltaScale !== 1) {
-          const refPos = concept.position[referenceLanguage] || [0, 0];
-          const refW = concept.weight[referenceLanguage] ?? 0;
-          const curPos = concept.position[language] || refPos;
-          const curW = concept.weight[language] ?? refW;
+          const refPos = getPos(referenceLanguage) || [0, 0];
+          const refW = getWeight(referenceLanguage);
+          const curPos = getPos(language) || refPos;
+          const curW = getWeight(language);
           cx = refPos[0] + (curPos[0] - refPos[0]) * deltaScale;
           cz = refPos[1] + (curPos[1] - refPos[1]) * deltaScale;
           cw = Math.max(0, refW + (curW - refW) * deltaScale);
         } else {
-          const pos = concept.position[language];
+          const pos = getPos(language);
           if (!pos) continue;
           cx = pos[0];
           cz = pos[1];
-          cw = concept.weight[language] ?? 0;
+          cw = getWeight(language);
         }
 
         const isGhost = concept.ghost[language] ?? false;
@@ -141,6 +149,8 @@ function TerrainMesh({
   emissiveStrength,
   referenceLanguage,
   deltaScale,
+  positionOverride,
+  weightOverride,
 }: {
   language: string;
   showGhosts: boolean;
@@ -149,6 +159,8 @@ function TerrainMesh({
   emissiveStrength: number;
   referenceLanguage?: string;
   deltaScale?: number;
+  positionOverride?: Record<string, Record<string, [number, number]>>;
+  weightOverride?: Record<string, Record<string, number>>;
 }) {
   const meshRef = useRef<THREE.Mesh>(null);
 
@@ -180,7 +192,9 @@ function TerrainMesh({
       heightScale,
       emissiveStrength,
       referenceLanguage,
-      deltaScale
+      deltaScale,
+      positionOverride,
+      weightOverride
     );
 
     targetH.current.set(heights);
@@ -201,7 +215,7 @@ function TerrainMesh({
       transitionStart.current = performance.now() / 1000;
     }
     needsUpdate.current = true;
-  }, [language, showGhosts, sigma, heightScale, emissiveStrength, referenceLanguage, deltaScale]);
+  }, [language, showGhosts, sigma, heightScale, emissiveStrength, referenceLanguage, deltaScale, positionOverride, weightOverride]);
 
   useFrame(() => {
     if (!meshRef.current || !needsUpdate.current) return;
@@ -257,6 +271,8 @@ function ConceptLabels({
   ghostOpacity,
   emissiveStrength,
   onConceptClick,
+  positionOverride,
+  weightOverride,
 }: {
   language: string;
   showGhosts: boolean;
@@ -265,6 +281,8 @@ function ConceptLabels({
   ghostOpacity: number;
   emissiveStrength: number;
   onConceptClick: (id: string) => void;
+  positionOverride?: Record<string, Record<string, [number, number]>>;
+  weightOverride?: Record<string, Record<string, number>>;
 }) {
   const groupRef = useRef<THREE.Group>(null);
   const targetPos = useRef<Record<string, [number, number, number]>>({});
@@ -276,10 +294,10 @@ function ConceptLabels({
 
   useEffect(() => {
     for (const concept of concepts) {
-      const pos = concept.position[language];
+      const pos = positionOverride?.[concept.id]?.[language] ?? concept.position[language];
       if (!pos) continue;
 
-      const weight = concept.weight[language] ?? 0;
+      const weight = weightOverride?.[concept.id]?.[language] ?? concept.weight[language] ?? 0;
       const isGhost = concept.ghost[language] ?? false;
 
       // Peak height at concept center (gaussian = 1 at center)
@@ -305,7 +323,7 @@ function ConceptLabels({
       transitionStart.current = performance.now() / 1000;
     }
     needsUpdate.current = true;
-  }, [language, showGhosts, heightScale, sigma, emissiveStrength]);
+  }, [language, showGhosts, heightScale, sigma, emissiveStrength, positionOverride, weightOverride]);
 
   useFrame(() => {
     if (!needsUpdate.current || !groupRef.current) return;
@@ -334,12 +352,12 @@ function ConceptLabels({
 
   const visibleConcepts = useMemo(() => {
     return concepts.filter((c) => {
-      const pos = c.position[language];
+      const pos = positionOverride?.[c.id]?.[language] ?? c.position[language];
       if (!pos) return false;
       const isGhost = c.ghost[language] ?? false;
       return !isGhost || showGhosts;
     });
-  }, [language, showGhosts]);
+  }, [language, showGhosts, positionOverride]);
 
   return (
     <group ref={groupRef}>
@@ -418,10 +436,14 @@ function Scene({
   language,
   showGhosts,
   onConceptClick,
+  positionOverride,
+  weightOverride,
 }: {
   language: string;
   showGhosts: boolean;
   onConceptClick: (id: string) => void;
+  positionOverride?: Record<string, Record<string, [number, number]>>;
+  weightOverride?: Record<string, Record<string, number>>;
 }) {
   const { scene } = useThree();
 
@@ -498,6 +520,8 @@ function Scene({
         emissiveStrength={emissiveStrength}
         referenceLanguage={language === "de" ? "en" : undefined}
         deltaScale={deltaScale}
+        positionOverride={positionOverride}
+        weightOverride={weightOverride}
       />
 
       {/* Labels */}
@@ -509,6 +533,8 @@ function Scene({
         ghostOpacity={ghostOpacity}
         emissiveStrength={emissiveStrength}
         onConceptClick={onConceptClick}
+        positionOverride={positionOverride}
+        weightOverride={weightOverride}
       />
 
       {/* Ground reference grid */}
@@ -647,10 +673,14 @@ export default function TopologyTerrain({
   language,
   showGhosts,
   onConceptClick,
+  positionOverride,
+  weightOverride,
 }: {
   language: string;
   showGhosts: boolean;
   onConceptClick: (id: string) => void;
+  positionOverride?: Record<string, Record<string, [number, number]>>;
+  weightOverride?: Record<string, Record<string, number>>;
 }) {
   // Mounted guard: prevents WebGL context null error during SSR/HMR
   const [mounted, setMounted] = useState(false);
@@ -698,6 +728,8 @@ export default function TopologyTerrain({
           language={language}
           showGhosts={showGhosts}
           onConceptClick={onConceptClick}
+          positionOverride={positionOverride}
+          weightOverride={weightOverride}
         />
       </Canvas>
     </CanvasErrorBoundary>

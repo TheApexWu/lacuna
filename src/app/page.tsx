@@ -5,7 +5,13 @@ import { useState, useCallback } from "react";
 import ConceptCard from "../components/ConceptCard";
 import ButterflyChart from "../components/ButterflyChart";
 import ConceptNetworkGraph from "../components/ConceptNetworkGraph";
+import ModelSelector from "../components/ModelSelector";
+import ModelMetricsPanel from "../components/ModelMetricsPanel";
+import ModelAgreementHeatmap from "../components/ModelAgreementHeatmap";
+import ConnectionCard from "../components/ConnectionCard";
 import { CLUSTER_HEX, LANGUAGES } from "../data/versailles";
+import { useModelData } from "../hooks/useModelData";
+import { getModel } from "../data/embeddings/models";
 
 // DO NOT use SSR for Three.js
 const TopologyTerrain = dynamic(
@@ -30,6 +36,13 @@ export default function Home() {
   const [hasFlipped, setHasFlipped] = useState(false);
   const [showButterfly, setShowButterfly] = useState(false);
   const [showNetwork, setShowNetwork] = useState(false);
+  const [showMetrics, setShowMetrics] = useState(false);
+  const [showAgreement, setShowAgreement] = useState(false);
+  const [showConnections, setShowConnections] = useState(false);
+  const [activeModel, setActiveModel] = useState("curated");
+
+  const modelData = useModelData(activeModel);
+  const modelInfo = getModel(activeModel);
 
   const handleLanguageSelect = useCallback(
     (code: string) => {
@@ -86,12 +99,29 @@ export default function Home() {
         </div>
       )}
 
+      {/* Model status badge */}
+      {activeModel !== "curated" && (
+        <div className="absolute top-6 right-6 z-40 flex items-center gap-2 bg-[#141414]/90 backdrop-blur-md border border-[#262626] rounded px-3 py-1.5">
+          <span
+            className="w-1.5 h-1.5 rounded-full"
+            style={{ background: modelData.status === "live" ? "#22c55e" : "#f59e0b" }}
+          />
+          <span className="text-[10px] text-[#a3a3a3] tracking-wider font-mono">
+            {modelInfo?.shortName ?? activeModel.toUpperCase()}
+          </span>
+          {modelData.status === "stub" && (
+            <span className="text-[9px] text-[#78716c] tracking-wider">STUB</span>
+          )}
+        </div>
+      )}
+
       {/* Concept card */}
       {selectedConcept && (
         <ConceptCard
           conceptId={selectedConcept}
           language={language}
           onClose={() => setSelectedConcept(null)}
+          activeModel={activeModel}
         />
       )}
 
@@ -103,6 +133,7 @@ export default function Home() {
           selectedConcept={selectedConcept}
           onConceptClick={handleConceptClick}
           onClose={() => setShowButterfly(false)}
+          weightOverride={activeModel !== "curated" ? modelData.weights : undefined}
         />
       )}
 
@@ -114,6 +145,35 @@ export default function Home() {
           selectedConcept={selectedConcept}
           onConceptClick={handleConceptClick}
           onClose={() => setShowNetwork(false)}
+          positionOverride={activeModel !== "curated" ? modelData.positions : undefined}
+        />
+      )}
+
+      {/* Metrics panel */}
+      {showMetrics && (
+        <ModelMetricsPanel
+          activeModel={activeModel}
+          language={language}
+          onClose={() => setShowMetrics(false)}
+        />
+      )}
+
+      {/* Agreement heatmap */}
+      {showAgreement && (
+        <ModelAgreementHeatmap
+          language={language}
+          selectedConcept={selectedConcept}
+          onConceptClick={handleConceptClick}
+          onClose={() => setShowAgreement(false)}
+        />
+      )}
+
+      {/* Connection card */}
+      {showConnections && selectedConcept && (
+        <ConnectionCard
+          conceptId={selectedConcept}
+          language={language}
+          onClose={() => setShowConnections(false)}
         />
       )}
 
@@ -122,6 +182,8 @@ export default function Home() {
         language={language}
         showGhosts={showGhosts}
         onConceptClick={handleConceptClick}
+        positionOverride={activeModel !== "curated" ? modelData.positions : undefined}
+        weightOverride={activeModel !== "curated" ? modelData.weights : undefined}
       />
 
       {/* Bottom control bar */}
@@ -194,6 +256,55 @@ export default function Home() {
           >
             {showNetwork ? "HIDE NETWORK" : "NETWORK"}
           </button>
+
+          <button
+            onClick={() => setShowMetrics((m) => !m)}
+            className="px-4 py-2 text-xs tracking-wider rounded border transition-all"
+            style={{
+              borderColor: showMetrics ? "#3b82f6" : "#262626",
+              color: showMetrics ? "#e5e5e5" : "#737373",
+              background: showMetrics
+                ? "rgba(59, 130, 246, 0.15)"
+                : "rgba(10, 10, 10, 0.8)",
+            }}
+          >
+            {showMetrics ? "HIDE METRICS" : "METRICS"}
+          </button>
+
+          <button
+            onClick={() => setShowAgreement((a) => !a)}
+            className="px-4 py-2 text-xs tracking-wider rounded border transition-all"
+            style={{
+              borderColor: showAgreement ? "#22c55e" : "#262626",
+              color: showAgreement ? "#e5e5e5" : "#737373",
+              background: showAgreement
+                ? "rgba(34, 197, 94, 0.15)"
+                : "rgba(10, 10, 10, 0.8)",
+            }}
+          >
+            {showAgreement ? "HIDE AGREEMENT" : "AGREEMENT"}
+          </button>
+
+          <button
+            onClick={() => setShowConnections((c) => !c)}
+            className="px-4 py-2 text-xs tracking-wider rounded border transition-all"
+            style={{
+              borderColor: showConnections ? "#a78bfa" : "#262626",
+              color: showConnections ? "#e5e5e5" : "#737373",
+              background: showConnections
+                ? "rgba(167, 139, 250, 0.15)"
+                : "rgba(10, 10, 10, 0.8)",
+            }}
+          >
+            {showConnections ? "HIDE CONNECT" : "CONNECT"}
+          </button>
+
+          <div className="w-px h-6 bg-[#262626]" />
+
+          <ModelSelector
+            activeModel={activeModel}
+            onModelChange={setActiveModel}
+          />
         </div>
 
         {/* Right: color legend */}

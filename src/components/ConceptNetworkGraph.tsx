@@ -46,6 +46,7 @@ interface ConceptNetworkGraphProps {
   selectedConcept: string | null;
   onConceptClick: (id: string) => void;
   onClose: () => void;
+  positionOverride?: Record<string, Record<string, [number, number]>>;
 }
 
 // ── Component ────────────────────────────────────────────────
@@ -55,6 +56,7 @@ export default function ConceptNetworkGraph({
   selectedConcept,
   onConceptClick,
   onClose,
+  positionOverride,
 }: ConceptNetworkGraphProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
@@ -88,18 +90,18 @@ export default function ConceptNetworkGraph({
   // Compute visible concepts
   const visibleConcepts = useMemo(() => {
     return concepts.filter((c) => {
-      const pos = c.position[language];
+      const pos = positionOverride?.[c.id]?.[language] ?? c.position[language];
       if (!pos) return false;
       const isGhost = c.ghost[language] ?? false;
       return !isGhost || showGhosts;
     });
-  }, [language, showGhosts]);
+  }, [language, showGhosts, positionOverride]);
 
   // Compute node positions scaled to panel
   const computePositions = useCallback(
     (lang: string, width: number, height: number) => {
       const visible = concepts.filter((c) => {
-        const pos = c.position[lang];
+        const pos = positionOverride?.[c.id]?.[lang] ?? c.position[lang];
         if (!pos) return false;
         const isGhost = c.ghost[lang] ?? false;
         return !isGhost || showGhosts;
@@ -109,7 +111,7 @@ export default function ConceptNetworkGraph({
 
       let minX = Infinity, maxX = -Infinity, minZ = Infinity, maxZ = -Infinity;
       for (const c of visible) {
-        const [x, z] = c.position[lang]!;
+        const [x, z] = (positionOverride?.[c.id]?.[lang] ?? c.position[lang])!;
         if (x < minX) minX = x;
         if (x > maxX) maxX = x;
         if (z < minZ) minZ = z;
@@ -126,7 +128,7 @@ export default function ConceptNetworkGraph({
 
       const positions: Record<string, { x: number; y: number }> = {};
       for (const c of visible) {
-        const [cx, cz] = c.position[lang]!;
+        const [cx, cz] = (positionOverride?.[c.id]?.[lang] ?? c.position[lang])!;
         positions[c.id] = {
           x: (cx - minX) * scale + offsetX,
           y: (cz - minZ) * scale + offsetZ,
@@ -134,7 +136,7 @@ export default function ConceptNetworkGraph({
       }
       return positions;
     },
-    [showGhosts]
+    [showGhosts, positionOverride]
   );
 
   // Build node data for rendering (used for initial render and structure)

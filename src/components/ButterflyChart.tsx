@@ -14,6 +14,7 @@ interface ButterflyChartProps {
   selectedConcept: string | null;
   onConceptClick: (id: string) => void;
   onClose: () => void;
+  weightOverride?: Record<string, Record<string, number>>;
 }
 
 export default function ButterflyChart({
@@ -22,6 +23,7 @@ export default function ButterflyChart({
   selectedConcept,
   onConceptClick,
   onClose,
+  weightOverride,
 }: ButterflyChartProps) {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [leftLang, setLeftLang] = useState("en");
@@ -44,19 +46,23 @@ export default function ButterflyChart({
         }
         return true;
       })
-      .map((c) => ({
-        id: c.id,
-        label: getLabel(c, language),
-        cluster: c.cluster,
-        color: CLUSTER_HEX[c.cluster] || "#f59e0b",
-        weightL: c.weight[leftLang] ?? 0,
-        weightR: c.weight[rightLang] ?? 0,
-        diff: Math.abs((c.weight[leftLang] ?? 0) - (c.weight[rightLang] ?? 0)),
-        ghostL: c.ghost[leftLang] ?? false,
-        ghostR: c.ghost[rightLang] ?? false,
-      }))
+      .map((c) => {
+        const wL = weightOverride?.[c.id]?.[leftLang] ?? c.weight[leftLang] ?? 0;
+        const wR = weightOverride?.[c.id]?.[rightLang] ?? c.weight[rightLang] ?? 0;
+        return {
+          id: c.id,
+          label: getLabel(c, language),
+          cluster: c.cluster,
+          color: CLUSTER_HEX[c.cluster] || "#f59e0b",
+          weightL: wL,
+          weightR: wR,
+          diff: Math.abs(wL - wR),
+          ghostL: c.ghost[leftLang] ?? false,
+          ghostR: c.ghost[rightLang] ?? false,
+        };
+      })
       .sort((a, b) => b.diff - a.diff);
-  }, [language, leftLang, rightLang, showGhosts]);
+  }, [language, leftLang, rightLang, showGhosts, weightOverride]);
 
   // SVG dimensions
   const svgWidth = 396; // panel inner width (420 - padding)

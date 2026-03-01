@@ -22,10 +22,12 @@ export default function ConceptCard({
   conceptId,
   language,
   onClose,
+  activeModel,
 }: {
   conceptId: string;
   language: string;
   onClose: () => void;
+  activeModel?: string;
 }) {
   const [data, setData] = useState<ConceptData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -33,14 +35,15 @@ export default function ConceptCard({
   useEffect(() => {
     if (!conceptId) return;
     setLoading(true);
-    fetch(`/api/concept/${conceptId}?lang=${language}`)
+    const modelParam = activeModel && activeModel !== "curated" ? `&model=${activeModel}` : "";
+    fetch(`/api/concept/${conceptId}?lang=${language}${modelParam}`)
       .then((r) => r.json())
       .then((d) => {
         setData(d);
         setLoading(false);
       })
       .catch(() => setLoading(false));
-  }, [conceptId, language]);
+  }, [conceptId, language, activeModel]);
 
   if (loading) {
     return (
@@ -64,6 +67,11 @@ export default function ConceptCard({
             style={{ background: clusterDot }}
           />
           <span className="text-lg font-bold">{data.label}</span>
+          {activeModel && activeModel !== "curated" && (
+            <span className="text-[9px] text-[#737373] bg-[#1a1a1a] border border-[#262626] rounded px-1.5 py-0.5 tracking-wider">
+              {activeModel.toUpperCase()}
+            </span>
+          )}
         </div>
         <button
           onClick={onClose}

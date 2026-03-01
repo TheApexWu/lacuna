@@ -1,0 +1,886 @@
+{
+  "models": [
+    {
+      "modelId": "curated",
+      "clas": {
+        "pairs": {
+          "en-de": 0.865,
+          "en-fr": 0.917,
+          "en-es": 0.866,
+          "en-zh": 0.903,
+          "en-ko": 0.875,
+          "en-ar": 0.884,
+          "en-pt": 0.899,
+          "en-ru": 0.843,
+          "en-ja": 0.883
+        },
+        "average": 0.882
+      },
+      "topology": {
+        "pairs": {
+          "en-de": {
+            "r": 0.45,
+            "p": 0.05
+          },
+          "en-fr": {
+            "r": 0.639,
+            "p": 0.001
+          },
+          "en-es": {
+            "r": 0.594,
+            "p": 0.001
+          },
+          "en-zh": {
+            "r": 0.542,
+            "p": 0.001
+          },
+          "en-ko": {
+            "r": 0.534,
+            "p": 0.001
+          },
+          "en-ar": {
+            "r": 0.605,
+            "p": 0.001
+          },
+          "en-pt": {
+            "r": 0.596,
+            "p": 0.001
+          },
+          "en-ru": {
+            "r": 0.54,
+            "p": 0.001
+          },
+          "en-ja": {
+            "r": 0.583,
+            "p": 0.001
+          }
+        },
+        "averageR": 0.565
+      },
+      "silhouette": {
+        "average": 0.251,
+        "en": 0.23,
+        "de": 0.219,
+        "fr": 0.267,
+        "es": 0.255,
+        "zh": 0.23,
+        "ko": 0.313,
+        "ar": 0.252,
+        "pt": 0.252,
+        "ru": 0.223,
+        "ja": 0.271
+      },
+      "ghostDetection": {
+        "perLanguage": {
+          "en": {
+            "rate": 1,
+            "expected": 6,
+            "detected": 6
+          },
+          "de": {
+            "rate": 0.5,
+            "expected": 2,
+            "detected": 1
+          },
+          "fr": {
+            "rate": 1,
+            "expected": 6,
+            "detected": 6
+          },
+          "es": {
+            "rate": 1,
+            "expected": 8,
+            "detected": 8
+          },
+          "zh": {
+            "rate": 0.857,
+            "expected": 7,
+            "detected": 6
+          },
+          "ko": {
+            "rate": 1,
+            "expected": 8,
+            "detected": 8
+          },
+          "ar": {
+            "rate": 0.857,
+            "expected": 7,
+            "detected": 6
+          },
+          "pt": {
+            "rate": 1,
+            "expected": 7,
+            "detected": 7
+          },
+          "ru": {
+            "rate": 0.875,
+            "expected": 8,
+            "detected": 7
+          },
+          "ja": {
+            "rate": 0.875,
+            "expected": 8,
+            "detected": 7
+          }
+        },
+        "averageRate": 0.896
+      }
+    },
+    {
+      "modelId": "bge-m3",
+      "clas": {
+        "pairs": {
+          "en-de": 0.844,
+          "en-fr": 0.894,
+          "en-es": 0.86,
+          "en-zh": 0.879,
+          "en-ko": 0.849,
+          "en-ar": 0.826,
+          "en-pt": 0.846,
+          "en-ru": 0.829,
+          "en-ja": 0.841
+        },
+        "average": 0.852
+      },
+      "topology": {
+        "pairs": {
+          "en-de": {
+            "r": 0.351,
+            "p": 0.05
+          },
+          "en-fr": {
+            "r": 0.527,
+            "p": 0.001
+          },
+          "en-es": {
+            "r": 0.464,
+            "p": 0.05
+          },
+          "en-zh": {
+            "r": 0.41,
+            "p": 0.05
+          },
+          "en-ko": {
+            "r": 0.39,
+            "p": 0.05
+          },
+          "en-ar": {
+            "r": 0.447,
+            "p": 0.05
+          },
+          "en-pt": {
+            "r": 0.459,
+            "p": 0.05
+          },
+          "en-ru": {
+            "r": 0.392,
+            "p": 0.05
+          },
+          "en-ja": {
+            "r": 0.46,
+            "p": 0.05
+          }
+        },
+        "averageR": 0.433
+      },
+      "silhouette": {
+        "average": 0.178,
+        "en": 0.17,
+        "de": 0.158,
+        "fr": 0.231,
+        "es": 0.205,
+        "zh": 0.153,
+        "ko": 0.157,
+        "ar": 0.177,
+        "pt": 0.196,
+        "ru": 0.132,
+        "ja": 0.198
+      },
+      "ghostDetection": {
+        "perLanguage": {
+          "en": {
+            "rate": 1,
+            "expected": 6,
+            "detected": 6
+          },
+          "de": {
+            "rate": 1,
+            "expected": 2,
+            "detected": 2
+          },
+          "fr": {
+            "rate": 1,
+            "expected": 6,
+            "detected": 6
+          },
+          "es": {
+            "rate": 0.875,
+            "expected": 8,
+            "detected": 7
+          },
+          "zh": {
+            "rate": 0.857,
+            "expected": 7,
+            "detected": 6
+          },
+          "ko": {
+            "rate": 0.875,
+            "expected": 8,
+            "detected": 7
+          },
+          "ar": {
+            "rate": 0.857,
+            "expected": 7,
+            "detected": 6
+          },
+          "pt": {
+            "rate": 0.857,
+            "expected": 7,
+            "detected": 6
+          },
+          "ru": {
+            "rate": 0.875,
+            "expected": 8,
+            "detected": 7
+          },
+          "ja": {
+            "rate": 1,
+            "expected": 8,
+            "detected": 8
+          }
+        },
+        "averageRate": 0.92
+      }
+    },
+    {
+      "modelId": "e5-large",
+      "clas": {
+        "pairs": {
+          "en-de": 0.804,
+          "en-fr": 0.834,
+          "en-es": 0.826,
+          "en-zh": 0.857,
+          "en-ko": 0.821,
+          "en-ar": 0.862,
+          "en-pt": 0.843,
+          "en-ru": 0.795,
+          "en-ja": 0.8
+        },
+        "average": 0.827
+      },
+      "topology": {
+        "pairs": {
+          "en-de": {
+            "r": 0.287,
+            "p": 0.05
+          },
+          "en-fr": {
+            "r": 0.478,
+            "p": 0.05
+          },
+          "en-es": {
+            "r": 0.541,
+            "p": 0.001
+          },
+          "en-zh": {
+            "r": 0.486,
+            "p": 0.05
+          },
+          "en-ko": {
+            "r": 0.349,
+            "p": 0.05
+          },
+          "en-ar": {
+            "r": 0.482,
+            "p": 0.05
+          },
+          "en-pt": {
+            "r": 0.528,
+            "p": 0.001
+          },
+          "en-ru": {
+            "r": 0.376,
+            "p": 0.05
+          },
+          "en-ja": {
+            "r": 0.437,
+            "p": 0.05
+          }
+        },
+        "averageR": 0.441
+      },
+      "silhouette": {
+        "average": 0.14,
+        "en": 0.153,
+        "de": 0.084,
+        "fr": 0.149,
+        "es": 0.232,
+        "zh": 0.213,
+        "ko": 0.155,
+        "ar": 0.117,
+        "pt": 0.102,
+        "ru": 0.09,
+        "ja": 0.11
+      },
+      "ghostDetection": {
+        "perLanguage": {
+          "en": {
+            "rate": 1,
+            "expected": 6,
+            "detected": 6
+          },
+          "de": {
+            "rate": 0.5,
+            "expected": 2,
+            "detected": 1
+          },
+          "fr": {
+            "rate": 1,
+            "expected": 6,
+            "detected": 6
+          },
+          "es": {
+            "rate": 0.875,
+            "expected": 8,
+            "detected": 7
+          },
+          "zh": {
+            "rate": 0.857,
+            "expected": 7,
+            "detected": 6
+          },
+          "ko": {
+            "rate": 0.875,
+            "expected": 8,
+            "detected": 7
+          },
+          "ar": {
+            "rate": 0.857,
+            "expected": 7,
+            "detected": 6
+          },
+          "pt": {
+            "rate": 0.857,
+            "expected": 7,
+            "detected": 6
+          },
+          "ru": {
+            "rate": 0.875,
+            "expected": 8,
+            "detected": 7
+          },
+          "ja": {
+            "rate": 0.75,
+            "expected": 8,
+            "detected": 6
+          }
+        },
+        "averageRate": 0.845
+      }
+    },
+    {
+      "modelId": "mistral-embed",
+      "clas": {
+        "pairs": {
+          "en-de": 0.777,
+          "en-fr": 0.893,
+          "en-es": 0.84,
+          "en-zh": 0.849,
+          "en-ko": 0.829,
+          "en-ar": 0.824,
+          "en-pt": 0.867,
+          "en-ru": 0.785,
+          "en-ja": 0.889
+        },
+        "average": 0.839
+      },
+      "topology": {
+        "pairs": {
+          "en-de": {
+            "r": 0.302,
+            "p": 0.05
+          },
+          "en-fr": {
+            "r": 0.512,
+            "p": 0.001
+          },
+          "en-es": {
+            "r": 0.5,
+            "p": 0.001
+          },
+          "en-zh": {
+            "r": 0.447,
+            "p": 0.05
+          },
+          "en-ko": {
+            "r": 0.416,
+            "p": 0.05
+          },
+          "en-ar": {
+            "r": 0.403,
+            "p": 0.05
+          },
+          "en-pt": {
+            "r": 0.466,
+            "p": 0.05
+          },
+          "en-ru": {
+            "r": 0.455,
+            "p": 0.05
+          },
+          "en-ja": {
+            "r": 0.466,
+            "p": 0.05
+          }
+        },
+        "averageR": 0.441
+      },
+      "silhouette": {
+        "average": 0.157,
+        "en": 0.219,
+        "de": 0.128,
+        "fr": 0.208,
+        "es": 0.251,
+        "zh": 0.144,
+        "ko": 0.186,
+        "ar": 0.061,
+        "pt": 0.091,
+        "ru": 0.14,
+        "ja": 0.139
+      },
+      "ghostDetection": {
+        "perLanguage": {
+          "en": {
+            "rate": 1,
+            "expected": 6,
+            "detected": 6
+          },
+          "de": {
+            "rate": 1,
+            "expected": 2,
+            "detected": 2
+          },
+          "fr": {
+            "rate": 1,
+            "expected": 6,
+            "detected": 6
+          },
+          "es": {
+            "rate": 0.875,
+            "expected": 8,
+            "detected": 7
+          },
+          "zh": {
+            "rate": 0.857,
+            "expected": 7,
+            "detected": 6
+          },
+          "ko": {
+            "rate": 1,
+            "expected": 8,
+            "detected": 8
+          },
+          "ar": {
+            "rate": 0.857,
+            "expected": 7,
+            "detected": 6
+          },
+          "pt": {
+            "rate": 1,
+            "expected": 7,
+            "detected": 7
+          },
+          "ru": {
+            "rate": 1,
+            "expected": 8,
+            "detected": 8
+          },
+          "ja": {
+            "rate": 1,
+            "expected": 8,
+            "detected": 8
+          }
+        },
+        "averageRate": 0.959
+      }
+    },
+    {
+      "modelId": "cohere-v3",
+      "clas": {
+        "pairs": {
+          "en-de": 0.833,
+          "en-fr": 0.882,
+          "en-es": 0.845,
+          "en-zh": 0.882,
+          "en-ko": 0.853,
+          "en-ar": 0.864,
+          "en-pt": 0.876,
+          "en-ru": 0.825,
+          "en-ja": 0.842
+        },
+        "average": 0.856
+      },
+      "topology": {
+        "pairs": {
+          "en-de": {
+            "r": 0.409,
+            "p": 0.05
+          },
+          "en-fr": {
+            "r": 0.523,
+            "p": 0.001
+          },
+          "en-es": {
+            "r": 0.505,
+            "p": 0.001
+          },
+          "en-zh": {
+            "r": 0.464,
+            "p": 0.05
+          },
+          "en-ko": {
+            "r": 0.493,
+            "p": 0.05
+          },
+          "en-ar": {
+            "r": 0.54,
+            "p": 0.001
+          },
+          "en-pt": {
+            "r": 0.521,
+            "p": 0.001
+          },
+          "en-ru": {
+            "r": 0.496,
+            "p": 0.05
+          },
+          "en-ja": {
+            "r": 0.482,
+            "p": 0.05
+          }
+        },
+        "averageR": 0.492
+      },
+      "silhouette": {
+        "average": 0.19,
+        "en": 0.169,
+        "de": 0.155,
+        "fr": 0.165,
+        "es": 0.19,
+        "zh": 0.159,
+        "ko": 0.278,
+        "ar": 0.164,
+        "pt": 0.173,
+        "ru": 0.253,
+        "ja": 0.194
+      },
+      "ghostDetection": {
+        "perLanguage": {
+          "en": {
+            "rate": 1,
+            "expected": 6,
+            "detected": 6
+          },
+          "de": {
+            "rate": 1,
+            "expected": 2,
+            "detected": 2
+          },
+          "fr": {
+            "rate": 1,
+            "expected": 6,
+            "detected": 6
+          },
+          "es": {
+            "rate": 0.875,
+            "expected": 8,
+            "detected": 7
+          },
+          "zh": {
+            "rate": 1,
+            "expected": 7,
+            "detected": 7
+          },
+          "ko": {
+            "rate": 1,
+            "expected": 8,
+            "detected": 8
+          },
+          "ar": {
+            "rate": 0.857,
+            "expected": 7,
+            "detected": 6
+          },
+          "pt": {
+            "rate": 1,
+            "expected": 7,
+            "detected": 7
+          },
+          "ru": {
+            "rate": 0.75,
+            "expected": 8,
+            "detected": 6
+          },
+          "ja": {
+            "rate": 0.875,
+            "expected": 8,
+            "detected": 7
+          }
+        },
+        "averageRate": 0.936
+      }
+    },
+    {
+      "modelId": "sonar",
+      "clas": {
+        "pairs": {
+          "en-de": 0.84,
+          "en-fr": 0.832,
+          "en-es": 0.822,
+          "en-zh": 0.849,
+          "en-ko": 0.84,
+          "en-ar": 0.872,
+          "en-pt": 0.779,
+          "en-ru": 0.809,
+          "en-ja": 0.829
+        },
+        "average": 0.83
+      },
+      "topology": {
+        "pairs": {
+          "en-de": {
+            "r": 0.332,
+            "p": 0.05
+          },
+          "en-fr": {
+            "r": 0.426,
+            "p": 0.05
+          },
+          "en-es": {
+            "r": 0.328,
+            "p": 0.05
+          },
+          "en-zh": {
+            "r": 0.329,
+            "p": 0.05
+          },
+          "en-ko": {
+            "r": 0.455,
+            "p": 0.05
+          },
+          "en-ar": {
+            "r": 0.421,
+            "p": 0.05
+          },
+          "en-pt": {
+            "r": 0.365,
+            "p": 0.05
+          },
+          "en-ru": {
+            "r": 0.413,
+            "p": 0.05
+          },
+          "en-ja": {
+            "r": 0.284,
+            "p": 0.05
+          }
+        },
+        "averageR": 0.373
+      },
+      "silhouette": {
+        "average": 0.099,
+        "en": 0.107,
+        "de": 0.099,
+        "fr": 0.075,
+        "es": 0.192,
+        "zh": 0.082,
+        "ko": 0.157,
+        "ar": 0.068,
+        "pt": 0.04,
+        "ru": 0.034,
+        "ja": 0.132
+      },
+      "ghostDetection": {
+        "perLanguage": {
+          "en": {
+            "rate": 1,
+            "expected": 6,
+            "detected": 6
+          },
+          "de": {
+            "rate": 0.5,
+            "expected": 2,
+            "detected": 1
+          },
+          "fr": {
+            "rate": 1,
+            "expected": 6,
+            "detected": 6
+          },
+          "es": {
+            "rate": 1,
+            "expected": 8,
+            "detected": 8
+          },
+          "zh": {
+            "rate": 0.857,
+            "expected": 7,
+            "detected": 6
+          },
+          "ko": {
+            "rate": 1,
+            "expected": 8,
+            "detected": 8
+          },
+          "ar": {
+            "rate": 1,
+            "expected": 7,
+            "detected": 7
+          },
+          "pt": {
+            "rate": 1,
+            "expected": 7,
+            "detected": 7
+          },
+          "ru": {
+            "rate": 0.75,
+            "expected": 8,
+            "detected": 6
+          },
+          "ja": {
+            "rate": 0.75,
+            "expected": 8,
+            "detected": 6
+          }
+        },
+        "averageRate": 0.886
+      }
+    },
+    {
+      "modelId": "nv-embed-v2",
+      "clas": {
+        "pairs": {
+          "en-de": 0.797,
+          "en-fr": 0.865,
+          "en-es": 0.894,
+          "en-zh": 0.868,
+          "en-ko": 0.855,
+          "en-ar": 0.844,
+          "en-pt": 0.846,
+          "en-ru": 0.791,
+          "en-ja": 0.818
+        },
+        "average": 0.842
+      },
+      "topology": {
+        "pairs": {
+          "en-de": {
+            "r": 0.339,
+            "p": 0.05
+          },
+          "en-fr": {
+            "r": 0.537,
+            "p": 0.001
+          },
+          "en-es": {
+            "r": 0.484,
+            "p": 0.05
+          },
+          "en-zh": {
+            "r": 0.319,
+            "p": 0.05
+          },
+          "en-ko": {
+            "r": 0.399,
+            "p": 0.05
+          },
+          "en-ar": {
+            "r": 0.381,
+            "p": 0.05
+          },
+          "en-pt": {
+            "r": 0.495,
+            "p": 0.05
+          },
+          "en-ru": {
+            "r": 0.435,
+            "p": 0.05
+          },
+          "en-ja": {
+            "r": 0.455,
+            "p": 0.05
+          }
+        },
+        "averageR": 0.427
+      },
+      "silhouette": {
+        "average": 0.114,
+        "en": 0.176,
+        "de": 0.154,
+        "fr": 0.106,
+        "es": 0.161,
+        "zh": 0.226,
+        "ko": 0.093,
+        "ar": 0.059,
+        "pt": 0.01,
+        "ru": 0.083,
+        "ja": 0.073
+      },
+      "ghostDetection": {
+        "perLanguage": {
+          "en": {
+            "rate": 1,
+            "expected": 6,
+            "detected": 6
+          },
+          "de": {
+            "rate": 1,
+            "expected": 2,
+            "detected": 2
+          },
+          "fr": {
+            "rate": 1,
+            "expected": 6,
+            "detected": 6
+          },
+          "es": {
+            "rate": 0.75,
+            "expected": 8,
+            "detected": 6
+          },
+          "zh": {
+            "rate": 0.857,
+            "expected": 7,
+            "detected": 6
+          },
+          "ko": {
+            "rate": 0.875,
+            "expected": 8,
+            "detected": 7
+          },
+          "ar": {
+            "rate": 0.857,
+            "expected": 7,
+            "detected": 6
+          },
+          "pt": {
+            "rate": 1,
+            "expected": 7,
+            "detected": 7
+          },
+          "ru": {
+            "rate": 0.875,
+            "expected": 8,
+            "detected": 7
+          },
+          "ja": {
+            "rate": 1,
+            "expected": 8,
+            "detected": 8
+          }
+        },
+        "averageRate": 0.921
+      }
+    }
+  ]
+}
