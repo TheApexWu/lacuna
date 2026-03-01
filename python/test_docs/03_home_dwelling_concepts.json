@@ -1,0 +1,290 @@
+[
+  {
+    "id": "home-as-dwelling",
+    "labels": {
+      "en": "dwelling",
+      "de": "Wohnen"
+    },
+    "definitions": {
+      "en": "The act of residing in a place as an existential mode of being, where building and thinking are inseparable from the act of inhabiting.",
+      "de": "Das Verweilen an einem Ort als existenzielle Seinsweise, bei der Bauen und Denken untrennbar mit dem Bewohnen verbunden sind."
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        8.827008247375488,
+        13.165563583374023
+      ],
+      "de": [
+        21.478534698486328,
+        8.133783340454102
+      ]
+    },
+    "weight": {
+      "en": 0.95,
+      "de": 0.95
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "home-as-peace",
+    "labels": {
+      "en": "peace",
+      "de": "Frieden"
+    },
+    "definitions": {
+      "en": "The state of being safeguarded within a free sphere that preserves the nature of things, where dwelling is synonymous with sparing and preserving.",
+      "de": "Der Zustand des Geborgenseins in einer freien Sphäre, die das Wesen der Dinge bewahrt, wobei Wohnen mit Schonen und Bewahren gleichzusetzen ist."
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        9.439226150512695,
+        12.742948532104492
+      ],
+      "de": [
+        21.551637649536133,
+        8.879956245422363
+      ]
+    },
+    "weight": {
+      "en": 0.5153599154128723,
+      "de": 0.367069174346032
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "home-as-shelter",
+    "labels": {
+      "en": "shelter",
+      "de": "Schutzraum"
+    },
+    "definitions": {
+      "en": "A physical and psychological space that protects daydreaming, memories, and the dreamer from external contingencies.",
+      "de": "Ein physischer und psychologischer Raum, der Tagträume, Erinnerungen und den Träumenden vor äußeren Zufälligkeiten schützt."
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        9.073147773742676,
+        12.080535888671875
+      ],
+      "de": [
+        23.372203826904297,
+        8.267207145690918
+      ]
+    },
+    "weight": {
+      "en": 0.32712473940544845,
+      "de": 0.13076688102801856
+    },
+    "ghost": {
+      "en": false,
+      "de": true
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "home-as-integration",
+    "labels": {
+      "en": "integration",
+      "de": "Integration"
+    },
+    "definitions": {
+      "en": "The unifying force that binds thoughts, memories, and dreams into a coherent whole, providing continuity and stability in human life.",
+      "de": "Die vereinigende Kraft, die Gedanken, Erinnerungen und Träume zu einem kohärenten Ganzen verbindet und Kontinuität und Stabilität im menschlichen Leben schafft."
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        8.280118942260742,
+        12.195905685424805
+      ],
+      "de": [
+        22.546146392822266,
+        8.182530403137207
+      ]
+    },
+    "weight": {
+      "en": 0.3041437429944288,
+      "de": 0.3548900407165266
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "home-as-cradle",
+    "labels": {
+      "en": "cradle",
+      "de": "Wiege"
+    },
+    "definitions": {
+      "en": "The primordial space where human existence begins, preceding any metaphysical 'casting into the world.'",
+      "de": "Der ursprüngliche Raum, in dem menschliche Existenz beginnt, noch bevor der Mensch metaphysisch 'in die Welt geworfen' wird."
+    },
+    "cluster": "new",
+    "position": {
+      "en": [
+        9.500513076782227,
+        11.406841278076172
+      ],
+      "de": [
+        22.766544342041016,
+        7.192172527313232
+      ]
+    },
+    "weight": {
+      "en": 0.05,
+      "de": 0.05
+    },
+    "ghost": {
+      "en": true,
+      "de": true
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "home-as-dream-house",
+    "labels": {
+      "en": "dream house",
+      "de": "Traumhaus"
+    },
+    "definitions": {
+      "en": "The aspirational ideal of a future home that contrasts with or surpasses the childhood home, representing ongoing human striving.",
+      "de": "Das erstrebenswerte Ideal eines zukünftigen Hauses, das im Kontrast zum oder als Überwindung des Kindheitshauses steht und menschliches Streben verkörpert."
+    },
+    "cluster": "new",
+    "position": {
+      "en": [
+        9.742259979248047,
+        13.749547958374023
+      ],
+      "de": [
+        21.501108169555664,
+        7.334580898284912
+      ]
+    },
+    "weight": {
+      "en": 0.16121449100287175,
+      "de": 0.07534978536236626
+    },
+    "ghost": {
+      "en": false,
+      "de": true
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "home-as-neighborhood",
+    "labels": {
+      "en": "neighborhood",
+      "de": "Nachbarschaft"
+    },
+    "definitions": {
+      "en": "The spatial and social proximity of dwelling, where the act of residing near others reflects the original meaning of building as dwelling.",
+      "de": "Die räumliche und soziale Nähe des Wohnens, bei der das Wohnen in der Nähe anderer die ursprüngliche Bedeutung von Bauen als Wohnen widerspiegelt."
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        9.02169418334961,
+        13.882819175720215
+      ],
+      "de": [
+        20.760835647583008,
+        7.703426361083984
+      ]
+    },
+    "weight": {
+      "en": 0.8522597163037707,
+      "de": 0.779552700408243
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "home-as-building",
+    "labels": {
+      "en": "building",
+      "de": "Bauen"
+    },
+    "definitions": {
+      "en": "The act of constructing spaces that enable dwelling, where the essence of building is to let dwell by joining spaces into meaningful locations.",
+      "de": "Der Akt des Errichtens von Räumen, die Wohnen ermöglichen, wobei das Wesen des Bauens darin besteht, durch die Verbindung von Räumen zu sinnvollen Orten Wohnen zu ermöglichen."
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        10.320955276489258,
+        13.009021759033203
+      ],
+      "de": [
+        20.70818328857422,
+        8.506268501281738
+      ]
+    },
+    "weight": {
+      "en": 0.8159469830248604,
+      "de": 0.6516392240455142
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "home-as-existential-ground",
+    "labels": {
+      "en": "existential ground",
+      "de": "existenzielle Grundlage"
+    },
+    "definitions": {
+      "en": "The foundational space from which human existence derives meaning, stability, and orientation in the world.",
+      "de": "Der grundlegende Raum, aus dem menschliche Existenz Sinn, Stabilität und Orientierung in der Welt bezieht."
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        8.7508544921875,
+        11.295668601989746
+      ],
+      "de": [
+        23.400100708007812,
+        7.56243896484375
+      ]
+    },
+    "weight": {
+      "en": 0.6200539212156357,
+      "de": 0.652302524666965
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  }
+]

@@ -1,0 +1,51 @@
+The concept of the chemical element -- a substance that cannot be decomposed further -- is one of the foundational ideas of modern science. Its meaning has shifted dramatically across centuries and languages, from the Greek stoicheia to the alchemical prima materia to Lavoisier's operational definition and Mendeleev's periodic law.
+
+---
+
+Antoine Lavoisier, "Elements of Chemistry" (Traite elementaire de chimie, 1789):
+
+"If, by the term elements, we mean to express those simple and indivisible atoms of which matter is composed, it is extremely probable we know nothing at all about them; but, if we apply the term elements, or principles of bodies, to express our idea of the last point which analysis is capable of reaching, we must admit, as elements, all the substances into which we are capable, by any means, to reduce bodies by decomposition. Not that we are entitled to affirm that these substances we consider as simple may not be compounded of two, or even of a greater number of principles; but, since these principles cannot be separated, or rather since we have not hitherto discovered the means of separating them, they act with regard to us as simple substances, and we ought never to suppose them compounded until experiment and observation has proved them to be so."
+
+"Every branch of physical science must consist of three things: the series of facts which are the objects of the science, the ideas which represent these facts, and the words by which these ideas are expressed."
+
+"We must trust to nothing but facts: These are presented to us by Nature, and cannot deceive."
+
+---
+
+Dmitri Mendeleev, presentation to the Russian Chemical Society (March 6, 1869):
+
+"The elements, if arranged according to their atomic weight, exhibit an apparent periodicity of properties."
+
+"Chemically analogous elements have either similar atomic weights (Pt, Ir, Os), or weights which increase by equal increments (K, Rb, Cs)."
+
+"The magnitude of the atomic weight determines the properties of the element."
+
+"One can predict the discovery of many new elements, for example analogues of Si and Al with atomic weights of 65-75."
+
+Dmitri Mendeleev, "Principles of Chemistry" (1905), recalling his discovery:
+
+"So I began to look about and write down the elements with their atomic weights and typical properties, analogous elements, and like atomic weights on separate cards, and this soon convinced me that the properties of the elements are in periodic dependence upon their atomic weights."
+
+"Although I have had my doubts about some obscure points, yet I have never once doubted the universality of this law, because it could not possibly be the result of chance."
+
+"It is the function of science to discover the existence of a general reign of order in nature and to find the causes governing this order. And this refers in equal measure to the relations of man -- social and political -- and to the entire universe as a whole."
+
+---
+
+Marie Curie, announcing the discovery of polonium and radium (Comptes Rendus de l'Academie des Sciences, 1898):
+
+"We believe the substance we have extracted contains a metal not yet observed, related to bismuth in its analytical properties. If the existence of this new metal is confirmed, we propose to call it polonium, from the name of the original country of one of us."
+
+"The various reasons we have enumerated lead us to believe that the new radio-active substance contains a new element, to which we propose to give the name of radium."
+
+Marie Curie, Nobel Prize Lecture in Chemistry (1911):
+
+"All the elements emitting such radiation I have termed radioactive, and the new property of matter revealed in this emission has thus received the name radioactivity. We were thus led to create a new method of searching for new elements, a method based on radioactivity considered as an atomic property of matter."
+
+Marie Curie, autobiographical notes (Pierre Curie, 1923):
+
+"I then possessed one decigramme of very pure radium chloride. It had taken me almost four years to produce the kind of evidence which chemical science demands, that radium is truly a new element. The demonstration that cost so much effort was the basis of the new science of radioactivity."
+
+Marie Curie, Vassar College Commencement Address (1921):
+
+"But we must not forget that when radium was discovered no one knew that it would prove useful in hospitals. The work was one of pure science. And this is a proof that scientific work must not be considered from the point of view of the direct usefulness of it. It must be done for itself, for the beauty of science, and then there is always the chance that a scientific discovery may become, like radium, a benefit to humanity."

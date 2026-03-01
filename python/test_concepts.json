@@ -1,0 +1,322 @@
+[
+  {
+    "id": "berlin-wall-as-imprisonment",
+    "labels": {
+      "en": "imprisonment",
+      "de": "Einschließung"
+    },
+    "definitions": {
+      "en": "The Wall as a physical and ideological barrier that confined East Germans, symbolizing oppression and the denial of movement",
+      "de": "Die Mauer als physische und ideologische Barriere, die Ostdeutsche einsperrte und Unterdrückung sowie die Verweigerung von Bewegungsfreiheit symbolisierte"
+    },
+    "cluster": "humiliation",
+    "position": {
+      "en": [
+        -6.070652484893799,
+        17.76296615600586
+      ],
+      "de": [
+        3.9704208374023438,
+        8.172800064086914
+      ]
+    },
+    "weight": {
+      "en": 0.95,
+      "de": 0.95
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "berlin-wall-as-schandmauer",
+    "labels": {
+      "en": "Wall of Shame",
+      "de": "Schandmauer"
+    },
+    "definitions": {
+      "en": "The Wall as a moral indictment of communist rule, representing failure and oppression in Western discourse",
+      "de": "Die Mauer als moralische Anklage gegen die kommunistische Herrschaft, die im Westen als Symbol des Scheiterns und der Unterdrückung galt"
+    },
+    "cluster": "humiliation",
+    "position": {
+      "en": [
+        -5.316166877746582,
+        17.668338775634766
+      ],
+      "de": [
+        3.1912972927093506,
+        7.786314964294434
+      ]
+    },
+    "weight": {
+      "en": 0.95,
+      "de": 0.5803006998421506
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "berlin-wall-as-antifaschistischer-schutzwall",
+    "labels": {
+      "en": "Anti-Fascist Protection Rampart",
+      "de": "Antifaschistischer Schutzwall"
+    },
+    "definitions": {
+      "en": "The Wall as a necessary defense against Western imperialism and capitalist exploitation, framed as a protective measure in Eastern discourse",
+      "de": "Die Mauer als notwendiger Schutz gegen westlichen Imperialismus und kapitalistische Ausbeutung, dargestellt als Schutzmaßnahme im östlichen Diskurs"
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        -5.541077613830566,
+        16.927616119384766
+      ],
+      "de": [
+        3.5768823623657227,
+        7.183389186859131
+      ]
+    },
+    "weight": {
+      "en": 0.5016029241202792,
+      "de": 0.45586716730981636
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "heimat-as-democratic-prosperity",
+    "labels": {
+      "en": "homeland as prosperity",
+      "de": "Heimat als Wohlstand"
+    },
+    "definitions": {
+      "en": "Heimat as tied to democratic values, economic success, and individual freedom in West German understanding",
+      "de": "Heimat als Verbindung zu demokratischen Werten, wirtschaftlichem Erfolg und individueller Freiheit im westdeutschen Verständnis"
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        -4.503610610961914,
+        17.433246612548828
+      ],
+      "de": [
+        4.863868713378906,
+        7.408793926239014
+      ]
+    },
+    "weight": {
+      "en": 0.05,
+      "de": 0.162058220207948
+    },
+    "ghost": {
+      "en": true,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "heimat-as-socialist-solidarity",
+    "labels": {
+      "en": "homeland as solidarity",
+      "de": "Heimat als Solidarität"
+    },
+    "definitions": {
+      "en": "Heimat reconstructed around collective socialist achievement and solidarity in East German discourse",
+      "de": "Heimat neu definiert durch kollektive sozialistische Errungenschaften und Solidarität im ostdeutschen Diskurs"
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        -4.011593818664551,
+        16.914766311645508
+      ],
+      "de": [
+        4.990847110748291,
+        8.13412857055664
+      ]
+    },
+    "weight": {
+      "en": 0.17349405121749667,
+      "de": 0.10857038670539318
+    },
+    "ghost": {
+      "en": false,
+      "de": true
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "heimat-as-sehnsucht",
+    "labels": {
+      "en": "longing",
+      "de": "Sehnsucht"
+    },
+    "definitions": {
+      "en": "The emotional longing for the inaccessible other side of the Wall, tied to fractured identity and belonging",
+      "de": "Das emotionale Verlangen nach der unerreichbaren anderen Seite der Mauer, verbunden mit gebrochener Identität und Zugehörigkeit"
+    },
+    "cluster": "humiliation",
+    "position": {
+      "en": [
+        -5.614388465881348,
+        18.467267990112305
+      ],
+      "de": [
+        3.3417675495147705,
+        8.733894348144531
+      ]
+    },
+    "weight": {
+      "en": 0.16776297384731942,
+      "de": 0.4528505870827056
+    },
+    "ghost": {
+      "en": true,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "wiedervereinigung-as-triumph",
+    "labels": {
+      "en": "triumph",
+      "de": "Triumph"
+    },
+    "definitions": {
+      "en": "Reunification as the victory of liberal democracy and the end of communist rule in Western perception",
+      "de": "Die Wiedervereinigung als Sieg der liberalen Demokratie und das Ende der kommunistischen Herrschaft aus westlicher Sicht"
+    },
+    "cluster": "victory",
+    "position": {
+      "en": [
+        -3.5496106147766113,
+        17.68256187438965
+      ],
+      "de": [
+        4.269826412200928,
+        6.756895542144775
+      ]
+    },
+    "weight": {
+      "en": 0.554084350141716,
+      "de": 0.15413847329382988
+    },
+    "ghost": {
+      "en": false,
+      "de": true
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "wiedervereinigung-as-ostalgie",
+    "labels": {
+      "en": "Ostalgie",
+      "de": "Ostalgie"
+    },
+    "definitions": {
+      "en": "Nostalgic mourning for the lost world of the GDR, despite its imperfections, in Eastern experience",
+      "de": "Nostalgisches Trauern um die verlorene Welt der DDR, trotz ihrer Unvollkommenheiten, in der ostdeutschen Erfahrung"
+    },
+    "cluster": "new",
+    "position": {
+      "en": [
+        -4.7131876945495605,
+        18.89697265625
+      ],
+      "de": [
+        4.081147193908691,
+        9.323969841003418
+      ]
+    },
+    "weight": {
+      "en": 0.14274151077602362,
+      "de": 0.05
+    },
+    "ghost": {
+      "en": true,
+      "de": true
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "wiedervereinigung-as-abwicklung",
+    "labels": {
+      "en": "dismantling",
+      "de": "Abwicklung"
+    },
+    "definitions": {
+      "en": "The systematic dismantling of Eastern institutions, careers, and identities as a traumatic consequence of reunification",
+      "de": "Die systematische Zerschlagung ostdeutscher Institutionen, Karrieren und Identitäten als traumatische Folge der Wiedervereinigung"
+    },
+    "cluster": "humiliation",
+    "position": {
+      "en": [
+        -3.5706734657287598,
+        18.713151931762695
+      ],
+      "de": [
+        4.844321250915527,
+        9.588053703308105
+      ]
+    },
+    "weight": {
+      "en": 0.5046019227469776,
+      "de": 0.7124287540587998
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "freiheit-as-uncertainty",
+    "labels": {
+      "en": "freedom as uncertainty",
+      "de": "Freiheit als Unsicherheit"
+    },
+    "definitions": {
+      "en": "Freedom experienced as unemployment, loss of social safety nets, and existential uncertainty in post-reunification East Germany",
+      "de": "Freiheit erlebt als Arbeitslosigkeit, Verlust sozialer Sicherungssysteme und existenzielle Unsicherheit im wiedervereinigten Ostdeutschland"
+    },
+    "cluster": "new",
+    "position": {
+      "en": [
+        -4.1656646728515625,
+        18.370433807373047
+      ],
+      "de": [
+        4.806273937225342,
+        8.94035530090332
+      ]
+    },
+    "weight": {
+      "en": 0.46416140801866174,
+      "de": 0.6003562015712802
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  }
+]

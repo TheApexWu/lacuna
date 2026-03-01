@@ -1,0 +1,482 @@
+[
+  {
+    "id": "aufklarung-as-self-incurred-immaturity",
+    "labels": {
+      "en": "self-incurred immaturity",
+      "de": "selbst verschuldete Unmündigkeit"
+    },
+    "definitions": {
+      "en": "The state of intellectual dependence where the cause lies in lack of courage or resolution, not understanding.",
+      "de": "Ein Zustand der geistigen Abhängigkeit, dessen Ursache nicht im Mangel an Verstand, sondern an Entschlossenheit und Mut liegt."
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        23.408349990844727,
+        8.568267822265625
+      ],
+      "de": [
+        11.528550148010254,
+        -14.805691719055176
+      ]
+    },
+    "weight": {
+      "en": 0.7087845916342971,
+      "de": 0.95
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "aufklarung-as-courage",
+    "labels": {
+      "en": "courage",
+      "de": "Mut"
+    },
+    "definitions": {
+      "en": "The resolve to use one's own understanding without external guidance, central to the Enlightenment project.",
+      "de": "Die Entschlossenheit, sich seines eigenen Verstandes ohne Leitung eines anderen zu bedienen, zentral für das Aufklärungsprojekt."
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        24.153974533081055,
+        8.096516609191895
+      ],
+      "de": [
+        11.46727466583252,
+        -14.016129493713379
+      ]
+    },
+    "weight": {
+      "en": 0.4464005186667064,
+      "de": 0.05
+    },
+    "ghost": {
+      "en": false,
+      "de": true
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "aufklarung-as-guilt-debt",
+    "labels": {
+      "en": "guilt/debt",
+      "de": "Schuld"
+    },
+    "definitions": {
+      "en": "The dual frame of moral failure (guilt) and responsibility (debt) for one's intellectual immaturity.",
+      "de": "Die doppelte Bedeutung von moralischem Versagen (Schuld) und Verantwortung für die eigene Unmündigkeit."
+    },
+    "cluster": "justice",
+    "position": {
+      "en": [
+        22.934160232543945,
+        8.01204776763916
+      ],
+      "de": [
+        10.932905197143555,
+        -14.440777778625488
+      ]
+    },
+    "weight": {
+      "en": 0.69009304873036,
+      "de": 0.14620466874980265
+    },
+    "ghost": {
+      "en": false,
+      "de": true
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "dasein-as-being-towards-death",
+    "labels": {
+      "en": "being-towards-death",
+      "de": "Sein zum Tode"
+    },
+    "definitions": {
+      "en": "The constitutive stretch of Dasein's existence where death is not an endpoint but an ever-present possibility shaping care.",
+      "de": "Die konstitutive Erstreckung des Daseins, in der der Tod keine Endstation, sondern eine stets präsente Möglichkeit ist, die das Sorgen prägt."
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        24.10926628112793,
+        6.8973708152771
+      ],
+      "de": [
+        10.3331298828125,
+        -15.67099666595459
+      ]
+    },
+    "weight": {
+      "en": 0.2202488656327661,
+      "de": 0.5016332690483478
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "dasein-as-care",
+    "labels": {
+      "en": "care",
+      "de": "Sorge"
+    },
+    "definitions": {
+      "en": "The fundamental structure of Dasein's being, encompassing its concern for its own existence and the world.",
+      "de": "Die Grundstruktur des Daseins, die seine Besorgnis um das eigene Sein und die Welt umfasst."
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        24.676809310913086,
+        6.521630764007568
+      ],
+      "de": [
+        11.018942832946777,
+        -15.250288963317871
+      ]
+    },
+    "weight": {
+      "en": 0.588975884516849,
+      "de": 0.9123115624148613
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "dasein-as-stretching-along",
+    "labels": {
+      "en": "stretching-along",
+      "de": "Erstreckung"
+    },
+    "definitions": {
+      "en": "The temporal extension of Dasein's existence between birth and death, constitutive of its being.",
+      "de": "Die zeitliche Ausdehnung des Daseins zwischen Geburt und Tod, konstitutiv für sein Sein."
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        24.679309844970703,
+        7.225733757019043
+      ],
+      "de": [
+        10.359880447387695,
+        -15.148091316223145
+      ]
+    },
+    "weight": {
+      "en": 0.05,
+      "de": 0.3439873148593662
+    },
+    "ghost": {
+      "en": true,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "weltgeist-as-marching-orders",
+    "labels": {
+      "en": "marching orders",
+      "de": "Marschbefehl"
+    },
+    "definitions": {
+      "en": "The teleological directive of the World Spirit, framing history as a commanded progression toward freedom.",
+      "de": "Der teleologische Befehl des Weltgeistes, der Geschichte als befohlene Entwicklung zur Freiheit rahmt."
+    },
+    "cluster": "new",
+    "position": {
+      "en": [
+        22.759918212890625,
+        6.612734794616699
+      ],
+      "de": [
+        9.43451976776123,
+        -14.362637519836426
+      ]
+    },
+    "weight": {
+      "en": 0.5668060917688785,
+      "de": 0.2826885028506147
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "weltgeist-as-world-court",
+    "labels": {
+      "en": "world's court of judgement",
+      "de": "Weltgericht"
+    },
+    "definitions": {
+      "en": "The World Spirit as the ultimate arbiter of historical justice, where history itself is the tribunal.",
+      "de": "Der Weltgeist als höchste Instanz historischer Gerechtigkeit, in der die Geschichte selbst das Gericht ist."
+    },
+    "cluster": "justice",
+    "position": {
+      "en": [
+        23.207536697387695,
+        7.004480361938477
+      ],
+      "de": [
+        9.921563148498535,
+        -14.02281665802002
+      ]
+    },
+    "weight": {
+      "en": 0.2632144792082936,
+      "de": 0.05
+    },
+    "ghost": {
+      "en": false,
+      "de": true
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "weltgeist-as-unconscious-tool",
+    "labels": {
+      "en": "unconscious tool",
+      "de": "unbewusstes Werkzeug"
+    },
+    "definitions": {
+      "en": "The framing of individuals, nations, and states as instruments of the World Spirit, unaware of their role in its design.",
+      "de": "Die Rahmung von Individuen, Völkern und Staaten als Werkzeuge des Weltgeistes, ohne Bewusstsein ihrer Rolle in dessen Plan."
+    },
+    "cluster": "new",
+    "position": {
+      "en": [
+        23.64381980895996,
+        7.658016681671143
+      ],
+      "de": [
+        10.697049140930176,
+        -13.634876251220703
+      ]
+    },
+    "weight": {
+      "en": 0.7782695013447369,
+      "de": 0.31077791940271404
+    },
+    "ghost": {
+      "en": false,
+      "de": true
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "angst-as-dizziness-of-freedom",
+    "labels": {
+      "en": "dizziness of freedom",
+      "de": "Schwindel der Freiheit"
+    },
+    "definitions": {
+      "en": "The vertiginous experience of confronting the boundless possibilities of freedom, inducing anxiety.",
+      "de": "Das schwindelerregende Erleben der grenzenlosen Möglichkeiten der Freiheit, das Angst auslöst."
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        23.343994140625,
+        9.609790802001953
+      ],
+      "de": [
+        10.661771774291992,
+        -16.695470809936523
+      ]
+    },
+    "weight": {
+      "en": 0.95,
+      "de": 0.9443075494317567
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "angst-as-sympathetic-antipathy",
+    "labels": {
+      "en": "sympathetic antipathy",
+      "de": "sympathische Antipathie"
+    },
+    "definitions": {
+      "en": "The paradoxical desire for what one fears, where anxiety arises from the tension between attraction and repulsion.",
+      "de": "Das paradoxe Verlangen nach dem, was man fürchtet, wobei die Angst aus der Spannung zwischen Anziehung und Abstoßung entsteht."
+    },
+    "cluster": "new",
+    "position": {
+      "en": [
+        24.32306671142578,
+        8.939302444458008
+      ],
+      "de": [
+        10.928230285644531,
+        -16.002166748046875
+      ]
+    },
+    "weight": {
+      "en": 0.6988095465326635,
+      "de": 0.6326945930046417
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "angst-as-dreaming-spirit",
+    "labels": {
+      "en": "dreaming spirit",
+      "de": "träumender Geist"
+    },
+    "definitions": {
+      "en": "The psychological state where the boundary between self and other dissolves, leaving only an 'intimated nothing' that provokes anxiety.",
+      "de": "Der psychologische Zustand, in dem die Grenze zwischen Ich und Anderem verschwimmt und nur ein 'angedeutetes Nichts' zurückbleibt, das Angst auslöst."
+    },
+    "cluster": "new",
+    "position": {
+      "en": [
+        23.86142349243164,
+        9.359843254089355
+      ],
+      "de": [
+        11.49725341796875,
+        -16.18377685546875
+      ]
+    },
+    "weight": {
+      "en": 0.6503179424518024,
+      "de": 0.5488977602787282
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "angst-as-prohibition-induced",
+    "labels": {
+      "en": "prohibition-induced anxiety",
+      "de": "verbotsbedingte Angst"
+    },
+    "definitions": {
+      "en": "The anxiety arising from the prohibition that awakens the possibility of freedom, framing anxiety as a response to constraint.",
+      "de": "Die Angst, die durch ein Verbot entsteht, das die Möglichkeit der Freiheit weckt, und Angst als Reaktion auf Einschränkung rahmt."
+    },
+    "cluster": "justice",
+    "position": {
+      "en": [
+        22.95530891418457,
+        9.186077117919922
+      ],
+      "de": [
+        10.056045532226562,
+        -16.427356719970703
+      ]
+    },
+    "weight": {
+      "en": 0.95,
+      "de": 0.9174086723007326
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "freedom-as-historical-progression",
+    "labels": {
+      "en": "historical progression of freedom",
+      "de": "geschichtliche Entwicklung der Freiheit"
+    },
+    "definitions": {
+      "en": "The teleological narrative of freedom's gradual realization across civilizations, from the East to the German world.",
+      "de": "Die teleologische Erzählung der schrittweisen Verwirklichung der Freiheit von der östlichen Welt bis zur germanischen Welt."
+    },
+    "cluster": "victory",
+    "position": {
+      "en": [
+        22.50179672241211,
+        7.27872371673584
+      ],
+      "de": [
+        9.242941856384277,
+        -15.022712707519531
+      ]
+    },
+    "weight": {
+      "en": 0.4135544290548169,
+      "de": 0.23915282297208512
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "freedom-as-absence-of-happiness",
+    "labels": {
+      "en": "absence of happiness",
+      "de": "Abwesenheit von Glück"
+    },
+    "definitions": {
+      "en": "The framing of freedom as incompatible with happiness, where historical progress is marked by struggle, not contentment.",
+      "de": "Die Rahmung der Freiheit als unvereinbar mit Glück, wobei historischer Fortschritt durch Kampf, nicht Zufriedenheit gekennzeichnet ist."
+    },
+    "cluster": "humiliation",
+    "position": {
+      "en": [
+        22.565231323242188,
+        8.691934585571289
+      ],
+      "de": [
+        9.440155029296875,
+        -15.767951965332031
+      ]
+    },
+    "weight": {
+      "en": 0.6699157598967416,
+      "de": 0.2314433378416777
+    },
+    "ghost": {
+      "en": false,
+      "de": true
+    },
+    "hero": null,
+    "source": "embedding"
+  }
+]

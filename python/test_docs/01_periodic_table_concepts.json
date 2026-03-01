@@ -1,0 +1,298 @@
+[
+  {
+    "id": "element-as-indivisible-atom",
+    "labels": {
+      "en": "indivisible atom",
+      "de": "unteilbares Atom"
+    },
+    "definitions": {
+      "en": "The philosophical and early scientific notion of elements as the smallest, irreducible particles of matter, beyond which decomposition is impossible.",
+      "de": "Die philosophische und frühwissenschaftliche Vorstellung von Elementen als kleinste, unteilbare Materieteilchen, jenseits derer keine weitere Zerlegung möglich ist."
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        -14.883965492248535,
+        3.8340916633605957
+      ],
+      "de": [
+        0.08490575850009918,
+        -3.5015931129455566
+      ]
+    },
+    "weight": {
+      "en": 0.35229725322405636,
+      "de": 0.6462847997762018
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "element-as-temporary-simplicity",
+    "labels": {
+      "en": "temporary simplicity",
+      "de": "vorläufige Einfachheit"
+    },
+    "definitions": {
+      "en": "The recognition that elements are only provisionally simple, subject to future decomposition as scientific methods advance.",
+      "de": "Die Erkenntnis, dass Elemente nur vorläufig einfach sind und durch Fortschritte in der Wissenschaft möglicherweise weiter zerlegt werden können."
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        -15.599170684814453,
+        2.7436232566833496
+      ],
+      "de": [
+        0.1627376526594162,
+        -4.926802158355713
+      ]
+    },
+    "weight": {
+      "en": 0.05,
+      "de": 0.4657595221935927
+    },
+    "ghost": {
+      "en": true,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "element-as-periodic-law",
+    "labels": {
+      "en": "periodic law",
+      "de": "Periodengesetz"
+    },
+    "definitions": {
+      "en": "The systematic arrangement of elements based on atomic weight, revealing periodic patterns in their properties and enabling predictive classification.",
+      "de": "Die systematische Anordnung der Elemente nach Atomgewicht, die periodische Muster in ihren Eigenschaften offenbart und eine vorhersagende Klassifikation ermöglicht."
+    },
+    "cluster": "new",
+    "position": {
+      "en": [
+        -14.580445289611816,
+        2.8305130004882812
+      ],
+      "de": [
+        -0.6424306631088257,
+        -3.4869327545166016
+      ]
+    },
+    "weight": {
+      "en": 0.38320719564828304,
+      "de": 0.5947442324414387
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "element-as-scientific-beauty",
+    "labels": {
+      "en": "scientific beauty",
+      "de": "wissenschaftliche Schönheit",
+      "fr": "beauté scientifique"
+    },
+    "definitions": {
+      "en": "The aesthetic and intellectual appeal of elements as objects of pure scientific inquiry, independent of their practical utility.",
+      "de": "Die ästhetische und intellektuelle Anziehungskraft von Elementen als Gegenstand reiner wissenschaftlicher Forschung, unabhängig von ihrem praktischen Nutzen.",
+      "fr": "L'attrait esthétique et intellectuel des éléments en tant qu'objets de recherche scientifique pure, indépendamment de leur utilité pratique."
+    },
+    "cluster": "new",
+    "position": {
+      "en": [
+        -13.740758895874023,
+        2.5466482639312744
+      ],
+      "de": [
+        0.8054503798484802,
+        -4.178056716918945
+      ]
+    },
+    "weight": {
+      "en": 0.20638864567793033,
+      "de": 0.63790817059336
+    },
+    "ghost": {
+      "en": true,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "element-as-human-benefit",
+    "labels": {
+      "en": "human benefit",
+      "de": "menschlicher Nutzen"
+    },
+    "definitions": {
+      "en": "The utilitarian framing of elements as tools for improving human welfare, particularly in medicine and industry.",
+      "de": "Die utilitaristische Betrachtung von Elementen als Werkzeuge zur Verbesserung des menschlichen Wohlergehens, insbesondere in Medizin und Industrie."
+    },
+    "cluster": "new",
+    "position": {
+      "en": [
+        -13.312605857849121,
+        3.143895387649536
+      ],
+      "de": [
+        1.5085052251815796,
+        -4.064953327178955
+      ]
+    },
+    "weight": {
+      "en": 0.10667394534798279,
+      "de": 0.3500819409447711
+    },
+    "ghost": {
+      "en": true,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "element-as-stoicheia",
+    "labels": {
+      "en": "stoicheia",
+      "de": "Stoicheia",
+      "el": "στοιχεῖα"
+    },
+    "definitions": {
+      "en": "The ancient Greek philosophical concept of elements as fundamental components of the cosmos, embodying both material and metaphysical principles.",
+      "de": "Das antike griechische philosophische Konzept der Elemente als grundlegende Bestandteile des Kosmos, das sowohl materielle als auch metaphysische Prinzipien verkörpert.",
+      "el": "Η αρχαία ελληνική φιλοσοφική έννοια των στοιχείων ως θεμελιωδών συστατικών του κόσμου, που ενσωματώνει τόσο υλικές όσο και μεταφυσικές αρχές."
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        -14.16071891784668,
+        3.7036421298980713
+      ],
+      "de": [
+        -0.21632392704486847,
+        -2.6047937870025635
+      ]
+    },
+    "weight": {
+      "en": 0.40207616898377296,
+      "de": 0.05
+    },
+    "ghost": {
+      "en": false,
+      "de": true
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "element-as-experimental-proof",
+    "labels": {
+      "en": "experimental proof",
+      "de": "experimenteller Beweis"
+    },
+    "definitions": {
+      "en": "The requirement that the existence and properties of elements must be demonstrated through rigorous, repeatable experimentation to be accepted by the scientific community.",
+      "de": "Die Forderung, dass die Existenz und Eigenschaften von Elementen durch strenge, wiederholbare Experimente nachgewiesen werden müssen, um von der wissenschaftlichen Gemeinschaft anerkannt zu werden."
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        -15.316680908203125,
+        2.071922540664673
+      ],
+      "de": [
+        -0.435472309589386,
+        -4.519415378570557
+      ]
+    },
+    "weight": {
+      "en": 0.11847373193927749,
+      "de": 0.5481638916156226
+    },
+    "ghost": {
+      "en": true,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "element-as-social-order",
+    "labels": {
+      "en": "social order",
+      "de": "soziale Ordnung",
+      "ru": "социальный порядок"
+    },
+    "definitions": {
+      "en": "The extension of the concept of elements and their periodic order to broader philosophical ideas about universal patterns, including human societies and political structures.",
+      "de": "Die Übertragung des Konzepts der Elemente und ihrer periodischen Ordnung auf breitere philosophische Ideen über universelle Muster, einschließlich menschlicher Gesellschaften und politischer Strukturen.",
+      "ru": "Распространение концепции элементов и их периодического порядка на более широкие философские идеи о всеобщих закономерностях, включая человеческие общества и политические структуры."
+    },
+    "cluster": "new",
+    "position": {
+      "en": [
+        -13.702889442443848,
+        4.184596061706543
+      ],
+      "de": [
+        0.6285238862037659,
+        -2.7009949684143066
+      ]
+    },
+    "weight": {
+      "en": 0.4094655319852764,
+      "de": 0.7561010422071816
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "element-as-discovery-effort",
+    "labels": {
+      "en": "discovery effort",
+      "de": "Entdeckungsaufwand",
+      "fr": "effort de découverte"
+    },
+    "definitions": {
+      "en": "The framing of elements as the product of laborious, often collaborative scientific work, emphasizing the human effort behind their identification and characterization.",
+      "de": "Die Betrachtung von Elementen als Ergebnis mühsamer, oft kollaborativer wissenschaftlicher Arbeit, die den menschlichen Aufwand hinter ihrer Identifizierung und Charakterisierung betont.",
+      "fr": "La conception des éléments comme le produit d'un travail scientifique laborieux et souvent collaboratif, soulignant l'effort humain derrière leur identification et leur caractérisation."
+    },
+    "cluster": "new",
+    "position": {
+      "en": [
+        -14.436220169067383,
+        1.969199776649475
+      ],
+      "de": [
+        1.0624135732650757,
+        -5.0089826583862305
+      ]
+    },
+    "weight": {
+      "en": 0.95,
+      "de": 0.95
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  }
+]

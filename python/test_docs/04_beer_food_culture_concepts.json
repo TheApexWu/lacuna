@@ -1,0 +1,386 @@
+[
+  {
+    "id": "beer-as-purity",
+    "labels": {
+      "en": "purity",
+      "de": "Reinheit"
+    },
+    "definitions": {
+      "en": "The principle that beer should be made from only the most essential, unadulterated ingredients, reflecting moral and cultural integrity.",
+      "de": "Das Prinzip, dass Bier nur aus den grundlegendsten, unverfälschten Zutaten hergestellt werden soll, als Ausdruck moralischer und kultureller Integrität."
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        9.824087142944336,
+        -2.2122559547424316
+      ],
+      "de": [
+        8.955181121826172,
+        4.122463226318359
+      ]
+    },
+    "weight": {
+      "en": 0.05,
+      "de": 0.05
+    },
+    "ghost": {
+      "en": true,
+      "de": true
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "beer-as-legal-control",
+    "labels": {
+      "en": "regulation",
+      "de": "Regulierung"
+    },
+    "definitions": {
+      "en": "The enforcement of brewing standards as a form of state authority and economic control.",
+      "de": "Die Durchsetzung von Braustandards als Ausdruck staatlicher Autorität und wirtschaftlicher Kontrolle."
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        9.122836112976074,
+        -1.619891881942749
+      ],
+      "de": [
+        9.67126750946045,
+        4.1651177406311035
+      ]
+    },
+    "weight": {
+      "en": 0.3157250388330959,
+      "de": 0.38884726968880945
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "beer-as-tradition",
+    "labels": {
+      "en": "tradition",
+      "de": "Tradition"
+    },
+    "definitions": {
+      "en": "Beer as a vessel of historical continuity and cultural heritage, passed down through generations.",
+      "de": "Bier als Träger historischer Kontinuität und kulturellen Erbes, das über Generationen weitergegeben wird."
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        9.683948516845703,
+        -1.4357261657714844
+      ],
+      "de": [
+        9.266958236694336,
+        3.5085272789001465
+      ]
+    },
+    "weight": {
+      "en": 0.7190368599171215,
+      "de": 0.7282731939862706
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "stammtisch-as-community",
+    "labels": {
+      "en": "community",
+      "de": "Gemeinschaft"
+    },
+    "definitions": {
+      "en": "The Stammtisch as a physical and symbolic space for fostering social bonds and collective identity.",
+      "de": "Der Stammtisch als physischer und symbolischer Ort zur Pflege sozialer Bindungen und kollektiver Identität."
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        10.637218475341797,
+        0.49554556608200073
+      ],
+      "de": [
+        8.30603313446045,
+        5.415529251098633
+      ]
+    },
+    "weight": {
+      "en": 0.95,
+      "de": 0.95
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "stammtisch-as-exclusion",
+    "labels": {
+      "en": "exclusion",
+      "de": "Ausschluss"
+    },
+    "definitions": {
+      "en": "The Stammtisch as a historically male-dominated space that reinforces social hierarchies and gender boundaries.",
+      "de": "Der Stammtisch als historisch männlich dominierter Raum, der soziale Hierarchien und Geschlechtergrenzen verstärkt."
+    },
+    "cluster": "humiliation",
+    "position": {
+      "en": [
+        10.835428237915039,
+        -0.19509269297122955
+      ],
+      "de": [
+        8.748661041259766,
+        6.083851337432861
+      ]
+    },
+    "weight": {
+      "en": 0.6620524960642389,
+      "de": 0.4664744930128837
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "stammtisch-as-subversion",
+    "labels": {
+      "en": "subversion",
+      "de": "Subversion"
+    },
+    "definitions": {
+      "en": "The Stammtisch as a site of political resistance and underground discourse, challenging established power structures.",
+      "de": "Der Stammtisch als Ort des politischen Widerstands und subversiver Diskussionen, der etablierte Machtstrukturen herausfordert."
+    },
+    "cluster": "new",
+    "position": {
+      "en": [
+        10.119784355163574,
+        0.2695898413658142
+      ],
+      "de": [
+        9.189156532287598,
+        5.392334938049316
+      ]
+    },
+    "weight": {
+      "en": 0.6315875293442503,
+      "de": 0.5869677622255548
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "oktoberfest-as-celebration",
+    "labels": {
+      "en": "celebration",
+      "de": "Festlichkeit"
+    },
+    "definitions": {
+      "en": "Oktoberfest as a grand public festival marking joyous occasions and communal unity.",
+      "de": "Das Oktoberfest als großes Volksfest, das freudige Anlässe und gemeinschaftlichen Zusammenhalt feiert."
+    },
+    "cluster": "victory",
+    "position": {
+      "en": [
+        9.424772262573242,
+        -0.31948161125183105
+      ],
+      "de": [
+        7.9497761726379395,
+        4.135928153991699
+      ]
+    },
+    "weight": {
+      "en": 0.6691122875205255,
+      "de": 0.4618459628828091
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "bread-as-sacrament",
+    "labels": {
+      "en": "sacrament",
+      "de": "Sakrament"
+    },
+    "definitions": {
+      "en": "Bread as a symbol of spiritual communion and shared humanity, transcending physical nourishment.",
+      "de": "Brot als Symbol spiritueller Gemeinschaft und geteilter Menschlichkeit, das über die physische Ernährung hinausgeht."
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        10.162782669067383,
+        -0.8393967151641846
+      ],
+      "de": [
+        7.930243492126465,
+        4.8419575691223145
+      ]
+    },
+    "weight": {
+      "en": 0.41480149146385126,
+      "de": 0.49799489850613043
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "food-as-grace",
+    "labels": {
+      "en": "grace",
+      "de": "Anmut"
+    },
+    "definitions": {
+      "en": "The act of eating as a practice of mindfulness, elegance, and appreciation for life's simple pleasures.",
+      "de": "Das Essen als Praxis der Achtsamkeit, Eleganz und Wertschätzung für die einfachen Freuden des Lebens."
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        10.78414249420166,
+        -1.1391927003860474
+      ],
+      "de": [
+        7.270110130310059,
+        4.9739251136779785
+      ]
+    },
+    "weight": {
+      "en": 0.26232387103327,
+      "de": 0.15779371622280897
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "beer-as-national-identity",
+    "labels": {
+      "en": "national identity",
+      "de": "nationale Identität"
+    },
+    "definitions": {
+      "en": "Beer as a marker of Bavarian or German cultural distinctiveness and pride, shaping collective self-perception.",
+      "de": "Bier als Ausdruck bayerischer oder deutscher kultureller Eigenständigkeit und Stolz, das das kollektive Selbstverständnis prägt."
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        10.42247486114502,
+        -1.9234645366668701
+      ],
+      "de": [
+        8.585343360900879,
+        3.335808753967285
+      ]
+    },
+    "weight": {
+      "en": 0.6959015429049321,
+      "de": 0.5682108156791164
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "stammtisch-as-power",
+    "labels": {
+      "en": "power",
+      "de": "Macht"
+    },
+    "definitions": {
+      "en": "The Stammtisch as a space where social and political influence is negotiated and reinforced among local elites.",
+      "de": "Der Stammtisch als Ort, an dem sozialer und politischer Einfluss unter lokalen Eliten verhandelt und gefestigt wird."
+    },
+    "cluster": "victory",
+    "position": {
+      "en": [
+        11.304927825927734,
+        0.2657712697982788
+      ],
+      "de": [
+        9.367368698120117,
+        6.072663307189941
+      ]
+    },
+    "weight": {
+      "en": 0.8811220835400909,
+      "de": 0.7883280525912989
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "oktoberfest-as-folklore",
+    "labels": {
+      "en": "folklore",
+      "de": "Volkstum"
+    },
+    "definitions": {
+      "en": "Oktoberfest as a curated display of Bavarian traditions, costumes, and customs for both locals and outsiders.",
+      "de": "Das Oktoberfest als inszenierte Darstellung bayerischer Bräuche, Trachten und Sitten für Einheimische und Fremde."
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        8.878040313720703,
+        -0.5663532614707947
+      ],
+      "de": [
+        7.700716018676758,
+        3.5561211109161377
+      ]
+    },
+    "weight": {
+      "en": 0.5800382295674175,
+      "de": 0.44061965256464136
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  }
+]

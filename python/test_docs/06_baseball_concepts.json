@@ -1,0 +1,360 @@
+[
+  {
+    "id": "baseball-as-timelessness",
+    "labels": {
+      "en": "timelessness",
+      "de": "Zeitlosigkeit"
+    },
+    "definitions": {
+      "en": "The perception of baseball as a game unbound by clocks, where time is measured in moments rather than minutes",
+      "de": "Die Wahrnehmung von Baseball als ein Spiel, das nicht von Uhren begrenzt wird, bei dem Zeit in Momenten und nicht in Minuten gemessen wird"
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        7.538140773773193,
+        21.41544532775879
+      ],
+      "de": [
+        14.564281463623047,
+        5.240232944488525
+      ]
+    },
+    "weight": {
+      "en": 0.7166334523839522,
+      "de": 0.7770657750670671
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "baseball-as-sacrifice",
+    "labels": {
+      "en": "sacrifice",
+      "de": "Opfer"
+    },
+    "definitions": {
+      "en": "The valorization of selfless acts (e.g., sacrifice bunts, flies) that prioritize team success over individual glory",
+      "de": "Die Aufwertung selbstloser Handlungen (z. B. Opfer-Bunts, -Flies), die den Teamerfolg über individuellen Ruhm stellen"
+    },
+    "cluster": "justice",
+    "position": {
+      "en": [
+        7.374627113342285,
+        20.75486946105957
+      ],
+      "de": [
+        15.78780746459961,
+        3.8993985652923584
+      ]
+    },
+    "weight": {
+      "en": 0.6893724320721463,
+      "de": 0.44181779733780785
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "baseball-as-love-in-defeat",
+    "labels": {
+      "en": "love in defeat",
+      "de": "Liebe in der Niederlage"
+    },
+    "definitions": {
+      "en": "The romanticization of failure and loss as a profound, almost spiritual experience that fosters deep emotional attachment",
+      "de": "Die Romantisierung von Scheitern und Niederlage als tiefgreifende, fast spirituelle Erfahrung, die emotionale Bindung verstärkt"
+    },
+    "cluster": "humiliation",
+    "position": {
+      "en": [
+        8.337355613708496,
+        22.59205436706543
+      ],
+      "de": [
+        16.46061897277832,
+        4.641038417816162
+      ]
+    },
+    "weight": {
+      "en": 0.3963226603557965,
+      "de": 0.5277391849930323
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "baseball-as-individual-achievement",
+    "labels": {
+      "en": "individual achievement",
+      "de": "individuelle Leistung"
+    },
+    "definitions": {
+      "en": "The American emphasis on personal excellence, records, and heroism as the ultimate measure of baseball's value",
+      "de": "Der amerikanische Fokus auf persönliche Exzellenz, Rekorde und Heldenmut als höchster Maßstab für den Wert von Baseball"
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        8.060843467712402,
+        20.676687240600586
+      ],
+      "de": [
+        15.661972045898438,
+        4.858006477355957
+      ]
+    },
+    "weight": {
+      "en": 0.95,
+      "de": 0.95
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "baseball-as-wa-group-harmony",
+    "labels": {
+      "en": "group harmony",
+      "de": "Gruppenharmonie",
+      "ja": "和 (wa)"
+    },
+    "definitions": {
+      "en": "The Japanese principle of prioritizing collective balance and social cohesion over individual success, even in sports",
+      "de": "Das japanische Prinzip, kollektive Balance und sozialen Zusammenhalt über individuellen Erfolg zu stellen, auch im Sport",
+      "ja": "個人よりも集団の調和と社会的結束を優先する日本の原則、スポーツにおいても同様"
+    },
+    "cluster": "new",
+    "position": {
+      "en": [
+        8.484881401062012,
+        21.556432723999023
+      ],
+      "de": [
+        15.927928924560547,
+        3.2542355060577393
+      ]
+    },
+    "weight": {
+      "en": 0.5070224103566173,
+      "de": 0.4421968446120168
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "baseball-as-gaman-endurance",
+    "labels": {
+      "en": "endurance",
+      "de": "Ausdauer",
+      "ja": "我慢 (gaman)"
+    },
+    "definitions": {
+      "en": "The Japanese cultural value of perseverance through suffering as a means of building character and moral strength",
+      "de": "Der japanische Kulturwert des Durchhaltens durch Leiden als Mittel zur Charakterbildung und moralischen Stärke",
+      "ja": "苦しみを耐え忍ぶことで人格と精神力を鍛える日本の文化的価値観"
+    },
+    "cluster": "new",
+    "position": {
+      "en": [
+        9.069143295288086,
+        22.159019470214844
+      ],
+      "de": [
+        16.635250091552734,
+        3.698652744293213
+      ]
+    },
+    "weight": {
+      "en": 0.05,
+      "de": 0.05
+    },
+    "ghost": {
+      "en": true,
+      "de": true
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "baseball-as-commercial-exploitation",
+    "labels": {
+      "en": "commercial exploitation",
+      "de": "kommerzielle Ausbeutung"
+    },
+    "definitions": {
+      "en": "The tension between baseball's romanticized ideals and its reality as a profit-driven, corporate enterprise",
+      "de": "Die Spannung zwischen den romantisierten Idealen des Baseballs und seiner Realität als gewinnorientiertes, unternehmerisches Geschäft"
+    },
+    "cluster": "humiliation",
+    "position": {
+      "en": [
+        8.824551582336426,
+        20.448715209960938
+      ],
+      "de": [
+        15.443280220031738,
+        5.4432501792907715
+      ]
+    },
+    "weight": {
+      "en": 0.6375242870488933,
+      "de": 0.8813410812639524
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "baseball-as-caring-passion",
+    "labels": {
+      "en": "caring passion",
+      "de": "leidenschaftliche Anteilnahme"
+    },
+    "definitions": {
+      "en": "The emotional investment in baseball as a rare, almost sacred form of deep personal attachment in modern life",
+      "de": "Die emotionale Bindung an Baseball als seltene, fast heilige Form tiefer persönlicher Verbundenheit im modernen Leben"
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        7.771048545837402,
+        22.51223373413086
+      ],
+      "de": [
+        16.14318084716797,
+        5.5468268394470215
+      ]
+    },
+    "weight": {
+      "en": 0.8022005942303929,
+      "de": 0.7937509558097529
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "baseball-as-strategic-beauty",
+    "labels": {
+      "en": "strategic beauty",
+      "de": "strategische Schönheit"
+    },
+    "definitions": {
+      "en": "The aesthetic appreciation of baseball's intricate, chess-like tactics and the elegance of its plays (e.g., squeeze plays, hit-and-run)",
+      "de": "Die ästhetische Wertschätzung der komplexen, schachähnlichen Taktiken des Baseballs und der Eleganz seiner Spielzüge (z. B. Squeeze-Plays, Hit-and-Run)"
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        6.669870853424072,
+        21.374324798583984
+      ],
+      "de": [
+        14.951099395751953,
+        4.664752960205078
+      ]
+    },
+    "weight": {
+      "en": 0.8606731322113174,
+      "de": 0.864780338408601
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "baseball-as-cultural-lacuna",
+    "labels": {
+      "en": "cultural lacuna",
+      "de": "kulturelle Lücke"
+    },
+    "definitions": {
+      "en": "The absence of baseball in German culture as a structural void, revealing fundamental differences in how societies conceptualize competition and leisure",
+      "de": "Die Abwesenheit von Baseball in der deutschen Kultur als strukturelle Leerstelle, die grundlegende Unterschiede in der Konzeptualisierung von Wettbewerb und Freizeit offenbart"
+    },
+    "cluster": "new",
+    "position": {
+      "en": [
+        9.216092109680176,
+        21.026355743408203
+      ],
+      "de": [
+        15.093659400939941,
+        6.110773086547852
+      ]
+    },
+    "weight": {
+      "en": 0.2732492688543552,
+      "de": 0.3449585845034694
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "baseball-as-zen-presence",
+    "labels": {
+      "en": "Zen presence",
+      "de": "Zen-Gegenwart",
+      "ja": "禅の現在 (Zen no genzai)"
+    },
+    "definitions": {
+      "en": "The practice of total immersion in the present moment, stripping away distractions to achieve a state of flow and unity with the game",
+      "de": "Die Praxis der vollständigen Versenkung in den gegenwärtigen Moment, um Ablenkungen zu beseitigen und einen Zustand des Flows und der Einheit mit dem Spiel zu erreichen",
+      "ja": "現在の瞬間に完全に没入し、雑念を取り除いてゲームとの一体感を得る実践"
+    },
+    "cluster": "new",
+    "position": {
+      "en": [
+        6.875922203063965,
+        22.02884864807129
+      ],
+      "de": [
+        14.757445335388184,
+        3.947662115097046
+      ]
+    },
+    "weight": {
+      "en": 0.5229617667166814,
+      "de": 0.40129210438618085
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  }
+]
