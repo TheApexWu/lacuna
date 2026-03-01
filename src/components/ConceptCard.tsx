@@ -31,10 +31,13 @@ export default function ConceptCard({
 }) {
   const [data, setData] = useState<ConceptData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [interpretation, setInterpretation] = useState<string | null>(null);
+  const [interpreting, setInterpreting] = useState(false);
 
   useEffect(() => {
     if (!conceptId) return;
     setLoading(true);
+    setInterpretation(null);
     const modelParam = activeModel && activeModel !== "curated" ? `&model=${activeModel}` : "";
     fetch(`/api/concept/${conceptId}?lang=${language}${modelParam}`)
       .then((r) => r.json())
@@ -44,6 +47,26 @@ export default function ConceptCard({
       })
       .catch(() => setLoading(false));
   }, [conceptId, language, activeModel]);
+
+  // Fire interpretation request after concept data loads
+  useEffect(() => {
+    if (!data || !conceptId) return;
+    setInterpreting(true);
+    fetch("/api/interpret", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ conceptId, language }),
+    })
+      .then((r) => r.json())
+      .then((d) => {
+        setInterpretation(d.interpretation || null);
+        setInterpreting(false);
+      })
+      .catch(() => {
+        setInterpretation(null);
+        setInterpreting(false);
+      });
+  }, [data, conceptId, language]);
 
   if (loading) {
     return (
@@ -132,21 +155,28 @@ export default function ConceptCard({
           </div>
         ))}
 
-      {/* Interpretation placeholder */}
-      {data.interpretation ? (
-        <div className="mt-3 pt-3 border-t border-[#262626]">
-          <p className="text-[#737373] text-xs mb-1">interpretation</p>
+      {/* Interpretation from Mistral agent */}
+      <div className="mt-3 pt-3 border-t border-[#262626]">
+        <p className="text-[#737373] text-xs mb-1">
+          interpretation
+          {interpreting && (
+            <span className="ml-2 text-[#f59e0b] animate-pulse">
+              interpreting...
+            </span>
+          )}
+        </p>
+        {interpretation ? (
           <p className="text-[#a3a3a3] text-xs leading-relaxed">
-            {data.interpretation}
+            {interpretation}
           </p>
-        </div>
-      ) : (
-        <div className="mt-3 pt-3 border-t border-[#262626]">
-          <p className="text-[#737373] text-xs italic">
-            Interpretation pending agent connection
-          </p>
-        </div>
-      )}
+        ) : (
+          !interpreting && (
+            <p className="text-[#737373] text-xs italic">
+              Interpretation unavailable
+            </p>
+          )
+        )}
+      </div>
     </div>
   );
 }

@@ -1,0 +1,1341 @@
+[
+  {
+    "id": "reparations",
+    "labels": {
+      "en": "reparations",
+      "de": "Reparationen"
+    },
+    "definitions": {
+      "en": "Financial payments imposed on a defeated nation as compensation for war damages and losses",
+      "de": "Finanzielle Zahlungen, die einer besiegten Nation als Entschädigung für Kriegsschäden auferlegt werden"
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        6.775824069976807,
+        1.5761544704437256
+      ],
+      "de": [
+        9.209078788757324,
+        2.246825695037842
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "armistice",
+    "labels": {
+      "en": "armistice",
+      "de": "Waffenstillstand"
+    },
+    "definitions": {
+      "en": "A formal agreement to cease fighting, ending active hostilities before a peace treaty",
+      "de": "Ein formelles Abkommen zur Einstellung der Kampfhandlungen vor einem Friedensvertrag"
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        7.796649932861328,
+        1.29389488697052
+      ],
+      "de": [
+        6.750384330749512,
+        4.06827449798584
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "honor",
+    "labels": {
+      "en": "honor",
+      "de": "Ehre"
+    },
+    "definitions": {
+      "en": "The reputation and moral standing of a nation in the eyes of the international community",
+      "de": "Der Ruf und die moralische Stellung einer Nation in den Augen der internationalen Gemeinschaft"
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        7.402281284332275,
+        3.7016384601593018
+      ],
+      "de": [
+        8.372203826904297,
+        4.541290283203125
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "treaty",
+    "labels": {
+      "en": "treaty",
+      "de": "Vertrag"
+    },
+    "definitions": {
+      "en": "A formal agreement between nations establishing terms of peace and future relations",
+      "de": "Ein formelles Abkommen zwischen Nationen, das Friedensbedingungen und zukünftige Beziehungen festlegt"
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        8.082749366760254,
+        2.1712679862976074
+      ],
+      "de": [
+        6.937742710113525,
+        4.004209995269775
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "justice",
+    "labels": {
+      "en": "justice",
+      "de": "Gerechtigkeit"
+    },
+    "definitions": {
+      "en": "The principle that those who cause harm must be held accountable and make amends",
+      "de": "Das Prinzip, dass diejenigen, die Schaden verursachen, zur Rechenschaft gezogen werden müssen"
+    },
+    "cluster": "justice",
+    "position": {
+      "en": [
+        5.308028697967529,
+        2.9201414585113525
+      ],
+      "de": [
+        10.603826522827148,
+        3.2183516025543213
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "accountability",
+    "labels": {
+      "en": "accountability",
+      "de": "Verantwortlichkeit"
+    },
+    "definitions": {
+      "en": "The obligation to accept responsibility for one's actions and their consequences",
+      "de": "Die Pflicht, Verantwortung für das eigene Handeln und dessen Folgen zu übernehmen"
+    },
+    "cluster": "justice",
+    "position": {
+      "en": [
+        6.541813373565674,
+        3.1973965167999268
+      ],
+      "de": [
+        9.83669662475586,
+        3.4368748664855957
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "punishment",
+    "labels": {
+      "en": "punishment",
+      "de": "Strafe"
+    },
+    "definitions": {
+      "en": "A penalty imposed on a wrongdoer as retribution for harmful actions",
+      "de": "Eine Strafe, die einem Übeltäter als Vergeltung für schädliche Handlungen auferlegt wird"
+    },
+    "cluster": "justice",
+    "position": {
+      "en": [
+        5.080219268798828,
+        2.666043758392334
+      ],
+      "de": [
+        10.499150276184082,
+        2.897062301635742
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "debt",
+    "labels": {
+      "en": "debt",
+      "de": "Schulden"
+    },
+    "definitions": {
+      "en": "An obligation to repay what is owed, whether financial or moral",
+      "de": "Eine Verpflichtung zur Rückzahlung dessen, was geschuldet wird, ob finanziell oder moralisch"
+    },
+    "cluster": "justice",
+    "position": {
+      "en": [
+        5.910470008850098,
+        2.9505770206451416
+      ],
+      "de": [
+        9.897689819335938,
+        2.7202601432800293
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "obligation",
+    "labels": {
+      "en": "obligation",
+      "de": "Pflicht"
+    },
+    "definitions": {
+      "en": "A binding duty or commitment that must be fulfilled",
+      "de": "Eine verbindliche Pflicht oder Verpflichtung, die erfüllt werden muss"
+    },
+    "cluster": "justice",
+    "position": {
+      "en": [
+        6.347686290740967,
+        2.880634069442749
+      ],
+      "de": [
+        9.89389419555664,
+        3.0638861656188965
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": true,
+    "source": "embedding"
+  },
+  {
+    "id": "guilt",
+    "labels": {
+      "en": "guilt",
+      "de": "Schuld"
+    },
+    "definitions": {
+      "en": "The state of having committed a wrong or offense against others",
+      "de": "Der Zustand, ein Unrecht oder Vergehen gegen andere begangen zu haben"
+    },
+    "cluster": "justice",
+    "position": {
+      "en": [
+        4.9898905754089355,
+        3.146766424179077
+      ],
+      "de": [
+        10.397113800048828,
+        3.668618679046631
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": true,
+    "source": "embedding"
+  },
+  {
+    "id": "restitution",
+    "labels": {
+      "en": "restitution",
+      "de": "Wiedergutmachung"
+    },
+    "definitions": {
+      "en": "The act of restoring something to its rightful owner or compensating for loss",
+      "de": "Die Handlung der Wiederherstellung oder Entschädigung für einen Verlust"
+    },
+    "cluster": "justice",
+    "position": {
+      "en": [
+        5.62155294418335,
+        3.1987485885620117
+      ],
+      "de": [
+        10.001072883605957,
+        2.344672203063965
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "sanctions",
+    "labels": {
+      "en": "sanctions",
+      "de": "Sanktionen"
+    },
+    "definitions": {
+      "en": "Punitive measures imposed on a nation to enforce compliance with international demands",
+      "de": "Strafmaßnahmen gegen eine Nation zur Durchsetzung internationaler Forderungen"
+    },
+    "cluster": "justice",
+    "position": {
+      "en": [
+        6.355042934417725,
+        2.252140522003174
+      ],
+      "de": [
+        8.877575874328613,
+        2.729402780532837
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": true,
+    "source": "embedding"
+  },
+  {
+    "id": "concession",
+    "labels": {
+      "en": "concession",
+      "de": "Zugeständnis"
+    },
+    "definitions": {
+      "en": "Territory or rights surrendered by a defeated nation as part of peace terms",
+      "de": "Gebiet oder Rechte, die von einer besiegten Nation als Teil der Friedensbedingungen abgetreten werden"
+    },
+    "cluster": "justice",
+    "position": {
+      "en": [
+        7.138966083526611,
+        1.1541904211044312
+      ],
+      "de": [
+        7.922144889831543,
+        2.5083694458007812
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "demilitarization",
+    "labels": {
+      "en": "demilitarization",
+      "de": "Entmilitarisierung"
+    },
+    "definitions": {
+      "en": "The forced reduction or elimination of a nation's military capability",
+      "de": "Die erzwungene Reduzierung oder Beseitigung der militärischen Fähigkeiten einer Nation"
+    },
+    "cluster": "justice",
+    "position": {
+      "en": [
+        6.404401779174805,
+        1.035302758216858
+      ],
+      "de": [
+        8.657003402709961,
+        3.1798505783081055
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "victory",
+    "labels": {
+      "en": "victory",
+      "de": "Sieg"
+    },
+    "definitions": {
+      "en": "The successful conclusion of a military conflict through defeating the enemy",
+      "de": "Der erfolgreiche Abschluss eines militärischen Konflikts durch Besiegung des Feindes"
+    },
+    "cluster": "victory",
+    "position": {
+      "en": [
+        7.456841945648193,
+        1.4214025735855103
+      ],
+      "de": [
+        7.54689359664917,
+        4.988874435424805
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "peace",
+    "labels": {
+      "en": "peace",
+      "de": "Frieden"
+    },
+    "definitions": {
+      "en": "The cessation of armed conflict and establishment of stable relations between nations",
+      "de": "Die Beendigung bewaffneter Konflikte und Herstellung stabiler Beziehungen zwischen Nationen"
+    },
+    "cluster": "victory",
+    "position": {
+      "en": [
+        8.196462631225586,
+        1.7942767143249512
+      ],
+      "de": [
+        6.818234920501709,
+        4.685852527618408
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "order",
+    "labels": {
+      "en": "order",
+      "de": "Ordnung"
+    },
+    "definitions": {
+      "en": "A stable arrangement of power and governance that prevents future conflict",
+      "de": "Eine stabile Ordnung von Macht und Regierung, die zukünftige Konflikte verhindert"
+    },
+    "cluster": "victory",
+    "position": {
+      "en": [
+        8.587830543518066,
+        2.0727994441986084
+      ],
+      "de": [
+        7.3011369705200195,
+        4.345205783843994
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "triumph",
+    "labels": {
+      "en": "triumph",
+      "de": "Triumph"
+    },
+    "definitions": {
+      "en": "A great achievement or success, especially in overcoming an adversary",
+      "de": "Ein großer Erfolg, besonders in der Überwindung eines Gegners"
+    },
+    "cluster": "victory",
+    "position": {
+      "en": [
+        6.5965094566345215,
+        3.960994243621826
+      ],
+      "de": [
+        8.42265796661377,
+        5.463769912719727
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": true,
+    "source": "embedding"
+  },
+  {
+    "id": "sovereignty",
+    "labels": {
+      "en": "sovereignty",
+      "de": "Souveränität"
+    },
+    "definitions": {
+      "en": "The supreme authority of a state to govern itself without external interference",
+      "de": "Die höchste Autorität eines Staates, sich ohne äußere Einmischung selbst zu regieren"
+    },
+    "cluster": "victory",
+    "position": {
+      "en": [
+        8.28765869140625,
+        2.7490198612213135
+      ],
+      "de": [
+        7.939743995666504,
+        3.837460994720459
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "selfdetermination",
+    "labels": {
+      "en": "self-determination",
+      "de": "Selbstbestimmung"
+    },
+    "definitions": {
+      "en": "The right of peoples to determine their own political status and form of government",
+      "de": "Das Recht der Völker, ihren eigenen politischen Status und ihre Regierungsform zu bestimmen"
+    },
+    "cluster": "victory",
+    "position": {
+      "en": [
+        7.896754264831543,
+        3.0860369205474854
+      ],
+      "de": [
+        7.88336181640625,
+        4.125154972076416
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "legitimacy",
+    "labels": {
+      "en": "legitimacy",
+      "de": "Legitimität"
+    },
+    "definitions": {
+      "en": "The rightful authority to exercise power, recognized by other nations",
+      "de": "Die rechtmäßige Autorität zur Ausübung von Macht, anerkannt von anderen Nationen"
+    },
+    "cluster": "victory",
+    "position": {
+      "en": [
+        7.486007213592529,
+        3.2054007053375244
+      ],
+      "de": [
+        8.434691429138184,
+        4.076752185821533
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "diplomacy",
+    "labels": {
+      "en": "diplomacy",
+      "de": "Diplomatie"
+    },
+    "definitions": {
+      "en": "The conduct of negotiations between nations to resolve disputes and establish agreements",
+      "de": "Die Führung von Verhandlungen zwischen Nationen zur Beilegung von Streitigkeiten"
+    },
+    "cluster": "victory",
+    "position": {
+      "en": [
+        7.741157054901123,
+        1.9874752759933472
+      ],
+      "de": [
+        7.076253414154053,
+        4.4343671798706055
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "reconstruction",
+    "labels": {
+      "en": "reconstruction",
+      "de": "Wiederaufbau"
+    },
+    "definitions": {
+      "en": "The process of rebuilding a nation's infrastructure and institutions after war",
+      "de": "Der Prozess des Wiederaufbaus der Infrastruktur und Institutionen einer Nation nach dem Krieg"
+    },
+    "cluster": "victory",
+    "position": {
+      "en": [
+        8.287285804748535,
+        1.427209734916687
+      ],
+      "de": [
+        8.413137435913086,
+        2.007274866104126
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "humiliation",
+    "labels": {
+      "en": "humiliation",
+      "de": "Demütigung"
+    },
+    "definitions": {
+      "en": "The act of causing someone to feel deeply ashamed or degraded",
+      "de": "Die Handlung, jemanden tief zu beschämen oder zu erniedrigen"
+    },
+    "cluster": "humiliation",
+    "position": {
+      "en": [
+        4.325823783874512,
+        3.2772786617279053
+      ],
+      "de": [
+        10.710111618041992,
+        4.498525619506836
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "betrayal",
+    "labels": {
+      "en": "betrayal",
+      "de": "Verrat"
+    },
+    "definitions": {
+      "en": "The violation of trust or allegiance by those who were supposed to be allies",
+      "de": "Der Vertrauensbruch durch diejenigen, die Verbündete hätten sein sollen"
+    },
+    "cluster": "humiliation",
+    "position": {
+      "en": [
+        4.614927291870117,
+        2.3391366004943848
+      ],
+      "de": [
+        9.797842025756836,
+        4.091384410858154
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": true,
+    "source": "embedding"
+  },
+  {
+    "id": "injustice",
+    "labels": {
+      "en": "injustice",
+      "de": "Ungerechtigkeit"
+    },
+    "definitions": {
+      "en": "An unfair or unjust act that violates principles of fairness and equity",
+      "de": "Eine unfaire Handlung, die Grundsätze der Gerechtigkeit und Gleichheit verletzt"
+    },
+    "cluster": "humiliation",
+    "position": {
+      "en": [
+        4.560299873352051,
+        2.8865444660186768
+      ],
+      "de": [
+        10.399460792541504,
+        4.216694355010986
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "revenge",
+    "labels": {
+      "en": "revenge",
+      "de": "Rache"
+    },
+    "definitions": {
+      "en": "Retaliation against those who have caused harm, seeking to inflict equivalent suffering",
+      "de": "Vergeltung gegen diejenigen, die Schaden verursacht haben, um gleichwertiges Leid zuzufügen"
+    },
+    "cluster": "humiliation",
+    "position": {
+      "en": [
+        4.843436241149902,
+        3.413149356842041
+      ],
+      "de": [
+        10.920421600341797,
+        3.478062629699707
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": true,
+    "source": "embedding"
+  },
+  {
+    "id": "resentment",
+    "labels": {
+      "en": "resentment",
+      "de": "Groll"
+    },
+    "definitions": {
+      "en": "Deep-seated anger and bitterness resulting from perceived unfair treatment",
+      "de": "Tief verwurzelter Zorn und Verbitterung aufgrund wahrgenommener ungerechter Behandlung"
+    },
+    "cluster": "humiliation",
+    "position": {
+      "en": [
+        4.4619340896606445,
+        3.7494261264801025
+      ],
+      "de": [
+        10.186911582946777,
+        4.731823921203613
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "subjugation",
+    "labels": {
+      "en": "subjugation",
+      "de": "Unterwerfung"
+    },
+    "definitions": {
+      "en": "The forceful domination and control of a people or nation by another power",
+      "de": "Die gewaltsame Unterwerfung und Kontrolle eines Volkes oder einer Nation durch eine andere Macht"
+    },
+    "cluster": "humiliation",
+    "position": {
+      "en": [
+        5.795245170593262,
+        1.797456979751587
+      ],
+      "de": [
+        8.796255111694336,
+        3.733657121658325
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "occupation",
+    "labels": {
+      "en": "occupation",
+      "de": "Besatzung"
+    },
+    "definitions": {
+      "en": "The military control of a defeated nation's territory by foreign forces",
+      "de": "Die militärische Kontrolle des Territoriums einer besiegten Nation durch fremde Streitkräfte"
+    },
+    "cluster": "humiliation",
+    "position": {
+      "en": [
+        6.795613765716553,
+        1.0475815534591675
+      ],
+      "de": [
+        8.228114128112793,
+        2.986560821533203
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "propaganda",
+    "labels": {
+      "en": "propaganda",
+      "de": "Propaganda"
+    },
+    "definitions": {
+      "en": "The systematic dissemination of information to promote a political cause or damage an opponent",
+      "de": "Die systematische Verbreitung von Informationen zur Förderung einer politischen Sache oder Schädigung eines Gegners"
+    },
+    "cluster": "humiliation",
+    "position": {
+      "en": [
+        5.382931709289551,
+        1.8922747373580933
+      ],
+      "de": [
+        9.543338775634766,
+        4.303217887878418
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "nationalism",
+    "labels": {
+      "en": "nationalism",
+      "de": "Nationalismus"
+    },
+    "definitions": {
+      "en": "Strong identification with one's nation, often including the belief in its superiority",
+      "de": "Starke Identifikation mit der eigenen Nation, oft einschließlich des Glaubens an deren Überlegenheit"
+    },
+    "cluster": "humiliation",
+    "position": {
+      "en": [
+        6.978272914886475,
+        4.035272121429443
+      ],
+      "de": [
+        9.015296936035156,
+        5.264002799987793
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "starvation",
+    "labels": {
+      "en": "starvation",
+      "de": "Hungersnot"
+    },
+    "definitions": {
+      "en": "The deliberate deprivation of food supplies as a weapon of war or coercion",
+      "de": "Der absichtliche Entzug von Nahrungsmitteln als Kriegswaffe oder Zwangsmittel"
+    },
+    "cluster": "humiliation",
+    "position": {
+      "en": [
+        6.023945331573486,
+        1.2252248525619507
+      ],
+      "de": [
+        8.66766357421875,
+        2.7467472553253174
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "blockade",
+    "labels": {
+      "en": "blockade",
+      "de": "Blockade"
+    },
+    "definitions": {
+      "en": "The naval prevention of goods reaching a nation, causing economic and humanitarian crisis",
+      "de": "Die Seeblockade zur Verhinderung von Warenlieferungen an eine Nation, die wirtschaftliche und humanitäre Krisen verursacht"
+    },
+    "cluster": "humiliation",
+    "position": {
+      "en": [
+        6.241847515106201,
+        0.9060812592506409
+      ],
+      "de": [
+        7.942867755889893,
+        3.1134235858917236
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "dolchstoss",
+    "labels": {
+      "en": "Dolchstoss",
+      "de": "Dolchstoß"
+    },
+    "definitions": {
+      "en": "The conspiracy theory that Germany's military was betrayed by civilian politicians who surrendered unnecessarily",
+      "de": "Die Dolchstoßlegende, dass Deutschlands Militär von zivilen Politikern verraten wurde, die unnötig kapitulierten"
+    },
+    "cluster": "ghost-de",
+    "position": {
+      "en": [
+        5.724236011505127,
+        0.911871612071991
+      ],
+      "de": [
+        9.405953407287598,
+        3.8423123359680176
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": true,
+      "de": false
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "schmach",
+    "labels": {
+      "en": "Schmach",
+      "de": "Schmach"
+    },
+    "definitions": {
+      "en": "A deep national disgrace that stains collective honor and demands redress",
+      "de": "Eine tiefe nationale Schmach, die die kollektive Ehre befleckt und Wiedergutmachung verlangt"
+    },
+    "cluster": "ghost-de",
+    "position": {
+      "en": [
+        4.1121392250061035,
+        3.4486958980560303
+      ],
+      "de": [
+        10.131972312927246,
+        5.193869113922119
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": true,
+      "de": false
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "diktat",
+    "labels": {
+      "en": "Diktat",
+      "de": "Diktat"
+    },
+    "definitions": {
+      "en": "A dictated peace imposed without negotiation by the victorious powers",
+      "de": "Ein aufgezwungener Frieden, der von den Siegermächten ohne Verhandlung diktiert wurde"
+    },
+    "cluster": "ghost-de",
+    "position": {
+      "en": [
+        7.335041522979736,
+        0.7144261002540588
+      ],
+      "de": [
+        6.597562789916992,
+        3.621666431427002
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": true,
+      "de": false
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "kriegsschuld",
+    "labels": {
+      "en": "Kriegsschuld",
+      "de": "Kriegsschuld"
+    },
+    "definitions": {
+      "en": "The assignment of sole war guilt to one nation as the legal basis for reparations",
+      "de": "Die Zuweisung der alleinigen Kriegsschuld an eine Nation als rechtliche Grundlage für Reparationen"
+    },
+    "cluster": "ghost-de",
+    "position": {
+      "en": [
+        6.951641082763672,
+        2.057067394256592
+      ],
+      "de": [
+        9.553662300109863,
+        2.04571270942688
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": true,
+      "de": false
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "volkszorn",
+    "labels": {
+      "en": "Volkszorn",
+      "de": "Volkszorn"
+    },
+    "definitions": {
+      "en": "The collective rage of a people against perceived national humiliation",
+      "de": "Der kollektive Zorn eines Volkes gegen empfundene nationale Demütigung"
+    },
+    "cluster": "ghost-de",
+    "position": {
+      "en": [
+        4.2516303062438965,
+        3.8992650508880615
+      ],
+      "de": [
+        9.805333137512207,
+        5.110967636108398
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": true,
+      "de": false
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "revanchism",
+    "labels": {
+      "en": "revanchism",
+      "de": "Revanchismus"
+    },
+    "definitions": {
+      "en": "A political movement seeking to reverse territorial losses through future conflict",
+      "de": "Eine politische Bewegung, die territoriale Verluste durch zukünftige Konflikte rückgängig machen will"
+    },
+    "cluster": "ghost-de",
+    "position": {
+      "en": [
+        8.170166969299316,
+        0.9909558892250061
+      ],
+      "de": [
+        7.283135414123535,
+        3.3609793186187744
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": true,
+      "de": false
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "magnanimity",
+    "labels": {
+      "en": "magnanimity",
+      "de": "Großmut"
+    },
+    "definitions": {
+      "en": "Generosity and nobility of spirit shown by the victor toward the defeated",
+      "de": "Großmut und Edelmut des Siegers gegenüber dem Besiegten"
+    },
+    "cluster": "ghost-en",
+    "position": {
+      "en": [
+        6.1127214431762695,
+        3.73938250541687
+      ],
+      "de": [
+        8.657293319702148,
+        5.703644275665283
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": true
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "civilizing",
+    "labels": {
+      "en": "civilizing mission",
+      "de": "Zivilisierungsmission"
+    },
+    "definitions": {
+      "en": "The belief that advanced nations have a duty to bring progress and order to others",
+      "de": "Der Glaube, dass fortgeschrittene Nationen die Pflicht haben, anderen Fortschritt und Ordnung zu bringen"
+    },
+    "cluster": "ghost-en",
+    "position": {
+      "en": [
+        7.045795440673828,
+        3.5352511405944824
+      ],
+      "de": [
+        8.787888526916504,
+        4.625354290008545
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": true
+    },
+    "source": "embedding"
+  },
+  {
+    "id": "mandate",
+    "labels": {
+      "en": "mandate",
+      "de": "Mandat"
+    },
+    "definitions": {
+      "en": "International authorization to govern a territory on behalf of the League of Nations",
+      "de": "Internationale Ermächtigung, ein Gebiet im Namen des Völkerbunds zu regieren"
+    },
+    "cluster": "ghost-en",
+    "position": {
+      "en": [
+        7.494622230529785,
+        2.7879927158355713
+      ],
+      "de": [
+        8.25014877319336,
+        3.626798152923584
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": true
+    },
+    "source": "embedding"
+  }
+]

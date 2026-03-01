@@ -1,0 +1,279 @@
+/Users/amadeus/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+======================================================================
+LACUNA: Three-Model Embedding Comparison
+======================================================================
+Loaded 43 concepts
+
+######################################################################
+# MODEL: BGE-M3 (BAAI/bge-m3)
+######################################################################
+
+Loading model: BAAI/bge-m3
+  Loaded in 2.6s
+  Embedding 43 texts for en...
+  Done in 0.5s, shape=(43, 1024)
+  Embedding 43 texts for de...
+  Done in 0.3s, shape=(43, 1024)
+  Model freed. Total: 3.7s
+
+--- BGE-M3 Summary ---
+  Ghosts: 1
+    dolchstoss                               ghost_in=both   low both (EN=0.050, DE=0.050)
+
+  Top 10 divergent:
+    mandate                                  div=0.2265  w_en=0.349  w_de=0.515  ghost=-
+    blockade                                 div=0.2262  w_en=0.453  w_de=0.579  ghost=-
+    dolchstoss                               div=0.2138  w_en=0.050  w_de=0.050  ghost=both
+    magnanimity                              div=0.1985  w_en=0.595  w_de=0.446  ghost=-
+    starvation                               div=0.1920  w_en=0.497  w_de=0.532  ghost=-
+    injustice                                div=0.1748  w_en=0.691  w_de=0.490  ghost=-
+    sanctions                                div=0.1718  w_en=0.704  w_de=0.700  ghost=-
+    revenge                                  div=0.1694  w_en=0.754  w_de=0.535  ghost=-
+    diplomacy                                div=0.1582  w_en=0.803  w_de=0.701  ghost=-
+    betrayal                                 div=0.1508  w_en=0.624  w_de=0.343  ghost=-
+
+######################################################################
+# MODEL: E5-Large (intfloat/multilingual-e5-large)
+######################################################################
+
+Loading model: intfloat/multilingual-e5-large
+  Loaded in 2.9s
+  Embedding 43 texts for en...
+  Done in 0.5s, shape=(43, 1024)
+  Embedding 43 texts for de...
+  Done in 0.4s, shape=(43, 1024)
+  Model freed. Total: 3.9s
+
+--- E5-Large Summary ---
+  Ghosts: 4
+    restitution                              ghost_in=de     ratio 2.81x (EN=0.631>>DE=0.224)
+    triumph                                  ghost_in=de     ratio 2.72x (EN=0.411>>DE=0.151)
+    dolchstoss                               ghost_in=both   low both (EN=0.050, DE=0.050)
+    mandate                                  ghost_in=de     ratio 3.13x (EN=0.476>>DE=0.152)
+
+  Top 10 divergent:
+    mandate                                  div=0.1137  w_en=0.476  w_de=0.152  ghost=de
+    magnanimity                              div=0.1060  w_en=0.547  w_de=0.299  ghost=-
+    restitution                              div=0.1036  w_en=0.631  w_de=0.224  ghost=de
+    punishment                               div=0.0976  w_en=0.654  w_de=0.424  ghost=-
+    revenge                                  div=0.0899  w_en=0.706  w_de=0.398  ghost=-
+    concession                               div=0.0898  w_en=0.416  w_de=0.457  ghost=-
+    sanctions                                div=0.0858  w_en=0.597  w_de=0.626  ghost=-
+    justice                                  div=0.0810  w_en=0.797  w_de=0.508  ghost=-
+    resentment                               div=0.0803  w_en=0.647  w_de=0.441  ghost=-
+    reparations                              div=0.0800  w_en=0.751  w_de=0.518  ghost=-
+
+######################################################################
+# MODEL: LaBSE (sentence-transformers/LaBSE)
+######################################################################
+
+Loading model: sentence-transformers/LaBSE
+  Loaded in 42.1s
+  Embedding 43 texts for en...
+  Done in 0.2s, shape=(43, 768)
+  Embedding 43 texts for de...
+  Done in 0.1s, shape=(43, 768)
+  Model freed. Total: 42.5s
+
+--- LaBSE Summary ---
+  Ghosts: 9
+    justice                                  ghost_in=both   low both (EN=0.057, DE=0.065)
+    betrayal                                 ghost_in=de     low DE wt (0.050)
+    revenge                                  ghost_in=en     low EN wt (0.139)
+    dolchstoss                               ghost_in=both   low both (EN=0.050, DE=0.050)
+    diktat                                   ghost_in=de     low DE wt (0.050)
+    magnanimity                              ghost_in=de     low DE wt (0.063)
+    mandate                                  ghost_in=en     ratio 2.89x (DE=0.632>>EN=0.219)
+    armistice                                ghost_in=en     low EN wt (0.080)
+    nationalism                              ghost_in=en     low EN wt (0.050)
+
+  Top 10 divergent:
+    revenge                                  div=0.2793  w_en=0.139  w_de=0.510  ghost=en
+    dolchstoss                               div=0.2723  w_en=0.050  w_de=0.050  ghost=both
+    betrayal                                 div=0.2613  w_en=0.362  w_de=0.050  ghost=de
+    justice                                  div=0.2557  w_en=0.057  w_de=0.065  ghost=both
+    magnanimity                              div=0.2531  w_en=0.156  w_de=0.063  ghost=de
+    restitution                              div=0.2494  w_en=0.614  w_de=0.478  ghost=-
+    diplomacy                                div=0.2190  w_en=0.438  w_de=0.477  ghost=-
+    blockade                                 div=0.2168  w_en=0.285  w_de=0.444  ghost=-
+    humiliation                              div=0.1781  w_en=0.401  w_de=0.454  ghost=-
+    injustice                                div=0.1771  w_en=0.354  w_de=0.450  ghost=-
+
+
+======================================================================
+CROSS-MODEL CORRELATIONS
+======================================================================
+
+  BGE-M3 vs E5-Large:
+    Divergence r=0.5908 (p=0.000030)
+    EN weight  r=0.7066 (p=0.000000)
+    DE weight  r=0.6750 (p=0.000001)
+
+  BGE-M3 vs LaBSE:
+    Divergence r=0.6167 (p=0.000011)
+    EN weight  r=0.4580 (p=0.002012)
+    DE weight  r=0.7323 (p=0.000000)
+
+  E5-Large vs LaBSE:
+    Divergence r=0.4716 (p=0.001412)
+    EN weight  r=0.4346 (p=0.003588)
+    DE weight  r=0.5230 (p=0.000321)
+
+
+======================================================================
+GHOST AGREEMENT (ALL 3 models)
+======================================================================
+
+  dolchstoss:
+    BGE-M3      : ghost_in=both   low both (EN=0.050, DE=0.050)
+    E5-Large    : ghost_in=both   low both (EN=0.050, DE=0.050)
+    LaBSE       : ghost_in=both   low both (EN=0.050, DE=0.050)
+
+
+======================================================================
+GHOST AGREEMENT (2+ of 3 models)
+======================================================================
+
+  dolchstoss (3/3):
+    BGE-M3      : GHOST  we=0.050  wd=0.050  div=0.2138  low both (EN=0.050, DE=0.050)
+    E5-Large    : GHOST  we=0.050  wd=0.050  div=0.0684  low both (EN=0.050, DE=0.050)
+    LaBSE       : GHOST  we=0.050  wd=0.050  div=0.2723  low both (EN=0.050, DE=0.050)
+
+  mandate (2/3):
+    BGE-M3      :        we=0.349  wd=0.515  div=0.2265  
+    E5-Large    : GHOST  we=0.476  wd=0.152  div=0.1137  ratio 3.13x (EN=0.476>>DE=0.152)
+    LaBSE       : GHOST  we=0.219  wd=0.632  div=0.1506  ratio 2.89x (DE=0.632>>EN=0.219)
+
+
+======================================================================
+TOP 10 LACUNAE (avg divergence across 3 models)
+======================================================================
+
+   1. magnanimity
+      avg_div=0.1859
+      BGE-M3      : div=0.1985  we=0.595  wd=0.446  ghost=-
+      E5-Large    : div=0.1060  we=0.547  wd=0.299  ghost=-
+      LaBSE       : div=0.2531  we=0.156  wd=0.063  ghost=de
+
+   2. dolchstoss
+      avg_div=0.1848
+      BGE-M3      : div=0.2138  we=0.050  wd=0.050  ghost=both
+      E5-Large    : div=0.0684  we=0.050  wd=0.050  ghost=both
+      LaBSE       : div=0.2723  we=0.050  wd=0.050  ghost=both
+
+   3. revenge
+      avg_div=0.1796
+      BGE-M3      : div=0.1694  we=0.754  wd=0.535  ghost=-
+      E5-Large    : div=0.0899  we=0.706  wd=0.398  ghost=-
+      LaBSE       : div=0.2793  we=0.139  wd=0.510  ghost=en
+
+   4. blockade
+      avg_div=0.1730
+      BGE-M3      : div=0.2262  we=0.453  wd=0.579  ghost=-
+      E5-Large    : div=0.0762  we=0.391  wd=0.345  ghost=-
+      LaBSE       : div=0.2168  we=0.285  wd=0.444  ghost=-
+
+   5. restitution
+      avg_div=0.1650
+      BGE-M3      : div=0.1418  we=0.770  wd=0.754  ghost=-
+      E5-Large    : div=0.1036  we=0.631  wd=0.224  ghost=de
+      LaBSE       : div=0.2494  we=0.614  wd=0.478  ghost=-
+
+   6. mandate
+      avg_div=0.1636
+      BGE-M3      : div=0.2265  we=0.349  wd=0.515  ghost=-
+      E5-Large    : div=0.1137  we=0.476  wd=0.152  ghost=de
+      LaBSE       : div=0.1506  we=0.219  wd=0.632  ghost=en
+
+   7. betrayal
+      avg_div=0.1635
+      BGE-M3      : div=0.1508  we=0.624  wd=0.343  ghost=-
+      E5-Large    : div=0.0783  we=0.797  wd=0.422  ghost=-
+      LaBSE       : div=0.2613  we=0.362  wd=0.050  ghost=de
+
+   8. justice
+      avg_div=0.1526
+      BGE-M3      : div=0.1212  we=0.661  wd=0.607  ghost=-
+      E5-Large    : div=0.0810  we=0.797  wd=0.508  ghost=-
+      LaBSE       : div=0.2557  we=0.057  wd=0.065  ghost=both
+
+   9. diplomacy
+      avg_div=0.1509
+      BGE-M3      : div=0.1582  we=0.803  wd=0.701  ghost=-
+      E5-Large    : div=0.0754  we=0.805  wd=0.610  ghost=-
+      LaBSE       : div=0.2190  we=0.438  wd=0.477  ghost=-
+
+  10. injustice
+      avg_div=0.1404
+      BGE-M3      : div=0.1748  we=0.691  wd=0.490  ghost=-
+      E5-Large    : div=0.0692  we=0.695  wd=0.616  ghost=-
+      LaBSE       : div=0.1771  we=0.354  wd=0.450  ghost=-
+
+
+======================================================================
+SPOTLIGHT: guilt
+======================================================================
+
+  Concept: guilt
+    BGE-M3      : div=0.0702  we=0.869  wd=0.785  ghost=none   
+    E5-Large    : div=0.0697  we=0.794  wd=0.637  ghost=none   
+    LaBSE       : div=0.1179  we=0.707  wd=0.658  ghost=none   
+
+
+======================================================================
+FULL TABLE (sorted by avg divergence)
+======================================================================
+
+  concept                                     avg   BGE-M3    E5-Lg    LaBSE
+  ---------------------------------------- ------  -------  -------  -------
+  magnanimity                              0.1859   0.1985   0.1060   0.2531
+  dolchstoss                               0.1848   0.2138   0.0684   0.2723
+  revenge                                  0.1796   0.1694   0.0899   0.2793
+  blockade                                 0.1730   0.2262   0.0762   0.2168
+  restitution                              0.1650   0.1418   0.1036   0.2494
+  mandate                                  0.1636   0.2265   0.1137   0.1506
+  betrayal                                 0.1635   0.1508   0.0783   0.2613
+  justice                                  0.1526   0.1212   0.0810   0.2557
+  diplomacy                                0.1509   0.1582   0.0754   0.2190
+  injustice                                0.1404   0.1748   0.0692   0.1771
+  sanctions                                0.1386   0.1718   0.0858   0.1583
+  humiliation                              0.1318   0.1378   0.0796   0.1781
+  starvation                               0.1285   0.1920   0.0790   0.1144
+  triumph                                  0.1269   0.1312   0.0763   0.1732
+  reparations                              0.1253   0.1232   0.0800   0.1727
+  armistice                                0.1166   0.1083   0.0692   0.1722
+  concession                               0.1108   0.0781   0.0898   0.1646
+  schmach                                  0.0996   0.1175   0.0546   0.1267
+  resentment                               0.0953   0.0944   0.0803   0.1112
+  diktat                                   0.0951   0.0787   0.0762   0.1305
+  civilizing                               0.0941   0.0636   0.0550   0.1638
+  nationalism                              0.0932   0.0544   0.0518   0.1733
+  kriegsschuld                             0.0925   0.0897   0.0502   0.1377
+  sovereignty                              0.0920   0.0596   0.0701   0.1462
+  honor                                    0.0917   0.1052   0.0467   0.1234
+  punishment                               0.0909   0.0630   0.0976   0.1122
+  volkszorn                                0.0894   0.1112   0.0684   0.0885
+  occupation                               0.0884   0.0682   0.0649   0.1321
+  legitimacy                               0.0881   0.0601   0.0725   0.1317
+  order                                    0.0868   0.0545   0.0514   0.1545
+  guilt                                    0.0859   0.0702   0.0697   0.1179
+  reconstruction                           0.0847   0.0597   0.0606   0.1339
+  subjugation                              0.0840   0.0741   0.0673   0.1108
+  treaty                                   0.0825   0.0665   0.0523   0.1288
+  peace                                    0.0818   0.0878   0.0538   0.1039
+  victory                                  0.0811   0.0519   0.0629   0.1286
+  propaganda                               0.0806   0.0552   0.0544   0.1322
+  accountability                           0.0778   0.0790   0.0633   0.0912
+  revanchism                               0.0765   0.0442   0.0486   0.1367
+  selfdetermination                        0.0761   0.0844   0.0501   0.0939
+  demilitarization                         0.0760   0.0436   0.0670   0.1174
+  debt                                     0.0711   0.0604   0.0540   0.0988
+  obligation                               0.0622   0.0545   0.0601   0.0719
+
+
+JSON saved to /tmp/three_model_results.json
+
+======================================================================
+DONE
+======================================================================

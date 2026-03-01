@@ -1,0 +1,610 @@
+[
+  {
+    "id": "war-guilt-as-legal-responsibility",
+    "labels": {
+      "en": "legal responsibility",
+      "de": "rechtliche Verantwortung"
+    },
+    "definitions": {
+      "en": "The formal attribution of liability for the war and its damages under international law.",
+      "de": "Die formelle Zurechnung der Haftung für den Krieg und seine Schäden nach Völkerrecht."
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        13.248808860778809,
+        7.718214988708496
+      ],
+      "de": [
+        -1.2973686456680298,
+        1.7215789556503296
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "war-guilt-as-moral-culpability",
+    "labels": {
+      "en": "moral culpability",
+      "de": "moralische Schuld"
+    },
+    "definitions": {
+      "en": "The ethical judgment that Germany bears primary blame for the war's outbreak and atrocities.",
+      "de": "Das ethische Urteil, dass Deutschland die Hauptschuld am Kriegsausbruch und den Gräueltaten trägt."
+    },
+    "cluster": "justice",
+    "position": {
+      "en": [
+        13.353765487670898,
+        8.218293190002441
+      ],
+      "de": [
+        -1.6572597026824951,
+        1.2422230243682861
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "war-guilt-as-national-shame",
+    "labels": {
+      "en": "national shame",
+      "de": "nationale Schmach"
+    },
+    "definitions": {
+      "en": "The collective disgrace felt by Germans due to the imposition of war guilt, perceived as unjust.",
+      "de": "Die kollektive Schande, die Deutsche aufgrund der auferlegten Kriegsschuld empfanden, die als ungerecht wahrgenommen wurde."
+    },
+    "cluster": "humiliation",
+    "position": {
+      "en": [
+        12.63656997680664,
+        8.237826347351074
+      ],
+      "de": [
+        -2.334388494491577,
+        1.0548593997955322
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "war-guilt-as-honor-violation",
+    "labels": {
+      "en": "honor violation",
+      "de": "Ehrverletzung"
+    },
+    "definitions": {
+      "en": "The perception that the war guilt clause attacked Germany's national dignity and self-respect.",
+      "de": "Die Wahrnehmung, dass die Kriegsschuldklausel die nationale Würde und das Selbstwertgefühl Deutschlands angriff."
+    },
+    "cluster": "humiliation",
+    "position": {
+      "en": [
+        13.056672096252441,
+        8.86329174041748
+      ],
+      "de": [
+        -2.0361437797546387,
+        0.7004193067550659
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "reparations-as-economic-enslavement",
+    "labels": {
+      "en": "economic enslavement",
+      "de": "Versklavung"
+    },
+    "definitions": {
+      "en": "The belief that reparations were a tool to subjugate Germany economically, stripping its sovereignty.",
+      "de": "Die Überzeugung, dass Reparationen ein Mittel zur wirtschaftlichen Unterwerfung Deutschlands waren, um dessen Souveränität zu berauben."
+    },
+    "cluster": "humiliation",
+    "position": {
+      "en": [
+        12.130328178405762,
+        8.793819427490234
+      ],
+      "de": [
+        -3.4015376567840576,
+        1.1353964805603027
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "reparations-as-distorted-amends",
+    "labels": {
+      "en": "distorted amends",
+      "de": "verzerrte Wiedergutmachung"
+    },
+    "definitions": {
+      "en": "The German view that the concept of 'making amends' was perverted into a punitive measure rather than reconciliation.",
+      "de": "Die deutsche Sicht, dass der Begriff 'Wiedergutmachung' in eine strafende Maßnahme statt in Versöhnung verkehrt wurde."
+    },
+    "cluster": "justice",
+    "position": {
+      "en": [
+        11.834534645080566,
+        9.15359878540039
+      ],
+      "de": [
+        -2.9910125732421875,
+        0.029694678261876106
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "dolchstoss-as-betrayal",
+    "labels": {
+      "en": "betrayal",
+      "de": "Verrat"
+    },
+    "definitions": {
+      "en": "The narrative that Germany was stabbed in the back by traitorous politicians who surrendered unjustly.",
+      "de": "Die Erzählung, dass Deutschland von verräterischen Politikern, die ungerecht kapitulierten, 'erdolcht' wurde."
+    },
+    "cluster": "new",
+    "position": {
+      "en": [
+        12.022878646850586,
+        8.051538467407227
+      ],
+      "de": [
+        -2.9310550689697266,
+        0.7466453313827515
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "dolchstoss-as-military-denial",
+    "labels": {
+      "en": "military denial",
+      "de": "militärische Leugnung"
+    },
+    "definitions": {
+      "en": "The refusal to acknowledge military defeat, shifting blame to internal enemies.",
+      "de": "Die Weigerung, die militärische Niederlage anzuerkennen, und die Schuldzuweisung an innere Feinde."
+    },
+    "cluster": "new",
+    "position": {
+      "en": [
+        12.26152229309082,
+        7.405938625335693
+      ],
+      "de": [
+        -2.671003580093384,
+        1.7189918756484985
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "aggression-as-unjust-imposition",
+    "labels": {
+      "en": "unjust imposition",
+      "de": "ungerechte Aufzwingung"
+    },
+    "definitions": {
+      "en": "The Allied framing of Germany's actions as an illegitimate war forced upon them.",
+      "de": "Die Darstellung der Alliierten, dass Deutschlands Handlungen ein ihnen aufgezwungener, illegitimer Krieg waren."
+    },
+    "cluster": "justice",
+    "position": {
+      "en": [
+        12.775031089782715,
+        10.543142318725586
+      ],
+      "de": [
+        -1.7015974521636963,
+        -0.4002365469932556
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "aggression-as-national-defense",
+    "labels": {
+      "en": "national defense",
+      "de": "nationale Verteidigung"
+    },
+    "definitions": {
+      "en": "The implicit German counter-frame that the war was a necessary act of self-preservation, not aggression.",
+      "de": "Der implizite deutsche Gegenrahmen, dass der Krieg ein notwendiger Akt der Selbstverteidigung und keine Aggression war."
+    },
+    "cluster": "new",
+    "position": {
+      "en": [
+        12.30523681640625,
+        10.200786590576172
+      ],
+      "de": [
+        -1.1413211822509766,
+        -0.41849368810653687
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "justice-as-victor-triumph",
+    "labels": {
+      "en": "victor's justice",
+      "de": "Siegerjustiz"
+    },
+    "definitions": {
+      "en": "The German perception that the Treaty's terms were not true justice but the imposition of the victors' will.",
+      "de": "Die deutsche Wahrnehmung, dass die Vertragsbedingungen keine wahre Gerechtigkeit, sondern die Durchsetzung des Willens der Sieger waren."
+    },
+    "cluster": "victory",
+    "position": {
+      "en": [
+        12.515016555786133,
+        9.388753890991211
+      ],
+      "de": [
+        -2.8631205558776855,
+        -0.47047197818756104
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "justice-as-reconciliation",
+    "labels": {
+      "en": "reconciliation",
+      "de": "Versöhnung"
+    },
+    "definitions": {
+      "en": "The Allied intent (or pretense) that reparations and guilt were steps toward lasting peace.",
+      "de": "Die Absicht (oder der Vorwand) der Alliierten, dass Reparationen und Schuld Schritte zu einem dauerhaften Frieden waren."
+    },
+    "cluster": "justice",
+    "position": {
+      "en": [
+        11.107610702514648,
+        9.541655540466309
+      ],
+      "de": [
+        -0.4692745506763458,
+        0.9112608432769775
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "punishment-as-economic-crippling",
+    "labels": {
+      "en": "economic crippling",
+      "de": "wirtschaftliche Zerstörung"
+    },
+    "definitions": {
+      "en": "The view that reparations were designed to permanently weaken Germany's economy and power.",
+      "de": "Die Ansicht, dass Reparationen darauf abzielten, Deutschlands Wirtschaft und Macht dauerhaft zu schwächen."
+    },
+    "cluster": "victory",
+    "position": {
+      "en": [
+        11.459829330444336,
+        8.717636108398438
+      ],
+      "de": [
+        -3.5518486499786377,
+        0.28194183111190796
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "punishment-as-moral-lesson",
+    "labels": {
+      "en": "moral lesson",
+      "de": "moralische Lehre"
+    },
+    "definitions": {
+      "en": "The Allied belief that Germany must be punished to deter future aggression and teach a lesson.",
+      "de": "Die Überzeugung der Alliierten, dass Deutschland bestraft werden müsse, um zukünftige Aggressionen abzuschrecken und eine Lehre zu erteilen."
+    },
+    "cluster": "justice",
+    "position": {
+      "en": [
+        11.757884979248047,
+        10.273738861083984
+      ],
+      "de": [
+        -0.5183436870574951,
+        0.3570203483104706
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "honor-as-national-sovereignty",
+    "labels": {
+      "en": "national sovereignty",
+      "de": "nationale Souveränität"
+    },
+    "definitions": {
+      "en": "The German association of honor with the right to self-determination and independence from foreign dictates.",
+      "de": "Die deutsche Verknüpfung von Ehre mit dem Recht auf Selbstbestimmung und Unabhängigkeit von ausländischen Vorgaben."
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        13.641312599182129,
+        9.477832794189453
+      ],
+      "de": [
+        -1.269150733947754,
+        0.5860838294029236
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "honor-as-military-prowess",
+    "labels": {
+      "en": "military prowess",
+      "de": "militärische Stärke"
+    },
+    "definitions": {
+      "en": "The traditional German valorization of military strength as a core component of national honor.",
+      "de": "Die traditionelle deutsche Wertschätzung militärischer Stärke als zentralen Bestandteil nationaler Ehre."
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        13.87418270111084,
+        8.970782279968262
+      ],
+      "de": [
+        -1.6243798732757568,
+        0.3606034219264984
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "debt-as-moral-burden",
+    "labels": {
+      "en": "moral burden",
+      "de": "moralische Last"
+    },
+    "definitions": {
+      "en": "The psychological and cultural weight of being labeled as indebted for war crimes.",
+      "de": "Die psychologische und kulturelle Bürde, als Schuldner für Kriegsverbrechen gebrandmarkt zu sein."
+    },
+    "cluster": "justice",
+    "position": {
+      "en": [
+        12.90544319152832,
+        7.2334771156311035
+      ],
+      "de": [
+        -2.057002067565918,
+        1.9572199583053589
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "peace-as-unjust-diktat",
+    "labels": {
+      "en": "unjust diktat",
+      "de": "unrechtmäßiges Diktat"
+    },
+    "definitions": {
+      "en": "The German view that the Treaty of Versailles was an imposed, non-negotiable peace forced upon them.",
+      "de": "Die deutsche Sicht, dass der Versailler Vertrag ein aufgezwungenes, nicht verhandelbares Friedensdiktat war."
+    },
+    "cluster": "humiliation",
+    "position": {
+      "en": [
+        12.968524932861328,
+        9.949851036071777
+      ],
+      "de": [
+        -2.355516195297241,
+        -0.6313914656639099
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "peace-as-victor-imposition",
+    "labels": {
+      "en": "victor's imposition",
+      "de": "Siegerdiktat"
+    },
+    "definitions": {
+      "en": "The Allied framing of the Treaty as a necessary and just settlement to prevent future wars.",
+      "de": "Die Darstellung der Alliierten, dass der Vertrag eine notwendige und gerechte Regelung zur Verhinderung zukünftiger Kriege war."
+    },
+    "cluster": "victory",
+    "position": {
+      "en": [
+        11.248207092285156,
+        10.159027099609375
+      ],
+      "de": [
+        -0.4484333097934723,
+        -0.13406464457511902
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  }
+]

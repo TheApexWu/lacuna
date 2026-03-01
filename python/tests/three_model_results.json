@@ -1,0 +1,988 @@
+{
+  "timestamp": "2026-02-28 18:06:27",
+  "models": [
+    "BAAI/bge-m3",
+    "intfloat/multilingual-e5-large",
+    "sentence-transformers/LaBSE"
+  ],
+  "concepts": [
+    "reparations",
+    "justice",
+    "accountability",
+    "punishment",
+    "debt",
+    "obligation",
+    "guilt",
+    "restitution",
+    "victory",
+    "peace",
+    "order",
+    "triumph",
+    "sovereignty",
+    "humiliation",
+    "betrayal",
+    "injustice",
+    "revenge",
+    "resentment",
+    "subjugation",
+    "dolchstoss",
+    "schmach",
+    "diktat",
+    "kriegsschuld",
+    "volkszorn",
+    "magnanimity",
+    "civilizing",
+    "mandate",
+    "armistice",
+    "selfdetermination",
+    "demilitarization",
+    "occupation",
+    "propaganda",
+    "nationalism",
+    "honor",
+    "legitimacy",
+    "treaty",
+    "sanctions",
+    "concession",
+    "revanchism",
+    "starvation",
+    "blockade",
+    "diplomacy",
+    "reconstruction"
+  ],
+  "results": {
+    "BGE-M3": {
+      "divergences": {
+        "reparations": 0.12316954135894775,
+        "justice": 0.121207594871521,
+        "accountability": 0.07903778553009033,
+        "punishment": 0.06301653385162354,
+        "debt": 0.06040149927139282,
+        "obligation": 0.05445528030395508,
+        "guilt": 0.07015913724899292,
+        "restitution": 0.1418309211730957,
+        "victory": 0.05186927318572998,
+        "peace": 0.08781707286834717,
+        "order": 0.05452311038970947,
+        "triumph": 0.13122308254241943,
+        "sovereignty": 0.059599995613098145,
+        "humiliation": 0.13784492015838623,
+        "betrayal": 0.15084272623062134,
+        "injustice": 0.17482620477676392,
+        "revenge": 0.16942065954208374,
+        "resentment": 0.094352126121521,
+        "subjugation": 0.07406395673751831,
+        "dolchstoss": 0.21380615234375,
+        "schmach": 0.11746323108673096,
+        "diktat": 0.07869863510131836,
+        "kriegsschuld": 0.0897265076637268,
+        "volkszorn": 0.11115562915802002,
+        "magnanimity": 0.1985209584236145,
+        "civilizing": 0.06355524063110352,
+        "mandate": 0.2265244722366333,
+        "armistice": 0.10831868648529053,
+        "selfdetermination": 0.0843658447265625,
+        "demilitarization": 0.04357701539993286,
+        "occupation": 0.06819993257522583,
+        "propaganda": 0.05523484945297241,
+        "nationalism": 0.05439645051956177,
+        "honor": 0.10515880584716797,
+        "legitimacy": 0.06010061502456665,
+        "treaty": 0.06649315357208252,
+        "sanctions": 0.17176008224487305,
+        "concession": 0.0781484842300415,
+        "revanchism": 0.0442357063293457,
+        "starvation": 0.1920011043548584,
+        "blockade": 0.22618049383163452,
+        "diplomacy": 0.1582154631614685,
+        "reconstruction": 0.059654831886291504
+      },
+      "weights_en": {
+        "reparations": 0.726545512676239,
+        "justice": 0.661176860332489,
+        "accountability": 0.742559552192688,
+        "punishment": 0.7507365345954895,
+        "debt": 0.7616279721260071,
+        "obligation": 0.7908155918121338,
+        "guilt": 0.8689924478530884,
+        "restitution": 0.7698293924331665,
+        "victory": 0.8065112233161926,
+        "peace": 0.6947563886642456,
+        "order": 0.5225716233253479,
+        "triumph": 0.6351784467697144,
+        "sovereignty": 0.37456169724464417,
+        "humiliation": 0.6547616720199585,
+        "betrayal": 0.6243371367454529,
+        "injustice": 0.6908789277076721,
+        "revenge": 0.753592312335968,
+        "resentment": 0.5206010937690735,
+        "subjugation": 0.95,
+        "dolchstoss": 0.05,
+        "schmach": 0.26062819361686707,
+        "diktat": 0.6016539335250854,
+        "kriegsschuld": 0.5832226872444153,
+        "volkszorn": 0.5092948079109192,
+        "magnanimity": 0.5952986478805542,
+        "civilizing": 0.8312641978263855,
+        "mandate": 0.34900757670402527,
+        "armistice": 0.7232576608657837,
+        "selfdetermination": 0.6143332719802856,
+        "demilitarization": 0.8503137826919556,
+        "occupation": 0.8606308698654175,
+        "propaganda": 0.6544973254203796,
+        "nationalism": 0.4660511612892151,
+        "honor": 0.53492271900177,
+        "legitimacy": 0.7807824015617371,
+        "treaty": 0.8885486721992493,
+        "sanctions": 0.7044145464897156,
+        "concession": 0.7322668433189392,
+        "revanchism": 0.7378944158554077,
+        "starvation": 0.49737319350242615,
+        "blockade": 0.45281362533569336,
+        "diplomacy": 0.803426206111908,
+        "reconstruction": 0.6142928600311279
+      },
+      "weights_de": {
+        "reparations": 0.737409770488739,
+        "justice": 0.6068186163902283,
+        "accountability": 0.6765976548194885,
+        "punishment": 0.7618802189826965,
+        "debt": 0.6792311072349548,
+        "obligation": 0.6871005892753601,
+        "guilt": 0.7847853302955627,
+        "restitution": 0.7538886070251465,
+        "victory": 0.7626645565032959,
+        "peace": 0.7607826590538025,
+        "order": 0.6720872521400452,
+        "triumph": 0.3038501441478729,
+        "sovereignty": 0.3297605514526367,
+        "humiliation": 0.6951557397842407,
+        "betrayal": 0.34311166405677795,
+        "injustice": 0.49044451117515564,
+        "revenge": 0.535245418548584,
+        "resentment": 0.40899065136909485,
+        "subjugation": 0.95,
+        "dolchstoss": 0.05,
+        "schmach": 0.4471533000469208,
+        "diktat": 0.4515050947666168,
+        "kriegsschuld": 0.7081778645515442,
+        "volkszorn": 0.48704659938812256,
+        "magnanimity": 0.44592759013175964,
+        "civilizing": 0.8120116591453552,
+        "mandate": 0.5148161053657532,
+        "armistice": 0.5402041077613831,
+        "selfdetermination": 0.6772022247314453,
+        "demilitarization": 0.95,
+        "occupation": 0.8559040427207947,
+        "propaganda": 0.6516348719596863,
+        "nationalism": 0.3219396471977234,
+        "honor": 0.5177637934684753,
+        "legitimacy": 0.8352581858634949,
+        "treaty": 0.8593659400939941,
+        "sanctions": 0.7004589438438416,
+        "concession": 0.68483966588974,
+        "revanchism": 0.766061007976532,
+        "starvation": 0.5319180488586426,
+        "blockade": 0.5786585807800293,
+        "diplomacy": 0.7006592750549316,
+        "reconstruction": 0.6260711550712585
+      },
+      "ghosts": {
+        "reparations": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "justice": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "accountability": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "punishment": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "debt": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "obligation": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "guilt": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "restitution": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "victory": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "peace": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "order": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "triumph": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "sovereignty": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "humiliation": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "betrayal": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "injustice": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "revenge": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "resentment": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "subjugation": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "dolchstoss": {
+          "ghost_in": "both",
+          "reason": "low both (EN=0.050, DE=0.050)"
+        },
+        "schmach": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "diktat": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "kriegsschuld": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "volkszorn": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "magnanimity": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "civilizing": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "mandate": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "armistice": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "selfdetermination": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "demilitarization": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "occupation": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "propaganda": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "nationalism": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "honor": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "legitimacy": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "treaty": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "sanctions": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "concession": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "revanchism": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "starvation": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "blockade": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "diplomacy": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "reconstruction": {
+          "ghost_in": null,
+          "reason": null
+        }
+      }
+    },
+    "E5-Large": {
+      "divergences": {
+        "reparations": 0.07997322082519531,
+        "justice": 0.08101135492324829,
+        "accountability": 0.06327402591705322,
+        "punishment": 0.0976296067237854,
+        "debt": 0.053989291191101074,
+        "obligation": 0.060146987438201904,
+        "guilt": 0.06965434551239014,
+        "restitution": 0.103648841381073,
+        "victory": 0.06292033195495605,
+        "peace": 0.053784728050231934,
+        "order": 0.051390767097473145,
+        "triumph": 0.07629436254501343,
+        "sovereignty": 0.07006502151489258,
+        "humiliation": 0.07956361770629883,
+        "betrayal": 0.0783049464225769,
+        "injustice": 0.06923210620880127,
+        "revenge": 0.08994722366333008,
+        "resentment": 0.08028924465179443,
+        "subjugation": 0.06725847721099854,
+        "dolchstoss": 0.06844592094421387,
+        "schmach": 0.05460929870605469,
+        "diktat": 0.07620769739151001,
+        "kriegsschuld": 0.05020779371261597,
+        "volkszorn": 0.06843841075897217,
+        "magnanimity": 0.10601049661636353,
+        "civilizing": 0.05499047040939331,
+        "mandate": 0.11371093988418579,
+        "armistice": 0.06923240423202515,
+        "selfdetermination": 0.05007433891296387,
+        "demilitarization": 0.06695854663848877,
+        "occupation": 0.06490647792816162,
+        "propaganda": 0.05444061756134033,
+        "nationalism": 0.05180901288986206,
+        "honor": 0.04666566848754883,
+        "legitimacy": 0.07252949476242065,
+        "treaty": 0.052324533462524414,
+        "sanctions": 0.08575296401977539,
+        "concession": 0.08976155519485474,
+        "revanchism": 0.04860246181488037,
+        "starvation": 0.07904279232025146,
+        "blockade": 0.07615548372268677,
+        "diplomacy": 0.075447678565979,
+        "reconstruction": 0.060624122619628906
+      },
+      "weights_en": {
+        "reparations": 0.7509058117866516,
+        "justice": 0.7973125576972961,
+        "accountability": 0.6053962111473083,
+        "punishment": 0.6542113423347473,
+        "debt": 0.6048198342323303,
+        "obligation": 0.4187423884868622,
+        "guilt": 0.7943770885467529,
+        "restitution": 0.6309025883674622,
+        "victory": 0.7547802329063416,
+        "peace": 0.8272227644920349,
+        "order": 0.69831782579422,
+        "triumph": 0.4108341336250305,
+        "sovereignty": 0.48497915267944336,
+        "humiliation": 0.6717997789382935,
+        "betrayal": 0.7971639633178711,
+        "injustice": 0.6945011019706726,
+        "revenge": 0.7064720392227173,
+        "resentment": 0.6474259495735168,
+        "subjugation": 0.95,
+        "dolchstoss": 0.05,
+        "schmach": 0.18297293782234192,
+        "diktat": 0.5186108350753784,
+        "kriegsschuld": 0.6662025451660156,
+        "volkszorn": 0.6211528182029724,
+        "magnanimity": 0.5469971299171448,
+        "civilizing": 0.6675446629524231,
+        "mandate": 0.47604748606681824,
+        "armistice": 0.6659672856330872,
+        "selfdetermination": 0.6252625584602356,
+        "demilitarization": 0.7235204577445984,
+        "occupation": 0.8100117444992065,
+        "propaganda": 0.5019698143005371,
+        "nationalism": 0.43204471468925476,
+        "honor": 0.6674174070358276,
+        "legitimacy": 0.7063469290733337,
+        "treaty": 0.7606127858161926,
+        "sanctions": 0.5968751907348633,
+        "concession": 0.41556623578071594,
+        "revanchism": 0.46549782156944275,
+        "starvation": 0.7452807426452637,
+        "blockade": 0.3905528783798218,
+        "diplomacy": 0.805196225643158,
+        "reconstruction": 0.5261244773864746
+      },
+      "weights_de": {
+        "reparations": 0.5181268453598022,
+        "justice": 0.5078287124633789,
+        "accountability": 0.5882625579833984,
+        "punishment": 0.42375996708869934,
+        "debt": 0.5550541281700134,
+        "obligation": 0.309969961643219,
+        "guilt": 0.6365567445755005,
+        "restitution": 0.2243569940328598,
+        "victory": 0.5453888177871704,
+        "peace": 0.7653136253356934,
+        "order": 0.6642606258392334,
+        "triumph": 0.15107634663581848,
+        "sovereignty": 0.26265084743499756,
+        "humiliation": 0.4784964919090271,
+        "betrayal": 0.4217894375324249,
+        "injustice": 0.6157563328742981,
+        "revenge": 0.39819228649139404,
+        "resentment": 0.4413290023803711,
+        "subjugation": 0.95,
+        "dolchstoss": 0.05,
+        "schmach": 0.36639484763145447,
+        "diktat": 0.6345885992050171,
+        "kriegsschuld": 0.733965277671814,
+        "volkszorn": 0.5762688517570496,
+        "magnanimity": 0.2985190451145172,
+        "civilizing": 0.6470470428466797,
+        "mandate": 0.152082622051239,
+        "armistice": 0.3585127294063568,
+        "selfdetermination": 0.658950686454773,
+        "demilitarization": 0.723867654800415,
+        "occupation": 0.7610447406768799,
+        "propaganda": 0.22880719602108002,
+        "nationalism": 0.38830962777137756,
+        "honor": 0.4525313675403595,
+        "legitimacy": 0.5779415965080261,
+        "treaty": 0.7110298275947571,
+        "sanctions": 0.6260064244270325,
+        "concession": 0.4572433531284332,
+        "revanchism": 0.4907471537590027,
+        "starvation": 0.5755255818367004,
+        "blockade": 0.34515732526779175,
+        "diplomacy": 0.6097918748855591,
+        "reconstruction": 0.4268772602081299
+      },
+      "ghosts": {
+        "reparations": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "justice": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "accountability": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "punishment": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "debt": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "obligation": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "guilt": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "restitution": {
+          "ghost_in": "de",
+          "reason": "ratio 2.81x (EN=0.631>>DE=0.224)"
+        },
+        "victory": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "peace": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "order": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "triumph": {
+          "ghost_in": "de",
+          "reason": "ratio 2.72x (EN=0.411>>DE=0.151)"
+        },
+        "sovereignty": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "humiliation": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "betrayal": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "injustice": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "revenge": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "resentment": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "subjugation": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "dolchstoss": {
+          "ghost_in": "both",
+          "reason": "low both (EN=0.050, DE=0.050)"
+        },
+        "schmach": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "diktat": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "kriegsschuld": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "volkszorn": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "magnanimity": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "civilizing": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "mandate": {
+          "ghost_in": "de",
+          "reason": "ratio 3.13x (EN=0.476>>DE=0.152)"
+        },
+        "armistice": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "selfdetermination": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "demilitarization": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "occupation": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "propaganda": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "nationalism": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "honor": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "legitimacy": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "treaty": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "sanctions": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "concession": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "revanchism": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "starvation": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "blockade": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "diplomacy": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "reconstruction": {
+          "ghost_in": null,
+          "reason": null
+        }
+      }
+    },
+    "LaBSE": {
+      "divergences": {
+        "reparations": 0.17270827293395996,
+        "justice": 0.2556641101837158,
+        "accountability": 0.09116142988204956,
+        "punishment": 0.1121983528137207,
+        "debt": 0.09880292415618896,
+        "obligation": 0.0718991756439209,
+        "guilt": 0.1179279088973999,
+        "restitution": 0.24938833713531494,
+        "victory": 0.12862002849578857,
+        "peace": 0.1038748025894165,
+        "order": 0.15446746349334717,
+        "triumph": 0.1731717586517334,
+        "sovereignty": 0.14623373746871948,
+        "humiliation": 0.17814064025878906,
+        "betrayal": 0.2613005042076111,
+        "injustice": 0.17705732583999634,
+        "revenge": 0.2793172597885132,
+        "resentment": 0.11116480827331543,
+        "subjugation": 0.11082732677459717,
+        "dolchstoss": 0.2722684144973755,
+        "schmach": 0.12668907642364502,
+        "diktat": 0.13054203987121582,
+        "kriegsschuld": 0.13770854473114014,
+        "volkszorn": 0.08853840827941895,
+        "magnanimity": 0.25305938720703125,
+        "civilizing": 0.16377931833267212,
+        "mandate": 0.15064263343811035,
+        "armistice": 0.1722395420074463,
+        "selfdetermination": 0.09393841028213501,
+        "demilitarization": 0.11743342876434326,
+        "occupation": 0.13209879398345947,
+        "propaganda": 0.13221687078475952,
+        "nationalism": 0.17331981658935547,
+        "honor": 0.12342071533203125,
+        "legitimacy": 0.13172882795333862,
+        "treaty": 0.12878715991973877,
+        "sanctions": 0.15829718112945557,
+        "concession": 0.1645951271057129,
+        "revanchism": 0.13674962520599365,
+        "starvation": 0.11441904306411743,
+        "blockade": 0.21677052974700928,
+        "diplomacy": 0.2190392017364502,
+        "reconstruction": 0.13394558429718018
+      },
+      "weights_en": {
+        "reparations": 0.8212324380874634,
+        "justice": 0.057305872440338135,
+        "accountability": 0.37042903900146484,
+        "punishment": 0.3639206886291504,
+        "debt": 0.28641486167907715,
+        "obligation": 0.24869675934314728,
+        "guilt": 0.7068328261375427,
+        "restitution": 0.6140835881233215,
+        "victory": 0.7204617261886597,
+        "peace": 0.6293010115623474,
+        "order": 0.5355682373046875,
+        "triumph": 0.3053833544254303,
+        "sovereignty": 0.4076594412326813,
+        "humiliation": 0.4009692668914795,
+        "betrayal": 0.3624880015850067,
+        "injustice": 0.3538728952407837,
+        "revenge": 0.13903473317623138,
+        "resentment": 0.26966968178749084,
+        "subjugation": 0.95,
+        "dolchstoss": 0.05,
+        "schmach": 0.29463163018226624,
+        "diktat": 0.356031209230423,
+        "kriegsschuld": 0.9237464666366577,
+        "volkszorn": 0.7485612034797668,
+        "magnanimity": 0.15556535124778748,
+        "civilizing": 0.4255160689353943,
+        "mandate": 0.2189110368490219,
+        "armistice": 0.08037589490413666,
+        "selfdetermination": 0.5014107823371887,
+        "demilitarization": 0.8146269917488098,
+        "occupation": 0.847885012626648,
+        "propaganda": 0.5997768044471741,
+        "nationalism": 0.05,
+        "honor": 0.49307960271835327,
+        "legitimacy": 0.597516655921936,
+        "treaty": 0.572695791721344,
+        "sanctions": 0.6713173389434814,
+        "concession": 0.829860270023346,
+        "revanchism": 0.6694309711456299,
+        "starvation": 0.5992710590362549,
+        "blockade": 0.28505417704582214,
+        "diplomacy": 0.43769901990890503,
+        "reconstruction": 0.5922345519065857
+      },
+      "weights_de": {
+        "reparations": 0.9078986048698425,
+        "justice": 0.06460817903280258,
+        "accountability": 0.38356631994247437,
+        "punishment": 0.42909595370292664,
+        "debt": 0.4681410789489746,
+        "obligation": 0.5030803680419922,
+        "guilt": 0.6583598256111145,
+        "restitution": 0.4781531095504761,
+        "victory": 0.6361696720123291,
+        "peace": 0.6036986708641052,
+        "order": 0.6357702016830444,
+        "triumph": 0.16127480566501617,
+        "sovereignty": 0.5449197292327881,
+        "humiliation": 0.45363742113113403,
+        "betrayal": 0.05,
+        "injustice": 0.4501464068889618,
+        "revenge": 0.5100366473197937,
+        "resentment": 0.1994979828596115,
+        "subjugation": 0.95,
+        "dolchstoss": 0.05,
+        "schmach": 0.3569355309009552,
+        "diktat": 0.05,
+        "kriegsschuld": 0.8084281086921692,
+        "volkszorn": 0.6472562551498413,
+        "magnanimity": 0.06323587149381638,
+        "civilizing": 0.47827163338661194,
+        "mandate": 0.631641685962677,
+        "armistice": 0.3457610309123993,
+        "selfdetermination": 0.601162314414978,
+        "demilitarization": 0.9394901394844055,
+        "occupation": 0.9435911178588867,
+        "propaganda": 0.5441047549247742,
+        "nationalism": 0.31080684065818787,
+        "honor": 0.6012763381004333,
+        "legitimacy": 0.7161084413528442,
+        "treaty": 0.6723247766494751,
+        "sanctions": 0.6804569363594055,
+        "concession": 0.7518435716629028,
+        "revanchism": 0.7051987648010254,
+        "starvation": 0.4112110137939453,
+        "blockade": 0.44434797763824463,
+        "diplomacy": 0.47705596685409546,
+        "reconstruction": 0.7119995951652527
+      },
+      "ghosts": {
+        "reparations": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "justice": {
+          "ghost_in": "both",
+          "reason": "low both (EN=0.057, DE=0.065)"
+        },
+        "accountability": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "punishment": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "debt": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "obligation": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "guilt": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "restitution": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "victory": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "peace": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "order": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "triumph": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "sovereignty": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "humiliation": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "betrayal": {
+          "ghost_in": "de",
+          "reason": "low DE wt (0.050)"
+        },
+        "injustice": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "revenge": {
+          "ghost_in": "en",
+          "reason": "low EN wt (0.139)"
+        },
+        "resentment": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "subjugation": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "dolchstoss": {
+          "ghost_in": "both",
+          "reason": "low both (EN=0.050, DE=0.050)"
+        },
+        "schmach": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "diktat": {
+          "ghost_in": "de",
+          "reason": "low DE wt (0.050)"
+        },
+        "kriegsschuld": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "volkszorn": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "magnanimity": {
+          "ghost_in": "de",
+          "reason": "low DE wt (0.063)"
+        },
+        "civilizing": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "mandate": {
+          "ghost_in": "en",
+          "reason": "ratio 2.89x (DE=0.632>>EN=0.219)"
+        },
+        "armistice": {
+          "ghost_in": "en",
+          "reason": "low EN wt (0.080)"
+        },
+        "selfdetermination": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "demilitarization": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "occupation": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "propaganda": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "nationalism": {
+          "ghost_in": "en",
+          "reason": "low EN wt (0.050)"
+        },
+        "honor": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "legitimacy": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "treaty": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "sanctions": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "concession": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "revanchism": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "starvation": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "blockade": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "diplomacy": {
+          "ghost_in": null,
+          "reason": null
+        },
+        "reconstruction": {
+          "ghost_in": null,
+          "reason": null
+        }
+      }
+    }
+  }
+}

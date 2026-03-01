@@ -1,0 +1,390 @@
+[
+  {
+    "id": "self-determination-as-liberation",
+    "labels": {
+      "en": "liberation",
+      "de": "Befreiung"
+    },
+    "definitions": {
+      "en": "The emancipatory promise that peoples would free themselves from foreign rule and choose their own governance",
+      "de": "Das emanzipatorische Versprechen, dass Völker sich von Fremdherrschaft befreien und ihre eigene Regierung wählen"
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        -15.21892261505127,
+        5.3230462074279785
+      ],
+      "de": [
+        13.383670806884766,
+        -1.0182026624679565
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "self-determination-as-exclusion",
+    "labels": {
+      "en": "exclusion",
+      "de": "Ausschluss"
+    },
+    "definitions": {
+      "en": "The selective denial of self-rule to colonial peoples, preserving imperial hierarchies",
+      "de": "Die selektive Verweigerung der Selbstverwaltung für koloniale Völker, um imperiale Hierarchien zu bewahren"
+    },
+    "cluster": "humiliation",
+    "position": {
+      "en": [
+        -15.790027618408203,
+        4.028295516967773
+      ],
+      "de": [
+        13.035843849182129,
+        -0.3450166583061218
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "self-determination-as-hypocrisy",
+    "labels": {
+      "en": "hypocrisy",
+      "de": "Heuchelei"
+    },
+    "definitions": {
+      "en": "The contradiction between the universalist rhetoric of self-determination and its limited application",
+      "de": "Der Widerspruch zwischen universalistischer Rhetorik der Selbstbestimmung und ihrer eingeschränkten Anwendung"
+    },
+    "cluster": "justice",
+    "position": {
+      "en": [
+        -15.343189239501953,
+        3.4100277423858643
+      ],
+      "de": [
+        13.612089157104492,
+        -0.08965308964252472
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "mandate-as-tutelage",
+    "labels": {
+      "en": "tutelage",
+      "de": "Vormundschaft"
+    },
+    "definitions": {
+      "en": "The paternalistic justification for Allied control over former German/Ottoman territories under the guise of guidance",
+      "de": "Die paternalistische Rechtfertigung für die alliierte Kontrolle über ehemalige deutsche/osmanische Gebiete unter dem Deckmantel der Führung"
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        -14.92061710357666,
+        4.244083881378174
+      ],
+      "de": [
+        12.827354431152344,
+        0.5076591968536377
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "peace-without-victory-as-magnanimity",
+    "labels": {
+      "en": "magnanimity",
+      "de": "Großmut"
+    },
+    "definitions": {
+      "en": "The noble ideal of a settlement that avoids punitive measures against the defeated to foster lasting peace",
+      "de": "Das edle Ideal eines Vergleichs, der Strafmaßnahmen gegen die Besiegten vermeidet, um einen dauerhaften Frieden zu fördern"
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        -14.520659446716309,
+        5.427920341491699
+      ],
+      "de": [
+        14.412272453308105,
+        -0.595532238483429
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "revanche-as-revenge",
+    "labels": {
+      "en": "revenge",
+      "de": "Rache",
+      "fr": "revanche"
+    },
+    "definitions": {
+      "en": "The emotional drive for vengeance against Germany for past humiliations and losses",
+      "de": "Der emotionale Drang nach Rache gegen Deutschland für vergangene Demütigungen und Verluste",
+      "fr": "La pulsion émotionnelle de vengeance contre l'Allemagne pour les humiliations et pertes passées"
+    },
+    "cluster": "humiliation",
+    "position": {
+      "en": [
+        -13.596389770507812,
+        3.832956075668335
+      ],
+      "de": [
+        13.95035171508789,
+        1.7699692249298096
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "collective-security-as-exclusion",
+    "labels": {
+      "en": "exclusion",
+      "de": "Ausschluss"
+    },
+    "definitions": {
+      "en": "The paradox of a security system that initially excluded the very nation it sought to contain",
+      "de": "Das Paradoxon eines Sicherheitssystems, das die Nation, die es einzudämmen suchte, zunächst ausschloss"
+    },
+    "cluster": "humiliation",
+    "position": {
+      "en": [
+        -14.7955961227417,
+        2.9322125911712646
+      ],
+      "de": [
+        13.884753227233887,
+        0.5091599225997925
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "pariah-status-as-isolation",
+    "labels": {
+      "en": "isolation",
+      "de": "Isolierung"
+    },
+    "definitions": {
+      "en": "The deliberate marginalization of Germany from the international community as a form of punishment",
+      "de": "Die gezielte Ausgrenzung Deutschlands aus der internationalen Gemeinschaft als Form der Bestrafung"
+    },
+    "cluster": "humiliation",
+    "position": {
+      "en": [
+        -14.36880111694336,
+        3.7552411556243896
+      ],
+      "de": [
+        14.78083610534668,
+        0.8360838890075684
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "pariah-status-as-resentment-fuel",
+    "labels": {
+      "en": "resentment",
+      "de": "Groll"
+    },
+    "definitions": {
+      "en": "The exclusion of Germany as a catalyst for future grievances and nationalist backlash",
+      "de": "Die Ausgrenzung Deutschlands als Katalysator für zukünftige Ressentiments und nationalistische Gegenreaktionen"
+    },
+    "cluster": "humiliation",
+    "position": {
+      "en": [
+        -13.851807594299316,
+        3.069690704345703
+      ],
+      "de": [
+        14.53210163116455,
+        1.5010201930999756
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "versailles-as-legitimacy-crisis",
+    "labels": {
+      "en": "legitimacy crisis",
+      "de": "Legitimitätskrise"
+    },
+    "definitions": {
+      "en": "The erosion of moral and political authority of the Versailles settlement due to perceived injustices",
+      "de": "Der Verlust der moralischen und politischen Autorität der Versailler Regelung aufgrund wahrgenommener Ungerechtigkeiten"
+    },
+    "cluster": "justice",
+    "position": {
+      "en": [
+        -13.586004257202148,
+        4.82166051864624
+      ],
+      "de": [
+        13.387173652648926,
+        1.1720083951950073
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "versailles-as-power-politics",
+    "labels": {
+      "en": "power politics",
+      "de": "Machtpolitik"
+    },
+    "definitions": {
+      "en": "The reality of the Versailles treaty as an expression of victor's justice rather than universal principles",
+      "de": "Die Realität des Versailler Vertrags als Ausdruck der Siegerjustiz statt universeller Prinzipien"
+    },
+    "cluster": "victory",
+    "position": {
+      "en": [
+        -14.198274612426758,
+        4.77202844619751
+      ],
+      "de": [
+        14.677056312561035,
+        0.07342056930065155
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  },
+  {
+    "id": "civilizing-mission-as-progress",
+    "labels": {
+      "en": "progress",
+      "de": "Fortschritt",
+      "fr": "mission civilisatrice"
+    },
+    "definitions": {
+      "en": "The ideological justification for imperial control as a means to uplift 'backward' peoples",
+      "de": "Die ideologische Rechtfertigung imperialer Kontrolle als Mittel zur Hebung 'rückständiger' Völker",
+      "fr": "La justification idéologique du contrôle impérial comme moyen d'élever les peuples 'arriérés'"
+    },
+    "cluster": "core",
+    "position": {
+      "en": [
+        -15.67590618133545,
+        4.735435485839844
+      ],
+      "de": [
+        13.973100662231445,
+        -1.4132825136184692
+      ]
+    },
+    "weight": {
+      "en": 0.5,
+      "de": 0.5
+    },
+    "ghost": {
+      "en": false,
+      "de": false
+    },
+    "hero": null,
+    "source": "embedding"
+  }
+]

@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@mistralai/mistralai": "^1.14.1",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.5.0",
     "@react-three/postprocessing": "^3.0.4",
