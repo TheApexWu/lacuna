@@ -498,10 +498,9 @@ function Scene({
   const { scene } = useThree();
 
   // Leva control panels
-  const { sigma, heightScale, deltaScale } = useControls("Terrain", {
-    sigma: { value: 12, min: 2, max: 30, step: 0.5 },
-    heightScale: { value: 20, min: 1, max: 50, step: 0.5 },
-    deltaScale: { value: 1.0, min: 0, max: 3, step: 0.05 },
+  const { sigma, heightScale } = useControls("Terrain", {
+    sigma: { value: 2, min: 0.5, max: 30, step: 0.5 },
+    heightScale: { value: 9, min: 1, max: 50, step: 0.5 },
   });
 
   const {
@@ -568,8 +567,6 @@ function Scene({
         sigma={sigma}
         heightScale={heightScale}
         emissiveStrength={emissiveStrength}
-        referenceLanguage={language === "de" ? "en" : undefined}
-        deltaScale={deltaScale}
         positionOverride={positionOverride}
         weightOverride={weightOverride}
         clusterOverride={clusterOverride}

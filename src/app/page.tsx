@@ -79,7 +79,7 @@ export default function Home() {
   const [showMetrics, setShowMetrics] = useState(false);
   const [showAgreement, setShowAgreement] = useState(false);
   const [showConnections, setShowConnections] = useState(false);
-  const [activeModel, setActiveModel] = useState("bge-m3");
+  const [activeModel, setActiveModel] = useState("curated");
   const [showClusterEditor, setShowClusterEditor] = useState(false);
   const [showQuery, setShowQuery] = useState(true);
   const [showMore, setShowMore] = useState(false);
