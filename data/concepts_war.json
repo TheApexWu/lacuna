@@ -1,0 +1,181 @@
+{
+  "meta": {
+    "domain": "War & Armed Conflict",
+    "description": "Concepts related to war, military conflict, occupation and peace. Chosen to surface structural divergence between EN (strategic/geopolitical framing), DE (trauma/constitutional pacifism post-1945) and FR (revolutionary/national defense tradition).",
+    "languages": ["en", "de", "fr"],
+    "source": "curated definitions for BGE-M3 embedding — LACUNA multi-domain benchmark",
+    "prepared_by": "Octave",
+    "date": "2026-02-28",
+    "hypothesis": "DE clusters 'war' near 'guilt' and 'trauma' due to post-1945 constitutional pacifism. EN clusters 'war' near 'strategy' and 'security'. FR clusters 'war' near 'nation' and 'sacrifice' through revolutionary tradition.",
+    "expected_hero_pairs": [
+      {"pair": ["war", "guilt"], "hypothesis": "In German, Krieg carries post-1945 Schuld. In English, war and guilt are structurally separate. Highest expected delta."},
+      {"pair": ["surrender", "honor"], "hypothesis": "EN: surrender can be honorable (armistice). DE: Kapitulation carries deep shame (1918 Dolchstoss trauma). FR: surrender is associated with 1940 Vichy, a national wound."},
+      {"pair": ["occupation", "liberation"], "hypothesis": "FR: occupation (1940-44) and liberation are the defining national trauma pair. DE: occupation is what Germany did AND what happened to Germany. EN: neither carries traumatic charge."},
+      {"pair": ["enemy", "civilian"], "hypothesis": "DE post-1945 law explicitly protects civilians as distinct from combatants. EN blurs in counterinsurgency doctrine. FR has revolutionary tradition of nation en armes."}
+    ]
+  },
+  "concepts": [
+    {
+      "id": "war",
+      "cluster": "conflict",
+      "definitions": {
+        "en": "Armed conflict between states or organized groups, governed by international humanitarian law and strategic objectives",
+        "de": "Der Krieg als kollektives Trauma der deutschen Geschichte, konstitutionell geächtet und mit tiefer moralischer Schuld verbunden",
+        "fr": "La guerre comme épreuve nationale suprême, légitime uniquement en cas de défense de la République et de ses valeurs"
+      }
+    },
+    {
+      "id": "surrender",
+      "cluster": "defeat",
+      "definitions": {
+        "en": "The formal cessation of military resistance by a defeated force, often negotiated to preserve lives and establish peace terms",
+        "de": "Die Kapitulation als historisch belasteter Begriff, verbunden mit der Schmach von 1918 und dem Dolchstoß-Mythos",
+        "fr": "La reddition militaire, terme associé à l'armistice de 1940 et à la honte nationale de l'occupation allemande"
+      }
+    },
+    {
+      "id": "occupation",
+      "cluster": "defeat",
+      "definitions": {
+        "en": "Military control of a territory by a foreign power following armed conflict, governed by the laws of war",
+        "de": "Die Besatzung als Begriff mit doppelter Last: Deutschland als Besatzer (1939-45) und als Besetztes (1945-55)",
+        "fr": "L'Occupation allemande de 1940-1944, traumatisme fondateur de la mémoire nationale française et de la Résistance"
+      }
+    },
+    {
+      "id": "liberation",
+      "cluster": "victory",
+      "definitions": {
+        "en": "The freeing of territory or people from military occupation or oppressive control by external forces",
+        "de": "Die Befreiung vom Nationalsozialismus durch die Alliierten, ambivalent erlebt als militärische Niederlage und moralische Rettung",
+        "fr": "La Libération de 1944 comme moment fondateur de la France libre, victoire de la Résistance et de l'honneur national"
+      }
+    },
+    {
+      "id": "enemy",
+      "cluster": "conflict",
+      "definitions": {
+        "en": "A hostile force or nation engaged in armed conflict against one's own state, defined by strategic opposition",
+        "de": "Der Feind als rechtlich definierter Gegner im Krieg, mit dem nach Kriegsende Versöhnung möglich und notwendig ist",
+        "fr": "L'ennemi dans la tradition militaire française, défini par son opposition à la République et ses valeurs universelles"
+      }
+    },
+    {
+      "id": "honor",
+      "cluster": "victory",
+      "definitions": {
+        "en": "The moral reputation of a military force, maintained through adherence to the laws of war and professional conduct",
+        "de": "Die militärische Ehre, nach 1945 neu definiert als Dienst am Grundgesetz statt an Volk und Vaterland",
+        "fr": "L'honneur militaire comme valeur fondamentale de l'armée française, lié à la défense de la patrie et de la République"
+      }
+    },
+    {
+      "id": "victory",
+      "cluster": "victory",
+      "definitions": {
+        "en": "The successful conclusion of military operations through defeating an adversary's capacity or will to continue fighting",
+        "de": "Der Sieg als historisch belasteter Begriff in Deutschland, der stets im Zusammenhang mit Schuld und Verantwortung steht",
+        "fr": "La victoire militaire comme accomplissement de la mission nationale, célébrée dans la tradition républicaine française"
+      }
+    },
+    {
+      "id": "peace",
+      "cluster": "resolution",
+      "definitions": {
+        "en": "The absence of armed conflict and establishment of stable international relations through treaties and diplomacy",
+        "de": "Der Frieden als höchstes verfassungsrechtliches Gebot Deutschlands, verankert im Grundgesetz und der europäischen Integration",
+        "fr": "La paix comme objectif de la diplomatie française, maintenu par la force de dissuasion nucléaire et les institutions internationales"
+      }
+    },
+    {
+      "id": "civilian",
+      "cluster": "conflict",
+      "definitions": {
+        "en": "A non-combatant person protected under international humanitarian law from deliberate targeting in armed conflict",
+        "de": "Die Zivilbevölkerung als besonders schutzbedürftige Gruppe im Krieg, deren Schutz im deutschen Grundgesetz und Völkerrecht verankert ist",
+        "fr": "Le civil comme victime de guerre protégée par le droit international humanitaire et les conventions de Genève"
+      }
+    },
+    {
+      "id": "resistance",
+      "cluster": "conflict",
+      "definitions": {
+        "en": "Armed or non-armed opposition to military occupation or oppressive rule, sometimes legitimate under international law",
+        "de": "Der Widerstand gegen den Nationalsozialismus als moralisches Vorbild, symbolisiert durch das Attentat vom 20. Juli 1944",
+        "fr": "La Résistance française comme mythe fondateur de la Ve République, symbole de l'honneur national retrouvé contre l'occupant"
+      }
+    },
+    {
+      "id": "trauma",
+      "cluster": "defeat",
+      "definitions": {
+        "en": "Psychological damage resulting from exposure to extreme violence or loss, recognized as a medical and social condition",
+        "de": "Das kollektive Trauma der deutschen Nation, das durch zwei Weltkriege und den Holocaust die nationale Identität prägt",
+        "fr": "Le traumatisme de guerre, reconnu tardivement dans la culture militaire française malgré les épreuves des deux guerres mondiales"
+      }
+    },
+    {
+      "id": "sacrifice",
+      "cluster": "victory",
+      "definitions": {
+        "en": "The giving up of lives or resources for a military objective, honored in national commemorations of fallen soldiers",
+        "de": "Das Opfer im Krieg, in Deutschland nach 1945 kritisch hinterfragt als Instrument nationalistischer Propaganda",
+        "fr": "Le sacrifice pour la patrie comme valeur centrale de la mémoire nationale française, incarné par les Poilus de 14-18"
+      }
+    },
+    {
+      "id": "truce",
+      "cluster": "resolution",
+      "definitions": {
+        "en": "A temporary cessation of hostilities agreed between opposing forces to allow for negotiations or humanitarian access",
+        "de": "Der Waffenstillstand als erster Schritt zu einem dauerhaften Frieden, historisch verbunden mit dem 11. November 1918",
+        "fr": "L'armistice comme accord de cessation des combats, chargé d'une signification particulière dans la mémoire française du 11 novembre"
+      }
+    },
+    {
+      "id": "aggression",
+      "cluster": "conflict",
+      "definitions": {
+        "en": "The use of military force by one state against another in violation of international law, constituting a war crime",
+        "de": "Der Angriffskrieg als nach dem Grundgesetz verbotene Handlung, direkte Konsequenz der deutschen Kriegsschuld von 1939",
+        "fr": "L'agression militaire comme violation du droit international, condamnée par la France dans le cadre de l'ONU"
+      }
+    },
+    {
+      "id": "deterrence",
+      "cluster": "resolution",
+      "definitions": {
+        "en": "The prevention of attack through the threat of sufficient retaliatory force, cornerstone of nuclear strategy",
+        "de": "Die Abschreckung als NATO-Strategie, von Deutschland mitgetragen aber aufgrund historischer Schuld mit besonderer Vorsicht behandelt",
+        "fr": "La dissuasion nucléaire comme pilier de la doctrine militaire française, garantie d'indépendance stratégique depuis de Gaulle"
+      }
+    },
+    {
+      "id": "alliance",
+      "cluster": "resolution",
+      "definitions": {
+        "en": "A formal agreement between states to cooperate militarily for mutual defense and security objectives",
+        "de": "Das Bündnis als Grundlage der deutschen Sicherheitspolitik, eingebettet in NATO und EU als Lehre aus zwei Weltkriegen",
+        "fr": "L'alliance militaire comme instrument de la politique étrangère française, toujours subordonnée à la souveraineté nationale"
+      }
+    },
+    {
+      "id": "propaganda",
+      "cluster": "conflict",
+      "definitions": {
+        "en": "The systematic use of information to influence public opinion in support of a military or political cause",
+        "de": "Die Propaganda als zentrales Instrument des nationalsozialistischen Regimes, dessen Erbe das kritische Medienbewusstsein in Deutschland prägt",
+        "fr": "La propagande de guerre comme outil de mobilisation nationale, utilisé par tous les belligérants lors des deux guerres mondiales"
+      }
+    },
+    {
+      "id": "atrocity",
+      "cluster": "defeat",
+      "definitions": {
+        "en": "A horrific act of violence against civilians or prisoners, constituting a war crime under international humanitarian law",
+        "de": "Das Kriegsverbrechen und die Verbrechen gegen die Menschlichkeit, in Deutschland untrennbar mit dem Holocaust verbunden",
+        "fr": "Les atrocités de guerre comme crimes contre l'humanité, jugés pour la première fois à Nuremberg à l'initiative française"
+      }
+    }
+  ]
+}

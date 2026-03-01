@@ -1,0 +1,163 @@
+{
+  "meta": {
+    "domain": "Security & Surveillance",
+    "description": "Concepts related to national security, surveillance, privacy and state power. Chosen to surface structural divergence between EN (post-9/11 security state framing), DE (Stasi trauma + constitutional privacy protections) and FR (laïcité + republican security tradition).",
+    "languages": ["en", "de", "fr"],
+    "source": "curated definitions for BGE-M3 embedding — LACUNA multi-domain benchmark",
+    "prepared_by": "Octave",
+    "date": "2026-02-28",
+    "hypothesis": "DE clusters 'surveillance' near 'trauma' and 'oppression' due to Stasi experience. EN clusters 'surveillance' near 'security' and 'protection'. FR clusters 'surveillance' near 'state authority' and 'republican order'.",
+    "expected_hero_pairs": [
+      {"pair": ["surveillance", "protection"], "hypothesis": "EN: surveillance IS protection (post-9/11 consensus). DE: surveillance IS oppression (Stasi memory). Maximum expected delta."},
+      {"pair": ["privacy", "freedom"], "hypothesis": "DE: Datenschutz (data protection) is a constitutional right closely fused with personal freedom. EN: privacy is a preference, not a constitutional absolute."},
+      {"pair": ["threat", "community"], "hypothesis": "FR: threat is defined communally against republican values. EN: threat is defined individually (personal safety). DE: threat triggers constitutional protective mechanisms."},
+      {"pair": ["security", "liberty"], "hypothesis": "EN post-9/11: security and liberty are traded off against each other. FR republican tradition: they are compatible through the state. DE: both are Grundrechte, structurally parallel."}
+    ]
+  },
+  "concepts": [
+    {
+      "id": "surveillance",
+      "cluster": "state_power",
+      "definitions": {
+        "en": "The systematic monitoring of individuals or groups by state or private actors to detect threats and ensure security",
+        "de": "Die staatliche Überwachung als historisch belastetes Instrument, verbunden mit dem Trauma des Stasi-Überwachungsstaats der DDR",
+        "fr": "La surveillance par l'État comme outil de maintien de l'ordre républicain, encadrée par la CNIL et le droit administratif"
+      }
+    },
+    {
+      "id": "privacy",
+      "cluster": "liberty",
+      "definitions": {
+        "en": "The right of individuals to control information about themselves and conduct their lives free from unwanted intrusion",
+        "de": "Der Datenschutz als Grundrecht, verankert im Grundgesetz und gestärkt durch die Erfahrung mit Stasi-Überwachung und NS-Datenmissbrauch",
+        "fr": "La vie privée comme droit fondamental protégé par la CNIL, équilibré avec les nécessités de l'ordre public républicain"
+      }
+    },
+    {
+      "id": "security",
+      "cluster": "state_power",
+      "definitions": {
+        "en": "The condition of being protected from harm, threat or attack, often traded against civil liberties in policy debates",
+        "de": "Die innere und äußere Sicherheit als staatliche Schutzpflicht, die individuelle Freiheitsrechte nicht unverhältnismäßig einschränken darf",
+        "fr": "La sécurité comme mission régalienne de l'État français, garante de l'ordre républicain et de la liberté des citoyens"
+      }
+    },
+    {
+      "id": "threat",
+      "cluster": "conflict",
+      "definitions": {
+        "en": "A potential source of harm to individuals, groups or the state, used to justify security measures and policy",
+        "de": "Eine Bedrohung der verfassungsrechtlichen Ordnung oder der körperlichen Unversehrtheit, die staatliches Handeln legitimiert",
+        "fr": "La menace contre l'ordre républicain ou la sécurité nationale, justifiant des mesures exceptionnelles de l'État"
+      }
+    },
+    {
+      "id": "freedom",
+      "cluster": "liberty",
+      "definitions": {
+        "en": "The capacity to act, speak and think without restraint, protected by constitutional rights against state interference",
+        "de": "Die Freiheit als Grundrecht, das durch das Grundgesetz vor staatlichen Eingriffen geschützt und durch soziale Verantwortung begrenzt wird",
+        "fr": "La liberté comme première valeur de la devise républicaine, indissociable de l'égalité et de la fraternité"
+      }
+    },
+    {
+      "id": "intelligence",
+      "cluster": "state_power",
+      "definitions": {
+        "en": "Information gathered by state agencies to detect and counter threats to national security and interests",
+        "de": "Die nachrichtendienstliche Tätigkeit zur Abwehr von Bedrohungen, durch parlamentarische Kontrolle begrenzt und historisch kritisch beäugt",
+        "fr": "Le renseignement comme instrument de la politique sécuritaire de l'État français, coordonné par la DGSI et la DGSE"
+      }
+    },
+    {
+      "id": "trust",
+      "cluster": "liberty",
+      "definitions": {
+        "en": "Confidence in the reliability and integrity of institutions, individuals or systems, foundational to social cohesion",
+        "de": "Das Vertrauen in staatliche Institutionen, in Deutschland historisch erschüttert durch NS-Diktatur und DDR-Überwachungsstaat",
+        "fr": "La confiance dans les institutions républicaines comme fondement du contrat social entre l'État et les citoyens"
+      }
+    },
+    {
+      "id": "control",
+      "cluster": "state_power",
+      "definitions": {
+        "en": "The exercise of authority to regulate behavior, enforce laws and maintain order within a defined territory",
+        "de": "Die staatliche Kontrolle als notwendiges Instrument der Rechtsstaatlichkeit, das die Grundrechte nicht unverhältnismäßig einschränken darf",
+        "fr": "Le contrôle de l'État comme expression de la souveraineté nationale, exercé dans le cadre de l'État de droit républicain"
+      }
+    },
+    {
+      "id": "transparency",
+      "cluster": "liberty",
+      "definitions": {
+        "en": "The openness of institutions to public scrutiny, enabling accountability and informed democratic participation",
+        "de": "Die Transparenz als demokratisches Prinzip, das staatliches Handeln für die Bürger nachvollziehbar und kontrollierbar macht",
+        "fr": "La transparence des institutions publiques, garantie par le droit d'accès aux documents administratifs en République française"
+      }
+    },
+    {
+      "id": "terrorism",
+      "cluster": "conflict",
+      "definitions": {
+        "en": "The use of violence and intimidation against civilians to advance political, ideological or religious objectives",
+        "de": "Der Terrorismus als Angriff auf die freiheitliche demokratische Grundordnung, bekämpft mit rechtsstaatlichen Mitteln",
+        "fr": "Le terrorisme comme atteinte aux valeurs fondamentales de la République, objet d'une législation d'exception depuis 2015"
+      }
+    },
+    {
+      "id": "data",
+      "cluster": "state_power",
+      "definitions": {
+        "en": "Information collected and processed about individuals, increasingly used by states and corporations for surveillance purposes",
+        "de": "Personenbezogene Daten als schützenswertes Gut, deren Verarbeitung durch die DSGVO und das Bundesdatenschutzgesetz streng geregelt ist",
+        "fr": "Les données personnelles comme objet de protection par la CNIL, équilibré avec les besoins de la sécurité nationale"
+      }
+    },
+    {
+      "id": "anonymity",
+      "cluster": "liberty",
+      "definitions": {
+        "en": "The condition of acting without identification, protecting individuals from surveillance and enabling free expression",
+        "de": "Die Anonymität als Schutz vor staatlicher Überwachung, in Deutschland besonders geschätzt aufgrund der Stasi-Erfahrung",
+        "fr": "L'anonymat sur internet, mis en tension avec les exigences républicaines de responsabilité et de lutte contre la haine en ligne"
+      }
+    },
+    {
+      "id": "emergency",
+      "cluster": "state_power",
+      "definitions": {
+        "en": "A crisis situation justifying exceptional government powers and temporary suspension of normal legal protections",
+        "de": "Der Ausnahmezustand als rechtlich streng geregelter Zustand, dessen Missbrauch durch die Erfahrungen der Weimarer Republik verhindert werden soll",
+        "fr": "L'état d'urgence comme régime d'exception de la République, utilisé après les attentats de 2015 et constitutionnalisé en partie"
+      }
+    },
+    {
+      "id": "resistance",
+      "cluster": "liberty",
+      "definitions": {
+        "en": "Opposition to authority perceived as illegitimate, from civil disobedience to organized political opposition",
+        "de": "Das Widerstandsrecht gegen verfassungswidrige Gewalt, im Grundgesetz als letztes Mittel zur Verteidigung der Demokratie verankert",
+        "fr": "Le droit de résistance à l'oppression, quatrième valeur de la Déclaration des droits de l'homme et du citoyen de 1789"
+      }
+    },
+    {
+      "id": "border",
+      "cluster": "state_power",
+      "definitions": {
+        "en": "The physical or legal boundary of a state's jurisdiction, managed to control the movement of people and goods",
+        "de": "Die Grenze als rechtlich definierter Raum, in Deutschland durch die Schengener Abkommen und die europäische Integration neu gestaltet",
+        "fr": "La frontière nationale comme expression de la souveraineté française, gérée dans le cadre de l'espace Schengen"
+      }
+    },
+    {
+      "id": "whistleblower",
+      "cluster": "liberty",
+      "definitions": {
+        "en": "A person who exposes wrongdoing by an organization or government, protected under specific legal frameworks in some jurisdictions",
+        "de": "Der Hinweisgeber als wichtiger Akteur der Transparenz, durch das Hinweisgeberschutzgesetz in Deutschland rechtlich geschützt",
+        "fr": "Le lanceur d'alerte comme figure de la transparence républicaine, protégé par la loi Sapin II dans le droit français"
+      }
+    }
+  ]
+}

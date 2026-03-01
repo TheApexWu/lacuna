@@ -1,0 +1,163 @@
+{
+  "meta": {
+    "domain": "Democracy & Power",
+    "description": "Concepts related to democracy, political legitimacy, power and governance. EN procedural tradition vs DE post-Weimar militant democracy vs FR revolutionary popular sovereignty.",
+    "languages": ["en", "de", "fr"],
+    "source": "curated definitions for BGE-M3 embedding — LACUNA multi-domain benchmark",
+    "prepared_by": "Octave",
+    "date": "2026-02-28",
+    "hypothesis": "DE clusters 'democracy' near 'order' and 'protection' — a democracy that defends itself (streitbare Demokratie). EN clusters 'democracy' near 'freedom' and 'elections'. FR clusters 'democracy' near 'sovereignty' and 'people'.",
+    "expected_hero_pairs": [
+      {"pair": ["democracy", "order"], "hypothesis": "In German, democracy and order cluster together — the constitutional order IS democracy's protection. In English they are conceptually separate."},
+      {"pair": ["populism", "democracy"], "hypothesis": "EN: populism is a threat to democracy. DE: populism is explicitly identified as verfassungsfeindlich. FR: populism has legitimacy through Rousseau's volonté générale tradition."},
+      {"pair": ["legitimacy", "elections"], "hypothesis": "EN: legitimacy comes from elections. FR: legitimacy comes from republican values. DE: legitimacy requires constitutional fidelity beyond just electoral victory."},
+      {"pair": ["opposition", "loyalty"], "hypothesis": "EN: loyal opposition is a constitutional concept. DE: opposition must remain within Grundgesetz bounds. FR: opposition has revolutionary tradition of rupture."}
+    ]
+  },
+  "concepts": [
+    {
+      "id": "democracy",
+      "cluster": "legitimacy",
+      "definitions": {
+        "en": "A system of government in which power derives from the people through free and fair elections and the protection of individual rights",
+        "de": "Die streitbare Demokratie des Grundgesetzes, die sich aktiv gegen ihre Feinde verteidigt und aus den Fehlern der Weimarer Republik gelernt hat",
+        "fr": "La démocratie républicaine française, fondée sur la souveraineté populaire et les valeurs universelles de 1789, indivisible et laïque"
+      }
+    },
+    {
+      "id": "sovereignty",
+      "cluster": "legitimacy",
+      "definitions": {
+        "en": "The supreme authority of a state to govern itself without external interference, exercised through democratic institutions",
+        "de": "Die Volkssouveränität als Grundlage des demokratischen Staates, ausgeübt durch das Grundgesetz und die gewählten Vertreter",
+        "fr": "La souveraineté nationale appartenant au peuple français, exercée par ses représentants ou par voie de référendum"
+      }
+    },
+    {
+      "id": "legitimacy",
+      "cluster": "legitimacy",
+      "definitions": {
+        "en": "The acceptance of a government's authority by the governed, typically established through free elections and rule of law",
+        "de": "Die Legitimität staatlicher Herrschaft durch Verfassungskonformität, demokratische Wahl und die Wahrung der Grundrechte",
+        "fr": "La légitimité du pouvoir républicain fondée sur le suffrage universel et la conformité aux valeurs de la République"
+      }
+    },
+    {
+      "id": "populism",
+      "cluster": "threat",
+      "definitions": {
+        "en": "A political approach claiming to represent the true people against a corrupt elite, a contested but potentially legitimate democratic force",
+        "de": "Der Populismus als Bedrohung der freiheitlichen demokratischen Grundordnung, die das Bundesverfassungsgericht aktiv bekämpfen kann",
+        "fr": "Le populisme comme appel au peuple souverain, ambigu dans la tradition républicaine française entre volonté générale et démagogie"
+      }
+    },
+    {
+      "id": "opposition",
+      "cluster": "power",
+      "definitions": {
+        "en": "Political parties and movements that challenge the government, protected as loyal opposition within democratic systems",
+        "de": "Die demokratische Opposition als unverzichtbarer Teil des Parlamentarismus, solange sie die Grundordnung des Grundgesetzes respektiert",
+        "fr": "L'opposition républicaine comme contre-pouvoir nécessaire, dans la tradition française du débat contradictoire au sein des institutions"
+      }
+    },
+    {
+      "id": "freedom",
+      "cluster": "rights",
+      "definitions": {
+        "en": "The fundamental liberty of individuals to act, speak and associate without government interference",
+        "de": "Die Freiheit als Grundrecht, das durch das Grundgesetz gegen staatliche Eingriffe geschützt und durch soziale Verantwortung begrenzt wird",
+        "fr": "La liberté comme première valeur républicaine, garantie par la Constitution mais toujours équilibrée avec l'égalité et la fraternité"
+      }
+    },
+    {
+      "id": "order",
+      "cluster": "legitimacy",
+      "definitions": {
+        "en": "The stable functioning of social and political institutions, a secondary value after freedom in liberal democratic tradition",
+        "de": "Die verfassungsrechtliche Ordnung als Fundament der deutschen Demokratie, deren Schutz aktiv gegen ihre Feinde verteidigt werden muss",
+        "fr": "L'ordre républicain comme condition de l'exercice des libertés, maintenu par l'État au nom de la sécurité collective"
+      }
+    },
+    {
+      "id": "rights",
+      "cluster": "rights",
+      "definitions": {
+        "en": "Individual entitlements protected by constitutional law, the foundation of liberal democratic systems",
+        "de": "Die Grundrechte als unveräußerlicher Kern der deutschen Verfassung, der auch durch demokratische Mehrheiten nicht abgeschafft werden kann",
+        "fr": "Les droits fondamentaux proclamés par la Déclaration de 1789, universels et inaliénables, fondements de la République"
+      }
+    },
+    {
+      "id": "corruption",
+      "cluster": "threat",
+      "definitions": {
+        "en": "The abuse of public power for private gain, undermining democratic institutions and public trust",
+        "de": "Die Korruption als Versagen des Rechtsstaats, in Deutschland durch strenge Transparenzpflichten und parlamentarische Kontrolle bekämpft",
+        "fr": "La corruption comme trahison du mandat républicain et de l'intérêt général, combattue par les institutions de la Ve République"
+      }
+    },
+    {
+      "id": "elections",
+      "cluster": "legitimacy",
+      "definitions": {
+        "en": "The mechanism through which citizens choose their representatives, the primary source of democratic legitimacy",
+        "de": "Die Wahlen als Ausdruck des Volkswillens, deren Ergebnis die demokratische Grundordnung stärken und nicht gefährden darf",
+        "fr": "Les élections comme acte fondateur de la souveraineté populaire, organisées par la République selon les principes du suffrage universel"
+      }
+    },
+    {
+      "id": "propaganda",
+      "cluster": "threat",
+      "definitions": {
+        "en": "The systematic manipulation of public opinion by political actors, a threat to informed democratic participation",
+        "de": "Die Propaganda als Instrument totalitärer Herrschaft, deren Verbot im Grundgesetz durch die Erfahrungen des Nationalsozialismus begründet ist",
+        "fr": "La propagande politique comme menace à la formation libre de l'opinion républicaine et au débat démocratique éclairé"
+      }
+    },
+    {
+      "id": "censorship",
+      "cluster": "threat",
+      "definitions": {
+        "en": "State suppression of speech or information, a fundamental violation of democratic freedoms and individual rights",
+        "de": "Die Zensur als verfassungsrechtlich verbotener Eingriff in die Meinungsfreiheit, mit Ausnahmen für volksverhetzende und verfassungsfeindliche Inhalte",
+        "fr": "La censure comme atteinte à la liberté de la presse et d'expression, interdite par la loi de 1881 sauf exceptions légalement encadrées"
+      }
+    },
+    {
+      "id": "revolution",
+      "cluster": "power",
+      "definitions": {
+        "en": "A violent or fundamental overthrow of a political system, generally viewed as a break from constitutional order",
+        "de": "Die Revolution als historischer Ausnahmefall, den das Grundgesetz durch seine Ewigkeitsgarantie und das Widerstandsrecht zu domestizieren sucht",
+        "fr": "La Révolution comme acte fondateur de la République française, mythe politique toujours présent dans l'imaginaire collectif national"
+      }
+    },
+    {
+      "id": "accountability",
+      "cluster": "rights",
+      "definitions": {
+        "en": "The obligation of elected officials to answer for their actions to citizens and democratic institutions",
+        "de": "Die politische Verantwortlichkeit als demokratisches Kernprinzip, durch parlamentarische Kontrolle und Rechtsstaat institutionalisiert",
+        "fr": "La responsabilité politique des élus devant le peuple souverain, garantie par les institutions de la Ve République"
+      }
+    },
+    {
+      "id": "consensus",
+      "cluster": "legitimacy",
+      "definitions": {
+        "en": "Agreement among political actors on fundamental rules and procedures, valued but not required for democratic legitimacy",
+        "de": "Der Konsens als bevorzugter Modus politischer Entscheidungsfindung in Deutschland, Ausdruck des kooperativen Föderalismus",
+        "fr": "Le consensus politique comme objectif du débat républicain, mais non indispensable dans une tradition française plus conflictuelle"
+      }
+    },
+    {
+      "id": "nationalism",
+      "cluster": "threat",
+      "definitions": {
+        "en": "Political ideology prioritizing national identity and interests, a contested but historically significant force in democracies",
+        "de": "Der Nationalismus als historisch belastetes Konzept in Deutschland, das stets mit dem Erbe des Nationalsozialismus in Verbindung gebracht wird",
+        "fr": "Le nationalisme français comme amour de la patrie républicaine, distinct du chauvinisme mais porteur des valeurs universelles de la France"
+      }
+    }
+  ]
+}

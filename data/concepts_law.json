@@ -1,0 +1,181 @@
+{
+  "meta": {
+    "domain": "Law & Justice Systems",
+    "description": "Concepts related to legal systems, justice, rights and punishment. Chosen to surface structural divergence between common law (EN) and civil law (DE/FR) traditions.",
+    "languages": ["en", "de", "fr"],
+    "source": "curated definitions for BGE-M3 embedding — LACUNA multi-domain benchmark",
+    "prepared_by": "Octave",
+    "date": "2026-02-28",
+    "hypothesis": "EN common law tradition separates guilt from punishment procedurally. DE/FR civil law fuses them into a single moral-legal framework. 'Rights' clusters near 'individual' in EN, near 'state' in DE/FR.",
+    "expected_hero_pairs": [
+      {"pair": ["guilt", "punishment"], "hypothesis": "DE fuses moral and legal guilt (Schuld). EN separates legal finding from moral judgment."},
+      {"pair": ["rights", "state"], "hypothesis": "EN: rights protect individual FROM state. DE/FR: rights are granted BY state within social contract."},
+      {"pair": ["justice", "revenge"], "hypothesis": "EN: justice and revenge are conceptually distant (rule of law separates them). DE: Gerechtigkeit and Vergeltung share emotional proximity in post-war legal thought."},
+      {"pair": ["innocence", "proof"], "hypothesis": "EN: presumption of innocence is structural. FR: inquisitorial system treats proof differently — juge d'instruction changes the topology."}
+    ]
+  },
+  "concepts": [
+    {
+      "id": "guilt",
+      "cluster": "judgment",
+      "definitions": {
+        "en": "The legal finding that a person has committed an offense, determined by evidence and procedure in a court of law",
+        "de": "Die rechtliche und moralische Schuld einer Person, die sowohl juristische Verantwortung als auch moralisches Versagen umfasst",
+        "fr": "La culpabilité juridique établie par un tribunal, distincte de la faute morale mais souvent confondue dans le discours public"
+      }
+    },
+    {
+      "id": "innocence",
+      "cluster": "judgment",
+      "definitions": {
+        "en": "The presumption that a defendant has not committed an offense until proven guilty beyond reasonable doubt",
+        "de": "Die Unschuldsvermutung als rechtliches Prinzip, das den Angeklagten vor unbegründeter Verurteilung schützt",
+        "fr": "La présomption d'innocence garantie par la procédure pénale, fondement du droit républicain français"
+      }
+    },
+    {
+      "id": "punishment",
+      "cluster": "judgment",
+      "definitions": {
+        "en": "A legally imposed penalty for a criminal offense, calibrated to deter future crime and protect society",
+        "de": "Eine rechtlich verhängte Strafe, die sowohl Vergeltung als auch gesellschaftliche Rehabilitation bezweckt",
+        "fr": "La peine prononcée par un tribunal, visant à la fois la sanction du coupable et sa réinsertion dans la société"
+      }
+    },
+    {
+      "id": "rights",
+      "cluster": "liberty",
+      "definitions": {
+        "en": "Individual entitlements protected against interference by the state, grounded in natural law and constitutional tradition",
+        "de": "Grundrechte als verfassungsrechtlich garantierte Freiheiten, die den Einzelnen vor staatlicher Willkür schützen",
+        "fr": "Les droits fondamentaux garantis par la République, équilibrés entre libertés individuelles et obligations collectives"
+      }
+    },
+    {
+      "id": "justice",
+      "cluster": "liberty",
+      "definitions": {
+        "en": "The fair and impartial application of law, ensuring that outcomes correspond to established rules and procedures",
+        "de": "Gerechtigkeit als moralisches Prinzip, das sowohl rechtliche Korrektheit als auch ethische Richtigkeit umfasst",
+        "fr": "La justice comme institution républicaine rendue au nom du peuple français, distincte de la justice morale"
+      }
+    },
+    {
+      "id": "sovereignty",
+      "cluster": "authority",
+      "definitions": {
+        "en": "The supreme authority of a state to govern its territory and people without external interference",
+        "de": "Die staatliche Souveränität als höchste Rechtsautorität, begrenzt durch das Grundgesetz und europäisches Recht",
+        "fr": "La souveraineté nationale exercée par le peuple à travers ses représentants, fondement de la légitimité républicaine"
+      }
+    },
+    {
+      "id": "contract",
+      "cluster": "authority",
+      "definitions": {
+        "en": "A legally binding agreement between parties, enforceable by courts when terms are breached",
+        "de": "Ein rechtlich verbindlicher Vertrag, der auf dem Prinzip der Vertragsfreiheit und gegenseitiger Verpflichtung beruht",
+        "fr": "Le contrat comme instrument juridique fondamental, soumis au Code civil et à l'ordre public"
+      }
+    },
+    {
+      "id": "obligation",
+      "cluster": "authority",
+      "definitions": {
+        "en": "A legal duty imposed by law or contract requiring a party to perform or refrain from an action",
+        "de": "Eine rechtliche Verpflichtung, die sowohl vertragliche als auch gesetzliche Pflichten umfasst",
+        "fr": "L'obligation juridique au sens du droit civil, source de responsabilité contractuelle ou délictuelle"
+      }
+    },
+    {
+      "id": "evidence",
+      "cluster": "procedure",
+      "definitions": {
+        "en": "Material presented in court to establish facts, governed by strict rules of admissibility and procedure",
+        "de": "Beweise, die im Gerichtsverfahren zur Wahrheitsfindung dienen und strengen Verfahrensregeln unterliegen",
+        "fr": "Les éléments de preuve soumis au juge dans le cadre d'une procédure inquisitoire ou accusatoire"
+      }
+    },
+    {
+      "id": "procedure",
+      "cluster": "procedure",
+      "definitions": {
+        "en": "The formal rules governing how legal proceedings must be conducted to ensure fairness and due process",
+        "de": "Das rechtliche Verfahren als strukturierter Prozess zur gerechten Entscheidungsfindung unter Wahrung der Rechtsstaatlichkeit",
+        "fr": "La procédure judiciaire encadrée par le Code de procédure pénale, garantissant les droits des parties"
+      }
+    },
+    {
+      "id": "verdict",
+      "cluster": "judgment",
+      "definitions": {
+        "en": "The formal decision of a jury or judge declaring whether a defendant is guilty or not guilty",
+        "de": "Das Urteil als formelle richterliche Entscheidung, die rechtliche und moralische Wertungen verbindet",
+        "fr": "Le jugement rendu par un tribunal, acte souverain de l'autorité judiciaire au nom du peuple"
+      }
+    },
+    {
+      "id": "liberty",
+      "cluster": "liberty",
+      "definitions": {
+        "en": "The fundamental freedom of individuals to act without undue constraint, protected by constitutional rights",
+        "de": "Die persönliche Freiheit als Grundrecht, das die freie Entfaltung der Persönlichkeit garantiert",
+        "fr": "La liberté comme valeur républicaine fondamentale, premier terme de la devise nationale, encadrée par la loi"
+      }
+    },
+    {
+      "id": "accountability",
+      "cluster": "judgment",
+      "definitions": {
+        "en": "The obligation of individuals and institutions to answer for their actions and accept consequences",
+        "de": "Die rechtliche und politische Verantwortlichkeit, die transparentes Handeln und die Akzeptanz von Konsequenzen erfordert",
+        "fr": "La responsabilité juridique et politique, principe de la République permettant le contrôle démocratique du pouvoir"
+      }
+    },
+    {
+      "id": "rehabilitation",
+      "cluster": "procedure",
+      "definitions": {
+        "en": "The process of reforming a convicted criminal to enable their reintegration into society",
+        "de": "Die Resozialisierung als zentrales Ziel des deutschen Strafvollzugs, der Strafe mit gesellschaftlicher Wiedereingliederung verbindet",
+        "fr": "La réinsertion sociale du condamné, objectif prioritaire du droit pénal français aux côtés de la punition"
+      }
+    },
+    {
+      "id": "revenge",
+      "cluster": "judgment",
+      "definitions": {
+        "en": "Personal retaliation for a wrong suffered, explicitly excluded from legitimate legal systems as a basis for punishment",
+        "de": "Vergeltung als emotionaler Impuls, der im Rechtsstaat durch das Prinzip der Verhältnismäßigkeit gebändigt wird",
+        "fr": "La vengeance privée, exclue du droit républicain au profit de la justice institutionnelle rendue par l'État"
+      }
+    },
+    {
+      "id": "constitution",
+      "cluster": "authority",
+      "definitions": {
+        "en": "The supreme legal document establishing the framework of government and protecting fundamental rights",
+        "de": "Das Grundgesetz als Verfassung der Bundesrepublik, aus der Erfahrung des Nationalsozialismus entstanden und besonders schutzbedürftig",
+        "fr": "La Constitution de la Ve République, texte fondateur qui organise les pouvoirs et garantit les droits fondamentaux"
+      }
+    },
+    {
+      "id": "precedent",
+      "cluster": "procedure",
+      "definitions": {
+        "en": "A prior court decision that establishes a binding rule for future cases under common law tradition",
+        "de": "Frühere Gerichtsentscheidungen, die als Orientierung dienen, aber im deutschen Rechtssystem keine strenge Bindungswirkung haben",
+        "fr": "La jurisprudence comme source du droit, moins contraignante qu'en common law mais déterminante pour l'interprétation légale"
+      }
+    },
+    {
+      "id": "defendant",
+      "cluster": "procedure",
+      "definitions": {
+        "en": "The person accused of a crime in a criminal trial, protected by the presumption of innocence",
+        "de": "Der Angeklagte im Strafverfahren, dessen Würde und Rechte durch das Grundgesetz besonders geschützt werden",
+        "fr": "Le prévenu ou l'accusé dans la procédure pénale française, bénéficiant de la présomption d'innocence"
+      }
+    }
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "meta": {
+    "domain": "Economy & Debt",
+    "description": "Concepts related to economic systems, debt, inequality and financial obligation. The Schuld/debt ambiguity makes this the highest expected delta dataset of all domains.",
+    "languages": ["en", "de", "fr"],
+    "source": "curated definitions for BGE-M3 embedding — LACUNA multi-domain benchmark",
+    "prepared_by": "Octave",
+    "date": "2026-02-28",
+    "hypothesis": "The German word Schuld means simultaneously financial debt AND moral guilt. English separates them entirely. This domain should produce the highest cosine distance deltas of any dataset.",
+    "expected_hero_pairs": [
+      {"pair": ["debt", "guilt"], "hypothesis": "THE defining lacuna. Schuld = both in German. In English they are different conceptual universes. Maximum expected delta across all domains."},
+      {"pair": ["austerity", "punishment"], "hypothesis": "DE/FR: austerity policies cluster near moral punishment (2010 eurozone crisis framing). EN: austerity is a neutral economic tool."},
+      {"pair": ["inequality", "injustice"], "hypothesis": "FR republican tradition fuses economic inequality with social injustice. EN treats them as separate analytical categories."},
+      {"pair": ["wealth", "responsibility"], "hypothesis": "DE social market economy (Soziale Marktwirtschaft) fuses wealth with social responsibility. EN separates them entirely."}
+    ]
+  },
+  "concepts": [
+    {
+      "id": "debt",
+      "cluster": "obligation",
+      "definitions": {
+        "en": "A financial obligation to repay borrowed money, a neutral contractual arrangement governed by interest rates and repayment schedules",
+        "de": "Die Schulden als finanzieller Begriff, untrennbar verbunden mit dem Wort Schuld, das gleichzeitig moralische Schuld und finanzielle Verpflichtung bedeutet",
+        "fr": "La dette comme obligation financière, chargée d'une dimension morale dans le contexte de la dette souveraine et des sacrifices demandés aux citoyens"
+      }
+    },
+    {
+      "id": "guilt",
+      "cluster": "obligation",
+      "definitions": {
+        "en": "A moral feeling of responsibility for a wrongdoing, entirely separate from financial obligation in English conceptual structure",
+        "de": "Die Schuld als zentraler Begriff, der im Deutschen sowohl moralische Verantwortung als auch finanzielle Schulden umfasst",
+        "fr": "La culpabilité morale, distincte de la dette financière en français mais parfois liée dans les discours sur la responsabilité économique"
+      }
+    },
+    {
+      "id": "austerity",
+      "cluster": "policy",
+      "definitions": {
+        "en": "A set of economic policies reducing public spending to decrease budget deficits, evaluated on technical efficiency grounds",
+        "de": "Die Sparpolitik als moralische Pflicht der Haushaltsdisziplin, von Deutschland in der Eurozone als Bedingung für Solidarität verlangt",
+        "fr": "L'austérité comme politique imposée par la troïka, vécue en France comme une punition externe incompatible avec le modèle social républicain"
+      }
+    },
+    {
+      "id": "inequality",
+      "cluster": "justice",
+      "definitions": {
+        "en": "The unequal distribution of wealth and resources across a population, measured statistically and addressed through policy",
+        "de": "Die soziale Ungleichheit als gesellschaftliches Problem, das durch den Sozialstaat und die soziale Marktwirtschaft begrenzt werden soll",
+        "fr": "Les inégalités sociales comme injustice fondamentale contraire aux valeurs républicaines d'égalité, justifiant l'intervention redistributive de l'État"
+      }
+    },
+    {
+      "id": "wealth",
+      "cluster": "power",
+      "definitions": {
+        "en": "The accumulation of financial and material assets, a neutral indicator of economic success and individual achievement",
+        "de": "Der Reichtum als gesellschaftlich ambivalente Größe, die mit sozialer Verantwortung verbunden ist im Rahmen der sozialen Marktwirtschaft",
+        "fr": "La richesse comme réussite individuelle, tempérée par l'obligation républicaine de solidarité nationale et de contribution fiscale"
+      }
+    },
+    {
+      "id": "solidarity",
+      "cluster": "justice",
+      "definitions": {
+        "en": "Mutual support between individuals or groups, a voluntary social value distinct from legal or financial obligation",
+        "de": "Die Solidarität als verfassungsrechtliches Prinzip des deutschen Sozialstaats, der Stärkere unterstützt den Schwächeren durch Umverteilung",
+        "fr": "La solidarité nationale comme pilier de la République française, fondement de la Sécurité sociale et du modèle social français"
+      }
+    },
+    {
+      "id": "market",
+      "cluster": "power",
+      "definitions": {
+        "en": "The mechanism through which supply and demand determine prices and allocate resources efficiently",
+        "de": "Der Markt eingebettet in die soziale Marktwirtschaft, die wirtschaftliche Effizienz mit sozialer Gerechtigkeit verbindet",
+        "fr": "Le marché comme espace régulé par l'État dans la tradition colbertiste française, non livré à lui-même mais orienté par la puissance publique"
+      }
+    },
+    {
+      "id": "growth",
+      "cluster": "policy",
+      "definitions": {
+        "en": "The increase in economic output measured by GDP, the primary objective of economic policy and indicator of national prosperity",
+        "de": "Das Wirtschaftswachstum als Ziel der Wirtschaftspolitik, in Deutschland mit Nachhaltigkeit und sozialer Gerechtigkeit in Einklang zu bringen",
+        "fr": "La croissance économique comme objectif de la politique keynésienne française, instrument de financement du modèle social républicain"
+      }
+    },
+    {
+      "id": "taxation",
+      "cluster": "obligation",
+      "definitions": {
+        "en": "The compulsory levy on income and wealth to fund public services, a necessary cost of government evaluated for efficiency",
+        "de": "Die Steuer als Beitrag zur Gemeinschaft, in Deutschland als Solidarabgabe verstanden, die den sozialen Zusammenhalt finanziert",
+        "fr": "L'impôt comme contribution citoyenne fondamentale, expression de la solidarité nationale et condition du modèle social républicain"
+      }
+    },
+    {
+      "id": "crisis",
+      "cluster": "policy",
+      "definitions": {
+        "en": "A period of economic instability requiring policy intervention, analyzed technically and managed through institutional mechanisms",
+        "de": "Die Wirtschaftskrise als systemische Bedrohung, in Deutschland stets mit der Hyperinflation von 1923 und dem Aufstieg des Nationalsozialismus assoziiert",
+        "fr": "La crise économique comme épreuve collective justifiant l'intervention de l'État et la solidarité nationale entre les citoyens"
+      }
+    },
+    {
+      "id": "obligation",
+      "cluster": "obligation",
+      "definitions": {
+        "en": "A legal or contractual duty to perform an action, a formal commitment without inherent moral dimension",
+        "de": "Die Verpflichtung als moralische und rechtliche Pflicht, in der sozialen Marktwirtschaft mit gesellschaftlicher Verantwortung verbunden",
+        "fr": "L'obligation comme devoir civique et juridique, fondement de la citoyenneté républicaine et du contrat social"
+      }
+    },
+    {
+      "id": "bankruptcy",
+      "cluster": "policy",
+      "definitions": {
+        "en": "A legal process allowing insolvent entities to restructure or discharge debts, a neutral business mechanism",
+        "de": "Die Insolvenz als wirtschaftliches und moralisches Versagen, in Deutschland mit persönlicher Schuld und sozialem Stigma verbunden",
+        "fr": "La faillite comme procédure judiciaire de liquidation, dont le droit français cherche à atténuer les conséquences sociales par le redressement"
+      }
+    },
+    {
+      "id": "speculation",
+      "cluster": "power",
+      "definitions": {
+        "en": "Investment in assets with high risk and potential return, a legitimate market activity subject to regulation",
+        "de": "Die Spekulation als moralisch fragwürdige Aktivität, die produktive Arbeit und gesellschaftlichen Mehrwert nicht schafft",
+        "fr": "La spéculation financière comme menace au modèle économique républicain, dénoncée par les responsables politiques français"
+      }
+    },
+    {
+      "id": "redistribution",
+      "cluster": "justice",
+      "definitions": {
+        "en": "Government transfer of wealth from higher to lower income groups through taxation and social programs",
+        "de": "Die Umverteilung als Kernprinzip des deutschen Sozialstaats, die wirtschaftliche Ungleichheit durch solidarische Mechanismen begrenzt",
+        "fr": "La redistribution comme mission centrale de l'État républicain français, garantissant l'égalité des chances et la cohésion nationale"
+      }
+    },
+    {
+      "id": "inflation",
+      "cluster": "policy",
+      "definitions": {
+        "en": "The general increase in prices reducing purchasing power, managed through monetary policy and central bank intervention",
+        "de": "Die Inflation als nationales Trauma, verbunden mit der Hyperinflation von 1923 die den Mittelstand vernichtete und den Weg für Hitler ebnete",
+        "fr": "L'inflation comme phénomène monétaire géré par la Banque centrale européenne, dont la France a accepté l'indépendance avec réticence"
+      }
+    }
+  ]
+}
