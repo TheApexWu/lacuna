@@ -378,13 +378,12 @@ export default function Home() {
           Cross-Lingual Divergence Explorer
         </p>
         <div className="flex items-center gap-2 mt-2">
-          <span className="text-xs text-[#737373]">viewing</span>
           <span
             className="text-xs font-bold tracking-wider text-[#f59e0b]"
           >
             {currentLangName.toUpperCase()}
           </span>
-          <span className="text-xs text-[#737373]">topology</span>
+          <span className="text-xs text-[#737373]">embeddings</span>
         </div>
       </header>
 
@@ -545,28 +544,10 @@ export default function Home() {
               </span>
               <span className="text-[#404040] ml-auto">sorted by divergence</span>
             </div>
-            <p className="text-[8px] text-[#333] leading-tight">
-              Divergence reflects model representation of curated concept definitions, not cognitive structure. Click any concept for interpreter analysis.
-            </p>
           </div>
         </div>
       )}
 
-      {/* Model status badge */}
-      {activeModel !== "curated" && (
-        <div className="absolute top-6 right-6 z-40 flex items-center gap-2 bg-[#141414]/90 backdrop-blur-md border border-[#262626] rounded px-3 py-1.5">
-          <span
-            className="w-1.5 h-1.5 rounded-full"
-            style={{ background: modelData.status === "live" ? "#22c55e" : "#f59e0b" }}
-          />
-          <span className="text-[10px] text-[#a3a3a3] tracking-wider font-mono">
-            {modelInfo?.shortName ?? activeModel.toUpperCase()}
-          </span>
-          {modelData.status === "stub" && (
-            <span className="text-[9px] text-[#78716c] tracking-wider">STUB</span>
-          )}
-        </div>
-      )}
 
       {/* Concept card */}
       {selectedConcept && (
@@ -696,7 +677,7 @@ export default function Home() {
         <div className="flex items-center gap-3">
           {/* Language selector */}
           <div className="flex items-center gap-1 bg-[#0a0a0a]/80 rounded px-1 py-1">
-            {LANGUAGES.map((lang) => (
+            {LANGUAGES.filter((l) => ["en","de","fr","es","zh","ja","ar","ko","ru"].includes(l.code)).map((lang) => (
               <button
                 key={lang.code}
                 onClick={() => handleLanguageSelect(lang.code)}
