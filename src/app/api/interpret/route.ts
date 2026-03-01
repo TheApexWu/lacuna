@@ -114,7 +114,6 @@ ${
       model: "mistral-large-latest",
     });
   } catch (err) {
-    console.error("Interpreter agent error:", err);
     return NextResponse.json(
       {
         conceptId,

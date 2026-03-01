@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-// Live embedding endpoint scaffold.
-// Connects to BGE-M3 pipeline on Mac Mini for real-time concept embedding.
-// TODO: Wire to Brendan's embed.py via HTTP or direct Python subprocess.
+// Embedding endpoint scaffold (not used in demo flow -- probes use /api/query).
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
