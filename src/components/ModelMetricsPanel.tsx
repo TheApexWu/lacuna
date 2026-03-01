@@ -92,12 +92,12 @@ export default function ModelMetricsPanel({
                   color="#f59e0b"
                 />
                 <MetricCard
-                  name="GHOST DETECT"
-                  subtitle="Ghost Detection Rate"
-                  value={activeMetrics.ghostDetection.averageRate}
-                  detail="Are ghost concepts orphaned in foreign languages? Higher = model sees lacunae."
+                  name="LACUNA DETECT"
+                  subtitle="Lacuna Detection Rate"
+                  value={activeMetrics.lacunaDetection.averageRate}
+                  detail="Are lacuna concepts orphaned in foreign languages? Higher = model sees lacunae."
                   pairs={Object.fromEntries(
-                    Object.entries(activeMetrics.ghostDetection.perLanguage).map(
+                    Object.entries(activeMetrics.lacunaDetection.perLanguage).map(
                       ([k, v]) => [k, (v as { rate: number }).rate]
                     )
                   )}
@@ -119,7 +119,7 @@ export default function ModelMetricsPanel({
                     <th className="text-right py-1 px-1">CLAS</th>
                     <th className="text-right py-1 px-1">Topo</th>
                     <th className="text-right py-1 px-1">Silh</th>
-                    <th className="text-right py-1 px-1">Ghost</th>
+                    <th className="text-right py-1 px-1">Lacuna</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -153,7 +153,7 @@ export default function ModelMetricsPanel({
                           />
                         </td>
                         <td className="text-right py-1 px-1">
-                          <ScoreCell value={m.ghostDetection.averageRate} />
+                          <ScoreCell value={m.lacunaDetection.averageRate} />
                         </td>
                       </tr>
                     );

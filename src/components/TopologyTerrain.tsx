@@ -25,6 +25,8 @@ import {
   CLUSTER_COLORS,
   CLUSTER_HEX,
   getLabel,
+  getClusterColor,
+  getClusterColorRGB,
 } from "../data/versailles";
 
 // ── Constants ────────────────────────────────────────────────
@@ -44,18 +46,20 @@ function gaussian(dx: number, dz: number, sigma: number): number {
 
 // ── Terrain computation ──────────────────────────────────────
 // Returns height and HDR color arrays for the full vertex grid.
-// Ghost concepts subtract from height (depressions).
+// Lacuna concepts subtract from height (depressions).
 // Colors are NOT clamped: values >1.0 feed the bloom pass.
 function computeTerrain(
   language: string,
-  showGhosts: boolean,
+  showLacunae: boolean,
   sigma: number,
   heightScale: number,
   emissiveStrength: number,
   referenceLanguage?: string,
   deltaScale?: number,
   positionOverride?: Record<string, Record<string, [number, number]>>,
-  weightOverride?: Record<string, Record<string, number>>
+  weightOverride?: Record<string, Record<string, number>>,
+  clusterOverride?: Record<string, Record<string, number | string>>,
+  lacunaOverride?: Record<string, Record<string, boolean>>
 ): { heights: Float32Array; colors: Float32Array } {
   const heights = new Float32Array(VERTEX_COUNT);
   const colors = new Float32Array(VERTEX_COUNT * 3);
@@ -70,7 +74,7 @@ function computeTerrain(
 
       let h = 0;
       let maxContrib = 0;
-      let dominant = "core";
+      let dominant: number | string = "core";
 
       for (const concept of concepts) {
         // Resolve position and weight, with optional override and delta amplification
@@ -98,21 +102,21 @@ function computeTerrain(
           cw = getWeight(language);
         }
 
-        const isGhost = concept.ghost[language] ?? false;
-        if (isGhost && !showGhosts) continue;
-        if (cw === 0 && !isGhost) continue;
+        const isLacuna = lacunaOverride?.[concept.id]?.[language] ?? concept.lacuna[language] ?? false;
+        if (isLacuna && !showLacunae) continue;
+        if (cw === 0 && !isLacuna) continue;
 
         const dx = wx - cx;
         const dz = wz - cz;
         const g = gaussian(dx, dz, sigma) * cw;
 
-        if (isGhost) {
+        if (isLacuna) {
           h -= g * 0.3; // Depressions where absent concepts would be
         } else {
           h += g;
           if (g > maxContrib) {
             maxContrib = g;
-            dominant = concept.cluster;
+            dominant = clusterOverride?.[concept.id]?.[language] ?? concept.cluster;
           }
         }
       }
@@ -124,7 +128,7 @@ function computeTerrain(
       // HDR vertex colors: base dark + cluster tint + glow
       // NO Math.min clamping. Values >1.0 are intentional for bloom.
       const heightNorm = Math.min(Math.abs(sculpted), 1);
-      const cc = CLUSTER_COLORS[dominant] || CLUSTER_COLORS.core;
+      const cc = getClusterColorRGB(dominant);
       const ci = idx * 3;
       const tint = 0.3 + heightNorm * 0.7;
       const glow = heightNorm * heightNorm * emissiveStrength;
@@ -143,7 +147,7 @@ function computeTerrain(
 // Height goes into position[i*3+2] (local Z -> world Y after rotation).
 function TerrainMesh({
   language,
-  showGhosts,
+  showLacunae,
   sigma,
   heightScale,
   emissiveStrength,
@@ -151,9 +155,11 @@ function TerrainMesh({
   deltaScale,
   positionOverride,
   weightOverride,
+  clusterOverride,
+  lacunaOverride,
 }: {
   language: string;
-  showGhosts: boolean;
+  showLacunae: boolean;
   sigma: number;
   heightScale: number;
   emissiveStrength: number;
@@ -161,6 +167,8 @@ function TerrainMesh({
   deltaScale?: number;
   positionOverride?: Record<string, Record<string, [number, number]>>;
   weightOverride?: Record<string, Record<string, number>>;
+  clusterOverride?: Record<string, Record<string, number | string>>;
+  lacunaOverride?: Record<string, Record<string, boolean>>;
 }) {
   const meshRef = useRef<THREE.Mesh>(null);
 
@@ -187,14 +195,16 @@ function TerrainMesh({
   useEffect(() => {
     const { heights, colors } = computeTerrain(
       language,
-      showGhosts,
+      showLacunae,
       sigma,
       heightScale,
       emissiveStrength,
       referenceLanguage,
       deltaScale,
       positionOverride,
-      weightOverride
+      weightOverride,
+      clusterOverride,
+      lacunaOverride
     );
 
     targetH.current.set(heights);
@@ -215,7 +225,7 @@ function TerrainMesh({
       transitionStart.current = performance.now() / 1000;
     }
     needsUpdate.current = true;
-  }, [language, showGhosts, sigma, heightScale, emissiveStrength, referenceLanguage, deltaScale, positionOverride, weightOverride]);
+  }, [language, showLacunae, sigma, heightScale, emissiveStrength, referenceLanguage, deltaScale, positionOverride, weightOverride, clusterOverride, lacunaOverride]);
 
   useFrame(() => {
     if (!meshRef.current || !needsUpdate.current) return;
@@ -265,24 +275,30 @@ function TerrainMesh({
 // Floating text labels above terrain peaks with transition animation.
 function ConceptLabels({
   language,
-  showGhosts,
+  showLacunae,
   heightScale,
   sigma,
-  ghostOpacity,
+  lacunaOpacity,
   emissiveStrength,
   onConceptClick,
   positionOverride,
   weightOverride,
+  clusterOverride,
+  lacunaOverride,
+  clusterColors,
 }: {
   language: string;
-  showGhosts: boolean;
+  showLacunae: boolean;
   heightScale: number;
   sigma: number;
-  ghostOpacity: number;
+  lacunaOpacity: number;
   emissiveStrength: number;
   onConceptClick: (id: string) => void;
   positionOverride?: Record<string, Record<string, [number, number]>>;
   weightOverride?: Record<string, Record<string, number>>;
+  clusterOverride?: Record<string, Record<string, number | string>>;
+  lacunaOverride?: Record<string, Record<string, boolean>>;
+  clusterColors?: Record<string, string>;
 }) {
   const groupRef = useRef<THREE.Group>(null);
   const targetPos = useRef<Record<string, [number, number, number]>>({});
@@ -298,10 +314,10 @@ function ConceptLabels({
       if (!pos) continue;
 
       const weight = weightOverride?.[concept.id]?.[language] ?? concept.weight[language] ?? 0;
-      const isGhost = concept.ghost[language] ?? false;
+      const isLacuna = lacunaOverride?.[concept.id]?.[language] ?? concept.lacuna[language] ?? false;
 
       // Peak height at concept center (gaussian = 1 at center)
-      const rawH = isGhost ? -(weight * 0.3) : weight;
+      const rawH = isLacuna ? -(weight * 0.3) : weight;
       const sculpted = Math.sign(rawH) * Math.pow(Math.abs(rawH), 1.3);
       const y = sculpted * heightScale + 2;
 
@@ -323,7 +339,7 @@ function ConceptLabels({
       transitionStart.current = performance.now() / 1000;
     }
     needsUpdate.current = true;
-  }, [language, showGhosts, heightScale, sigma, emissiveStrength, positionOverride, weightOverride]);
+  }, [language, showLacunae, heightScale, sigma, emissiveStrength, positionOverride, weightOverride, clusterOverride, lacunaOverride]);
 
   useFrame(() => {
     if (!needsUpdate.current || !groupRef.current) return;
@@ -354,18 +370,19 @@ function ConceptLabels({
     return concepts.filter((c) => {
       const pos = positionOverride?.[c.id]?.[language] ?? c.position[language];
       if (!pos) return false;
-      const isGhost = c.ghost[language] ?? false;
-      return !isGhost || showGhosts;
+      const isLacuna = lacunaOverride?.[c.id]?.[language] ?? c.lacuna[language] ?? false;
+      return !isLacuna || showLacunae;
     });
-  }, [language, showGhosts, positionOverride]);
+  }, [language, showLacunae, positionOverride, lacunaOverride]);
 
   return (
     <group ref={groupRef}>
       {visibleConcepts.map((concept) => {
-        const isGhost = concept.ghost[language] ?? false;
-        const hex = isGhost
+        const isLacuna = lacunaOverride?.[concept.id]?.[language] ?? concept.lacuna[language] ?? false;
+        const clusterLabel = clusterOverride?.[concept.id]?.[language] ?? concept.cluster;
+        const hex = isLacuna
           ? "#78716c"
-          : CLUSTER_HEX[concept.cluster] || "#f59e0b";
+          : getClusterColor(clusterLabel, clusterColors);
         const pos = currentPos.current[concept.id] || [0, 2, 0];
 
         return (
@@ -377,7 +394,7 @@ function ConceptLabels({
             color={hex}
             anchorX="center"
             anchorY="bottom"
-            fillOpacity={isGhost ? ghostOpacity : 1}
+            fillOpacity={isLacuna ? lacunaOpacity : 1}
             outlineWidth={0.06}
             outlineColor="#000000"
             onClick={() => onConceptClick(concept.id)}
@@ -434,16 +451,22 @@ function CameraRig() {
 // Assembles terrain, labels, lights, fog, postprocessing, and controls.
 function Scene({
   language,
-  showGhosts,
+  showLacunae,
   onConceptClick,
   positionOverride,
   weightOverride,
+  clusterOverride,
+  lacunaOverride,
+  clusterColors,
 }: {
   language: string;
-  showGhosts: boolean;
+  showLacunae: boolean;
   onConceptClick: (id: string) => void;
   positionOverride?: Record<string, Record<string, [number, number]>>;
   weightOverride?: Record<string, Record<string, number>>;
+  clusterOverride?: Record<string, Record<string, number | string>>;
+  lacunaOverride?: Record<string, Record<string, boolean>>;
+  clusterColors?: Record<string, string>;
 }) {
   const { scene } = useThree();
 
@@ -472,8 +495,8 @@ function Scene({
     vignette: { value: 0.45, min: 0, max: 1, step: 0.05 },
   });
 
-  const { ghostOpacity } = useControls("Ghosts", {
-    ghostOpacity: { value: 0.5, min: 0, max: 1, step: 0.05 },
+  const { lacunaOpacity } = useControls("Lacunae", {
+    lacunaOpacity: { value: 0.5, min: 0, max: 1, step: 0.05 },
   });
 
   // Fog + scene background
@@ -514,7 +537,7 @@ function Scene({
       {/* Terrain */}
       <TerrainMesh
         language={language}
-        showGhosts={showGhosts}
+        showLacunae={showLacunae}
         sigma={sigma}
         heightScale={heightScale}
         emissiveStrength={emissiveStrength}
@@ -522,19 +545,24 @@ function Scene({
         deltaScale={deltaScale}
         positionOverride={positionOverride}
         weightOverride={weightOverride}
+        clusterOverride={clusterOverride}
+        lacunaOverride={lacunaOverride}
       />
 
       {/* Labels */}
       <ConceptLabels
         language={language}
-        showGhosts={showGhosts}
+        showLacunae={showLacunae}
         heightScale={heightScale}
         sigma={sigma}
-        ghostOpacity={ghostOpacity}
+        lacunaOpacity={lacunaOpacity}
         emissiveStrength={emissiveStrength}
         onConceptClick={onConceptClick}
         positionOverride={positionOverride}
         weightOverride={weightOverride}
+        clusterOverride={clusterOverride}
+        lacunaOverride={lacunaOverride}
+        clusterColors={clusterColors}
       />
 
       {/* Ground reference grid */}
@@ -671,16 +699,22 @@ class CanvasErrorBoundary extends Component<
 // MUST be dynamically imported with { ssr: false } from page.tsx.
 export default function TopologyTerrain({
   language,
-  showGhosts,
+  showLacunae,
   onConceptClick,
   positionOverride,
   weightOverride,
+  clusterOverride,
+  lacunaOverride,
+  clusterColors,
 }: {
   language: string;
-  showGhosts: boolean;
+  showLacunae: boolean;
   onConceptClick: (id: string) => void;
   positionOverride?: Record<string, Record<string, [number, number]>>;
   weightOverride?: Record<string, Record<string, number>>;
+  clusterOverride?: Record<string, Record<string, number | string>>;
+  lacunaOverride?: Record<string, Record<string, boolean>>;
+  clusterColors?: Record<string, string>;
 }) {
   // Mounted guard: prevents WebGL context null error during SSR/HMR
   const [mounted, setMounted] = useState(false);
@@ -726,10 +760,13 @@ export default function TopologyTerrain({
       >
         <Scene
           language={language}
-          showGhosts={showGhosts}
+          showLacunae={showLacunae}
           onConceptClick={onConceptClick}
           positionOverride={positionOverride}
           weightOverride={weightOverride}
+          clusterOverride={clusterOverride}
+          lacunaOverride={lacunaOverride}
+          clusterColors={clusterColors}
         />
       </Canvas>
     </CanvasErrorBoundary>

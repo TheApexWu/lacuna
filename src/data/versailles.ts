@@ -11,7 +11,7 @@ export type Concept = {
   cluster: string;
   position: Record<string, [number, number]>; // [x, z]
   weight: Record<string, number>; // 0-1
-  ghost: Record<string, boolean>;
+  lacuna: Record<string, boolean>;
   hero?: boolean;
   source: "curated" | "embedding";
 };
@@ -34,8 +34,8 @@ export const CLUSTER_COLORS: Record<string, [number, number, number]> = {
   justice: [0.23, 0.51, 0.96],
   victory: [0.13, 0.77, 0.37],
   humiliation: [0.94, 0.27, 0.27],
-  "ghost-de": [0.47, 0.44, 0.42],
-  "ghost-en": [0.47, 0.44, 0.42],
+  "lacuna-de": [0.47, 0.44, 0.42],
+  "lacuna-en": [0.47, 0.44, 0.42],
 };
 
 export const CLUSTER_HEX: Record<string, string> = {
@@ -43,12 +43,43 @@ export const CLUSTER_HEX: Record<string, string> = {
   justice: "#3b82f6",
   victory: "#22c55e",
   humiliation: "#ef4444",
-  "ghost-de": "#78716c",
-  "ghost-en": "#78716c",
+  "lacuna-de": "#78716c",
+  "lacuna-en": "#78716c",
 };
 
 export function getLabel(concept: Concept, language: string): string {
   return concept.labels[language] || concept.labels["en"] || concept.id;
+}
+
+// ── Dynamic cluster color palette ────────────────────────────
+// Used when embedding models derive their own clusters via HDBSCAN.
+// Indexed by cluster label (0, 1, 2, ...). Noise (-1) gets NOISE_CLUSTER_COLOR.
+export const DYNAMIC_CLUSTER_PALETTE = [
+  "#f59e0b", "#3b82f6", "#22c55e", "#ef4444",
+  "#a78bfa", "#ec4899", "#14b8a6", "#f97316",
+  "#6366f1", "#84cc16",
+];
+
+export const DYNAMIC_CLUSTER_PALETTE_RGB: [number, number, number][] = [
+  [0.96, 0.62, 0.04], [0.23, 0.51, 0.96], [0.13, 0.77, 0.37], [0.94, 0.27, 0.27],
+  [0.65, 0.55, 0.98], [0.93, 0.30, 0.60], [0.08, 0.72, 0.65], [0.98, 0.45, 0.09],
+  [0.39, 0.40, 0.95], [0.52, 0.80, 0.09],
+];
+
+export const NOISE_CLUSTER_COLOR = "#78716c";
+export const NOISE_CLUSTER_RGB: [number, number, number] = [0.47, 0.44, 0.42];
+
+export function getClusterColor(label: number | string, clusterColors?: Record<string, string>): string {
+  if (clusterColors?.[String(label)]) return clusterColors[String(label)];
+  if (typeof label === "string") return CLUSTER_HEX[label] || NOISE_CLUSTER_COLOR;
+  if (label < 0) return NOISE_CLUSTER_COLOR;
+  return DYNAMIC_CLUSTER_PALETTE[label % DYNAMIC_CLUSTER_PALETTE.length];
+}
+
+export function getClusterColorRGB(label: number | string): [number, number, number] {
+  if (typeof label === "string") return CLUSTER_COLORS[label] || NOISE_CLUSTER_RGB;
+  if (label < 0) return NOISE_CLUSTER_RGB;
+  return DYNAMIC_CLUSTER_PALETTE_RGB[label % DYNAMIC_CLUSTER_PALETTE_RGB.length];
 }
 
 export function getAvailableLanguages(): string[] {
@@ -56,9 +87,9 @@ export function getAvailableLanguages(): string[] {
   return Object.keys(concepts[0].position);
 }
 
-// ── Helper: ghost flag for all languages ─────────────────────
-// ghost in all except the listed languages
-function ghostExcept(...present: string[]): Record<string, boolean> {
+// ── Helper: lacuna flag for all languages ─────────────────────
+// lacuna in all except the listed languages
+function lacunaExcept(...present: string[]): Record<string, boolean> {
   const result: Record<string, boolean> = {};
   for (const l of LANGUAGES) {
     result[l.code] = !present.includes(l.code);
@@ -66,8 +97,8 @@ function ghostExcept(...present: string[]): Record<string, boolean> {
   return result;
 }
 
-// not a ghost in any language
-function noGhost(): Record<string, boolean> {
+// not a lacuna in any language
+function noLacuna(): Record<string, boolean> {
   const result: Record<string, boolean> = {};
   for (const l of LANGUAGES) {
     result[l.code] = false;
@@ -108,7 +139,7 @@ export const concepts: Concept[] = [
       zh: 0.6, ko: 0.4, ar: 0.5, pt: 0.55,
       ru: 0.7, ja: 0.35,
     },
-    ghost: noGhost(),
+    lacuna: noLacuna(),
     source: "curated",
   },
   {
@@ -140,7 +171,7 @@ export const concepts: Concept[] = [
       zh: 0.45, ko: 0.35, ar: 0.4, pt: 0.45,
       ru: 0.5, ja: 0.4,
     },
-    ghost: noGhost(),
+    lacuna: noLacuna(),
     source: "curated",
   },
   {
@@ -172,7 +203,7 @@ export const concepts: Concept[] = [
       zh: 0.65, ko: 0.7, ar: 0.6, pt: 0.45,
       ru: 0.3, ja: 0.75,
     },
-    ghost: noGhost(),
+    lacuna: noLacuna(),
     source: "curated",
   },
   {
@@ -204,7 +235,7 @@ export const concepts: Concept[] = [
       zh: 0.65, ko: 0.5, ar: 0.55, pt: 0.5,
       ru: 0.55, ja: 0.55,
     },
-    ghost: noGhost(),
+    lacuna: noLacuna(),
     source: "curated",
   },
 
@@ -240,7 +271,7 @@ export const concepts: Concept[] = [
       zh: 0.5, ko: 0.55, ar: 0.4, pt: 0.55,
       ru: 0.3, ja: 0.5,
     },
-    ghost: noGhost(),
+    lacuna: noLacuna(),
     source: "curated",
   },
   {
@@ -272,7 +303,7 @@ export const concepts: Concept[] = [
       zh: 0.45, ko: 0.4, ar: 0.35, pt: 0.5,
       ru: 0.25, ja: 0.45,
     },
-    ghost: noGhost(),
+    lacuna: noLacuna(),
     source: "curated",
   },
   {
@@ -304,7 +335,7 @@ export const concepts: Concept[] = [
       zh: 0.45, ko: 0.4, ar: 0.35, pt: 0.5,
       ru: 0.35, ja: 0.4,
     },
-    ghost: noGhost(),
+    lacuna: noLacuna(),
     source: "curated",
   },
   {
@@ -336,7 +367,7 @@ export const concepts: Concept[] = [
       zh: 0.55, ko: 0.35, ar: 0.4, pt: 0.45,
       ru: 0.5, ja: 0.35,
     },
-    ghost: noGhost(),
+    lacuna: noLacuna(),
     source: "curated",
   },
   {
@@ -368,7 +399,7 @@ export const concepts: Concept[] = [
       zh: 0.5, ko: 0.45, ar: 0.4, pt: 0.5,
       ru: 0.3, ja: 0.5,
     },
-    ghost: noGhost(),
+    lacuna: noLacuna(),
     hero: true,
     source: "curated",
   },
@@ -401,7 +432,7 @@ export const concepts: Concept[] = [
       zh: 0.4, ko: 0.35, ar: 0.3, pt: 0.5,
       ru: 0.4, ja: 0.4,
     },
-    ghost: noGhost(),
+    lacuna: noLacuna(),
     hero: true,
     source: "curated",
   },
@@ -434,7 +465,7 @@ export const concepts: Concept[] = [
       zh: 0.45, ko: 0.35, ar: 0.35, pt: 0.4,
       ru: 0.35, ja: 0.35,
     },
-    ghost: noGhost(),
+    lacuna: noLacuna(),
     source: "curated",
   },
   {
@@ -466,7 +497,7 @@ export const concepts: Concept[] = [
       zh: 0.5, ko: 0.4, ar: 0.4, pt: 0.5,
       ru: 0.35, ja: 0.45,
     },
-    ghost: noGhost(),
+    lacuna: noLacuna(),
     hero: true,
     source: "curated",
   },
@@ -499,7 +530,7 @@ export const concepts: Concept[] = [
       zh: 0.6, ko: 0.45, ar: 0.55, pt: 0.4,
       ru: 0.45, ja: 0.5,
     },
-    ghost: noGhost(),
+    lacuna: noLacuna(),
     source: "curated",
   },
   {
@@ -531,7 +562,7 @@ export const concepts: Concept[] = [
       zh: 0.4, ko: 0.35, ar: 0.4, pt: 0.45,
       ru: 0.4, ja: 0.45,
     },
-    ghost: noGhost(),
+    lacuna: noLacuna(),
     source: "curated",
   },
 
@@ -567,7 +598,7 @@ export const concepts: Concept[] = [
       zh: 0.15, ko: 0.15, ar: 0.1, pt: 0.55,
       ru: 0.1, ja: 0.6,
     },
-    ghost: noGhost(),
+    lacuna: noLacuna(),
     source: "curated",
   },
   {
@@ -599,7 +630,7 @@ export const concepts: Concept[] = [
       zh: 0.35, ko: 0.4, ar: 0.3, pt: 0.5,
       ru: 0.15, ja: 0.5,
     },
-    ghost: noGhost(),
+    lacuna: noLacuna(),
     source: "curated",
   },
   {
@@ -631,7 +662,7 @@ export const concepts: Concept[] = [
       zh: 0.3, ko: 0.3, ar: 0.2, pt: 0.45,
       ru: 0.15, ja: 0.6,
     },
-    ghost: noGhost(),
+    lacuna: noLacuna(),
     source: "curated",
   },
   {
@@ -663,7 +694,7 @@ export const concepts: Concept[] = [
       zh: 0.1, ko: 0.1, ar: 0.1, pt: 0.5,
       ru: 0.1, ja: 0.45,
     },
-    ghost: noGhost(),
+    lacuna: noLacuna(),
     hero: true,
     source: "curated",
   },
@@ -696,7 +727,7 @@ export const concepts: Concept[] = [
       zh: 0.85, ko: 0.9, ar: 0.85, pt: 0.45,
       ru: 0.4, ja: 0.7,
     },
-    ghost: noGhost(),
+    lacuna: noLacuna(),
     source: "curated",
   },
   {
@@ -728,7 +759,7 @@ export const concepts: Concept[] = [
       zh: 0.85, ko: 0.95, ar: 0.9, pt: 0.4,
       ru: 0.5, ja: 0.55,
     },
-    ghost: noGhost(),
+    lacuna: noLacuna(),
     source: "curated",
   },
   {
@@ -760,7 +791,7 @@ export const concepts: Concept[] = [
       zh: 0.45, ko: 0.4, ar: 0.35, pt: 0.4,
       ru: 0.15, ja: 0.6,
     },
-    ghost: noGhost(),
+    lacuna: noLacuna(),
     source: "curated",
   },
   {
@@ -792,7 +823,7 @@ export const concepts: Concept[] = [
       zh: 0.35, ko: 0.3, ar: 0.25, pt: 0.4,
       ru: 0.1, ja: 0.55,
     },
-    ghost: noGhost(),
+    lacuna: noLacuna(),
     source: "curated",
   },
   {
@@ -824,7 +855,7 @@ export const concepts: Concept[] = [
       zh: 0.3, ko: 0.3, ar: 0.25, pt: 0.4,
       ru: 0.2, ja: 0.4,
     },
-    ghost: noGhost(),
+    lacuna: noLacuna(),
     source: "curated",
   },
 
@@ -860,7 +891,7 @@ export const concepts: Concept[] = [
       zh: 0.85, ko: 0.8, ar: 0.85, pt: 0.2,
       ru: 0.6, ja: 0.3,
     },
-    ghost: noGhost(),
+    lacuna: noLacuna(),
     source: "curated",
   },
   {
@@ -892,7 +923,7 @@ export const concepts: Concept[] = [
       zh: 0.9, ko: 0.75, ar: 0.9, pt: 0.15,
       ru: 0.7, ja: 0.4,
     },
-    ghost: noGhost(),
+    lacuna: noLacuna(),
     hero: true,
     source: "curated",
   },
@@ -925,7 +956,7 @@ export const concepts: Concept[] = [
       zh: 0.85, ko: 0.75, ar: 0.85, pt: 0.25,
       ru: 0.75, ja: 0.35,
     },
-    ghost: noGhost(),
+    lacuna: noLacuna(),
     source: "curated",
   },
   {
@@ -957,7 +988,7 @@ export const concepts: Concept[] = [
       zh: 0.7, ko: 0.5, ar: 0.65, pt: 0.2,
       ru: 0.65, ja: 0.25,
     },
-    ghost: noGhost(),
+    lacuna: noLacuna(),
     hero: true,
     source: "curated",
   },
@@ -990,7 +1021,7 @@ export const concepts: Concept[] = [
       zh: 0.8, ko: 0.7, ar: 0.75, pt: 0.15,
       ru: 0.7, ja: 0.3,
     },
-    ghost: noGhost(),
+    lacuna: noLacuna(),
     source: "curated",
   },
   {
@@ -1022,7 +1053,7 @@ export const concepts: Concept[] = [
       zh: 0.75, ko: 0.85, ar: 0.9, pt: 0.2,
       ru: 0.6, ja: 0.35,
     },
-    ghost: noGhost(),
+    lacuna: noLacuna(),
     source: "curated",
   },
   {
@@ -1054,7 +1085,7 @@ export const concepts: Concept[] = [
       zh: 0.7, ko: 0.85, ar: 0.9, pt: 0.2,
       ru: 0.5, ja: 0.5,
     },
-    ghost: noGhost(),
+    lacuna: noLacuna(),
     source: "curated",
   },
   {
@@ -1086,7 +1117,7 @@ export const concepts: Concept[] = [
       zh: 0.6, ko: 0.55, ar: 0.6, pt: 0.15,
       ru: 0.8, ja: 0.4,
     },
-    ghost: noGhost(),
+    lacuna: noLacuna(),
     source: "curated",
   },
   {
@@ -1118,7 +1149,7 @@ export const concepts: Concept[] = [
       zh: 0.8, ko: 0.75, ar: 0.7, pt: 0.15,
       ru: 0.65, ja: 0.6,
     },
-    ghost: noGhost(),
+    lacuna: noLacuna(),
     source: "curated",
   },
   {
@@ -1150,7 +1181,7 @@ export const concepts: Concept[] = [
       zh: 0.5, ko: 0.45, ar: 0.55, pt: 0.15,
       ru: 0.6, ja: 0.2,
     },
-    ghost: noGhost(),
+    lacuna: noLacuna(),
     source: "curated",
   },
   {
@@ -1182,12 +1213,12 @@ export const concepts: Concept[] = [
       zh: 0.45, ko: 0.4, ar: 0.5, pt: 0.15,
       ru: 0.55, ja: 0.2,
     },
-    ghost: noGhost(),
+    lacuna: noLacuna(),
     source: "curated",
   },
 
   // ══════════════════════════════════════════════════════════════
-  // === GHOST-DE (exist in German, absent in most others) ===
+  // === LACUNA-DE (exist in German, absent in most others) ===
   // ══════════════════════════════════════════════════════════════
   {
     id: "dolchstoss",
@@ -1207,7 +1238,7 @@ export const concepts: Concept[] = [
       ru: "Конспирологическая теория о предательстве германской армии гражданскими политиками",
       ja: "ドイツ軍が不必要に降伏した文民政治家に裏切られたという陰謀論",
     },
-    cluster: "ghost-de",
+    cluster: "lacuna-de",
     position: {
       en: [20, 15], de: [15, 30], fr: [18, 14], es: [16, 12],
       zh: [18, 20], ko: [16, 18], ar: [20, 22], pt: [17, 13],
@@ -1218,7 +1249,7 @@ export const concepts: Concept[] = [
       zh: 0.0, ko: 0.0, ar: 0.0, pt: 0.0,
       ru: 0.0, ja: 0.0,
     },
-    ghost: ghostExcept("de"),
+    lacuna: lacunaExcept("de"),
     source: "curated",
   },
   {
@@ -1239,7 +1270,7 @@ export const concepts: Concept[] = [
       ru: "Глубокий национальный позор, пятнающий коллективную честь и требующий возмещения",
       ja: "集団的名誉を汚し是正を求める深い国家的恥辱",
     },
-    cluster: "ghost-de",
+    cluster: "lacuna-de",
     position: {
       en: [22, 18], de: [18, 28], fr: [20, 16], es: [18, 14],
       zh: [20, 22], ko: [18, 20], ar: [22, 24], pt: [19, 15],
@@ -1250,7 +1281,7 @@ export const concepts: Concept[] = [
       zh: 0.0, ko: 0.0, ar: 0.0, pt: 0.0,
       ru: 0.0, ja: 0.0,
     },
-    ghost: ghostExcept("de"),
+    lacuna: lacunaExcept("de"),
     source: "curated",
   },
   {
@@ -1271,7 +1302,7 @@ export const concepts: Concept[] = [
       ru: "Навязанный мир, продиктованный победителями без переговоров",
       ja: "勝利国が交渉なしに押し付けた講和",
     },
-    cluster: "ghost-de",
+    cluster: "lacuna-de",
     position: {
       en: [18, 12], de: [20, 32], fr: [16, 10], es: [14, 10],
       zh: [16, 18], ko: [14, 16], ar: [18, 20], pt: [15, 11],
@@ -1282,7 +1313,7 @@ export const concepts: Concept[] = [
       zh: 0.0, ko: 0.0, ar: 0.0, pt: 0.0,
       ru: 0.0, ja: 0.0,
     },
-    ghost: ghostExcept("de"),
+    lacuna: lacunaExcept("de"),
     source: "curated",
   },
   {
@@ -1303,7 +1334,7 @@ export const concepts: Concept[] = [
       ru: "Возложение единоличной вины за войну на одно государство как правовой основы для репараций",
       ja: "賠償の法的根拠として一国に戦争の単独責任を帰すこと",
     },
-    cluster: "ghost-de",
+    cluster: "lacuna-de",
     position: {
       en: [24, 16], de: [22, 26], fr: [22, 14], es: [20, 12],
       zh: [22, 20], ko: [20, 18], ar: [24, 22], pt: [21, 13],
@@ -1314,7 +1345,7 @@ export const concepts: Concept[] = [
       zh: 0.0, ko: 0.0, ar: 0.0, pt: 0.0,
       ru: 0.0, ja: 0.0,
     },
-    ghost: ghostExcept("de"),
+    lacuna: lacunaExcept("de"),
     source: "curated",
   },
   {
@@ -1335,7 +1366,7 @@ export const concepts: Concept[] = [
       ru: "Коллективный гнев народа против воспринимаемого национального унижения",
       ja: "国家的屈辱に対する人民の集団的怒り",
     },
-    cluster: "ghost-de",
+    cluster: "lacuna-de",
     position: {
       en: [21, 20], de: [16, 34], fr: [19, 18], es: [17, 16],
       zh: [19, 24], ko: [17, 22], ar: [21, 26], pt: [18, 17],
@@ -1346,7 +1377,7 @@ export const concepts: Concept[] = [
       zh: 0.0, ko: 0.0, ar: 0.0, pt: 0.0,
       ru: 0.0, ja: 0.0,
     },
-    ghost: ghostExcept("de"),
+    lacuna: lacunaExcept("de"),
     source: "curated",
   },
   {
@@ -1367,7 +1398,7 @@ export const concepts: Concept[] = [
       ru: "Политическое движение, стремящееся отменить территориальные потери через будущие конфликты",
       ja: "将来の紛争を通じて領土の喪失を覆そうとする政治運動",
     },
-    cluster: "ghost-de",
+    cluster: "lacuna-de",
     position: {
       en: [23, 14], de: [19, 31], fr: [21, 12], es: [19, 11],
       zh: [21, 18], ko: [19, 16], ar: [23, 20], pt: [20, 12],
@@ -1378,12 +1409,12 @@ export const concepts: Concept[] = [
       zh: 0.0, ko: 0.0, ar: 0.0, pt: 0.0,
       ru: 0.0, ja: 0.0,
     },
-    ghost: ghostExcept("de"),
+    lacuna: lacunaExcept("de"),
     source: "curated",
   },
 
   // ══════════════════════════════════════════════════════════════
-  // === GHOST-EN (exist in English/Allied, absent in others) ===
+  // === LACUNA-EN (exist in English/Allied, absent in others) ===
   // ══════════════════════════════════════════════════════════════
   {
     id: "magnanimity",
@@ -1403,7 +1434,7 @@ export const concepts: Concept[] = [
       ru: "Великодушие и благородство духа, проявленные победителем к побеждённому",
       ja: "勝者が敗者に示す寛大さと精神の高貴さ",
     },
-    cluster: "ghost-en",
+    cluster: "lacuna-en",
     position: {
       en: [10, -20], de: [-30, 30], fr: [12, -22], es: [8, -16],
       zh: [-10, 25], ko: [-5, 20], ar: [-15, 28], pt: [9, -18],
@@ -1414,7 +1445,7 @@ export const concepts: Concept[] = [
       zh: 0.0, ko: 0.0, ar: 0.0, pt: 0.4,
       ru: 0.0, ja: 0.0,
     },
-    ghost: ghostExcept("en", "fr", "pt"),
+    lacuna: lacunaExcept("en", "fr", "pt"),
     source: "curated",
   },
   {
@@ -1435,7 +1466,7 @@ export const concepts: Concept[] = [
       ru: "Убеждение, что развитые нации обязаны нести прогресс и порядок другим",
       ja: "先進国が他国に進歩と秩序をもたらす義務があるという信念",
     },
-    cluster: "ghost-en",
+    cluster: "lacuna-en",
     position: {
       en: [8, -18], de: [-28, 28], fr: [10, -20], es: [6, -14],
       zh: [-8, 22], ko: [-3, 18], ar: [-12, 26], pt: [7, -16],
@@ -1446,7 +1477,7 @@ export const concepts: Concept[] = [
       zh: 0.0, ko: 0.45, ar: 0.5, pt: 0.0,
       ru: 0.0, ja: 0.5,
     },
-    ghost: ghostExcept("en", "fr", "ko", "ar", "ja"),
+    lacuna: lacunaExcept("en", "fr", "ko", "ar", "ja"),
     source: "curated",
   },
   {
@@ -1467,7 +1498,7 @@ export const concepts: Concept[] = [
       ru: "Международное полномочие управлять территорией от имени Лиги Наций",
       ja: "国際連盟に代わって領土を統治する国際的権限",
     },
-    cluster: "ghost-en",
+    cluster: "lacuna-en",
     position: {
       en: [11, -22], de: [-32, 32], fr: [13, -24], es: [9, -18],
       zh: [-12, 28], ko: [-7, 22], ar: [-16, 30], pt: [10, -20],
@@ -1478,7 +1509,7 @@ export const concepts: Concept[] = [
       zh: 0.5, ko: 0.0, ar: 0.85, pt: 0.0,
       ru: 0.0, ja: 0.45,
     },
-    ghost: ghostExcept("en", "fr", "zh", "ar", "ja"),
+    lacuna: lacunaExcept("en", "fr", "zh", "ar", "ja"),
     source: "curated",
   },
 ];

@@ -9,6 +9,8 @@ export interface ConceptEmbedding {
   positions: Record<string, [number, number]>; // lang → [x, z]
   weights: Record<string, number>; // lang → 0-1
   cosineToEN: Record<string, number>; // lang → similarity to EN embedding
+  clusters?: Record<string, number>; // lang → cluster label (int, -1=noise)
+  lacuna?: Record<string, boolean>; // lang → is lacuna (programmatic)
 }
 
 export interface EmbeddingData {
@@ -19,6 +21,7 @@ export interface EmbeddingData {
   concepts: Record<string, ConceptEmbedding>; // conceptId → data
   pairwise: Record<string, number[][]>; // lang → 43×43 cosine distance matrix
   conceptOrder: string[]; // row/col index for pairwise matrices
+  clusterColors?: Record<string, string>; // cluster label → hex color
 }
 
 export interface ModelMetrics {
@@ -29,7 +32,7 @@ export interface ModelMetrics {
     averageR: number;
   };
   silhouette: Record<string, number> & { average: number };
-  ghostDetection: {
+  lacunaDetection: {
     perLanguage: Record<string, { rate: number; expected: number; detected: number }>;
     averageRate: number;
   };

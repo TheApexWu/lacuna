@@ -7,7 +7,7 @@ import {
   useState,
   useCallback,
 } from "react";
-import { concepts, CLUSTER_HEX, getLabel } from "../data/versailles";
+import { concepts, CLUSTER_HEX, getLabel, getClusterColor } from "../data/versailles";
 
 // ── Constants ────────────────────────────────────────────────
 const MIN_RADIUS = 4;
@@ -29,7 +29,7 @@ interface Node {
   color: string;
   radius: number;
   weight: number;
-  isGhost: boolean;
+  isLacuna: boolean;
   x: number;
   y: number;
 }
@@ -42,21 +42,27 @@ interface Edge {
 
 interface ConceptNetworkGraphProps {
   language: string;
-  showGhosts: boolean;
+  showLacunae: boolean;
   selectedConcept: string | null;
   onConceptClick: (id: string) => void;
   onClose: () => void;
   positionOverride?: Record<string, Record<string, [number, number]>>;
+  clusterOverride?: Record<string, Record<string, number | string>>;
+  lacunaOverride?: Record<string, Record<string, boolean>>;
+  clusterColors?: Record<string, string>;
 }
 
 // ── Component ────────────────────────────────────────────────
 export default function ConceptNetworkGraph({
   language,
-  showGhosts,
+  showLacunae,
   selectedConcept,
   onConceptClick,
   onClose,
   positionOverride,
+  clusterOverride,
+  lacunaOverride,
+  clusterColors,
 }: ConceptNetworkGraphProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
@@ -92,10 +98,10 @@ export default function ConceptNetworkGraph({
     return concepts.filter((c) => {
       const pos = positionOverride?.[c.id]?.[language] ?? c.position[language];
       if (!pos) return false;
-      const isGhost = c.ghost[language] ?? false;
-      return !isGhost || showGhosts;
+      const isLacuna = lacunaOverride?.[c.id]?.[language] ?? c.lacuna[language] ?? false;
+      return !isLacuna || showLacunae;
     });
-  }, [language, showGhosts, positionOverride]);
+  }, [language, showLacunae, positionOverride, lacunaOverride]);
 
   // Compute node positions scaled to panel
   const computePositions = useCallback(
@@ -103,8 +109,8 @@ export default function ConceptNetworkGraph({
       const visible = concepts.filter((c) => {
         const pos = positionOverride?.[c.id]?.[lang] ?? c.position[lang];
         if (!pos) return false;
-        const isGhost = c.ghost[lang] ?? false;
-        return !isGhost || showGhosts;
+        const isLacuna = lacunaOverride?.[c.id]?.[lang] ?? c.lacuna[lang] ?? false;
+        return !isLacuna || showLacunae;
       });
 
       if (visible.length === 0) return {};
@@ -136,7 +142,7 @@ export default function ConceptNetworkGraph({
       }
       return positions;
     },
-    [showGhosts, positionOverride]
+    [showLacunae, positionOverride, lacunaOverride]
   );
 
   // Build node data for rendering (used for initial render and structure)
@@ -145,14 +151,15 @@ export default function ConceptNetworkGraph({
     return visibleConcepts.map((c) => {
       const w = c.weight[language] ?? 0;
       const pos = positions[c.id] || { x: dimensions.width / 2, y: dimensions.height / 2 };
+      const clusterLabel = clusterOverride?.[c.id]?.[language] ?? c.cluster;
       return {
         id: c.id,
         label: getLabel(c, language),
-        cluster: c.cluster,
-        color: CLUSTER_HEX[c.cluster] || "#f59e0b",
+        cluster: String(clusterLabel),
+        color: getClusterColor(clusterLabel, clusterColors),
         radius: MIN_RADIUS + w * (MAX_RADIUS - MIN_RADIUS),
         weight: w,
-        isGhost: c.ghost[language] ?? false,
+        isLacuna: lacunaOverride?.[c.id]?.[language] ?? c.lacuna[language] ?? false,
         x: pos.x,
         y: pos.y,
       };
@@ -428,7 +435,7 @@ export default function ConceptNetworkGraph({
                 )}
 
                 {/* Main node */}
-                {node.isGhost ? (
+                {node.isLacuna ? (
                   <circle
                     r={node.radius}
                     fill={node.color}

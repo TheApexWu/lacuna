@@ -39,7 +39,7 @@
         "ja": "戦争による損害の賠償として敗戦国に課された金銭的支払い"
       },
       "cluster": "core",
-      "ghost": {
+      "lacuna": {
         "en": false,
         "de": false,
         "fr": false,
@@ -80,7 +80,7 @@
         "ja": "講和条約に先立ち戦闘を停止する公式の協定"
       },
       "cluster": "core",
-      "ghost": {
+      "lacuna": {
         "en": false,
         "de": false,
         "fr": false,
@@ -121,7 +121,7 @@
         "ja": "国際社会における国家の名声と道徳的立場"
       },
       "cluster": "core",
-      "ghost": {
+      "lacuna": {
         "en": false,
         "de": false,
         "fr": false,
@@ -162,7 +162,7 @@
         "ja": "平和の条件と将来の関係を定める国家間の正式な協定"
       },
       "cluster": "core",
-      "ghost": {
+      "lacuna": {
         "en": false,
         "de": false,
         "fr": false,
@@ -203,7 +203,7 @@
         "ja": "害を与えた者は責任を負い償いをすべきという原則"
       },
       "cluster": "justice",
-      "ghost": {
+      "lacuna": {
         "en": false,
         "de": false,
         "fr": false,
@@ -244,7 +244,7 @@
         "ja": "自らの行動とその結果に対する責任を受け入れる義務"
       },
       "cluster": "justice",
-      "ghost": {
+      "lacuna": {
         "en": false,
         "de": false,
         "fr": false,
@@ -285,7 +285,7 @@
         "ja": "有害な行為に対する報いとして課される罰則"
       },
       "cluster": "justice",
-      "ghost": {
+      "lacuna": {
         "en": false,
         "de": false,
         "fr": false,
@@ -326,7 +326,7 @@
         "ja": "金銭的であれ道義的であれ、負っているものを返済する義務"
       },
       "cluster": "justice",
-      "ghost": {
+      "lacuna": {
         "en": false,
         "de": false,
         "fr": false,
@@ -367,7 +367,7 @@
         "ja": "果たさなければならない拘束力のある義務"
       },
       "cluster": "justice",
-      "ghost": {
+      "lacuna": {
         "en": false,
         "de": false,
         "fr": false,
@@ -408,7 +408,7 @@
         "ja": "他者に対する過ちや罪を犯した状態"
       },
       "cluster": "justice",
-      "ghost": {
+      "lacuna": {
         "en": false,
         "de": false,
         "fr": false,
@@ -449,7 +449,7 @@
         "ja": "正当な所有者に返還するか損失を補償する行為"
       },
       "cluster": "justice",
-      "ghost": {
+      "lacuna": {
         "en": false,
         "de": false,
         "fr": false,
@@ -490,7 +490,7 @@
         "ja": "国際的要求の遵守を強制するために国家に課される懲罰措置"
       },
       "cluster": "justice",
-      "ghost": {
+      "lacuna": {
         "en": false,
         "de": false,
         "fr": false,
@@ -531,7 +531,7 @@
         "ja": "講和条件の一部として敗戦国が明け渡した領土や権利"
       },
       "cluster": "justice",
-      "ghost": {
+      "lacuna": {
         "en": false,
         "de": false,
         "fr": false,
@@ -572,7 +572,7 @@
         "ja": "国家の軍事能力の強制的な削減または排除"
       },
       "cluster": "justice",
-      "ghost": {
+      "lacuna": {
         "en": false,
         "de": false,
         "fr": false,
@@ -613,7 +613,7 @@
         "ja": "敵を打ち破って軍事紛争を成功裏に終結させること"
       },
       "cluster": "victory",
-      "ghost": {
+      "lacuna": {
         "en": false,
         "de": false,
         "fr": false,
@@ -654,7 +654,7 @@
         "ja": "武力紛争の停止と国家間の安定した関係の構築"
       },
       "cluster": "victory",
-      "ghost": {
+      "lacuna": {
         "en": false,
         "de": false,
         "fr": false,
@@ -695,7 +695,7 @@
         "ja": "将来の紛争を防ぐ安定した権力と統治の仕組み"
       },
       "cluster": "victory",
-      "ghost": {
+      "lacuna": {
         "en": false,
         "de": false,
         "fr": false,
@@ -736,7 +736,7 @@
         "ja": "特に敵を打ち負かすことにおける偉大な達成や成功"
       },
       "cluster": "victory",
-      "ghost": {
+      "lacuna": {
         "en": false,
         "de": false,
         "fr": false,
@@ -777,7 +777,7 @@
         "ja": "外部の干渉なく自国を統治する国家の最高権威"
       },
       "cluster": "victory",
-      "ghost": {
+      "lacuna": {
         "en": false,
         "de": false,
         "fr": false,
@@ -818,7 +818,7 @@
         "ja": "人民が自らの政治的地位と政府の形態を決定する権利"
       },
       "cluster": "victory",
-      "ghost": {
+      "lacuna": {
         "en": false,
         "de": false,
         "fr": false,
@@ -859,7 +859,7 @@
         "ja": "他国に認められた権力を行使する正当な権威"
       },
       "cluster": "victory",
-      "ghost": {
+      "lacuna": {
         "en": false,
         "de": false,
         "fr": false,
@@ -900,7 +900,7 @@
         "ja": "紛争を解決し協定を結ぶための国家間交渉の遂行"
       },
       "cluster": "victory",
-      "ghost": {
+      "lacuna": {
         "en": false,
         "de": false,
         "fr": false,
@@ -941,7 +941,7 @@
         "ja": "戦後の国家のインフラと制度の再建過程"
       },
       "cluster": "victory",
-      "ghost": {
+      "lacuna": {
         "en": false,
         "de": false,
         "fr": false,
@@ -982,7 +982,7 @@
         "ja": "人に深い恥辱や屈辱を感じさせる行為"
       },
       "cluster": "humiliation",
-      "ghost": {
+      "lacuna": {
         "en": false,
         "de": false,
         "fr": false,
@@ -1023,7 +1023,7 @@
         "ja": "同盟であるはずの者による信頼や忠誠の裏切り"
       },
       "cluster": "humiliation",
-      "ghost": {
+      "lacuna": {
         "en": false,
         "de": false,
         "fr": false,
@@ -1064,7 +1064,7 @@
         "ja": "公正と平等の原則に反する不当な行為"
       },
       "cluster": "humiliation",
-      "ghost": {
+      "lacuna": {
         "en": false,
         "de": false,
         "fr": false,
@@ -1105,7 +1105,7 @@
         "ja": "害を与えた者への報復、同等の苦痛を与えようとすること"
       },
       "cluster": "humiliation",
-      "ghost": {
+      "lacuna": {
         "en": false,
         "de": false,
         "fr": false,
@@ -1146,7 +1146,7 @@
         "ja": "不当な扱いに起因する根深い怒りと苦々しさ"
       },
       "cluster": "humiliation",
-      "ghost": {
+      "lacuna": {
         "en": false,
         "de": false,
         "fr": false,
@@ -1187,7 +1187,7 @@
         "ja": "他の勢力による民族や国家の強制的な支配と統制"
       },
       "cluster": "humiliation",
-      "ghost": {
+      "lacuna": {
         "en": false,
         "de": false,
         "fr": false,
@@ -1228,7 +1228,7 @@
         "ja": "外国軍による敗戦国の領土の軍事的支配"
       },
       "cluster": "humiliation",
-      "ghost": {
+      "lacuna": {
         "en": false,
         "de": false,
         "fr": false,
@@ -1269,7 +1269,7 @@
         "ja": "政治的目的の推進や敵対者への打撃のための組織的な情報発信"
       },
       "cluster": "humiliation",
-      "ghost": {
+      "lacuna": {
         "en": false,
         "de": false,
         "fr": false,
@@ -1310,7 +1310,7 @@
         "ja": "自国への強い帰属意識、しばしばその優越性への信念を含む"
       },
       "cluster": "humiliation",
-      "ghost": {
+      "lacuna": {
         "en": false,
         "de": false,
         "fr": false,
@@ -1351,7 +1351,7 @@
         "ja": "戦争の武器や強制手段としての食料供給の意図的な剥奪"
       },
       "cluster": "humiliation",
-      "ghost": {
+      "lacuna": {
         "en": false,
         "de": false,
         "fr": false,
@@ -1392,7 +1392,7 @@
         "ja": "物資の到着を海軍で阻止し、経済的・人道的危機を引き起こすこと"
       },
       "cluster": "humiliation",
-      "ghost": {
+      "lacuna": {
         "en": false,
         "de": false,
         "fr": false,
@@ -1432,8 +1432,8 @@
         "ru": "Конспирологическая теория о предательстве германской армии гражданскими политиками",
         "ja": "ドイツ軍が不必要に降伏した文民政治家に裏切られたという陰謀論"
       },
-      "cluster": "ghost-de",
-      "ghost": {
+      "cluster": "lacuna-de",
+      "lacuna": {
         "en": true,
         "de": false,
         "fr": true,
@@ -1473,8 +1473,8 @@
         "ru": "Глубокий национальный позор, пятнающий коллективную честь и требующий возмещения",
         "ja": "集団的名誉を汚し是正を求める深い国家的恥辱"
       },
-      "cluster": "ghost-de",
-      "ghost": {
+      "cluster": "lacuna-de",
+      "lacuna": {
         "en": true,
         "de": false,
         "fr": true,
@@ -1514,8 +1514,8 @@
         "ru": "Навязанный мир, продиктованный победителями без переговоров",
         "ja": "勝利国が交渉なしに押し付けた講和"
       },
-      "cluster": "ghost-de",
-      "ghost": {
+      "cluster": "lacuna-de",
+      "lacuna": {
         "en": true,
         "de": false,
         "fr": true,
@@ -1555,8 +1555,8 @@
         "ru": "Возложение единоличной вины за войну на одно государство как правовой основы для репараций",
         "ja": "賠償の法的根拠として一国に戦争の単独責任を帰すこと"
       },
-      "cluster": "ghost-de",
-      "ghost": {
+      "cluster": "lacuna-de",
+      "lacuna": {
         "en": true,
         "de": false,
         "fr": true,
@@ -1596,8 +1596,8 @@
         "ru": "Коллективный гнев народа против воспринимаемого национального унижения",
         "ja": "国家的屈辱に対する人民の集団的怒り"
       },
-      "cluster": "ghost-de",
-      "ghost": {
+      "cluster": "lacuna-de",
+      "lacuna": {
         "en": true,
         "de": false,
         "fr": true,
@@ -1637,8 +1637,8 @@
         "ru": "Политическое движение, стремящееся отменить территориальные потери через будущие конфликты",
         "ja": "将来の紛争を通じて領土の喪失を覆そうとする政治運動"
       },
-      "cluster": "ghost-de",
-      "ghost": {
+      "cluster": "lacuna-de",
+      "lacuna": {
         "en": true,
         "de": false,
         "fr": true,
@@ -1678,8 +1678,8 @@
         "ru": "Великодушие и благородство духа, проявленные победителем к побеждённому",
         "ja": "勝者が敗者に示す寛大さと精神の高貴さ"
       },
-      "cluster": "ghost-en",
-      "ghost": {
+      "cluster": "lacuna-en",
+      "lacuna": {
         "en": false,
         "de": true,
         "fr": false,
@@ -1719,8 +1719,8 @@
         "ru": "Убеждение, что развитые нации обязаны нести прогресс и порядок другим",
         "ja": "先進国が他国に進歩と秩序をもたらす義務があるという信念"
       },
-      "cluster": "ghost-en",
-      "ghost": {
+      "cluster": "lacuna-en",
+      "lacuna": {
         "en": false,
         "de": true,
         "fr": false,
@@ -1760,8 +1760,8 @@
         "ru": "Международное полномочие управлять территорией от имени Лиги Наций",
         "ja": "国際連盟に代わって領土を統治する国際的権限"
       },
-      "cluster": "ghost-en",
-      "ghost": {
+      "cluster": "lacuna-en",
+      "lacuna": {
         "en": false,
         "de": true,
         "fr": false,

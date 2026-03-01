@@ -70,6 +70,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "core",
+        "de": "core",
+        "fr": "core",
+        "es": "core",
+        "zh": "core",
+        "ko": "core",
+        "ar": "core",
+        "pt": "core",
+        "ru": "core",
+        "ja": "core"
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "armistice": {
@@ -138,6 +162,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "core",
+        "de": "core",
+        "fr": "core",
+        "es": "core",
+        "zh": "core",
+        "ko": "core",
+        "ar": "core",
+        "pt": "core",
+        "ru": "core",
+        "ja": "core"
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "honor": {
@@ -206,6 +254,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "core",
+        "de": "core",
+        "fr": "core",
+        "es": "core",
+        "zh": "core",
+        "ko": "core",
+        "ar": "core",
+        "pt": "core",
+        "ru": "core",
+        "ja": "core"
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "treaty": {
@@ -274,6 +346,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "core",
+        "de": "core",
+        "fr": "core",
+        "es": "core",
+        "zh": "core",
+        "ko": "core",
+        "ar": "core",
+        "pt": "core",
+        "ru": "core",
+        "ja": "core"
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "justice": {
@@ -342,6 +438,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "justice",
+        "de": "justice",
+        "fr": "justice",
+        "es": "justice",
+        "zh": "justice",
+        "ko": "justice",
+        "ar": "justice",
+        "pt": "justice",
+        "ru": "justice",
+        "ja": "justice"
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "accountability": {
@@ -410,6 +530,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "justice",
+        "de": "justice",
+        "fr": "justice",
+        "es": "justice",
+        "zh": "justice",
+        "ko": "justice",
+        "ar": "justice",
+        "pt": "justice",
+        "ru": "justice",
+        "ja": "justice"
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "punishment": {
@@ -478,6 +622,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "justice",
+        "de": "justice",
+        "fr": "justice",
+        "es": "justice",
+        "zh": "justice",
+        "ko": "justice",
+        "ar": "justice",
+        "pt": "justice",
+        "ru": "justice",
+        "ja": "justice"
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "debt": {
@@ -546,6 +714,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "justice",
+        "de": "justice",
+        "fr": "justice",
+        "es": "justice",
+        "zh": "justice",
+        "ko": "justice",
+        "ar": "justice",
+        "pt": "justice",
+        "ru": "justice",
+        "ja": "justice"
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "obligation": {
@@ -614,6 +806,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "justice",
+        "de": "justice",
+        "fr": "justice",
+        "es": "justice",
+        "zh": "justice",
+        "ko": "justice",
+        "ar": "justice",
+        "pt": "justice",
+        "ru": "justice",
+        "ja": "justice"
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "guilt": {
@@ -682,6 +898,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "justice",
+        "de": "justice",
+        "fr": "justice",
+        "es": "justice",
+        "zh": "justice",
+        "ko": "justice",
+        "ar": "justice",
+        "pt": "justice",
+        "ru": "justice",
+        "ja": "justice"
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "restitution": {
@@ -750,6 +990,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "justice",
+        "de": "justice",
+        "fr": "justice",
+        "es": "justice",
+        "zh": "justice",
+        "ko": "justice",
+        "ar": "justice",
+        "pt": "justice",
+        "ru": "justice",
+        "ja": "justice"
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "sanctions": {
@@ -818,6 +1082,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "justice",
+        "de": "justice",
+        "fr": "justice",
+        "es": "justice",
+        "zh": "justice",
+        "ko": "justice",
+        "ar": "justice",
+        "pt": "justice",
+        "ru": "justice",
+        "ja": "justice"
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "concession": {
@@ -886,6 +1174,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "justice",
+        "de": "justice",
+        "fr": "justice",
+        "es": "justice",
+        "zh": "justice",
+        "ko": "justice",
+        "ar": "justice",
+        "pt": "justice",
+        "ru": "justice",
+        "ja": "justice"
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "demilitarization": {
@@ -954,6 +1266,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "justice",
+        "de": "justice",
+        "fr": "justice",
+        "es": "justice",
+        "zh": "justice",
+        "ko": "justice",
+        "ar": "justice",
+        "pt": "justice",
+        "ru": "justice",
+        "ja": "justice"
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "victory": {
@@ -1022,6 +1358,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "victory",
+        "de": "victory",
+        "fr": "victory",
+        "es": "victory",
+        "zh": "victory",
+        "ko": "victory",
+        "ar": "victory",
+        "pt": "victory",
+        "ru": "victory",
+        "ja": "victory"
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "peace": {
@@ -1090,6 +1450,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "victory",
+        "de": "victory",
+        "fr": "victory",
+        "es": "victory",
+        "zh": "victory",
+        "ko": "victory",
+        "ar": "victory",
+        "pt": "victory",
+        "ru": "victory",
+        "ja": "victory"
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "order": {
@@ -1158,6 +1542,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "victory",
+        "de": "victory",
+        "fr": "victory",
+        "es": "victory",
+        "zh": "victory",
+        "ko": "victory",
+        "ar": "victory",
+        "pt": "victory",
+        "ru": "victory",
+        "ja": "victory"
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "triumph": {
@@ -1226,6 +1634,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "victory",
+        "de": "victory",
+        "fr": "victory",
+        "es": "victory",
+        "zh": "victory",
+        "ko": "victory",
+        "ar": "victory",
+        "pt": "victory",
+        "ru": "victory",
+        "ja": "victory"
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "sovereignty": {
@@ -1294,6 +1726,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "victory",
+        "de": "victory",
+        "fr": "victory",
+        "es": "victory",
+        "zh": "victory",
+        "ko": "victory",
+        "ar": "victory",
+        "pt": "victory",
+        "ru": "victory",
+        "ja": "victory"
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "selfdetermination": {
@@ -1362,6 +1818,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "victory",
+        "de": "victory",
+        "fr": "victory",
+        "es": "victory",
+        "zh": "victory",
+        "ko": "victory",
+        "ar": "victory",
+        "pt": "victory",
+        "ru": "victory",
+        "ja": "victory"
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "legitimacy": {
@@ -1430,6 +1910,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "victory",
+        "de": "victory",
+        "fr": "victory",
+        "es": "victory",
+        "zh": "victory",
+        "ko": "victory",
+        "ar": "victory",
+        "pt": "victory",
+        "ru": "victory",
+        "ja": "victory"
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "diplomacy": {
@@ -1498,6 +2002,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "victory",
+        "de": "victory",
+        "fr": "victory",
+        "es": "victory",
+        "zh": "victory",
+        "ko": "victory",
+        "ar": "victory",
+        "pt": "victory",
+        "ru": "victory",
+        "ja": "victory"
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "reconstruction": {
@@ -1566,6 +2094,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "victory",
+        "de": "victory",
+        "fr": "victory",
+        "es": "victory",
+        "zh": "victory",
+        "ko": "victory",
+        "ar": "victory",
+        "pt": "victory",
+        "ru": "victory",
+        "ja": "victory"
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "humiliation": {
@@ -1634,6 +2186,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "humiliation",
+        "de": "humiliation",
+        "fr": "humiliation",
+        "es": "humiliation",
+        "zh": "humiliation",
+        "ko": "humiliation",
+        "ar": "humiliation",
+        "pt": "humiliation",
+        "ru": "humiliation",
+        "ja": "humiliation"
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "betrayal": {
@@ -1702,6 +2278,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "humiliation",
+        "de": "humiliation",
+        "fr": "humiliation",
+        "es": "humiliation",
+        "zh": "humiliation",
+        "ko": "humiliation",
+        "ar": "humiliation",
+        "pt": "humiliation",
+        "ru": "humiliation",
+        "ja": "humiliation"
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "injustice": {
@@ -1770,6 +2370,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "humiliation",
+        "de": "humiliation",
+        "fr": "humiliation",
+        "es": "humiliation",
+        "zh": "humiliation",
+        "ko": "humiliation",
+        "ar": "humiliation",
+        "pt": "humiliation",
+        "ru": "humiliation",
+        "ja": "humiliation"
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "revenge": {
@@ -1838,6 +2462,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "humiliation",
+        "de": "humiliation",
+        "fr": "humiliation",
+        "es": "humiliation",
+        "zh": "humiliation",
+        "ko": "humiliation",
+        "ar": "humiliation",
+        "pt": "humiliation",
+        "ru": "humiliation",
+        "ja": "humiliation"
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "resentment": {
@@ -1906,6 +2554,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "humiliation",
+        "de": "humiliation",
+        "fr": "humiliation",
+        "es": "humiliation",
+        "zh": "humiliation",
+        "ko": "humiliation",
+        "ar": "humiliation",
+        "pt": "humiliation",
+        "ru": "humiliation",
+        "ja": "humiliation"
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "subjugation": {
@@ -1974,6 +2646,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "humiliation",
+        "de": "humiliation",
+        "fr": "humiliation",
+        "es": "humiliation",
+        "zh": "humiliation",
+        "ko": "humiliation",
+        "ar": "humiliation",
+        "pt": "humiliation",
+        "ru": "humiliation",
+        "ja": "humiliation"
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "occupation": {
@@ -2042,6 +2738,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "humiliation",
+        "de": "humiliation",
+        "fr": "humiliation",
+        "es": "humiliation",
+        "zh": "humiliation",
+        "ko": "humiliation",
+        "ar": "humiliation",
+        "pt": "humiliation",
+        "ru": "humiliation",
+        "ja": "humiliation"
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "propaganda": {
@@ -2110,6 +2830,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "humiliation",
+        "de": "humiliation",
+        "fr": "humiliation",
+        "es": "humiliation",
+        "zh": "humiliation",
+        "ko": "humiliation",
+        "ar": "humiliation",
+        "pt": "humiliation",
+        "ru": "humiliation",
+        "ja": "humiliation"
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "nationalism": {
@@ -2178,6 +2922,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "humiliation",
+        "de": "humiliation",
+        "fr": "humiliation",
+        "es": "humiliation",
+        "zh": "humiliation",
+        "ko": "humiliation",
+        "ar": "humiliation",
+        "pt": "humiliation",
+        "ru": "humiliation",
+        "ja": "humiliation"
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "starvation": {
@@ -2246,6 +3014,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "humiliation",
+        "de": "humiliation",
+        "fr": "humiliation",
+        "es": "humiliation",
+        "zh": "humiliation",
+        "ko": "humiliation",
+        "ar": "humiliation",
+        "pt": "humiliation",
+        "ru": "humiliation",
+        "ja": "humiliation"
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "blockade": {
@@ -2314,6 +3106,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "humiliation",
+        "de": "humiliation",
+        "fr": "humiliation",
+        "es": "humiliation",
+        "zh": "humiliation",
+        "ko": "humiliation",
+        "ar": "humiliation",
+        "pt": "humiliation",
+        "ru": "humiliation",
+        "ja": "humiliation"
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "dolchstoss": {
@@ -2382,6 +3198,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "lacuna-de",
+        "de": "lacuna-de",
+        "fr": "lacuna-de",
+        "es": "lacuna-de",
+        "zh": "lacuna-de",
+        "ko": "lacuna-de",
+        "ar": "lacuna-de",
+        "pt": "lacuna-de",
+        "ru": "lacuna-de",
+        "ja": "lacuna-de"
+      },
+      "lacuna": {
+        "en": true,
+        "de": false,
+        "fr": true,
+        "es": true,
+        "zh": true,
+        "ko": true,
+        "ar": true,
+        "pt": true,
+        "ru": true,
+        "ja": true
       }
     },
     "schmach": {
@@ -2450,6 +3290,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "lacuna-de",
+        "de": "lacuna-de",
+        "fr": "lacuna-de",
+        "es": "lacuna-de",
+        "zh": "lacuna-de",
+        "ko": "lacuna-de",
+        "ar": "lacuna-de",
+        "pt": "lacuna-de",
+        "ru": "lacuna-de",
+        "ja": "lacuna-de"
+      },
+      "lacuna": {
+        "en": true,
+        "de": false,
+        "fr": true,
+        "es": true,
+        "zh": true,
+        "ko": true,
+        "ar": true,
+        "pt": true,
+        "ru": true,
+        "ja": true
       }
     },
     "diktat": {
@@ -2518,6 +3382,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "lacuna-de",
+        "de": "lacuna-de",
+        "fr": "lacuna-de",
+        "es": "lacuna-de",
+        "zh": "lacuna-de",
+        "ko": "lacuna-de",
+        "ar": "lacuna-de",
+        "pt": "lacuna-de",
+        "ru": "lacuna-de",
+        "ja": "lacuna-de"
+      },
+      "lacuna": {
+        "en": true,
+        "de": false,
+        "fr": true,
+        "es": true,
+        "zh": true,
+        "ko": true,
+        "ar": true,
+        "pt": true,
+        "ru": true,
+        "ja": true
       }
     },
     "kriegsschuld": {
@@ -2586,6 +3474,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "lacuna-de",
+        "de": "lacuna-de",
+        "fr": "lacuna-de",
+        "es": "lacuna-de",
+        "zh": "lacuna-de",
+        "ko": "lacuna-de",
+        "ar": "lacuna-de",
+        "pt": "lacuna-de",
+        "ru": "lacuna-de",
+        "ja": "lacuna-de"
+      },
+      "lacuna": {
+        "en": true,
+        "de": false,
+        "fr": true,
+        "es": true,
+        "zh": true,
+        "ko": true,
+        "ar": true,
+        "pt": true,
+        "ru": true,
+        "ja": true
       }
     },
     "volkszorn": {
@@ -2654,6 +3566,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "lacuna-de",
+        "de": "lacuna-de",
+        "fr": "lacuna-de",
+        "es": "lacuna-de",
+        "zh": "lacuna-de",
+        "ko": "lacuna-de",
+        "ar": "lacuna-de",
+        "pt": "lacuna-de",
+        "ru": "lacuna-de",
+        "ja": "lacuna-de"
+      },
+      "lacuna": {
+        "en": true,
+        "de": false,
+        "fr": true,
+        "es": true,
+        "zh": true,
+        "ko": true,
+        "ar": true,
+        "pt": true,
+        "ru": true,
+        "ja": true
       }
     },
     "revanchism": {
@@ -2722,6 +3658,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "lacuna-de",
+        "de": "lacuna-de",
+        "fr": "lacuna-de",
+        "es": "lacuna-de",
+        "zh": "lacuna-de",
+        "ko": "lacuna-de",
+        "ar": "lacuna-de",
+        "pt": "lacuna-de",
+        "ru": "lacuna-de",
+        "ja": "lacuna-de"
+      },
+      "lacuna": {
+        "en": true,
+        "de": false,
+        "fr": true,
+        "es": true,
+        "zh": true,
+        "ko": true,
+        "ar": true,
+        "pt": true,
+        "ru": true,
+        "ja": true
       }
     },
     "magnanimity": {
@@ -2790,6 +3750,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "lacuna-en",
+        "de": "lacuna-en",
+        "fr": "lacuna-en",
+        "es": "lacuna-en",
+        "zh": "lacuna-en",
+        "ko": "lacuna-en",
+        "ar": "lacuna-en",
+        "pt": "lacuna-en",
+        "ru": "lacuna-en",
+        "ja": "lacuna-en"
+      },
+      "lacuna": {
+        "en": false,
+        "de": true,
+        "fr": false,
+        "es": true,
+        "zh": true,
+        "ko": true,
+        "ar": true,
+        "pt": false,
+        "ru": true,
+        "ja": true
       }
     },
     "civilizing": {
@@ -2858,6 +3842,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "lacuna-en",
+        "de": "lacuna-en",
+        "fr": "lacuna-en",
+        "es": "lacuna-en",
+        "zh": "lacuna-en",
+        "ko": "lacuna-en",
+        "ar": "lacuna-en",
+        "pt": "lacuna-en",
+        "ru": "lacuna-en",
+        "ja": "lacuna-en"
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "mandate": {
@@ -2926,6 +3934,30 @@
         "pt": 0.85,
         "ru": 0.85,
         "ja": 0.85
+      },
+      "clusters": {
+        "en": "lacuna-en",
+        "de": "lacuna-en",
+        "fr": "lacuna-en",
+        "es": "lacuna-en",
+        "zh": "lacuna-en",
+        "ko": "lacuna-en",
+        "ar": "lacuna-en",
+        "pt": "lacuna-en",
+        "ru": "lacuna-en",
+        "ja": "lacuna-en"
+      },
+      "lacuna": {
+        "en": false,
+        "de": true,
+        "fr": false,
+        "es": true,
+        "zh": false,
+        "ko": true,
+        "ar": false,
+        "pt": true,
+        "ru": true,
+        "ja": true
       }
     }
   },
@@ -22345,5 +23377,13 @@
     "magnanimity",
     "civilizing",
     "mandate"
-  ]
+  ],
+  "clusterColors": {
+    "core": "#f59e0b",
+    "justice": "#3b82f6",
+    "victory": "#22c55e",
+    "humiliation": "#ef4444",
+    "lacuna-de": "#78716c",
+    "lacuna-en": "#78716c"
+  }
 }

@@ -50,7 +50,7 @@ export async function GET(
     source: concept.source,
     weight: concept.weight,
     position: concept.position,
-    ghost: concept.ghost,
+    lacuna: concept.lacuna,
     hero: concept.hero || false,
     definition: concept.definitions?.[lang] || concept.definitions?.["en"] || null,
     neighbors,

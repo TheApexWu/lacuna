@@ -70,7 +70,7 @@
         "ru": 0.223,
         "ja": 0.271
       },
-      "ghostDetection": {
+      "lacunaDetection": {
         "perLanguage": {
           "en": {
             "rate": 1,
@@ -196,7 +196,7 @@
         "ru": 0.132,
         "ja": 0.198
       },
-      "ghostDetection": {
+      "lacunaDetection": {
         "perLanguage": {
           "en": {
             "rate": 1,
@@ -322,7 +322,7 @@
         "ru": 0.09,
         "ja": 0.11
       },
-      "ghostDetection": {
+      "lacunaDetection": {
         "perLanguage": {
           "en": {
             "rate": 1,
@@ -448,7 +448,7 @@
         "ru": 0.14,
         "ja": 0.139
       },
-      "ghostDetection": {
+      "lacunaDetection": {
         "perLanguage": {
           "en": {
             "rate": 1,
@@ -574,7 +574,7 @@
         "ru": 0.253,
         "ja": 0.194
       },
-      "ghostDetection": {
+      "lacunaDetection": {
         "perLanguage": {
           "en": {
             "rate": 1,
@@ -700,7 +700,7 @@
         "ru": 0.034,
         "ja": 0.132
       },
-      "ghostDetection": {
+      "lacunaDetection": {
         "perLanguage": {
           "en": {
             "rate": 1,
@@ -826,7 +826,7 @@
         "ru": 0.083,
         "ja": 0.073
       },
-      "ghostDetection": {
+      "lacunaDetection": {
         "perLanguage": {
           "en": {
             "rate": 1,

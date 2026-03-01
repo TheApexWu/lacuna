@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import ConceptCard from "../components/ConceptCard";
 import ButterflyChart from "../components/ButterflyChart";
 import ConceptNetworkGraph from "../components/ConceptNetworkGraph";
@@ -19,18 +19,18 @@ const TopologyTerrain = dynamic(
   { ssr: false }
 );
 
-const LEGEND = [
+const CURATED_LEGEND = [
   { cluster: "core", label: "Core" },
   { cluster: "justice", label: "Justice" },
   { cluster: "victory", label: "Victory" },
   { cluster: "humiliation", label: "Humiliation" },
-  { cluster: "ghost-de", label: "Ghost (DE)" },
-  { cluster: "ghost-en", label: "Ghost (EN)" },
+  { cluster: "lacuna-de", label: "Lacuna (DE)" },
+  { cluster: "lacuna-en", label: "Lacuna (EN)" },
 ];
 
 export default function Home() {
   const [language, setLanguage] = useState("en");
-  const [showGhosts, setShowGhosts] = useState(false);
+  const [showLacunae, setShowLacunae] = useState(false);
   const [selectedConcept, setSelectedConcept] = useState<string | null>(null);
   const [subtitle, setSubtitle] = useState<string | null>(null);
   const [hasFlipped, setHasFlipped] = useState(false);
@@ -43,6 +43,25 @@ export default function Home() {
 
   const modelData = useModelData(activeModel);
   const modelInfo = getModel(activeModel);
+
+  const isEmbedding = activeModel !== "curated";
+
+  const legendItems = useMemo(() => {
+    if (!isEmbedding) {
+      return CURATED_LEGEND.map((item) => ({
+        key: item.cluster,
+        label: item.label,
+        color: CLUSTER_HEX[item.cluster] || "#78716c",
+      }));
+    }
+    return Object.entries(modelData.clusterColors)
+      .sort(([a], [b]) => Number(a) - Number(b))
+      .map(([label, color]) => ({
+        key: label,
+        label: Number(label) < 0 ? "Noise" : `Cluster ${label}`,
+        color,
+      }));
+  }, [isEmbedding, modelData.clusterColors]);
 
   const handleLanguageSelect = useCallback(
     (code: string) => {
@@ -129,11 +148,14 @@ export default function Home() {
       {showButterfly && (
         <ButterflyChart
           language={language}
-          showGhosts={showGhosts}
+          showLacunae={showLacunae}
           selectedConcept={selectedConcept}
           onConceptClick={handleConceptClick}
           onClose={() => setShowButterfly(false)}
-          weightOverride={activeModel !== "curated" ? modelData.weights : undefined}
+          weightOverride={isEmbedding ? modelData.weights : undefined}
+          clusterOverride={isEmbedding ? modelData.clusters : undefined}
+          lacunaOverride={isEmbedding ? modelData.lacunae : undefined}
+          clusterColors={modelData.clusterColors}
         />
       )}
 
@@ -141,11 +163,14 @@ export default function Home() {
       {showNetwork && (
         <ConceptNetworkGraph
           language={language}
-          showGhosts={showGhosts}
+          showLacunae={showLacunae}
           selectedConcept={selectedConcept}
           onConceptClick={handleConceptClick}
           onClose={() => setShowNetwork(false)}
-          positionOverride={activeModel !== "curated" ? modelData.positions : undefined}
+          positionOverride={isEmbedding ? modelData.positions : undefined}
+          clusterOverride={isEmbedding ? modelData.clusters : undefined}
+          lacunaOverride={isEmbedding ? modelData.lacunae : undefined}
+          clusterColors={modelData.clusterColors}
         />
       )}
 
@@ -169,21 +194,38 @@ export default function Home() {
       )}
 
       {/* Connection card */}
-      {showConnections && selectedConcept && (
-        <ConnectionCard
-          conceptId={selectedConcept}
-          language={language}
-          onClose={() => setShowConnections(false)}
-        />
+      {showConnections && (
+        selectedConcept ? (
+          <ConnectionCard
+            conceptId={selectedConcept}
+            language={language}
+            onClose={() => setShowConnections(false)}
+          />
+        ) : (
+          <div className="absolute left-4 top-20 bottom-16 w-[420px] z-40 bg-[#141414]/90 backdrop-blur-md border border-[#262626] rounded-lg flex flex-col items-center justify-center font-mono">
+            <p className="text-xs text-[#737373] tracking-wider">
+              Click a concept on the terrain to view connections
+            </p>
+            <button
+              onClick={() => setShowConnections(false)}
+              className="mt-3 text-[10px] text-[#525252] hover:text-[#737373] transition-colors"
+            >
+              close
+            </button>
+          </div>
+        )
       )}
 
       {/* 3D terrain (fullscreen) */}
       <TopologyTerrain
         language={language}
-        showGhosts={showGhosts}
+        showLacunae={showLacunae}
         onConceptClick={handleConceptClick}
-        positionOverride={activeModel !== "curated" ? modelData.positions : undefined}
-        weightOverride={activeModel !== "curated" ? modelData.weights : undefined}
+        positionOverride={isEmbedding ? modelData.positions : undefined}
+        weightOverride={isEmbedding ? modelData.weights : undefined}
+        clusterOverride={isEmbedding ? modelData.clusters : undefined}
+        lacunaOverride={isEmbedding ? modelData.lacunae : undefined}
+        clusterColors={modelData.clusterColors}
       />
 
       {/* Bottom control bar */}
@@ -216,17 +258,17 @@ export default function Home() {
           </div>
 
           <button
-            onClick={() => setShowGhosts((g) => !g)}
+            onClick={() => setShowLacunae((g) => !g)}
             className="px-4 py-2 text-xs tracking-wider rounded border transition-all"
             style={{
-              borderColor: showGhosts ? "#78716c" : "#262626",
-              color: showGhosts ? "#e5e5e5" : "#737373",
-              background: showGhosts
+              borderColor: showLacunae ? "#78716c" : "#262626",
+              color: showLacunae ? "#e5e5e5" : "#737373",
+              background: showLacunae
                 ? "rgba(120, 113, 108, 0.15)"
                 : "rgba(10, 10, 10, 0.8)",
             }}
           >
-            {showGhosts ? "HIDE LACUNAE" : "REVEAL LACUNAE"}
+            {showLacunae ? "HIDE LACUNAE" : "REVEAL LACUNAE"}
           </button>
 
           <button
@@ -309,11 +351,11 @@ export default function Home() {
 
         {/* Right: color legend */}
         <div className="flex items-center gap-4 bg-[#0a0a0a]/80 px-4 py-2 rounded">
-          {LEGEND.map((item) => (
-            <div key={item.cluster} className="flex items-center gap-1.5">
+          {legendItems.map((item) => (
+            <div key={item.key} className="flex items-center gap-1.5">
               <span
                 className="w-2 h-2 rounded-full"
-                style={{ background: CLUSTER_HEX[item.cluster] || "#78716c" }}
+                style={{ background: item.color }}
               />
               <span className="text-[10px] text-[#737373]">{item.label}</span>
             </div>

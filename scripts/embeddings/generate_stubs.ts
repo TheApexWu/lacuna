@@ -46,7 +46,7 @@ interface ConceptStub {
   cluster: string;
   positions: Record<string, [number, number]>;
   weights: Record<string, number>;
-  ghost: Record<string, boolean>;
+  lacuna: Record<string, boolean>;
 }
 
 // We'll read the actual data from the compiled versailles module
@@ -75,8 +75,8 @@ function loadConceptsFromSource(): ConceptStub[] {
     justice: [-15, -10],
     victory: [15, -15],
     humiliation: [-10, 15],
-    "ghost-de": [20, 20],
-    "ghost-en": [-25, -20],
+    "lacuna-de": [20, 20],
+    "lacuna-en": [-25, -20],
   };
 
   const clusterWeightRange: Record<string, [number, number]> = {
@@ -84,12 +84,12 @@ function loadConceptsFromSource(): ConceptStub[] {
     justice: [0.5, 0.9],
     victory: [0.4, 0.85],
     humiliation: [0.4, 0.9],
-    "ghost-de": [0.3, 0.85],
-    "ghost-en": [0.3, 0.7],
+    "lacuna-de": [0.3, 0.85],
+    "lacuna-en": [0.3, 0.7],
   };
 
-  // Ghost flags by concept
-  const ghostDeConcepts = new Set([
+  // Lacuna flags by concept
+  const lacunaDeConcepts = new Set([
     "dolchstoss",
     "schmach",
     "diktat",
@@ -97,7 +97,7 @@ function loadConceptsFromSource(): ConceptStub[] {
     "volkszorn",
     "revanchism",
   ]);
-  const ghostEnConcepts = new Set(["magnanimity", "civilizing-mission", "mandate"]);
+  const lacunaEnConcepts = new Set(["magnanimity", "civilizing-mission", "mandate"]);
 
   for (let i = 0; i < ids.length; i++) {
     const id = ids[i];
@@ -108,7 +108,7 @@ function loadConceptsFromSource(): ConceptStub[] {
 
     const positions: Record<string, [number, number]> = {};
     const weights: Record<string, number> = {};
-    const ghost: Record<string, boolean> = {};
+    const lacuna: Record<string, boolean> = {};
 
     for (const lang of LANGUAGES) {
       const langRng = mulberry32(hashStr(id + lang + "curated"));
@@ -121,23 +121,23 @@ function loadConceptsFromSource(): ConceptStub[] {
       // Weight: range based on cluster
       weights[lang] = wRange[0] + langRng() * (wRange[1] - wRange[0]);
 
-      // Ghost flags
-      if (ghostDeConcepts.has(id)) {
-        ghost[lang] = lang !== "de";
-      } else if (ghostEnConcepts.has(id)) {
-        ghost[lang] = !["en", "fr", "pt"].includes(lang);
+      // Lacuna flags
+      if (lacunaDeConcepts.has(id)) {
+        lacuna[lang] = lang !== "de";
+      } else if (lacunaEnConcepts.has(id)) {
+        lacuna[lang] = !["en", "fr", "pt"].includes(lang);
         if (id === "civilizing-mission") {
-          ghost[lang] = !["en", "fr", "ar", "ja", "ko"].includes(lang);
+          lacuna[lang] = !["en", "fr", "ar", "ja", "ko"].includes(lang);
         }
         if (id === "mandate") {
-          ghost[lang] = !["en", "fr", "ar", "zh"].includes(lang);
+          lacuna[lang] = !["en", "fr", "ar", "zh"].includes(lang);
         }
       } else {
-        ghost[lang] = false;
+        lacuna[lang] = false;
       }
     }
 
-    conceptBlocks.push({ id, cluster, positions, weights, ghost });
+    conceptBlocks.push({ id, cluster, positions, weights, lacuna });
   }
 
   return conceptBlocks;
@@ -352,7 +352,7 @@ function computeSilhouette(
   return result;
 }
 
-function computeGhostDetection(
+function computeLacunaDetection(
   concepts: ConceptStub[],
   positions: Record<string, Record<string, [number, number]>>
 ): {
@@ -368,14 +368,14 @@ function computeGhostDetection(
     const detected: string[] = [];
 
     for (const c of concepts) {
-      if (c.ghost[lang]) {
+      if (c.lacuna[lang]) {
         expected.push(c.id);
-        // Ghost detection: check if concept is far from cluster centroid
+        // Lacuna detection: check if concept is far from cluster centroid
         const clusterConcepts = concepts.filter(
-          (cc) => cc.cluster === c.cluster && !cc.ghost[lang]
+          (cc) => cc.cluster === c.cluster && !cc.lacuna[lang]
         );
         if (clusterConcepts.length === 0) {
-          detected.push(c.id); // no non-ghost peers = orphan
+          detected.push(c.id); // no non-lacuna peers = orphan
           continue;
         }
         const centroid: [number, number] = [0, 0];
@@ -392,9 +392,9 @@ function computeGhostDetection(
           centroid[0] /= cCount;
           centroid[1] /= cCount;
         }
-        const ghostPos = positions[c.id]?.[lang];
-        if (ghostPos) {
-          const dist = euclideanDist(ghostPos, centroid);
+        const lacunaPos = positions[c.id]?.[lang];
+        if (lacunaPos) {
+          const dist = euclideanDist(lacunaPos, centroid);
           if (dist > 15) detected.push(c.id); // threshold for "orphaned"
         }
       }
@@ -416,6 +416,113 @@ function computeGhostDetection(
     perLanguage,
     averageRate: Math.round((sum / Math.max(count, 1)) * 1000) / 1000,
   };
+}
+
+// ── Dynamic cluster palette (matches versailles.ts) ─────────
+
+const DYNAMIC_CLUSTER_PALETTE = [
+  "#f59e0b", "#3b82f6", "#22c55e", "#ef4444",
+  "#a78bfa", "#ec4899", "#14b8a6", "#f97316",
+  "#6366f1", "#84cc16",
+];
+const NOISE_CLUSTER_COLOR = "#78716c";
+
+// ── Synthetic HDBSCAN-like clustering ───────────────────────
+
+function syntheticClusters(
+  concepts: ConceptStub[],
+  positions: Record<string, Record<string, [number, number]>>,
+  modelId: string,
+  numClusters: number
+): {
+  clusters: Record<string, Record<string, number>>; // conceptId → lang → cluster label
+  clusterColors: Record<string, string>; // cluster label → hex
+} {
+  const clusters: Record<string, Record<string, number>> = {};
+  const rng = mulberry32(hashStr(modelId + "clusters"));
+
+  // Generate per-language cluster centroids
+  for (const c of concepts) {
+    clusters[c.id] = {};
+  }
+
+  for (const lang of LANGUAGES) {
+    // Create random centroids for this language+model
+    const centroids: [number, number][] = [];
+    const langRng = mulberry32(hashStr(modelId + lang + "centroids"));
+    for (let k = 0; k < numClusters; k++) {
+      centroids.push([
+        (langRng() - 0.5) * 60,
+        (langRng() - 0.5) * 60,
+      ]);
+    }
+
+    // Assign each concept to nearest centroid
+    for (const c of concepts) {
+      const pos = positions[c.id]?.[lang] || [0, 0];
+      let minDist = Infinity;
+      let bestCluster = 0;
+      for (let k = 0; k < centroids.length; k++) {
+        const d = euclideanDist(pos, centroids[k]);
+        if (d < minDist) {
+          minDist = d;
+          bestCluster = k;
+        }
+      }
+      // Some concepts become noise (-1) — ~10% chance
+      const noiseRng = mulberry32(hashStr(modelId + c.id + lang + "noise"));
+      if (noiseRng() < 0.1) {
+        clusters[c.id][lang] = -1;
+      } else {
+        clusters[c.id][lang] = bestCluster;
+      }
+    }
+  }
+
+  // Build cluster colors
+  const clusterColors: Record<string, string> = {};
+  for (let k = 0; k < numClusters; k++) {
+    clusterColors[String(k)] = DYNAMIC_CLUSTER_PALETTE[k % DYNAMIC_CLUSTER_PALETTE.length];
+  }
+  clusterColors["-1"] = NOISE_CLUSTER_COLOR;
+
+  return { clusters, clusterColors };
+}
+
+// ── Synthetic programmatic lacuna detection ──────────────────
+
+function syntheticLacunae(
+  concepts: ConceptStub[],
+  positions: Record<string, Record<string, [number, number]>>,
+  modelId: string
+): Record<string, Record<string, boolean>> {
+  const lacunae: Record<string, Record<string, boolean>> = {};
+
+  for (const c of concepts) {
+    lacunae[c.id] = {};
+    for (const lang of LANGUAGES) {
+      if (lang === "en") {
+        // English is the reference — never a lacuna in EN
+        lacunae[c.id][lang] = false;
+        continue;
+      }
+
+      const rng = mulberry32(hashStr(modelId + c.id + lang + "lacuna"));
+
+      // Base: use curated lacuna flag with some variation
+      const curatedLacuna = c.lacuna[lang] ?? false;
+
+      if (curatedLacuna) {
+        // Curated lacuna: 80% chance model agrees, 20% chance model doesn't detect it
+        lacunae[c.id][lang] = rng() < 0.8;
+      } else {
+        // Not curated lacuna: small chance model detects a new lacuna (~8%)
+        lacunae[c.id][lang] = rng() < 0.08;
+      }
+    }
+  }
+
+  return lacunae;
 }
 
 // ── Generate embedding data for a model ─────────────────────
@@ -478,6 +585,20 @@ function generateModelData(
     conceptData[c.id] = { positions, weights, cosineToEN };
   }
 
+  // Generate dynamic clusters (4-6 clusters per model, varies by model)
+  const numClusters = 3 + Math.floor(mulberry32(hashStr(model.id + "nclust"))() * 4); // 3-6
+  const { clusters, clusterColors } = syntheticClusters(baseConcepts, modelPositions, model.id, numClusters);
+
+  // Generate programmatic lacunae
+  const lacunae = syntheticLacunae(baseConcepts, modelPositions, model.id);
+
+  // Attach clusters and lacuna to each concept
+  for (const c of baseConcepts) {
+    const cd = conceptData[c.id] as Record<string, unknown>;
+    cd.clusters = clusters[c.id];
+    cd.lacuna = lacunae[c.id];
+  }
+
   // Compute pairwise distance matrices
   const pairwise: Record<string, number[][]> = {};
   for (const lang of LANGUAGES) {
@@ -510,6 +631,7 @@ function generateModelData(
     concepts: conceptData,
     pairwise,
     conceptOrder,
+    clusterColors,
   };
 
   return { embedding, positions: modelPositions };
@@ -530,14 +652,34 @@ function main() {
   const curatedPositions: Record<string, Record<string, [number, number]>> = {};
   const conceptOrder = baseConcepts.map((c) => c.id);
 
+  // Curated cluster name → index mapping for consistent numeric labels
+  const curatedClusterIndex: Record<string, number> = {
+    core: 0, justice: 1, victory: 2, humiliation: 3, "lacuna-de": 4, "lacuna-en": 5,
+  };
+  const curatedClusterColors: Record<string, string> = {
+    "core": "#f59e0b", "justice": "#3b82f6", "victory": "#22c55e",
+    "humiliation": "#ef4444", "lacuna-de": "#78716c", "lacuna-en": "#78716c",
+  };
+
   for (const c of baseConcepts) {
     curatedPositions[c.id] = c.positions;
+
+    // Build per-language cluster and lacuna maps
+    const clusterMap: Record<string, string> = {};
+    const lacunaMap: Record<string, boolean> = {};
+    for (const lang of LANGUAGES) {
+      clusterMap[lang] = c.cluster;
+      lacunaMap[lang] = c.lacuna[lang] ?? false;
+    }
+
     curatedData[c.id] = {
       positions: c.positions,
       weights: Object.fromEntries(
         Object.entries(c.weights).map(([k, v]) => [k, Math.round(v * 1000) / 1000])
       ),
       cosineToEN: Object.fromEntries(LANGUAGES.map((l) => [l, l === "en" ? 1.0 : 0.85])),
+      clusters: clusterMap,
+      lacuna: lacunaMap,
     };
   }
 
@@ -571,6 +713,7 @@ function main() {
     concepts: curatedData,
     pairwise: curatedPairwise,
     conceptOrder,
+    clusterColors: curatedClusterColors,
   };
   fs.writeFileSync(path.join(outDir, "curated.json"), JSON.stringify(curatedJSON, null, 2));
   console.log("  ✓ curated.json");
@@ -584,7 +727,7 @@ function main() {
     clas: computeCLAS(baseConcepts, curatedPositions),
     topology: computeMantel(curatedPairwise),
     silhouette: computeSilhouette(baseConcepts, curatedPositions),
-    ghostDetection: computeGhostDetection(baseConcepts, curatedPositions),
+    lacunaDetection: computeLacunaDetection(baseConcepts, curatedPositions),
   };
   allMetrics.models.push(curatedMetrics);
 
@@ -604,7 +747,7 @@ function main() {
       clas: computeCLAS(baseConcepts, positions),
       topology: computeMantel(modelPairwise),
       silhouette: computeSilhouette(baseConcepts, positions),
-      ghostDetection: computeGhostDetection(baseConcepts, positions),
+      lacunaDetection: computeLacunaDetection(baseConcepts, positions),
     };
     allMetrics.models.push(metrics);
   }

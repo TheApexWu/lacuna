@@ -70,6 +70,30 @@
         "pt": 0.726,
         "ru": 0.665,
         "ja": 0.783
+      },
+      "clusters": {
+        "en": -1,
+        "de": 0,
+        "fr": 1,
+        "es": 5,
+        "zh": 2,
+        "ko": 3,
+        "ar": 1,
+        "pt": 0,
+        "ru": -1,
+        "ja": 5
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": true,
+        "ja": false
       }
     },
     "armistice": {
@@ -138,6 +162,30 @@
         "pt": 0.867,
         "ru": 0.799,
         "ja": 0.652
+      },
+      "clusters": {
+        "en": 3,
+        "de": 0,
+        "fr": 1,
+        "es": 3,
+        "zh": 2,
+        "ko": 4,
+        "ar": 5,
+        "pt": 5,
+        "ru": 1,
+        "ja": 3
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": true,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "honor": {
@@ -206,6 +254,30 @@
         "pt": 0.917,
         "ru": 0.851,
         "ja": 0.63
+      },
+      "clusters": {
+        "en": 3,
+        "de": 1,
+        "fr": 1,
+        "es": -1,
+        "zh": 2,
+        "ko": 3,
+        "ar": 1,
+        "pt": 4,
+        "ru": 3,
+        "ja": 3
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": true,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "treaty": {
@@ -274,6 +346,30 @@
         "pt": 0.863,
         "ru": 0.747,
         "ja": 0.757
+      },
+      "clusters": {
+        "en": 4,
+        "de": 0,
+        "fr": 3,
+        "es": 2,
+        "zh": -1,
+        "ko": 4,
+        "ar": 1,
+        "pt": 0,
+        "ru": 2,
+        "ja": 5
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": true
       }
     },
     "justice": {
@@ -342,6 +438,30 @@
         "pt": 0.878,
         "ru": 0.693,
         "ja": 0.741
+      },
+      "clusters": {
+        "en": 1,
+        "de": 0,
+        "fr": 4,
+        "es": -1,
+        "zh": 2,
+        "ko": 2,
+        "ar": 3,
+        "pt": 2,
+        "ru": 5,
+        "ja": 5
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": true,
+        "ja": false
       }
     },
     "accountability": {
@@ -410,6 +530,30 @@
         "pt": 0.803,
         "ru": 0.692,
         "ja": 0.823
+      },
+      "clusters": {
+        "en": 4,
+        "de": 0,
+        "fr": 4,
+        "es": 4,
+        "zh": 2,
+        "ko": 2,
+        "ar": 3,
+        "pt": 2,
+        "ru": 4,
+        "ja": 3
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "punishment": {
@@ -478,6 +622,30 @@
         "pt": 0.91,
         "ru": 0.655,
         "ja": 0.675
+      },
+      "clusters": {
+        "en": -1,
+        "de": 0,
+        "fr": -1,
+        "es": 4,
+        "zh": 2,
+        "ko": 4,
+        "ar": 3,
+        "pt": 4,
+        "ru": 5,
+        "ja": 2
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": true,
+        "es": false,
+        "zh": false,
+        "ko": true,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "debt": {
@@ -546,6 +714,30 @@
         "pt": 0.85,
         "ru": 0.887,
         "ja": 0.805
+      },
+      "clusters": {
+        "en": 4,
+        "de": 0,
+        "fr": 4,
+        "es": 4,
+        "zh": 2,
+        "ko": 0,
+        "ar": 3,
+        "pt": 0,
+        "ru": 4,
+        "ja": 5
+      },
+      "lacuna": {
+        "en": false,
+        "de": true,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": true,
+        "ja": false
       }
     },
     "obligation": {
@@ -614,6 +806,30 @@
         "pt": 0.877,
         "ru": 0.853,
         "ja": 0.648
+      },
+      "clusters": {
+        "en": -1,
+        "de": 3,
+        "fr": 1,
+        "es": -1,
+        "zh": 0,
+        "ko": 2,
+        "ar": 3,
+        "pt": 4,
+        "ru": 4,
+        "ja": 5
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "guilt": {
@@ -682,6 +898,30 @@
         "pt": 0.762,
         "ru": 0.703,
         "ja": 0.861
+      },
+      "clusters": {
+        "en": 3,
+        "de": 3,
+        "fr": 4,
+        "es": 4,
+        "zh": 2,
+        "ko": 0,
+        "ar": 1,
+        "pt": 2,
+        "ru": 4,
+        "ja": 5
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": true,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "restitution": {
@@ -750,6 +990,30 @@
         "pt": 0.822,
         "ru": 0.69,
         "ja": 0.637
+      },
+      "clusters": {
+        "en": 2,
+        "de": 0,
+        "fr": 4,
+        "es": -1,
+        "zh": 2,
+        "ko": 2,
+        "ar": 3,
+        "pt": -1,
+        "ru": 4,
+        "ja": 5
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "sanctions": {
@@ -818,6 +1082,30 @@
         "pt": 0.812,
         "ru": 0.885,
         "ja": 0.692
+      },
+      "clusters": {
+        "en": 1,
+        "de": 3,
+        "fr": 1,
+        "es": 5,
+        "zh": 2,
+        "ko": 2,
+        "ar": 3,
+        "pt": 2,
+        "ru": 3,
+        "ja": 2
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "concession": {
@@ -886,6 +1174,30 @@
         "pt": 0.736,
         "ru": 0.677,
         "ja": 0.709
+      },
+      "clusters": {
+        "en": 2,
+        "de": 0,
+        "fr": 4,
+        "es": 4,
+        "zh": 2,
+        "ko": 0,
+        "ar": 0,
+        "pt": 2,
+        "ru": 4,
+        "ja": -1
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": true,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": true,
+        "ja": false
       }
     },
     "demilitarization": {
@@ -954,6 +1266,30 @@
         "pt": 0.946,
         "ru": 0.903,
         "ja": 0.684
+      },
+      "clusters": {
+        "en": -1,
+        "de": 0,
+        "fr": 4,
+        "es": 5,
+        "zh": 2,
+        "ko": 2,
+        "ar": 3,
+        "pt": 4,
+        "ru": 3,
+        "ja": 5
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "victory": {
@@ -1022,6 +1358,30 @@
         "pt": 0.731,
         "ru": 0.867,
         "ja": 0.68
+      },
+      "clusters": {
+        "en": 0,
+        "de": 5,
+        "fr": 0,
+        "es": 1,
+        "zh": 2,
+        "ko": 4,
+        "ar": 2,
+        "pt": 0,
+        "ru": 0,
+        "ja": 3
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": true,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "peace": {
@@ -1090,6 +1450,30 @@
         "pt": 0.799,
         "ru": 0.827,
         "ja": 0.649
+      },
+      "clusters": {
+        "en": 0,
+        "de": -1,
+        "fr": -1,
+        "es": 1,
+        "zh": 2,
+        "ko": 4,
+        "ar": 1,
+        "pt": 0,
+        "ru": 2,
+        "ja": 1
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": true,
+        "pt": false,
+        "ru": true,
+        "ja": true
       }
     },
     "order": {
@@ -1158,6 +1542,30 @@
         "pt": 0.842,
         "ru": 0.88,
         "ja": 0.664
+      },
+      "clusters": {
+        "en": 0,
+        "de": 5,
+        "fr": 2,
+        "es": 2,
+        "zh": 4,
+        "ko": 4,
+        "ar": 5,
+        "pt": -1,
+        "ru": 0,
+        "ja": 1
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": true,
+        "ar": true,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "triumph": {
@@ -1226,6 +1634,30 @@
         "pt": 0.758,
         "ru": 0.683,
         "ja": 0.818
+      },
+      "clusters": {
+        "en": 0,
+        "de": 5,
+        "fr": 2,
+        "es": 1,
+        "zh": 4,
+        "ko": -1,
+        "ar": 1,
+        "pt": 0,
+        "ru": 0,
+        "ja": 1
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": true,
+        "ja": false
       }
     },
     "sovereignty": {
@@ -1294,6 +1726,30 @@
         "pt": 0.751,
         "ru": 0.718,
         "ja": 0.778
+      },
+      "clusters": {
+        "en": -1,
+        "de": 0,
+        "fr": 5,
+        "es": 4,
+        "zh": 4,
+        "ko": 4,
+        "ar": 1,
+        "pt": 0,
+        "ru": -1,
+        "ja": 2
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": true,
+        "ru": false,
+        "ja": true
       }
     },
     "selfdetermination": {
@@ -1362,6 +1818,30 @@
         "pt": 0.734,
         "ru": 0.832,
         "ja": 0.571
+      },
+      "clusters": {
+        "en": 1,
+        "de": 5,
+        "fr": 2,
+        "es": 2,
+        "zh": 2,
+        "ko": -1,
+        "ar": 1,
+        "pt": 0,
+        "ru": 2,
+        "ja": 1
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "legitimacy": {
@@ -1430,6 +1910,30 @@
         "pt": 0.775,
         "ru": 0.724,
         "ja": 0.84
+      },
+      "clusters": {
+        "en": -1,
+        "de": 5,
+        "fr": 2,
+        "es": 2,
+        "zh": -1,
+        "ko": 4,
+        "ar": 2,
+        "pt": 0,
+        "ru": -1,
+        "ja": 3
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "diplomacy": {
@@ -1498,6 +2002,30 @@
         "pt": 0.841,
         "ru": 0.822,
         "ja": 0.783
+      },
+      "clusters": {
+        "en": -1,
+        "de": 5,
+        "fr": 1,
+        "es": 4,
+        "zh": 2,
+        "ko": 4,
+        "ar": 1,
+        "pt": 0,
+        "ru": 2,
+        "ja": 2
+      },
+      "lacuna": {
+        "en": false,
+        "de": true,
+        "fr": true,
+        "es": true,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "reconstruction": {
@@ -1566,6 +2094,30 @@
         "pt": 0.847,
         "ru": 0.93,
         "ja": 0.809
+      },
+      "clusters": {
+        "en": 0,
+        "de": 5,
+        "fr": 0,
+        "es": 1,
+        "zh": 4,
+        "ko": 4,
+        "ar": -1,
+        "pt": 0,
+        "ru": -1,
+        "ja": 3
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": true,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "humiliation": {
@@ -1634,6 +2186,30 @@
         "pt": 0.796,
         "ru": 0.681,
         "ja": 0.665
+      },
+      "clusters": {
+        "en": 4,
+        "de": 0,
+        "fr": 4,
+        "es": 3,
+        "zh": 1,
+        "ko": 5,
+        "ar": 0,
+        "pt": 5,
+        "ru": 1,
+        "ja": 0
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "betrayal": {
@@ -1702,6 +2278,30 @@
         "pt": 0.864,
         "ru": 0.733,
         "ja": 0.851
+      },
+      "clusters": {
+        "en": 4,
+        "de": 4,
+        "fr": 4,
+        "es": 3,
+        "zh": 1,
+        "ko": 5,
+        "ar": 0,
+        "pt": 4,
+        "ru": 1,
+        "ja": 0
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": true,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "injustice": {
@@ -1770,6 +2370,30 @@
         "pt": 0.866,
         "ru": 0.75,
         "ja": 0.632
+      },
+      "clusters": {
+        "en": 3,
+        "de": 2,
+        "fr": 4,
+        "es": 0,
+        "zh": 2,
+        "ko": 0,
+        "ar": 3,
+        "pt": 4,
+        "ru": 1,
+        "ja": 5
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "revenge": {
@@ -1838,6 +2462,30 @@
         "pt": 0.89,
         "ru": 0.795,
         "ja": 0.633
+      },
+      "clusters": {
+        "en": 4,
+        "de": 1,
+        "fr": 3,
+        "es": 3,
+        "zh": 0,
+        "ko": -1,
+        "ar": 4,
+        "pt": 4,
+        "ru": 1,
+        "ja": 0
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": true,
+        "ja": false
       }
     },
     "resentment": {
@@ -1906,6 +2554,30 @@
         "pt": 0.874,
         "ru": 0.901,
         "ja": 0.606
+      },
+      "clusters": {
+        "en": 3,
+        "de": 0,
+        "fr": 3,
+        "es": 3,
+        "zh": 0,
+        "ko": 3,
+        "ar": -1,
+        "pt": 5,
+        "ru": 1,
+        "ja": 4
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": true,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "subjugation": {
@@ -1974,6 +2646,30 @@
         "pt": 0.748,
         "ru": 0.653,
         "ja": 0.678
+      },
+      "clusters": {
+        "en": 4,
+        "de": 3,
+        "fr": 3,
+        "es": 0,
+        "zh": 1,
+        "ko": 3,
+        "ar": 4,
+        "pt": 5,
+        "ru": 1,
+        "ja": 4
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": true,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "occupation": {
@@ -2042,6 +2738,30 @@
         "pt": 0.893,
         "ru": 0.719,
         "ja": 0.69
+      },
+      "clusters": {
+        "en": 4,
+        "de": -1,
+        "fr": 4,
+        "es": 3,
+        "zh": 0,
+        "ko": 3,
+        "ar": 4,
+        "pt": 5,
+        "ru": 1,
+        "ja": 5
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": true,
+        "ru": false,
+        "ja": false
       }
     },
     "propaganda": {
@@ -2110,6 +2830,30 @@
         "pt": 0.768,
         "ru": 0.693,
         "ja": 0.643
+      },
+      "clusters": {
+        "en": 4,
+        "de": 0,
+        "fr": 4,
+        "es": -1,
+        "zh": 0,
+        "ko": 5,
+        "ar": 3,
+        "pt": 5,
+        "ru": -1,
+        "ja": 0
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": true,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "nationalism": {
@@ -2178,6 +2922,30 @@
         "pt": 0.926,
         "ru": 0.829,
         "ja": 0.573
+      },
+      "clusters": {
+        "en": 4,
+        "de": 0,
+        "fr": -1,
+        "es": 0,
+        "zh": 1,
+        "ko": 3,
+        "ar": 0,
+        "pt": -1,
+        "ru": 1,
+        "ja": 0
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": true,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "starvation": {
@@ -2246,6 +3014,30 @@
         "pt": 0.952,
         "ru": 0.735,
         "ja": 0.76
+      },
+      "clusters": {
+        "en": 4,
+        "de": 2,
+        "fr": 4,
+        "es": 0,
+        "zh": 2,
+        "ko": 0,
+        "ar": 0,
+        "pt": -1,
+        "ru": 1,
+        "ja": 0
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "blockade": {
@@ -2314,6 +3106,30 @@
         "pt": 0.747,
         "ru": 0.801,
         "ja": 0.611
+      },
+      "clusters": {
+        "en": 5,
+        "de": 3,
+        "fr": -1,
+        "es": -1,
+        "zh": 0,
+        "ko": -1,
+        "ar": 3,
+        "pt": 5,
+        "ru": 3,
+        "ja": 4
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": true,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "dolchstoss": {
@@ -2382,6 +3198,30 @@
         "pt": 0.985,
         "ru": 0.689,
         "ja": 0.704
+      },
+      "clusters": {
+        "en": 0,
+        "de": 4,
+        "fr": 3,
+        "es": 0,
+        "zh": -1,
+        "ko": 5,
+        "ar": 5,
+        "pt": 1,
+        "ru": 2,
+        "ja": 0
+      },
+      "lacuna": {
+        "en": false,
+        "de": true,
+        "fr": true,
+        "es": true,
+        "zh": false,
+        "ko": true,
+        "ar": false,
+        "pt": true,
+        "ru": false,
+        "ja": true
       }
     },
     "schmach": {
@@ -2450,6 +3290,30 @@
         "pt": 0.883,
         "ru": 0.651,
         "ja": 0.64
+      },
+      "clusters": {
+        "en": 0,
+        "de": 4,
+        "fr": 3,
+        "es": 2,
+        "zh": -1,
+        "ko": 5,
+        "ar": 5,
+        "pt": 3,
+        "ru": 2,
+        "ja": 0
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": true,
+        "zh": false,
+        "ko": true,
+        "ar": true,
+        "pt": true,
+        "ru": true,
+        "ja": false
       }
     },
     "diktat": {
@@ -2518,6 +3382,30 @@
         "pt": 0.761,
         "ru": 0.84,
         "ja": 0.593
+      },
+      "clusters": {
+        "en": 3,
+        "de": 4,
+        "fr": 3,
+        "es": 2,
+        "zh": 3,
+        "ko": 5,
+        "ar": -1,
+        "pt": 1,
+        "ru": 2,
+        "ja": 3
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": true,
+        "es": false,
+        "zh": false,
+        "ko": true,
+        "ar": true,
+        "pt": false,
+        "ru": true,
+        "ja": true
       }
     },
     "kriegsschuld": {
@@ -2586,6 +3474,30 @@
         "pt": 0.758,
         "ru": 0.921,
         "ja": 0.601
+      },
+      "clusters": {
+        "en": 3,
+        "de": 4,
+        "fr": 3,
+        "es": 0,
+        "zh": 3,
+        "ko": 5,
+        "ar": 4,
+        "pt": -1,
+        "ru": 2,
+        "ja": 0
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": true,
+        "es": true,
+        "zh": true,
+        "ko": false,
+        "ar": false,
+        "pt": true,
+        "ru": false,
+        "ja": true
       }
     },
     "volkszorn": {
@@ -2654,6 +3566,30 @@
         "pt": 0.925,
         "ru": 0.67,
         "ja": 0.857
+      },
+      "clusters": {
+        "en": 3,
+        "de": 4,
+        "fr": 3,
+        "es": 2,
+        "zh": 5,
+        "ko": -1,
+        "ar": 5,
+        "pt": 1,
+        "ru": 2,
+        "ja": 3
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": true,
+        "es": false,
+        "zh": true,
+        "ko": true,
+        "ar": true,
+        "pt": false,
+        "ru": true,
+        "ja": false
       }
     },
     "revanchism": {
@@ -2722,6 +3658,30 @@
         "pt": 0.885,
         "ru": 0.818,
         "ja": 0.647
+      },
+      "clusters": {
+        "en": 5,
+        "de": -1,
+        "fr": 3,
+        "es": 0,
+        "zh": 5,
+        "ko": 5,
+        "ar": 5,
+        "pt": 5,
+        "ru": 1,
+        "ja": 0
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": true,
+        "zh": true,
+        "ko": true,
+        "ar": true,
+        "pt": true,
+        "ru": true,
+        "ja": false
       }
     },
     "magnanimity": {
@@ -2790,6 +3750,30 @@
         "pt": 0.83,
         "ru": 0.668,
         "ja": 0.855
+      },
+      "clusters": {
+        "en": 2,
+        "de": 3,
+        "fr": 4,
+        "es": 5,
+        "zh": 2,
+        "ko": 2,
+        "ar": 3,
+        "pt": 2,
+        "ru": -1,
+        "ja": 2
+      },
+      "lacuna": {
+        "en": false,
+        "de": true,
+        "fr": false,
+        "es": true,
+        "zh": true,
+        "ko": true,
+        "ar": true,
+        "pt": false,
+        "ru": true,
+        "ja": false
       }
     },
     "civilizing": {
@@ -2858,6 +3842,30 @@
         "pt": 0.751,
         "ru": 0.672,
         "ja": 0.852
+      },
+      "clusters": {
+        "en": 4,
+        "de": 3,
+        "fr": 1,
+        "es": 4,
+        "zh": 2,
+        "ko": 2,
+        "ar": 2,
+        "pt": 2,
+        "ru": 5,
+        "ja": 2
+      },
+      "lacuna": {
+        "en": false,
+        "de": false,
+        "fr": false,
+        "es": false,
+        "zh": false,
+        "ko": false,
+        "ar": false,
+        "pt": false,
+        "ru": false,
+        "ja": false
       }
     },
     "mandate": {
@@ -2926,6 +3934,30 @@
         "pt": 0.964,
         "ru": 0.815,
         "ja": 0.581
+      },
+      "clusters": {
+        "en": -1,
+        "de": 3,
+        "fr": 4,
+        "es": 4,
+        "zh": 2,
+        "ko": 2,
+        "ar": 3,
+        "pt": 2,
+        "ru": 5,
+        "ja": 2
+      },
+      "lacuna": {
+        "en": false,
+        "de": true,
+        "fr": false,
+        "es": true,
+        "zh": false,
+        "ko": true,
+        "ar": true,
+        "pt": true,
+        "ru": true,
+        "ja": true
       }
     }
   },
@@ -22345,5 +23377,14 @@
     "magnanimity",
     "civilizing",
     "mandate"
-  ]
+  ],
+  "clusterColors": {
+    "0": "#f59e0b",
+    "1": "#3b82f6",
+    "2": "#22c55e",
+    "3": "#ef4444",
+    "4": "#a78bfa",
+    "5": "#ec4899",
+    "-1": "#78716c"
+  }
 }

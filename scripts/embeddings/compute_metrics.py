@@ -5,7 +5,7 @@ Computes benchmark metrics across all models:
   - CLAS (Cross-Lingual Alignment Score)
   - Topology Preservation (Mantel test)
   - Cluster Coherence (Silhouette score)
-  - Ghost Detection Rate
+  - Lacuna Detection Rate
 
 Usage:
   python compute_metrics.py --models-dir ../../src/data/embeddings/ --output ../../src/data/embeddings/metrics.json
@@ -28,7 +28,7 @@ CONCEPTS_PATH = SCRIPT_DIR / "concepts_input.json"
 
 
 def load_concepts():
-    """Load concept metadata for cluster and ghost info."""
+    """Load concept metadata for cluster and lacuna info."""
     with open(CONCEPTS_PATH) as f:
         data = json.load(f)
     return data["languages"], data["concepts"]
@@ -122,34 +122,41 @@ def compute_mantel(model_data, languages):
 
 
 def compute_silhouette(model_data, languages, concepts):
-    """Cluster Coherence: silhouette score per language."""
-    concept_order = model_data.get("conceptOrder", [cid["id"] for cid in concepts])
-    cluster_labels = []
-    for cid in concept_order:
-        concept = next((c for c in concepts if c["id"] == cid), None)
-        if concept:
-            cluster_labels.append(concept["cluster"])
-        else:
-            cluster_labels.append("unknown")
+    """Cluster Coherence: silhouette score per language.
 
-    # Encode clusters as integers
-    unique_clusters = list(set(cluster_labels))
-    label_ints = [unique_clusters.index(c) for c in cluster_labels]
+    Uses model-derived per-language cluster labels when available
+    (concepts[cid].clusters[lang]), otherwise falls back to curated
+    concept.cluster strings.
+    """
+    concept_order = model_data.get("conceptOrder", [cid["id"] for cid in concepts])
 
     result = {}
     total = 0
     count = 0
 
     for lang in languages:
-        # Get positions for this language
+        # Build cluster labels and positions for this language
+        cluster_labels = []
         positions = []
         for cid in concept_order:
             cd = model_data["concepts"].get(cid)
+
+            # Cluster label: prefer model-derived per-language label
+            if cd and "clusters" in cd and lang in cd["clusters"]:
+                cluster_labels.append(cd["clusters"][lang])
+            else:
+                concept = next((c for c in concepts if c["id"] == cid), None)
+                cluster_labels.append(concept["cluster"] if concept else "unknown")
+
+            # Position
             if cd and "positions" in cd and lang in cd["positions"]:
                 positions.append(cd["positions"][lang])
             else:
                 positions.append([0, 0])
 
+        # Encode clusters as integers
+        unique_clusters = list(set(cluster_labels))
+        label_ints = [unique_clusters.index(c) for c in cluster_labels]
         positions = np.array(positions)
 
         if len(set(label_ints)) > 1 and len(positions) > len(set(label_ints)):
@@ -168,8 +175,13 @@ def compute_silhouette(model_data, languages, concepts):
     return result
 
 
-def compute_ghost_detection(model_data, languages, concepts):
-    """Ghost Detection Rate: are ghost concepts orphaned from their cluster?"""
+def compute_lacuna_detection(model_data, languages, concepts):
+    """Lacuna Detection Rate: are lacuna concepts orphaned from their cluster?
+
+    Uses model-derived lacuna flags (concepts[cid].lacuna[lang]) when
+    available as the "expected" ground truth for that model, otherwise
+    falls back to curated concept.lacuna[lang].
+    """
     concept_order = model_data.get("conceptOrder", [c["id"] for c in concepts])
     concept_map = {c["id"]: c for c in concepts}
 
@@ -178,25 +190,38 @@ def compute_ghost_detection(model_data, languages, concepts):
     rate_count = 0
 
     for lang in languages:
-        expected_ghosts = []
-        detected_ghosts = []
+        expected_lacunae = []
+        detected_lacunae = []
 
-        # Get cluster centroids (non-ghost concepts only)
+        # Get cluster centroids (non-lacuna concepts only)
         cluster_positions = {}
         for cid in concept_order:
             c = concept_map.get(cid)
             if not c:
                 continue
-            is_ghost = c["ghost"].get(lang, False)
-            if is_ghost:
-                expected_ghosts.append(cid)
-                continue
 
             cd = model_data["concepts"].get(cid)
+
+            # Lacuna flag: prefer model-derived per-language flag
+            if cd and "lacuna" in cd and lang in cd["lacuna"]:
+                is_lacuna = cd["lacuna"][lang]
+            else:
+                is_lacuna = c["lacuna"].get(lang, False)
+
+            if is_lacuna:
+                expected_lacunae.append(cid)
+                continue
+
             if not cd or "positions" not in cd or lang not in cd["positions"]:
                 continue
 
-            cluster = c["cluster"]
+            # Cluster label: prefer model-derived
+            if cd and "clusters" in cd and lang in cd["clusters"]:
+                cluster = cd["clusters"][lang]
+            else:
+                cluster = c["cluster"]
+
+            cluster = str(cluster)
             if cluster not in cluster_positions:
                 cluster_positions[cluster] = []
             cluster_positions[cluster].append(cd["positions"][lang])
@@ -207,33 +232,40 @@ def compute_ghost_detection(model_data, languages, concepts):
             arr = np.array(positions)
             centroids[cluster] = arr.mean(axis=0)
 
-        # Check if ghost concepts are far from their cluster centroid
-        for cid in expected_ghosts:
+        # Check if lacuna concepts are far from their cluster centroid
+        for cid in expected_lacunae:
             c = concept_map.get(cid)
             cd = model_data["concepts"].get(cid)
             if not c or not cd or "positions" not in cd or lang not in cd["positions"]:
-                detected_ghosts.append(cid)  # No data = definitely orphaned
+                detected_lacunae.append(cid)  # No data = definitely orphaned
                 continue
 
             pos = np.array(cd["positions"][lang])
-            centroid = centroids.get(c["cluster"])
+
+            # Get cluster label for this lacuna concept
+            if cd and "clusters" in cd and lang in cd["clusters"]:
+                lacuna_cluster = str(cd["clusters"][lang])
+            else:
+                lacuna_cluster = c["cluster"]
+
+            centroid = centroids.get(lacuna_cluster)
             if centroid is None:
-                detected_ghosts.append(cid)
+                detected_lacunae.append(cid)
                 continue
 
             dist = np.linalg.norm(pos - centroid)
-            # If ghost is far from centroid (>15 units), it's detected as orphaned
+            # If lacuna is far from centroid (>15 units), it's detected as orphaned
             if dist > 15:
-                detected_ghosts.append(cid)
+                detected_lacunae.append(cid)
 
-        rate = len(detected_ghosts) / max(len(expected_ghosts), 1) if expected_ghosts else 1.0
+        rate = len(detected_lacunae) / max(len(expected_lacunae), 1) if expected_lacunae else 1.0
         per_language[lang] = {
             "rate": round(rate, 4),
-            "expected": len(expected_ghosts),
-            "detected": len(detected_ghosts),
+            "expected": len(expected_lacunae),
+            "detected": len(detected_lacunae),
         }
 
-        if expected_ghosts:
+        if expected_lacunae:
             total_rate += rate
             rate_count += 1
 
@@ -294,8 +326,8 @@ def main():
         silhouette = compute_silhouette(model_data, languages, concepts)
         print(f"  Silhouette: {silhouette['average']}")
 
-        ghost = compute_ghost_detection(model_data, languages, concepts)
-        print(f"  Ghost Detection: {ghost['averageRate']}")
+        lacuna = compute_lacuna_detection(model_data, languages, concepts)
+        print(f"  Lacuna Detection: {lacuna['averageRate']}")
 
         all_metrics["models"].append(
             {
@@ -303,7 +335,7 @@ def main():
                 "clas": clas,
                 "topology": mantel,
                 "silhouette": silhouette,
-                "ghostDetection": ghost,
+                "lacunaDetection": lacuna,
             }
         )
 

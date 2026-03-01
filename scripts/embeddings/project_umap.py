@@ -24,13 +24,23 @@ import numpy as np
 from scipy.spatial.distance import cosine as cosine_distance
 from scipy.linalg import orthogonal_procrustes
 from sklearn.preprocessing import normalize
+from sklearn.neighbors import NearestNeighbors
 import umap
+import hdbscan
 
 SCRIPT_DIR = Path(__file__).parent
 CONCEPTS_PATH = SCRIPT_DIR / "concepts_input.json"
 
 # Terrain coordinate range (matching curated data)
 TERRAIN_RANGE = 35  # positions will be in [-35, 35]
+
+# Dynamic cluster color palette (matches versailles.ts)
+DYNAMIC_CLUSTER_PALETTE = [
+    "#f59e0b", "#3b82f6", "#22c55e", "#ef4444",
+    "#a78bfa", "#ec4899", "#14b8a6", "#f97316",
+    "#6366f1", "#84cc16",
+]
+NOISE_CLUSTER_COLOR = "#78716c"
 
 
 def load_raw(input_path):
@@ -119,28 +129,109 @@ def compute_pairwise(vectors):
     return matrix
 
 
-def derive_weights(vectors, concepts, cluster_map):
-    """Derive weights from cosine similarity to cluster centroid."""
+def cluster_hdbscan(vectors, min_cluster_size=3):
+    """Run HDBSCAN on high-dimensional vectors.
+    Returns array of cluster labels (ints, -1 for noise)."""
+    clusterer = hdbscan.HDBSCAN(
+        min_cluster_size=min_cluster_size,
+        metric="cosine",
+        allow_single_cluster=False,
+    )
+    labels = clusterer.fit_predict(vectors)
+    return labels
+
+
+def detect_lacunae(lang_vectors, languages, k=5, threshold=2.0):
+    """Programmatic lacuna detection based on k-NN density ratios.
+
+    For each concept in a non-English language, compare its average k-NN
+    distance to the same concept's k-NN distance in English. If the ratio
+    exceeds `threshold`, the concept is considered a lacuna — it's
+    orphaned in that language's semantic space.
+
+    Returns dict: conceptIndex → { lang → bool }.
+    """
+    n_concepts = lang_vectors["en"].shape[0]
+    k_actual = min(k, n_concepts - 1)
+    if k_actual < 1:
+        return {}
+
+    # Compute k-NN distances for English
+    en_vecs = normalize(lang_vectors["en"], norm="l2")
+    nn_en = NearestNeighbors(n_neighbors=k_actual + 1, metric="cosine")
+    nn_en.fit(en_vecs)
+    en_dists, _ = nn_en.kneighbors(en_vecs)
+    # Skip self-neighbor (distance 0), take mean of k neighbors
+    en_knn_avg = en_dists[:, 1:].mean(axis=1)
+
+    en_median = np.median(en_knn_avg)
+    lacunae = {i: {} for i in range(n_concepts)}
+
+    for lang in languages:
+        if lang == "en":
+            for i in range(n_concepts):
+                lacunae[i][lang] = False
+            continue
+
+        lang_vecs = normalize(lang_vectors[lang], norm="l2")
+        nn_lang = NearestNeighbors(n_neighbors=k_actual + 1, metric="cosine")
+        nn_lang.fit(lang_vecs)
+        lang_dists, _ = nn_lang.kneighbors(lang_vecs)
+        lang_knn_avg = lang_dists[:, 1:].mean(axis=1)
+        lang_p75 = np.percentile(lang_knn_avg, 75)
+
+        for i in range(n_concepts):
+            en_d = en_knn_avg[i]
+            lang_d = lang_knn_avg[i]
+
+            # Primary test: ratio of kNN distances
+            if en_d > 0 and (lang_d / en_d) > threshold:
+                lacunae[i][lang] = True
+            # Secondary test: tight in EN, dispersed in lang
+            elif en_d < en_median and lang_d > lang_p75:
+                lacunae[i][lang] = True
+            else:
+                lacunae[i][lang] = False
+
+    return lacunae
+
+
+def derive_weights(vectors, concepts, cluster_labels=None):
+    """Derive weights from cosine similarity to cluster centroid.
+
+    If cluster_labels (array of ints per concept) is provided, use those.
+    Otherwise fall back to curated concept["cluster"] strings.
+    """
     normed = normalize(vectors, norm="l2")
     weights = np.zeros(len(vectors))
 
     # Compute cluster centroids
     clusters = {}
     for i, c in enumerate(concepts):
-        cluster = c["cluster"]
+        if cluster_labels is not None:
+            cluster = int(cluster_labels[i])
+        else:
+            cluster = c["cluster"]
         if cluster not in clusters:
             clusters[cluster] = []
         clusters[cluster].append(i)
 
     centroids = {}
     for cluster, indices in clusters.items():
+        # Skip noise cluster for centroid computation
+        if cluster == -1:
+            continue
         centroid = normed[indices].mean(axis=0)
         centroid = centroid / (np.linalg.norm(centroid) or 1)
         centroids[cluster] = centroid
 
     # Weight = cosine similarity to cluster centroid (0-1)
     for i, c in enumerate(concepts):
-        centroid = centroids.get(c["cluster"])
+        if cluster_labels is not None:
+            label = int(cluster_labels[i])
+        else:
+            label = c["cluster"]
+        centroid = centroids.get(label)
         if centroid is not None:
             sim = np.dot(normed[i], centroid)
             weights[i] = max(0, min(1, (sim + 1) / 2))  # Map [-1,1] to [0,1]
@@ -228,11 +319,42 @@ def main():
             matrix = matrix / max_val
         pairwise[lang] = np.round(matrix, 4).tolist()
 
-    # Derive weights
+    # HDBSCAN clustering per language
+    print("Running HDBSCAN clustering...")
+    lang_clusters = {}  # lang → array of cluster labels
+    for lang in languages:
+        labels = cluster_hdbscan(lang_vectors[lang])
+        n_clusters = len(set(labels)) - (1 if -1 in labels else 0)
+        n_noise = int((labels == -1).sum())
+        print(f"  {lang}: {n_clusters} clusters, {n_noise} noise points")
+        lang_clusters[lang] = labels
+
+    # Build cluster color map from all discovered labels
+    all_labels = set()
+    for labels in lang_clusters.values():
+        all_labels.update(int(l) for l in labels)
+    cluster_colors = {}
+    for label in sorted(all_labels):
+        if label < 0:
+            cluster_colors[str(label)] = NOISE_CLUSTER_COLOR
+        else:
+            cluster_colors[str(label)] = DYNAMIC_CLUSTER_PALETTE[label % len(DYNAMIC_CLUSTER_PALETTE)]
+
+    # Programmatic lacuna detection
+    print("Detecting lacunae...")
+    lacuna_map = detect_lacunae(lang_vectors, languages)
+    lacuna_count = 0
+    for i in range(n_concepts):
+        for lang in languages:
+            if lacuna_map.get(i, {}).get(lang, False):
+                lacuna_count += 1
+    print(f"  {lacuna_count} lacuna flags detected across all languages")
+
+    # Derive weights (using HDBSCAN clusters)
     print("Deriving weights...")
     lang_weights = {}
     for lang in languages:
-        weights = derive_weights(lang_vectors[lang], concepts, {})
+        weights = derive_weights(lang_vectors[lang], concepts, lang_clusters[lang])
         lang_weights[lang] = weights
 
     # Assemble output
@@ -241,15 +363,21 @@ def main():
     for i, concept in enumerate(concepts):
         positions = {}
         weights = {}
+        clusters = {}
+        lacuna = {}
         for lang in languages:
             pos = lang_positions[lang][i]
             positions[lang] = [round(float(pos[0]), 2), round(float(pos[1]), 2)]
             weights[lang] = round(float(lang_weights[lang][i]), 3)
+            clusters[lang] = int(lang_clusters[lang][i])
+            lacuna[lang] = bool(lacuna_map.get(i, {}).get(lang, False))
 
         concept_data[concept["id"]] = {
             "positions": positions,
             "weights": weights,
             "cosineToEN": cosine_to_en[concept["id"]],
+            "clusters": clusters,
+            "lacuna": lacuna,
         }
 
     output = {
@@ -260,6 +388,7 @@ def main():
         "concepts": concept_data,
         "pairwise": pairwise,
         "conceptOrder": concept_ids,
+        "clusterColors": cluster_colors,
     }
 
     with open(args.output, "w") as f:

@@ -11,7 +11,7 @@ interface ConceptData {
   source: string;
   weight: Record<string, number>;
   position: Record<string, [number, number]>;
-  ghost: Record<string, boolean>;
+  lacuna: Record<string, boolean>;
   hero?: boolean;
   definition?: string;
   neighbors: Record<string, { id: string; label: string; distance: number }[]>;
@@ -103,10 +103,10 @@ export default function ConceptCard({
             value={`[${pos[0].toFixed(1)}, ${pos[1].toFixed(1)}]`}
           />
         ))}
-        {Object.entries(data.ghost).map(
-          ([lang, isGhost]) =>
-            isGhost && (
-              <Row key={lang} label={`ghost.${lang}`} value="true" accent />
+        {Object.entries(data.lacuna).map(
+          ([lang, isLacuna]) =>
+            isLacuna && (
+              <Row key={lang} label={`lacuna.${lang}`} value="true" accent />
             )
         )}
       </div>

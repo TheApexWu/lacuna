@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState, useEffect } from "react";
-import { concepts, CLUSTER_HEX, getLabel, LANGUAGES } from "../data/versailles";
+import { concepts, CLUSTER_HEX, getLabel, LANGUAGES, getClusterColor } from "../data/versailles";
 
 const ROW_HEIGHT = 22;
 const BAR_HEIGHT = 12;
@@ -10,20 +10,26 @@ const BAR_Y = (ROW_HEIGHT - BAR_HEIGHT) / 2;
 
 interface ButterflyChartProps {
   language: string;
-  showGhosts: boolean;
+  showLacunae: boolean;
   selectedConcept: string | null;
   onConceptClick: (id: string) => void;
   onClose: () => void;
   weightOverride?: Record<string, Record<string, number>>;
+  clusterOverride?: Record<string, Record<string, number | string>>;
+  lacunaOverride?: Record<string, Record<string, boolean>>;
+  clusterColors?: Record<string, string>;
 }
 
 export default function ButterflyChart({
   language,
-  showGhosts,
+  showLacunae,
   selectedConcept,
   onConceptClick,
   onClose,
   weightOverride,
+  clusterOverride,
+  lacunaOverride,
+  clusterColors,
 }: ButterflyChartProps) {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [leftLang, setLeftLang] = useState("en");
@@ -39,30 +45,31 @@ export default function ButterflyChart({
   const rows = useMemo(() => {
     return concepts
       .filter((c) => {
-        if (!showGhosts) {
-          const ghostL = c.ghost[leftLang] ?? false;
-          const ghostR = c.ghost[rightLang] ?? false;
-          if (ghostL && ghostR) return false;
+        if (!showLacunae) {
+          const lacunaL = lacunaOverride?.[c.id]?.[leftLang] ?? c.lacuna[leftLang] ?? false;
+          const lacunaR = lacunaOverride?.[c.id]?.[rightLang] ?? c.lacuna[rightLang] ?? false;
+          if (lacunaL && lacunaR) return false;
         }
         return true;
       })
       .map((c) => {
         const wL = weightOverride?.[c.id]?.[leftLang] ?? c.weight[leftLang] ?? 0;
         const wR = weightOverride?.[c.id]?.[rightLang] ?? c.weight[rightLang] ?? 0;
+        const clusterLabel = clusterOverride?.[c.id]?.[language] ?? c.cluster;
         return {
           id: c.id,
           label: getLabel(c, language),
-          cluster: c.cluster,
-          color: CLUSTER_HEX[c.cluster] || "#f59e0b",
+          cluster: clusterLabel,
+          color: getClusterColor(clusterLabel, clusterColors),
           weightL: wL,
           weightR: wR,
           diff: Math.abs(wL - wR),
-          ghostL: c.ghost[leftLang] ?? false,
-          ghostR: c.ghost[rightLang] ?? false,
+          lacunaL: lacunaOverride?.[c.id]?.[leftLang] ?? c.lacuna[leftLang] ?? false,
+          lacunaR: lacunaOverride?.[c.id]?.[rightLang] ?? c.lacuna[rightLang] ?? false,
         };
       })
       .sort((a, b) => b.diff - a.diff);
-  }, [language, leftLang, rightLang, showGhosts, weightOverride]);
+  }, [language, leftLang, rightLang, showLacunae, weightOverride, clusterOverride, lacunaOverride, clusterColors]);
 
   // SVG dimensions
   const svgWidth = 396; // panel inner width (420 - padding)
@@ -168,7 +175,7 @@ export default function ButterflyChart({
                 )}
 
                 {/* Left bar (extends left from center) */}
-                {row.ghostL ? (
+                {row.lacunaL ? (
                   <rect
                     x={centerX - lBarW}
                     y={BAR_Y}
@@ -195,7 +202,7 @@ export default function ButterflyChart({
                 )}
 
                 {/* Right bar (extends right from center) */}
-                {row.ghostR ? (
+                {row.lacunaR ? (
                   <rect
                     x={centerX}
                     y={BAR_Y}

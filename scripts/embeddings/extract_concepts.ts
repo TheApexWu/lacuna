@@ -28,14 +28,14 @@ async function main() {
         labels: Record<string, string>;
         definitions?: Record<string, string>;
         cluster: string;
-        ghost: Record<string, boolean>;
+        lacuna: Record<string, boolean>;
         hero?: boolean;
       }) => ({
         id: c.id,
         labels: c.labels,
         definitions: c.definitions || {},
         cluster: c.cluster,
-        ghost: c.ghost,
+        lacuna: c.lacuna,
         hero: c.hero || false,
       })
     ),
