@@ -368,7 +368,7 @@ export default function Home() {
 
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-[#0a0a0a]">
-      <Leva hidden />
+      <Leva />
       {/* Header */}
       <header className="absolute top-0 left-0 z-40 p-6">
         <h1 className="text-2xl font-bold tracking-widest text-[#e5e5e5]">

@@ -498,9 +498,10 @@ function Scene({
   const { scene } = useThree();
 
   // Leva control panels
-  const { sigma, heightScale } = useControls("Terrain", {
+  const { sigma, heightScale, deltaScale } = useControls("Terrain", {
     sigma: { value: 2, min: 0.5, max: 30, step: 0.5 },
     heightScale: { value: 9, min: 1, max: 50, step: 0.5 },
+    deltaScale: { value: 1.0, min: 0, max: 2, step: 0.01 },
   });
 
   const {
@@ -512,7 +513,7 @@ function Scene({
     fogFar,
     vignette: vignetteAmount,
   } = useControls("Visual", {
-    emissiveStrength: { value: 2.5, min: 0, max: 8, step: 0.1 },
+    emissiveStrength: { value: 0.9, min: 0, max: 8, step: 0.1 },
     bloomIntensity: { value: 1.2, min: 0, max: 4, step: 0.1 },
     bloomThreshold: { value: 0.3, min: 0, max: 2, step: 0.05 },
     bloomRadius: { value: 0.8, min: 0, max: 1, step: 0.05 },
@@ -567,6 +568,8 @@ function Scene({
         sigma={sigma}
         heightScale={heightScale}
         emissiveStrength={emissiveStrength}
+        referenceLanguage={language === "en" ? undefined : "en"}
+        deltaScale={deltaScale}
         positionOverride={positionOverride}
         weightOverride={weightOverride}
         clusterOverride={clusterOverride}
