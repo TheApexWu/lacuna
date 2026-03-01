@@ -57,3 +57,4 @@ python/test_*.txt
 python/test_*.py
 *.npy
 *.pkl
+python/benchmark_output/
