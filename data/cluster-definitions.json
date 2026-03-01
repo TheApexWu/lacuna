@@ -1,0 +1,98 @@
+{
+  "meta": {
+    "domain": "Treaty of Versailles (1919)",
+    "description": "Formal definitions of each cluster used in the LACUNA Versailles dataset. Explains the conceptual logic behind each grouping, why concepts belong together, and how the cluster name was chosen. Designed for use by the Interpreter agent, frontend tooltips, and judge-facing documentation.",
+    "prepared_by": "Octave",
+    "date": "2026-03-01",
+    "total_clusters": 6,
+    "total_concepts": 43
+  },
+  "clusters": [
+    {
+      "id": "core",
+      "label": "Core",
+      "color": "#4A90D9",
+      "n_concepts": 4,
+      "concepts": ["reparations", "armistice", "honor", "treaty"],
+      "one_line": "The foundational acts and instruments that define the treaty itself",
+      "rationale": "These four concepts are not moral judgments or emotional responses — they are the structural facts of the peace settlement. The treaty was signed, the armistice was declared, reparations were mandated, and honor was at stake for all parties. They anchor the dataset because every other concept in the visualization is a reaction to or consequence of these four. In any language, these concepts sit at the center of the domain — they are the terrain on which all other concepts are arranged.",
+      "why_they_cluster": "In embedding space, these concepts are equidistant from the justice and victory clusters because they belong to neither — they are the preconditions. The armistice ended the war but was not victory. The treaty imposed reparations but was not justice. Honor was claimed by all sides simultaneously. This neutrality is what makes them 'core'.",
+      "linguistic_divergence": "Low. These are procedural and institutional concepts that embed similarly across EN/DE/FR. The treaty existed. The armistice happened. Reparations were imposed. The factual nature of these concepts produces low cross-lingual structural divergence — they are not culturally reframed the way moral concepts are.",
+      "design_note": "Core nodes appear as medium-sized peaks in the center of the terrain. They do not form strong peaks (not emotionally loaded) but they create valleys around them that attract other concepts."
+    },
+    {
+      "id": "justice",
+      "label": "Justice",
+      "color": "#F5A623",
+      "n_concepts": 10,
+      "concepts": ["justice", "accountability", "punishment", "debt", "obligation", "guilt", "restitution", "demilitarization", "sanctions", "concession"],
+      "one_line": "The moral and legal framework used to justify Allied demands on Germany",
+      "rationale": "These ten concepts form the Allied justification architecture. They answer the question: 'Why does Germany owe what it owes?' The chain runs from guilt (Article 231 — the war guilt clause) through obligation (what guilt creates) through punishment, sanctions, and reparations (how obligation is enforced) through restitution, concession, and demilitarization (what enforcement looks like in practice). Every concept in this cluster is part of the same moral-legal argument: Germany caused harm, therefore Germany owes.",
+      "why_they_cluster": "In English embeddings, this cluster is tight — common law tradition treats these as procedurally linked steps in a legal process. In German embeddings, the cluster fractures significantly: Schuld (guilt/debt) pulls toward the humiliation cluster because it carries both financial and moral weight simultaneously. This is the core EN/DE divergence: English sees a legal process, German sees a moral verdict.",
+      "linguistic_divergence": "Very high. The Schuld/debt ambiguity is the single most powerful lacuna in the dataset. In English: guilt and debt are separate concepts. In German: Schuld means both simultaneously, pulling 'guilt' and 'debt' toward different neighbors than in English. Hero pairs in this cluster: guilt↔obligation (Δ=0.128 to 0.183).",
+      "design_note": "Justice nodes form the largest and tallest cluster in the EN terrain — ten concepts with high mutual similarity. In the DE terrain, the cluster visibly fractures as debt/guilt nodes migrate toward humiliation."
+    },
+    {
+      "id": "victory",
+      "label": "Victory",
+      "color": "#7ED321",
+      "n_concepts": 9,
+      "concepts": ["victory", "peace", "order", "triumph", "sovereignty", "selfdetermination", "legitimacy", "diplomacy", "reconstruction"],
+      "one_line": "The Allied vision of what the war achieved and what peace should build",
+      "rationale": "These nine concepts represent the constructive pole of the dataset — what the winners believed they had accomplished and what the peace treaty was meant to establish. Victory (military), peace (diplomatic), order (geopolitical), legitimacy (legal), sovereignty (territorial), self-determination (ideological), diplomacy (procedural), reconstruction (economic), triumph (emotional). They form a complete vision of what the Allies thought they were building at Versailles.",
+      "why_they_cluster": "In English embeddings, these concepts form a coherent cluster around the idea of 'rightful outcome' — victory was earned, peace was established, order was restored, legitimacy was confirmed. The cluster is stable and internally consistent. In French embeddings, sovereignty and reconstruction pull toward core because France experienced the war primarily as a territorial and economic question. In German embeddings, victory and triumph are isolated — they are not part of the German experience of Versailles at all.",
+      "linguistic_divergence": "Medium-high. Triumph and revenge show Δ=0.165, one of the highest hero pairs. In English, triumph and revenge are conceptually distant — triumph is earned, revenge is petty. In German, after Versailles, they cluster together because both describe the Allied attitude toward Germany as German speakers experienced it.",
+      "design_note": "Victory nodes form a high plateau in the EN terrain. In DE terrain, the plateau collapses — victory concepts become isolated peaks surrounded by humiliation vocabulary."
+    },
+    {
+      "id": "humiliation",
+      "label": "Humiliation",
+      "color": "#D0021B",
+      "n_concepts": 11,
+      "concepts": ["humiliation", "betrayal", "injustice", "revenge", "occupation", "propaganda", "nationalism", "starvation", "blockade", "subjugation", "resentment"],
+      "one_line": "The German experience of the treaty — and the French memory that shaped Allied demands",
+      "rationale": "This cluster contains concepts that describe the subjective experience of the losing side — and the historical wounds of the winning side that motivated their harshness. Humiliation, subjugation, occupation, starvation, and blockade describe what Germany experienced after 1919. Betrayal, injustice, resentment, and revenge describe the emotional response. Nationalism and propaganda describe how these responses were amplified and weaponized. This cluster is what produced Hitler — not as a historical judgment, but as a structural observation: when a nation experiences this constellation of concepts simultaneously, the political consequences are predictable.",
+      "why_they_cluster": "In German embeddings, this is the largest and most internally coherent cluster — all eleven concepts pull toward each other strongly. The German embedding space treats these as a single, fused experience. In English embeddings, the cluster is much more dispersed: occupation is a military fact, starvation is a humanitarian concern, nationalism is a political ideology. English separates what German fuses into a single national trauma.",
+      "linguistic_divergence": "Maximum. This is where the core LACUNA thesis is most visible. Betrayal↔guilt shows Δ=0.183, the highest hero pair delta in the dataset. In German, betrayal and guilt are near-synonymous in the Versailles context — both describe what Germany believed happened to it. In English, they are structurally separate moral categories.",
+      "design_note": "Humiliation nodes form a deep, tightly-packed valley in the EN terrain — emotionally heavy but dispersed. In DE terrain, they form the dominant landscape feature: the highest peaks, the central mass, the gravitational center of the entire visualization."
+    },
+    {
+      "id": "ghost-de",
+      "label": "Ghost (DE)",
+      "color": "#9B59B6",
+      "n_concepts": 6,
+      "concepts": ["dolchstoss", "schmach", "diktat", "kriegsschuld", "volkszorn", "revanchism"],
+      "one_line": "Concepts that exist structurally in German but have no equivalent neighborhood in English",
+      "rationale": "Ghost-DE concepts are words and ideas that are native to the German conceptual structure of Versailles but that have no natural cluster in English embedding space. They are not untranslatable — each has an English approximation — but they have no home in the English semantic neighborhood. Dolchstoss (stab-in-the-back myth), Schmach (national disgrace), Diktat (diktat — the imposition of terms without negotiation), Kriegsschuld (war guilt as a compound noun making it more concrete than the English phrase), Volkszorn (people's fury), Revanchism (political movement to reverse territorial losses). In German embedding space, these concepts cluster tightly together. In English embedding space, they are orphaned — no nearby neighbors, appearing as ghost nodes on the terrain.",
+      "why_they_cluster": "These concepts share a semantic neighborhood in German because they all describe the same political-emotional reality: the experience of national humiliation processed as political grievance. In English, this processing does not exist as a conceptual structure — English speakers have the words but not the experiential framework that makes them cluster.",
+      "linguistic_divergence": "By definition maximum in one direction: these concepts are structurally isolated in EN but densely connected in DE. This is the definition of a ghost node — a concept with a home in one language and no neighborhood in another.",
+      "design_note": "Ghost-DE nodes appear as semi-transparent, low-opacity nodes on the EN terrain — present but unanchored. In the DE terrain, they form their own dense sub-cluster at the far edge of the humiliation region."
+    },
+    {
+      "id": "ghost-en",
+      "label": "Ghost (EN)",
+      "color": "#1ABC9C",
+      "n_concepts": 3,
+      "concepts": ["magnanimity", "civilizing", "mandate"],
+      "one_line": "Concepts that exist structurally in English but have no equivalent neighborhood in German",
+      "rationale": "Ghost-EN concepts are the mirror image: ideas that are native to the Anglo-American conceptual framework for Versailles but that have no structural home in German embedding space. Magnanimity (the generosity of the victor toward the defeated — a central concept in British political culture around the peace settlement), Civilizing (the 'civilizing mission' belief that advanced nations have duties to others — foundational to Anglo-American imperial thinking), Mandate (the League of Nations mandate system — a specifically Anglo-American institutional invention). In English embedding space, these three concepts cluster together as part of a coherent vision of international order. In German embedding space, they are ghost nodes — present but structurally isolated.",
+      "why_they_cluster": "These concepts share a semantic neighborhood in English because they all describe the same worldview: that powerful nations have benevolent duties toward others, and that international institutions can manage these responsibilities fairly. This worldview did not exist as a coherent conceptual structure in German political thought, particularly after Versailles removed Germany from any position to exercise it.",
+      "linguistic_divergence": "By definition maximum in one direction: structurally isolated in DE but connected in EN. These concepts reveal the asymmetry of the peace settlement — the winners built an international order around concepts the losers were excluded from.",
+      "design_note": "Ghost-EN nodes appear as semi-transparent, low-opacity nodes on the DE terrain. In the EN terrain, they form a small but coherent cluster at the edge of the victory region — connected to legitimacy and sovereignty but distinct from them."
+    }
+  ],
+  "cross_cluster_observations": [
+    {
+      "observation": "The justice cluster is the bridge between victory and humiliation",
+      "explanation": "In English, justice sits closer to victory — punishment is a legitimate outcome of lawful process. In German, justice migrates toward humiliation — punishment is experienced as victors' revenge dressed in legal language. The same ten concepts, two completely different gravitational positions."
+    },
+    {
+      "observation": "Ghost clusters reveal the asymmetry of the settlement",
+      "explanation": "The 6 German ghosts (Dolchstoss, Schmach, Diktat...) are concepts of national trauma. The 3 English ghosts (magnanimity, civilizing, mandate) are concepts of imperial benevolence. The settlement created trauma in one language and self-congratulation in another."
+    },
+    {
+      "observation": "The humiliation cluster grows in DE and shrinks in EN",
+      "explanation": "In English, humiliation is 11 dispersed concepts. In German, it is the gravitational center of the entire terrain. This is the mathematical representation of why the Treaty of Versailles produced different political outcomes in different countries."
+    }
+  ]
+}
