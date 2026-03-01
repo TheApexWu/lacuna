@@ -1,0 +1,542 @@
+"use client";
+
+import {
+  useRef,
+  useMemo,
+  useEffect,
+  useState,
+  useCallback,
+  Component,
+  type ReactNode,
+} from "react";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { OrbitControls, Text } from "@react-three/drei";
+import {
+  EffectComposer,
+  Bloom,
+  Vignette,
+  ChromaticAberration,
+} from "@react-three/postprocessing";
+import { BlendFunction } from "postprocessing";
+import { useControls } from "leva";
+import * as THREE from "three";
+import {
+  CLUSTER_COLORS,
+  CLUSTER_HEX,
+  type Concept,
+} from "../data/versailles";
+
+// ── Constants ────────────────────────────────────────────────
+const GRID = 100;
+const TERRAIN_SIZE = 100;
+const VERTEX_COUNT = (GRID + 1) * (GRID + 1);
+const TRANSITION_DURATION = 1.4;
+
+function easeOutQuad(t: number): number {
+  return 1 - (1 - t) * (1 - t);
+}
+
+function gaussian(dx: number, dz: number, sigma: number): number {
+  return Math.exp(-(dx * dx + dz * dz) / (2 * sigma * sigma));
+}
+
+function getLabel(concept: Concept, language: string): string {
+  return concept.labels[language] || concept.labels["en"] || concept.id;
+}
+
+// ── Terrain computation ──────────────────────────────────────
+function computeTerrain(
+  concepts: Concept[],
+  language: string,
+  showGhosts: boolean,
+  sigma: number,
+  heightScale: number,
+  emissiveStrength: number
+): { heights: Float32Array; colors: Float32Array } {
+  const heights = new Float32Array(VERTEX_COUNT);
+  const colors = new Float32Array(VERTEX_COUNT * 3);
+  const halfSize = TERRAIN_SIZE / 2;
+  const step = TERRAIN_SIZE / GRID;
+
+  for (let iz = 0; iz <= GRID; iz++) {
+    for (let ix = 0; ix <= GRID; ix++) {
+      const idx = iz * (GRID + 1) + ix;
+      const wx = ix * step - halfSize;
+      const wz = iz * step - halfSize;
+
+      let h = 0;
+      let maxContrib = 0;
+      let dominant = "core";
+
+      for (const concept of concepts) {
+        const pos = concept.position[language];
+        if (!pos) continue;
+
+        const cx = pos[0];
+        const cz = pos[1];
+        const cw = concept.weight[language] ?? 0.5;
+
+        const isGhost = concept.lacuna?.[language] ?? false;
+        if (isGhost && !showGhosts) continue;
+        if (cw === 0 && !isGhost) continue;
+
+        const dx = wx - cx;
+        const dz = wz - cz;
+        const g = gaussian(dx, dz, sigma) * cw;
+
+        if (isGhost) {
+          h -= g * 0.3;
+        } else {
+          h += g;
+          if (g > maxContrib) {
+            maxContrib = g;
+            dominant = concept.cluster;
+          }
+        }
+      }
+
+      const sculpted = Math.sign(h) * Math.pow(Math.abs(h), 1.3);
+      heights[idx] = sculpted * heightScale;
+
+      const heightNorm = Math.min(Math.abs(sculpted), 1);
+      const cc = CLUSTER_COLORS[dominant] || CLUSTER_COLORS.core;
+      const ci = idx * 3;
+      const tint = 0.3 + heightNorm * 0.7;
+      const glow = heightNorm * heightNorm * emissiveStrength;
+
+      colors[ci] = 0.02 + cc[0] * tint * 0.5 + glow * cc[0];
+      colors[ci + 1] = 0.02 + cc[1] * tint * 0.5 + glow * cc[1];
+      colors[ci + 2] = 0.04 + cc[2] * tint * 0.5 + glow * cc[2];
+    }
+  }
+
+  return { heights, colors };
+}
+
+// ── TerrainMesh ──────────────────────────────────────────────
+function TerrainMesh({
+  concepts,
+  language,
+  showGhosts,
+  sigma,
+  heightScale,
+  emissiveStrength,
+}: {
+  concepts: Concept[];
+  language: string;
+  showGhosts: boolean;
+  sigma: number;
+  heightScale: number;
+  emissiveStrength: number;
+}) {
+  const meshRef = useRef<THREE.Mesh>(null);
+
+  const targetH = useRef(new Float32Array(VERTEX_COUNT));
+  const targetC = useRef(new Float32Array(VERTEX_COUNT * 3));
+  const startH = useRef(new Float32Array(VERTEX_COUNT));
+  const startC = useRef(new Float32Array(VERTEX_COUNT * 3));
+  const currentH = useRef(new Float32Array(VERTEX_COUNT));
+  const currentC = useRef(new Float32Array(VERTEX_COUNT * 3));
+  const transitionStart = useRef(0);
+  const needsUpdate = useRef(true);
+  const firstRender = useRef(true);
+
+  const geometry = useMemo(() => {
+    const geo = new THREE.PlaneGeometry(TERRAIN_SIZE, TERRAIN_SIZE, GRID, GRID);
+    geo.setAttribute(
+      "color",
+      new THREE.Float32BufferAttribute(new Float32Array(VERTEX_COUNT * 3), 3)
+    );
+    return geo;
+  }, []);
+
+  useEffect(() => {
+    const { heights, colors } = computeTerrain(
+      concepts,
+      language,
+      showGhosts,
+      sigma,
+      heightScale,
+      emissiveStrength
+    );
+
+    targetH.current.set(heights);
+    targetC.current.set(colors);
+
+    if (firstRender.current) {
+      startH.current.set(heights);
+      startC.current.set(colors);
+      currentH.current.set(heights);
+      currentC.current.set(colors);
+      transitionStart.current = performance.now() / 1000 - TRANSITION_DURATION;
+      firstRender.current = false;
+    } else {
+      startH.current.set(currentH.current);
+      startC.current.set(currentC.current);
+      transitionStart.current = performance.now() / 1000;
+    }
+    needsUpdate.current = true;
+  }, [concepts, language, showGhosts, sigma, heightScale, emissiveStrength]);
+
+  useFrame(() => {
+    if (!meshRef.current || !needsUpdate.current) return;
+
+    const elapsed = performance.now() / 1000 - transitionStart.current;
+    const raw = Math.min(elapsed / TRANSITION_DURATION, 1);
+    const t = easeOutQuad(raw);
+
+    const posArr = geometry.attributes.position.array as Float32Array;
+    const colArr = geometry.attributes.color.array as Float32Array;
+
+    for (let i = 0; i < VERTEX_COUNT; i++) {
+      const h = startH.current[i] + (targetH.current[i] - startH.current[i]) * t;
+      posArr[i * 3 + 2] = h;
+      currentH.current[i] = h;
+
+      const ci = i * 3;
+      colArr[ci] = startC.current[ci] + (targetC.current[ci] - startC.current[ci]) * t;
+      colArr[ci + 1] = startC.current[ci + 1] + (targetC.current[ci + 1] - startC.current[ci + 1]) * t;
+      colArr[ci + 2] = startC.current[ci + 2] + (targetC.current[ci + 2] - startC.current[ci + 2]) * t;
+      currentC.current[ci] = colArr[ci];
+      currentC.current[ci + 1] = colArr[ci + 1];
+      currentC.current[ci + 2] = colArr[ci + 2];
+    }
+
+    geometry.attributes.position.needsUpdate = true;
+    geometry.attributes.color.needsUpdate = true;
+    geometry.computeVertexNormals();
+
+    if (raw >= 1) needsUpdate.current = false;
+  });
+
+  return (
+    <mesh ref={meshRef} geometry={geometry} rotation={[-Math.PI / 2, 0, 0]}>
+      <meshStandardMaterial
+        vertexColors
+        side={THREE.DoubleSide}
+        roughness={0.35}
+        metalness={0.3}
+        toneMapped={false}
+      />
+    </mesh>
+  );
+}
+
+// ── ConceptLabels ────────────────────────────────────────────
+function ConceptLabels({
+  concepts,
+  language,
+  showGhosts,
+  heightScale,
+  onConceptClick,
+}: {
+  concepts: Concept[];
+  language: string;
+  showGhosts: boolean;
+  heightScale: number;
+  onConceptClick: (id: string) => void;
+}) {
+  const visibleConcepts = useMemo(() => {
+    return concepts.filter((c) => {
+      const pos = c.position[language];
+      if (!pos) return false;
+      const isGhost = c.lacuna?.[language] ?? false;
+      return !isGhost || showGhosts;
+    });
+  }, [concepts, language, showGhosts]);
+
+  return (
+    <group>
+      {visibleConcepts.map((concept) => {
+        const pos = concept.position[language];
+        if (!pos) return null;
+
+        const isGhost = concept.lacuna?.[language] ?? false;
+        const weight = concept.weight[language] ?? 0.5;
+        const rawH = isGhost ? -(weight * 0.3) : weight;
+        const sculpted = Math.sign(rawH) * Math.pow(Math.abs(rawH), 1.3);
+        const y = sculpted * heightScale + 2;
+
+        const hex = isGhost
+          ? "#78716c"
+          : CLUSTER_HEX[concept.cluster] || "#f59e0b";
+
+        return (
+          <Text
+            key={concept.id}
+            position={[pos[0], y, pos[1]]}
+            fontSize={1.8}
+            color={hex}
+            anchorX="center"
+            anchorY="bottom"
+            fillOpacity={isGhost ? 0.5 : 1}
+            outlineWidth={0.06}
+            outlineColor="#000000"
+            onClick={() => onConceptClick(concept.id)}
+            onPointerOver={() => {
+              document.body.style.cursor = "pointer";
+            }}
+            onPointerOut={() => {
+              document.body.style.cursor = "default";
+            }}
+          >
+            {getLabel(concept, language)}
+          </Text>
+        );
+      })}
+    </group>
+  );
+}
+
+// ── GroundGrid ───────────────────────────────────────────────
+function GroundGrid() {
+  const geometry = useMemo(() => {
+    const points: number[] = [];
+    const half = TERRAIN_SIZE / 2;
+    for (let i = -half; i <= half; i += 10) {
+      points.push(-half, -0.2, i, half, -0.2, i);
+      points.push(i, -0.2, -half, i, -0.2, half);
+    }
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute(
+      "position",
+      new THREE.Float32BufferAttribute(points, 3)
+    );
+    return geo;
+  }, []);
+
+  return (
+    <lineSegments geometry={geometry}>
+      <lineBasicMaterial color="#0d0d1a" opacity={0.3} transparent />
+    </lineSegments>
+  );
+}
+
+// ── CameraRig ────────────────────────────────────────────────
+function CameraRig() {
+  const { camera } = useThree();
+  useEffect(() => {
+    camera.position.set(55, 40, 55);
+    camera.lookAt(0, 0, 0);
+  }, [camera]);
+  return null;
+}
+
+// ── Scene ────────────────────────────────────────────────────
+function Scene({
+  concepts,
+  language,
+  showGhosts,
+  onConceptClick,
+}: {
+  concepts: Concept[];
+  language: string;
+  showGhosts: boolean;
+  onConceptClick: (id: string) => void;
+}) {
+  const { scene } = useThree();
+
+  const { sigma, heightScale } = useControls("Terrain", {
+    sigma: { value: 12, min: 2, max: 30, step: 0.5 },
+    heightScale: { value: 20, min: 1, max: 50, step: 0.5 },
+  });
+
+  const {
+    emissiveStrength,
+    bloomIntensity,
+    bloomThreshold,
+    bloomRadius,
+    fogNear,
+    fogFar,
+    vignette: vignetteAmount,
+  } = useControls("Visual", {
+    emissiveStrength: { value: 2.5, min: 0, max: 8, step: 0.1 },
+    bloomIntensity: { value: 1.2, min: 0, max: 4, step: 0.1 },
+    bloomThreshold: { value: 0.3, min: 0, max: 2, step: 0.05 },
+    bloomRadius: { value: 0.8, min: 0, max: 1, step: 0.05 },
+    fogNear: { value: 60, min: 10, max: 200, step: 5 },
+    fogFar: { value: 180, min: 50, max: 500, step: 5 },
+    vignette: { value: 0.45, min: 0, max: 1, step: 0.05 },
+  });
+
+  useEffect(() => {
+    scene.fog = new THREE.Fog("#050508", fogNear, fogFar);
+    scene.background = new THREE.Color("#050508");
+  }, [scene, fogNear, fogFar]);
+
+  const [autoRotate, setAutoRotate] = useState(true);
+  const idleTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleOrbitStart = useCallback(() => {
+    setAutoRotate(false);
+    if (idleTimeout.current) clearTimeout(idleTimeout.current);
+  }, []);
+
+  const handleOrbitEnd = useCallback(() => {
+    if (idleTimeout.current) clearTimeout(idleTimeout.current);
+    idleTimeout.current = setTimeout(() => setAutoRotate(true), 2200);
+  }, []);
+
+  const chromaOffset = useMemo(() => new THREE.Vector2(0.0005, 0.0005), []);
+
+  return (
+    <>
+      <CameraRig />
+
+      <ambientLight intensity={0.15} color="#1a1a2e" />
+      <directionalLight position={[30, 50, 20]} intensity={0.8} color="#ffffff" />
+      <directionalLight position={[-20, 30, -40]} intensity={0.4} color="#4338ca" />
+      <pointLight position={[0, 25, 0]} intensity={1.2} color="#f59e0b" distance={80} />
+      <pointLight position={[-40, 15, -30]} intensity={0.6} color="#3b82f6" distance={60} />
+      <pointLight position={[35, 15, 25]} intensity={0.6} color="#ef4444" distance={60} />
+
+      <TerrainMesh
+        concepts={concepts}
+        language={language}
+        showGhosts={showGhosts}
+        sigma={sigma}
+        heightScale={heightScale}
+        emissiveStrength={emissiveStrength}
+      />
+
+      <ConceptLabels
+        concepts={concepts}
+        language={language}
+        showGhosts={showGhosts}
+        heightScale={heightScale}
+        onConceptClick={onConceptClick}
+      />
+
+      <GroundGrid />
+
+      <OrbitControls
+        autoRotate={autoRotate}
+        autoRotateSpeed={0.5}
+        enableDamping
+        dampingFactor={0.05}
+        minDistance={15}
+        maxDistance={150}
+        maxPolarAngle={Math.PI / 2.1}
+        onStart={handleOrbitStart}
+        onEnd={handleOrbitEnd}
+      />
+
+      <EffectComposer>
+        <Bloom
+          mipmapBlur
+          intensity={bloomIntensity}
+          luminanceThreshold={bloomThreshold}
+          luminanceSmoothing={0.025}
+          radius={bloomRadius}
+        />
+        <Vignette
+          darkness={vignetteAmount}
+          offset={0.1}
+          blendFunction={BlendFunction.NORMAL}
+        />
+        <ChromaticAberration offset={chromaOffset} />
+      </EffectComposer>
+    </>
+  );
+}
+
+// ── Error boundary ───────────────────────────────────────────
+interface ErrorBoundaryProps {
+  children: ReactNode;
+  onRetry: () => void;
+}
+
+interface ErrorBoundaryState {
+  hasError: boolean;
+}
+
+class CanvasErrorBoundary extends Component<
+  ErrorBoundaryProps,
+  ErrorBoundaryState
+> {
+  constructor(props: ErrorBoundaryProps) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(): ErrorBoundaryState {
+    return { hasError: true };
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="flex flex-col items-center justify-center h-full text-[#e5e5e5] bg-[#0a0a0a] gap-4 font-mono">
+          <p>WebGL context lost</p>
+          <button
+            onClick={() => {
+              this.setState({ hasError: false });
+              this.props.onRetry();
+            }}
+            className="px-6 py-2 bg-[#262626] border border-[#404040] text-[#e5e5e5] cursor-pointer rounded"
+          >
+            Retry
+          </button>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
+// ── DevTerrain (default export) ──────────────────────────────
+export default function DevTerrain({
+  concepts,
+  language,
+  showGhosts,
+  onConceptClick,
+}: {
+  concepts: Concept[];
+  language: string;
+  showGhosts: boolean;
+  onConceptClick: (id: string) => void;
+}) {
+  const [mounted, setMounted] = useState(false);
+  const [canvasKey, setCanvasKey] = useState(0);
+
+  useEffect(() => {
+    const t = setTimeout(() => setMounted(true), 50);
+    return () => clearTimeout(t);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <div className="w-full h-full bg-[#0a0a0a]" />
+    );
+  }
+
+  if (concepts.length === 0) {
+    return (
+      <div className="w-full h-full bg-[#0a0a0a] flex items-center justify-center text-[#737373]">
+        No concepts loaded
+      </div>
+    );
+  }
+
+  return (
+    <CanvasErrorBoundary onRetry={() => setCanvasKey((k) => k + 1)}>
+      <Canvas
+        key={canvasKey}
+        camera={{ fov: 50, near: 0.1, far: 500 }}
+        onCreated={({ gl }) => {
+          gl.setClearColor(new THREE.Color("#050508"));
+          gl.toneMapping = THREE.ACESFilmicToneMapping;
+          gl.toneMappingExposure = 1.2;
+        }}
+        style={{ width: "100%", height: "100%" }}
+      >
+        <Scene
+          concepts={concepts}
+          language={language}
+          showGhosts={showGhosts}
+          onConceptClick={onConceptClick}
+        />
+      </Canvas>
+    </CanvasErrorBoundary>
+  );
+}
