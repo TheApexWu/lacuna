@@ -1,0 +1,176 @@
+{
+  "meta": {
+    "domain": "Multi-Context Historical Comparison",
+    "description": "Same core concepts (war, guilt, debt, justice, betrayal, honor, sovereignty) embedded in 5 different historical contexts. Tests whether cross-lingual divergence is context-dependent or universal. If betrayal diverges in Versailles AND in the Cold War AND in colonialism, the divergence is structural. If it only diverges in Versailles, it is domain-specific.",
+    "languages": ["en", "de", "fr"],
+    "source": "curated definitions for BGE-M3 embedding — LACUNA multi-context benchmark",
+    "prepared_by": "Octave",
+    "date": "2026-03-01",
+    "hypothesis": "Cross-lingual divergence on high-delta concepts (guilt, betrayal, debt) should persist across historical contexts because it is rooted in structural language differences, not domain-specific vocabulary. Low-delta concepts (peace, order) should remain stable across contexts.",
+    "contexts": [
+      "versailles_1919",
+      "cold_war_1947_1991",
+      "colonialism_19th",
+      "financial_crisis_2008",
+      "sino_japanese_war"
+    ],
+    "expected_hero_pairs": [
+      {"pair": ["guilt_cw", "debt_cw"], "hypothesis": "Cold War guilt (nuclear guilt, proxy war guilt) vs debt (Marshall Plan obligations). Schuld ambiguity should persist."},
+      {"pair": ["betrayal_col", "justice_col"], "hypothesis": "Colonial betrayal of civilizing mission promises vs justice for colonized peoples. FR colonial perspective creates unique topology."},
+      {"pair": ["debt_2008", "guilt_2008"], "hypothesis": "2008 financial crisis: EN treats debt as neutral financial fact. DE frames it as moral failure. FR frames it as systemic injustice."},
+      {"pair": ["honor_sino", "betrayal_sino"], "hypothesis": "Sino-Japanese war: 'honor' in Japanese context clusters near military glory. In Chinese context it clusters near shame and national wound."}
+    ]
+  },
+  "concepts": [
+    {
+      "id": "guilt_cw",
+      "cluster": "cold_war",
+      "context": "Cold War 1947-1991",
+      "definitions": {
+        "en": "The moral responsibility felt by nuclear powers for threatening civilian populations with weapons of mass destruction",
+        "de": "Die kollektive Schuld der Atommächte, die Menschheit durch Nuklearwaffen in ständiger Bedrohung zu halten",
+        "fr": "La responsabilité morale des puissances nucléaires dans la terreur qu'elles font peser sur les populations civiles"
+      }
+    },
+    {
+      "id": "debt_cw",
+      "cluster": "cold_war",
+      "context": "Cold War 1947-1991",
+      "definitions": {
+        "en": "The financial obligation of Marshall Plan recipients to rebuild their economies within the Western sphere",
+        "de": "Die wirtschaftliche und moralische Verpflichtung der Marshall-Plan-Empfänger gegenüber den USA",
+        "fr": "La dette contractée envers les États-Unis par les bénéficiaires du Plan Marshall, contrainte sur la souveraineté française"
+      }
+    },
+    {
+      "id": "betrayal_cw",
+      "cluster": "cold_war",
+      "context": "Cold War 1947-1991",
+      "definitions": {
+        "en": "The act of passing state secrets to the enemy, a fundamental violation of national loyalty during the Cold War",
+        "de": "Der Landesverrat als schwerste Form des politischen Vertrauensbruchs im Kalten Krieg, besonders belastet durch DDR-Stasi-Kontext",
+        "fr": "La trahison des idéaux de la Résistance par ceux qui collaboraient avec les puissances étrangères pendant la Guerre froide"
+      }
+    },
+    {
+      "id": "sovereignty_cw",
+      "cluster": "cold_war",
+      "context": "Cold War 1947-1991",
+      "definitions": {
+        "en": "The nominal independence of nations within the two superpowers' spheres of influence",
+        "de": "Die eingeschränkte Souveränität der BRD und DDR unter dem Einfluss ihrer jeweiligen Schutzmächte",
+        "fr": "La souveraineté nationale défendue par de Gaulle face aux deux blocs, fondement de la politique étrangère française indépendante"
+      }
+    },
+    {
+      "id": "justice_cw",
+      "cluster": "cold_war",
+      "context": "Cold War 1947-1991",
+      "definitions": {
+        "en": "The ideological claim of both superpowers to represent the just global order against totalitarianism",
+        "de": "Die westliche Gerechtigkeit als Argument gegen den kommunistischen Totalitarismus, formuliert im Grundgesetz",
+        "fr": "La justice sociale revendiquée par les deux camps, tiraillant la France entre modèle américain et attrait communiste"
+      }
+    },
+    {
+      "id": "betrayal_col",
+      "cluster": "colonialism",
+      "context": "European Colonialism 19th century",
+      "definitions": {
+        "en": "The violation of civilizing mission promises made to colonized peoples who received exploitation instead of development",
+        "de": "Der Verrat an den versprochenen Werten der Aufklärung durch koloniale Unterdrückung und Ausbeutung",
+        "fr": "La trahison des promesses républicaines d'égalité par une France qui colonisait au nom des droits de l'homme"
+      }
+    },
+    {
+      "id": "justice_col",
+      "cluster": "colonialism",
+      "context": "European Colonialism 19th century",
+      "definitions": {
+        "en": "The eventual reckoning for colonial exploitation, demanded by independence movements across the Global South",
+        "de": "Die Gerechtigkeit für kolonisierte Völker als moralische Forderung, die Deutschland als Spätkolonialmacht ebenfalls betraf",
+        "fr": "La justice pour les peuples colonisés, contradiction fondamentale avec les valeurs universalistes de la République française"
+      }
+    },
+    {
+      "id": "guilt_col",
+      "cluster": "colonialism",
+      "context": "European Colonialism 19th century",
+      "definitions": {
+        "en": "The moral responsibility of colonial powers for cultural destruction and economic exploitation of colonized peoples",
+        "de": "Die koloniale Schuld als Teil der deutschen Erinnerungskultur, weniger präsent als der Holocaust aber zunehmend diskutiert",
+        "fr": "La culpabilité coloniale, longtemps refoulée dans la mémoire nationale française, progressivement reconnue depuis les années 2000"
+      }
+    },
+    {
+      "id": "debt_col",
+      "cluster": "colonialism",
+      "context": "European Colonialism 19th century",
+      "definitions": {
+        "en": "Reparation claims by formerly colonized nations for economic losses during colonial rule",
+        "de": "Die Forderungen nach Wiedergutmachung für koloniale Ausbeutung, analog zur deutschen Erinnerungsarbeit zum Holocaust",
+        "fr": "La dette coloniale de la France envers ses anciennes colonies, particulièrement vive dans les relations franco-africaines"
+      }
+    },
+    {
+      "id": "debt_2008",
+      "cluster": "financial_crisis",
+      "context": "Global Financial Crisis 2008",
+      "definitions": {
+        "en": "Sovereign and private financial obligations accumulated through credit expansion that collapsed in the 2008 financial crisis",
+        "de": "Die Staatsverschuldung als moralisches Versagen der Politik, die Generationen mit Schulden belastet",
+        "fr": "La dette souveraine comme contrainte extérieure imposée par les marchés financiers à la souveraineté démocratique"
+      }
+    },
+    {
+      "id": "guilt_2008",
+      "cluster": "financial_crisis",
+      "context": "Global Financial Crisis 2008",
+      "definitions": {
+        "en": "The moral responsibility of banks and financial institutions for reckless lending that caused the global crisis",
+        "de": "Die Schuld der Banken und der Politik, die durch Deregulierung die Finanzkrise ermöglichten",
+        "fr": "La culpabilité du système financier international qui a imposé sa crise aux économies réelles et aux citoyens"
+      }
+    },
+    {
+      "id": "austerity_2008",
+      "cluster": "financial_crisis",
+      "context": "Global Financial Crisis 2008",
+      "definitions": {
+        "en": "Government spending cuts imposed to reduce deficits following the 2008 financial crisis bailouts",
+        "de": "Die Sparpolitik als moralische Notwendigkeit der Haushaltsdisziplin, von Deutschland in der Eurozone durchgesetzt",
+        "fr": "L'austérité imposée par la troïka aux pays du Sud de l'Europe, vécue comme une punition injuste par la France"
+      }
+    },
+    {
+      "id": "honor_sino",
+      "cluster": "sino_japanese",
+      "context": "Sino-Japanese War 1937-1945",
+      "definitions": {
+        "en": "The military and national prestige at stake in the Pacific conflict between Japan and China",
+        "de": "Die militärische Ehre als Konstrukt des japanischen Bushido-Kodex, der den Krieg in Asien prägte",
+        "fr": "L'honneur national en jeu dans un conflit qui définit encore aujourd'hui les relations diplomatiques sino-japonaises"
+      }
+    },
+    {
+      "id": "betrayal_sino",
+      "cluster": "sino_japanese",
+      "context": "Sino-Japanese War 1937-1945",
+      "definitions": {
+        "en": "The violation of diplomatic norms by Japan through military aggression against China beginning in 1937",
+        "de": "Der japanische Verrat an den Versprechen der Modernisierung Asiens durch brutale Kriegsführung in China",
+        "fr": "La trahison de la solidarité asiatique par un Japon impérialiste qui s'était présenté comme libérateur des peuples colonisés"
+      }
+    },
+    {
+      "id": "guilt_sino",
+      "cluster": "sino_japanese",
+      "context": "Sino-Japanese War 1937-1945",
+      "definitions": {
+        "en": "Japan's responsibility for war crimes including the Nanjing Massacre, contested in contemporary Japanese memory",
+        "de": "Die japanische Kriegsschuld für Massaker wie Nanjing, in Japan ähnlich umstritten wie die deutsche Vergangenheitsbewältigung",
+        "fr": "La culpabilité japonaise pour les crimes de guerre en Chine, obstacle persistant à la normalisation des relations bilatérales"
+      }
+    }
+  ]
+}

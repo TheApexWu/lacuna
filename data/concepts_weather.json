@@ -1,0 +1,154 @@
+{
+  "meta": {
+    "domain": "Weather & Climate Patterns",
+    "description": "Neutral baseline dataset. Weather vocabulary is descriptive and observational — it predates modern nation-states and carries minimal cultural or historical charge. Expected result: near-zero cross-lingual divergence. Used as a flat baseline to prove BY CONTRAST that Versailles divergence is caused by history, not by the embedding model.",
+    "languages": ["en", "de", "fr"],
+    "source": "curated definitions for BGE-M3 embedding — LACUNA neutral baseline",
+    "prepared_by": "Octave",
+    "date": "2026-03-01",
+    "hypothesis": "Cross-lingual divergence should be near zero across all pairs. Weather concepts are observational and pre-cultural — they do not carry the historical trauma or ideological charge that produces divergence in the Versailles dataset. If the model produces flat terrain here, it validates that Versailles peaks are caused by history, not architecture.",
+    "expected_hero_pairs": [
+      {"pair": ["storm", "destruction"], "hypothesis": "Minimal divergence expected. Both languages describe physical causation without moral framing."},
+      {"pair": ["drought", "scarcity"], "hypothesis": "Minimal divergence. Physical scarcity has no cross-lingual moral topology difference."},
+      {"pair": ["climate", "change"], "hypothesis": "Possible mild divergence: 'climate change' has slightly different political valence in EN vs DE vs FR, but much lower than historical concepts."}
+    ],
+    "note": "If ANY concept in this dataset shows delta > 0.10, it would be a significant finding — suggesting that even ostensibly neutral vocabulary carries hidden cultural charge."
+  },
+  "concepts": [
+    {
+      "id": "rain",
+      "cluster": "precipitation",
+      "definitions": {
+        "en": "Water droplets falling from clouds to the earth's surface as a result of condensation in the atmosphere",
+        "de": "Wassertropfen, die aus Wolken auf die Erdoberfläche fallen, entstanden durch Kondensation in der Atmosphäre",
+        "fr": "Des gouttes d'eau tombant des nuages sur la surface terrestre suite à la condensation dans l'atmosphère"
+      }
+    },
+    {
+      "id": "snow",
+      "cluster": "precipitation",
+      "definitions": {
+        "en": "Frozen precipitation in the form of ice crystals that fall from clouds and accumulate on the ground",
+        "de": "Gefrorener Niederschlag in Form von Eiskristallen, der aus Wolken fällt und sich auf dem Boden ansammelt",
+        "fr": "Précipitation gelée sous forme de cristaux de glace tombant des nuages et s'accumulant au sol"
+      }
+    },
+    {
+      "id": "wind",
+      "cluster": "atmosphere",
+      "definitions": {
+        "en": "The movement of air from areas of high pressure to areas of low pressure in the atmosphere",
+        "de": "Die Bewegung von Luft von Hochdruckgebieten zu Tiefdruckgebieten in der Atmosphäre",
+        "fr": "Le déplacement de l'air des zones de haute pression vers les zones de basse pression dans l'atmosphère"
+      }
+    },
+    {
+      "id": "temperature",
+      "cluster": "atmosphere",
+      "definitions": {
+        "en": "A measure of the average kinetic energy of molecules in the air, expressed in degrees Celsius or Fahrenheit",
+        "de": "Ein Maß für die durchschnittliche kinetische Energie der Luftmoleküle, ausgedrückt in Grad Celsius",
+        "fr": "Une mesure de l'énergie cinétique moyenne des molécules de l'air, exprimée en degrés Celsius"
+      }
+    },
+    {
+      "id": "humidity",
+      "cluster": "atmosphere",
+      "definitions": {
+        "en": "The amount of water vapor present in the air, measured as a percentage of the maximum possible at a given temperature",
+        "de": "Die Menge an Wasserdampf in der Luft, gemessen als Prozentsatz des möglichen Maximums bei einer gegebenen Temperatur",
+        "fr": "La quantité de vapeur d'eau présente dans l'air, mesurée en pourcentage du maximum possible à une température donnée"
+      }
+    },
+    {
+      "id": "storm",
+      "cluster": "extreme",
+      "definitions": {
+        "en": "A violent atmospheric disturbance characterized by strong winds, heavy rain, thunder and lightning",
+        "de": "Eine heftige atmosphärische Störung mit starken Winden, starkem Regen, Donner und Blitz",
+        "fr": "Une perturbation atmosphérique violente caractérisée par des vents forts, de fortes pluies, du tonnerre et des éclairs"
+      }
+    },
+    {
+      "id": "drought",
+      "cluster": "extreme",
+      "definitions": {
+        "en": "An extended period of abnormally low rainfall leading to water scarcity and agricultural stress",
+        "de": "Eine verlängerte Periode mit abnormal niedrigen Niederschlägen, die zu Wasserknappheit und landwirtschaftlichem Stress führt",
+        "fr": "Une période prolongée de précipitations anormalement faibles entraînant une pénurie d'eau et un stress agricole"
+      }
+    },
+    {
+      "id": "fog",
+      "cluster": "precipitation",
+      "definitions": {
+        "en": "A cloud of tiny water droplets near the ground that reduces visibility to less than one kilometer",
+        "de": "Eine Wolke aus winzigen Wassertröpfchen in Bodennähe, die die Sicht auf unter einen Kilometer reduziert",
+        "fr": "Un nuage de minuscules gouttelettes d'eau près du sol réduisant la visibilité à moins d'un kilomètre"
+      }
+    },
+    {
+      "id": "pressure",
+      "cluster": "atmosphere",
+      "definitions": {
+        "en": "The force exerted by the weight of air above a given point, measured in millibars or hectopascals",
+        "de": "Die Kraft, die durch das Gewicht der Luft über einem bestimmten Punkt ausgeübt wird, gemessen in Millibar",
+        "fr": "La force exercée par le poids de l'air au-dessus d'un point donné, mesurée en millibars ou hectopascals"
+      }
+    },
+    {
+      "id": "cloud",
+      "cluster": "precipitation",
+      "definitions": {
+        "en": "A visible mass of water droplets or ice crystals suspended in the atmosphere above the earth's surface",
+        "de": "Eine sichtbare Masse aus Wassertröpfchen oder Eiskristallen, die in der Atmosphäre über der Erdoberfläche schwebt",
+        "fr": "Une masse visible de gouttelettes d'eau ou de cristaux de glace en suspension dans l'atmosphère"
+      }
+    },
+    {
+      "id": "frost",
+      "cluster": "extreme",
+      "definitions": {
+        "en": "Ice crystals formed on surfaces when temperature drops below freezing and moisture in the air condenses",
+        "de": "Eiskristalle, die sich auf Oberflächen bilden, wenn die Temperatur unter den Gefrierpunkt fällt",
+        "fr": "Cristaux de glace se formant sur les surfaces lorsque la température descend en dessous de zéro degré"
+      }
+    },
+    {
+      "id": "climate",
+      "cluster": "patterns",
+      "definitions": {
+        "en": "The long-term average weather patterns of a region, distinct from day-to-day weather variations",
+        "de": "Die langfristigen durchschnittlichen Wettermuster einer Region, im Unterschied zu täglichen Wetterschwankungen",
+        "fr": "Les moyennes météorologiques à long terme d'une région, distinctes des variations météorologiques quotidiennes"
+      }
+    },
+    {
+      "id": "season",
+      "cluster": "patterns",
+      "definitions": {
+        "en": "One of the four recurring periods of the year characterized by distinct weather patterns and daylight hours",
+        "de": "Eine der vier wiederkehrenden Jahreszeiten, die durch unterschiedliche Wettermuster und Tageslichtdauer gekennzeichnet sind",
+        "fr": "L'une des quatre périodes récurrentes de l'année caractérisées par des conditions météorologiques et des durées d'ensoleillement distinctes"
+      }
+    },
+    {
+      "id": "forecast",
+      "cluster": "patterns",
+      "definitions": {
+        "en": "A scientific prediction of future weather conditions based on atmospheric data and meteorological models",
+        "de": "Eine wissenschaftliche Vorhersage zukünftiger Wetterbedingungen basierend auf atmosphärischen Daten und meteorologischen Modellen",
+        "fr": "Une prévision scientifique des conditions météorologiques futures basée sur des données atmosphériques et des modèles météorologiques"
+      }
+    },
+    {
+      "id": "heatwave",
+      "cluster": "extreme",
+      "definitions": {
+        "en": "An extended period of abnormally high temperatures that poses risks to human health and ecosystems",
+        "de": "Eine verlängerte Periode mit abnormal hohen Temperaturen, die Risiken für die menschliche Gesundheit und Ökosysteme darstellt",
+        "fr": "Une période prolongée de températures anormalement élevées présentant des risques pour la santé humaine et les écosystèmes"
+      }
+    }
+  ]
+}
