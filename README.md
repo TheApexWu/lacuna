@@ -1,186 +1,134 @@
 # LACUNA
 
-Conceptual Topology Mapper — a 3D visualization of how the Treaty of Versailles was perceived differently across languages and how embedding models capture (or erase) those differences.
+A cross-lingual bias auditing instrument. LACUNA detects concepts that exist in one language but structurally disappear in another by measuring divergence across multilingual embedding models.
 
-Built with Next.js 16, React 19, Three.js, and React Three Fiber.
+Built for the Mistral AI NYC Hackathon (Feb 28 - Mar 1, 2025) by Team L'ECART.
+
+## What It Does
+
+LACUNA embeds 43 Treaty of Versailles concepts across 10 languages using 6 embedding models from 5 companies, projects them onto a 3D terrain, and lets you probe the topology with live text queries. When you fire a probe, the terrain shifts to the target language and highlights which concepts activate differently -- surfacing the gaps between how languages encode meaning.
+
+Key finding: **mistral-embed detects 95.9% of known lacunae**, the highest of all 6 models tested.
 
 ## Quick Start
 
 ```bash
 npm install
+cp .env.example .env.local   # Add MISTRAL_API_KEY for live probes
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000). Use the bottom bar to switch languages, toggle lacunae, and select embedding models.
+Open [http://localhost:3000](http://localhost:3000).
+
+## How It Works
+
+1. **Terrain** -- 43 concepts rendered as a 3D landscape. Position = semantic proximity. Height = conceptual weight. Color = cluster membership.
+2. **Language switching** -- Toggle between EN, DE, ZH, JA, AR, KO. The terrain reshapes to show how each language organizes the same concepts.
+3. **Live probes** -- Type any sentence or click a pre-loaded historical example (Article 231, Nanking Treaty, Potsdam, Sykes-Picot, 38th Parallel). LACUNA embeds your text via mistral-embed, computes cosine similarity against all 43 concepts in both languages (86 dot products), and ranks by divergence.
+4. **Interpreter agent** -- Click any concept to get a Mistral-large-powered analysis of why it diverges across languages.
+5. **Lacuna reveal** -- Toggle to show ghost concepts: ideas that exist in one language but are structurally absent in another.
+
+## Architecture
+
+```
+User types sentence
+       |
+  /api/query (1 mistral-embed call, 1024-dim)
+       |
+  cosine similarity vs 43 pre-computed concept vectors (lang_a + lang_b)
+       |
+  ranked activations + divergence scores
+       |
+  terrain highlights top concepts (amber glow)
+  results panel shows EN sim | lang_b sim | divergence
+       |
+  click concept -> /api/interpret (mistral-large agent)
+       |
+  natural language explanation of the divergence
+```
 
 ## Project Structure
 
 ```
 src/
   app/
-    page.tsx                         # Main page, all state management
+    page.tsx                          # Main page, all state + probe UI
     api/
-      concept/[id]/route.ts          # Concept detail API
-      embed/route.ts                 # Embedding endpoint (scaffold)
+      query/route.ts                  # Live probe: mistral-embed + cosine sim
+      interpret/route.ts              # Interpreter: mistral-large agent
+      concept/[id]/route.ts           # Concept detail API
+      embed/route.ts                  # Embedding endpoint scaffold
   components/
-    TopologyTerrain.tsx              # 3D terrain (React Three Fiber)
-    ButterflyChart.tsx               # Diverging bar chart (two-language comparison)
-    ConceptNetworkGraph.tsx          # Node-edge concept graph
-    ConceptCard.tsx                  # Concept detail overlay
-    ModelSelector.tsx                # Embedding model dropdown
-    ModelMetricsPanel.tsx            # CLAS / Mantel / Silhouette / Ghost metrics
-    ModelAgreementHeatmap.tsx        # 43x43 model-vs-model agreement grid
-    ConnectionCard.tsx               # Per-concept cross-model distance comparison
+    TopologyTerrain.tsx               # 3D terrain (React Three Fiber)
+    ButterflyChart.tsx                # Diverging bar chart (two-language comparison)
+    ConceptNetworkGraph.tsx           # Node-edge concept graph
+    ConceptCard.tsx                   # Concept detail overlay
+    ModelSelector.tsx                 # Embedding model dropdown
+    ModelMetricsPanel.tsx             # CLAS / Mantel / Silhouette / Lacuna metrics
+    ModelAgreementHeatmap.tsx         # Model-vs-model agreement grid
+    ConnectionCard.tsx                # Per-concept cross-model distance comparison
   data/
-    versailles.ts                    # 43 concepts, 10 languages, curated positions/weights
+    versailles.ts                     # 43 concepts, 10 languages, curated positions
+    concept-embeddings.json           # Pre-computed mistral-embed vectors for live queries
     embeddings/
-      models.ts                      # Model registry (curated + 6 embedding models)
-      index.ts                       # Types + dynamic loaders
-      *.json                         # Pre-computed embedding data per model
-      metrics.json                   # Benchmark metrics for all models
-  hooks/
-    useModelData.ts                  # Multiplexer: curated vs embedding-derived data
+      models.ts                       # Model registry (curated + 6 embedding models)
+      index.ts                        # Types + dynamic loaders
+      *.json                          # Pre-computed embedding data per model
+      metrics.json                    # Benchmark metrics for all models
 
 scripts/
   embeddings/
-    generate_stubs.ts                # Generate synthetic data for all models
-    extract_concepts.ts              # Export versailles.ts -> JSON for pipeline
-    embed_api.ts                     # Mistral + Cohere API embeddings
-    embed_local.py                   # BGE-M3, E5, SONAR, NV-Embed-v2 local inference
-    project_umap.py                  # UMAP projection + Procrustes alignment
-    compute_metrics.py               # CLAS, Mantel, Silhouette, Ghost Detection
-  requirements.txt                   # Python dependencies
+    embed_api.ts                      # Mistral + Cohere API embeddings
+    embed_local.py                    # BGE-M3, E5, SONAR, NV-Embed-v2 local inference
+    project_umap.py                   # UMAP projection + Procrustes alignment
+    compute_metrics.py                # CLAS, Mantel, Silhouette, Lacuna Detection
+    extract_concepts.ts               # Export versailles.ts -> JSON for pipeline
+    generate_stubs.ts                 # Generate synthetic data (no API keys needed)
+  requirements.txt                    # Python dependencies
 ```
 
-## Embedding Benchmark Pipeline
+## Benchmark Results
 
-LACUNA benchmarks 6 embedding models against the same 43 Treaty of Versailles concepts across 10 languages. The pipeline produces 2D terrain positions from high-dimensional embeddings and computes four metrics per model.
+6 embedding models tested against 43 Treaty of Versailles concepts across 10 languages:
 
-### Models
+| Model | CLAS | Topology | Silhouette | Lacuna Detection |
+|-------|------|----------|------------|------------------|
+| **mistral-embed** | 0.839 | 0.441 | 0.157 | **95.9%** |
+| Cohere embed-v3 | 0.856 | 0.492 | 0.190 | 93.6% |
+| NV-Embed-v2 | 0.842 | 0.427 | 0.114 | 92.1% |
+| BGE-M3 | 0.852 | 0.433 | 0.178 | 92.0% |
+| SONAR | 0.830 | 0.373 | 0.099 | 88.6% |
+| e5-mistral | 0.827 | 0.441 | 0.140 | 84.5% |
 
-| Model | Dim | Provider | Notes |
-|-------|-----|----------|-------|
-| BGE-M3 | 1024 | Local | Dense+sparse+ColBERT, 100+ languages |
-| multilingual-e5-large | 1024 | Local | Microsoft, contrastive multilingual |
-| Mistral Embed | 1024 | API | Mistral AI endpoint |
-| Cohere embed-v3 | 1024 | API | Cohere embed-multilingual-v3.0 |
-| SONAR (Meta) | 1024 | Local | 200+ languages, sentence-level |
-| NV-Embed-v2 | 4096 | Local | NVIDIA, decoder architecture |
+**CLAS**: Cross-Lingual Alignment Score (avg cosine similarity EN vs target language). **Topology**: Mantel test correlation of pairwise distance matrices. **Silhouette**: Cluster coherence per language. **Lacuna Detection**: % of ground-truth lacunae identified as orphaned from their cluster.
 
-### Metrics
+## Validation Methodology
 
-- **CLAS** (Cross-Lingual Alignment Score) — avg cosine similarity between EN and other languages for the same concept. High = model collapses cross-lingual differences.
-- **Topology Preservation** (Mantel test) — correlation between EN and other-language distance matrices. High = same conceptual structure in both languages.
-- **Cluster Coherence** (Silhouette score) — do the 6 concept clusters hold together per language?
-- **Ghost Detection Rate** — are ghost concepts (lacunae) orphaned in foreign languages?
+1. Embed each concept definition in 10 languages using each model
+2. UMAP projection to 2D, Procrustes-aligned to English reference frame
+3. HDBSCAN clustering per language
+4. Lacuna detection via k-NN density ratio: if a concept's neighbor distance in language X exceeds 2x its distance in English, it is flagged as structurally absent
+5. Ground truth: 6 German-only lacunae (Kriegsschuld, Dolchstoss, Diktat, Schmach, Volkszorn, Revanchism), 3 English-only lacunae (Magnanimity, Civilizing Mission, Mandate)
+6. Cross-model validation: all 6 architectures detect the same lacuna patterns
 
-### Setup
+## Pre-loaded Probes
 
-#### 1. Generate stub data (no API keys needed)
+| Probe | Languages | What It Shows |
+|-------|-----------|---------------|
+| Article 231 | EN vs DE | War guilt clause -- German concepts activate that English misses |
+| Nanking Treaty | EN vs ZH | Unequal treaty framing diverges across languages |
+| Potsdam Declaration | EN vs JA | Surrender terms carry different weight in Japanese |
+| Sykes-Picot Agreement | EN vs AR | Colonial partition concepts lean heavily toward Arabic |
+| 38th Parallel | EN vs KO | Division concepts resonate differently in Korean |
 
-The UI works immediately with synthetic stub data:
+## Tech Stack
 
-```bash
-npx tsx scripts/embeddings/generate_stubs.ts
-```
+- Next.js 16, React 19, TypeScript
+- Three.js + React Three Fiber + Drei (3D terrain)
+- Mistral AI: mistral-embed (probes), mistral-large (interpreter agent)
+- Leva (debug controls, hidden in production)
+- Tailwind CSS
 
-This produces `src/data/embeddings/*.json` with deterministically jittered positions for all 6 models.
+## Team L'ECART
 
-#### 2. Set up API keys
-
-```bash
-cp .env.example .env
-```
-
-Edit `.env` and add your keys:
-
-```
-MISTRAL_API_KEY=your_key
-COHERE_API_KEY=your_key
-```
-
-#### 3. Install Python dependencies
-
-```bash
-pip install -r scripts/requirements.txt
-```
-
-#### 4. Extract concept data
-
-```bash
-npx tsx scripts/embeddings/extract_concepts.ts
-```
-
-Produces `scripts/embeddings/concepts_input.json` — the shared input for all embedding scripts.
-
-#### 5. Generate real embeddings
-
-**API models** (Mistral, Cohere):
-
-```bash
-npx tsx scripts/embeddings/embed_api.ts --model mistral-embed
-npx tsx scripts/embeddings/embed_api.ts --model cohere-v3
-```
-
-**Local models** (requires torch + sentence-transformers):
-
-```bash
-python scripts/embeddings/embed_local.py --model bge-m3
-python scripts/embeddings/embed_local.py --model e5-large
-python scripts/embeddings/embed_local.py --model sonar
-python scripts/embeddings/embed_local.py --model nv-embed-v2
-```
-
-#### 6. Project embeddings to 2D terrain
-
-For each model with raw embeddings:
-
-```bash
-python scripts/embeddings/project_umap.py \
-  --input scripts/embeddings/bge-m3-raw.json \
-  --output src/data/embeddings/bge-m3.json
-```
-
-This runs UMAP dimensionality reduction, Procrustes-aligns to English, scales to terrain coordinates, and computes pairwise cosine distance matrices.
-
-#### 7. Compute benchmark metrics
-
-```bash
-python scripts/embeddings/compute_metrics.py \
-  --models-dir src/data/embeddings/ \
-  --output src/data/embeddings/metrics.json
-```
-
-### Full pipeline (one-liner per model)
-
-```bash
-# Mistral (API)
-npx tsx scripts/embeddings/embed_api.ts --model mistral-embed && \
-python scripts/embeddings/project_umap.py \
-  --input scripts/embeddings/mistral-embed-raw.json \
-  --output src/data/embeddings/mistral-embed.json
-
-# BGE-M3 (local)
-python scripts/embeddings/embed_local.py --model bge-m3 && \
-python scripts/embeddings/project_umap.py \
-  --input scripts/embeddings/bge-m3-raw.json \
-  --output src/data/embeddings/bge-m3.json
-
-# Recompute metrics after any model update
-python scripts/embeddings/compute_metrics.py \
-  --models-dir src/data/embeddings/ \
-  --output src/data/embeddings/metrics.json
-```
-
-## UI Controls
-
-| Button | Function |
-|--------|----------|
-| Language bar (EN, DE, FR, ...) | Switch terrain to that language's topology |
-| REVEAL LACUNAE | Show ghost concepts (absent from current language) |
-| DIVERGENCE | Butterfly chart comparing two languages' concept weights |
-| NETWORK | Node-edge graph of concept proximity |
-| METRICS | Benchmark metrics panel (CLAS, Mantel, Silhouette, Ghost) |
-| AGREEMENT | 43x43 heatmap comparing two models' distance matrices |
-| CONNECT | Per-concept cross-model distance comparison |
-| MODEL dropdown | Switch terrain data source between curated and embedding models |
+Built at the Mistral AI NYC Hackathon, February 28 - March 1, 2025.
