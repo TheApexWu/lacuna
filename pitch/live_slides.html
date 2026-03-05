@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LACUNA — Live Presentation</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=JetBrains+Mono:wght@400;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0a0a0a;
+    color: #e5e5e5;
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .slide {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10vw;
+    text-align: center;
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  .slide.active { display: flex; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .quote {
+    font-size: 2.8vw;
+    font-weight: 300;
+    line-height: 1.5;
+    color: #d4d4d4;
+    font-style: italic;
+    max-width: 70vw;
+  }
+
+  .attribution {
+    font-size: 1.2vw;
+    color: #525252;
+    margin-top: 2vh;
+    letter-spacing: 0.15em;
+  }
+
+  .statement {
+    font-size: 2.4vw;
+    font-weight: 300;
+    line-height: 1.6;
+    color: #d4d4d4;
+    max-width: 65vw;
+  }
+
+  .statement em {
+    font-style: normal;
+    color: #f59e0b;
+  }
+
+  .statement strong {
+    font-weight: 700;
+    color: #e5e5e5;
+  }
+
+  .big-word {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8vw;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    color: #e5e5e5;
+  }
+
+  .big-word-sub {
+    font-size: 1.3vw;
+    color: #525252;
+    margin-top: 2vh;
+    letter-spacing: 0.2em;
+    font-style: italic;
+  }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9vw;
+    letter-spacing: 0.4em;
+    color: #404040;
+    margin-bottom: 4vh;
+  }
+
+  .logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 6vw;
+    font-weight: 700;
+    letter-spacing: 0.4em;
+    color: #e5e5e5;
+  }
+
+  .tagline {
+    font-size: 1.1vw;
+    color: #737373;
+    margin-top: 2vh;
+    letter-spacing: 0.25em;
+  }
+
+  .built-with {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8vw;
+    color: #333;
+    margin-top: 4vh;
+    letter-spacing: 0.15em;
+  }
+
+  .bullet-list {
+    text-align: left;
+    max-width: 55vw;
+  }
+
+  .bullet-list li {
+    font-size: 1.6vw;
+    color: #a3a3a3;
+    margin-bottom: 2.5vh;
+    list-style: none;
+    padding-left: 2vw;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .bullet-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.8vw;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #f59e0b;
+  }
+
+  .bullet-list li span {
+    color: #525252;
+    font-size: 1.1vw;
+  }
+
+  /* Speaker tag */
+  .speaker {
+    position: absolute;
+    top: 3vh;
+    right: 4vw;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7vw;
+    letter-spacing: 0.3em;
+    color: #333;
+    z-index: 2;
+  }
+
+  /* Video slides */
+  .video-slide {
+    position: relative;
+    padding: 0;
+  }
+
+  .video-bg {
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+    z-index: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 12px;
+  }
+
+  .video-overlay {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 6vh 8vw;
+  }
+
+  .video-overlay .section-label {
+    margin-bottom: 3vh;
+  }
+
+  .overlay-statement {
+    font-size: 2vw;
+    font-weight: 300;
+    line-height: 1.7;
+    color: #d4d4d4;
+    max-width: 60vw;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.8);
+    margin-top: 2vh;
+  }
+
+  .overlay-statement em {
+    font-style: normal;
+    color: #f59e0b;
+  }
+
+  .overlay-statement strong {
+    font-weight: 700;
+    color: #e5e5e5;
+  }
+
+  .overlay-detail {
+    color: #525252;
+    font-size: 1.3vw;
+  }
+
+  /* Pipeline diagram */
+  .pipeline {
+    display: flex;
+    align-items: center;
+    gap: 1.5vw;
+    margin-top: 4vh;
+  }
+
+  .pipeline-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1vh;
+  }
+
+  .pipeline-box {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85vw;
+    letter-spacing: 0.1em;
+    color: #e5e5e5;
+    border: 1px solid #262626;
+    border-radius: 6px;
+    padding: 1.5vh 1.5vw;
+    background: #141414;
+    min-width: 9vw;
+    text-align: center;
+  }
+
+  .pipeline-box.highlight {
+    border-color: #f59e0b;
+    background: rgba(245, 158, 11, 0.08);
+  }
+
+  .pipeline-sub {
+    font-size: 0.65vw;
+    color: #525252;
+    letter-spacing: 0.1em;
+  }
+
+  .pipeline-arrow {
+    font-size: 1.2vw;
+    color: #333;
+  }
+
+  /* Technical list */
+  .tech-list {
+    text-align: left;
+    max-width: 55vw;
+  }
+
+  .tech-list li {
+    font-size: 1.5vw;
+    color: #a3a3a3;
+    margin-bottom: 3vh;
+    list-style: none;
+    padding-left: 2vw;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .tech-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.9vw;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #f59e0b;
+  }
+
+  .tech-list li strong {
+    color: #e5e5e5;
+    font-weight: 700;
+  }
+
+  .tech-list li span {
+    color: #525252;
+    font-size: 1.1vw;
+  }
+
+  /* Benchmark table */
+  .bench-table {
+    border-collapse: collapse;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.95vw;
+    margin-top: 2vh;
+  }
+
+  .bench-table th {
+    color: #525252;
+    font-weight: 400;
+    font-size: 0.8vw;
+    letter-spacing: 0.1em;
+    padding: 1.2vh 2vw;
+    border-bottom: 1px solid #262626;
+    text-align: left;
+  }
+
+  .bench-table th span {
+    color: #333;
+    font-size: 0.65vw;
+  }
+
+  .bench-table td {
+    color: #a3a3a3;
+    padding: 1vh 2vw;
+    border-bottom: 1px solid #1a1a1a;
+  }
+
+  .bench-table .model-bold {
+    color: #e5e5e5;
+    font-weight: 700;
+  }
+
+  .bench-table .hi {
+    color: #f59e0b;
+    font-weight: 700;
+  }
+
+  .bench-table .row-highlight td {
+    background: rgba(245, 158, 11, 0.06);
+  }
+
+  .bench-takeaways {
+    margin-top: 3vh;
+    text-align: center;
+  }
+
+  .bench-takeaways p {
+    font-size: 1.1vw;
+    color: #a3a3a3;
+    line-height: 1.8;
+  }
+
+  .bench-takeaways strong {
+    color: #e5e5e5;
+    font-weight: 700;
+  }
+
+  .bench-takeaways em {
+    font-style: normal;
+    color: #f59e0b;
+  }
+
+  .bench-takeaways span {
+    color: #525252;
+    font-size: 0.95vw;
+  }
+
+  /* Use case cards */
+  .use-cases {
+    display: flex;
+    gap: 3vw;
+    margin-top: 4vh;
+  }
+
+  .use-case {
+    border: 1px solid #262626;
+    border-radius: 8px;
+    padding: 3vh 2vw;
+    max-width: 22vw;
+    text-align: left;
+    background: #141414;
+  }
+
+  .use-case-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9vw;
+    letter-spacing: 0.2em;
+    color: #f59e0b;
+    margin-bottom: 1.5vh;
+  }
+
+  .use-case p {
+    font-size: 1.1vw;
+    color: #a3a3a3;
+    line-height: 1.6;
+  }
+
+  /* Future items */
+  .future-list {
+    text-align: left;
+    max-width: 50vw;
+  }
+
+  .future-list li {
+    font-size: 1.5vw;
+    color: #a3a3a3;
+    margin-bottom: 3vh;
+    list-style: none;
+    padding-left: 2vw;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .future-list li::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    font-family: 'JetBrains Mono', monospace;
+    color: #f59e0b;
+    font-size: 1.2vw;
+  }
+
+  .future-list li strong {
+    color: #e5e5e5;
+    font-weight: 700;
+  }
+
+  .future-list li span {
+    color: #525252;
+    font-size: 1.05vw;
+  }
+
+  /* Navigation */
+  .nav {
+    position: fixed;
+    bottom: 3vh;
+    right: 4vw;
+    display: flex;
+    gap: 1vw;
+    z-index: 100;
+  }
+
+  .nav button {
+    background: #141414;
+    border: 1px solid #262626;
+    color: #737373;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8vw;
+    padding: 0.8vh 1.5vw;
+    cursor: pointer;
+    letter-spacing: 0.15em;
+    border-radius: 4px;
+    transition: all 0.2s;
+  }
+
+  .nav button:hover {
+    border-color: #404040;
+    color: #a3a3a3;
+  }
+
+  .counter {
+    position: fixed;
+    bottom: 3.3vh;
+    left: 4vw;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8vw;
+    color: #333;
+    letter-spacing: 0.15em;
+  }
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1: Wittgenstein quote — ALEX -->
+<div class="slide active" id="s1">
+  <span class="speaker">ALEX</span>
+  <p class="quote">"The limits of my language are the limits of my world."</p>
+  <p class="attribution">LUDWIG WITTGENSTEIN</p>
+</div>
+
+<!-- SLIDE 2: Problem — ALEX -->
+<div class="slide" id="s2">
+  <span class="speaker">ALEX</span>
+  <p class="statement">
+    When two languages read the same text,<br>
+    they're reading <strong>two different worlds.</strong><br><br>
+    Every multilingual model is trained to compress<br>
+    those worlds into one shared space.
+  </p>
+</div>
+
+<!-- SLIDE 3: LACUNA title — ALEX -->
+<div class="slide" id="s3">
+  <span class="speaker">ALEX</span>
+  <p class="big-word">LACUNA</p>
+  <p class="big-word-sub">noun. an unfilled space; a gap; a missing piece.</p>
+</div>
+
+<!-- SLIDE 4: English topology — OCTAVE -->
+<div class="slide video-slide" id="s4">
+  <span class="speaker">OCTAVE</span>
+  <video src="terrain_beauty.mp4" muted loop playsinline class="video-bg"></video>
+  <div class="video-overlay">
+    <p class="section-label">ENGLISH TOPOLOGY</p>
+    <p class="overlay-statement">
+      The Treaty of Versailles &mdash; <em>English</em><br>
+      <strong>Reparations</strong> groups far from <strong>humiliation</strong><br>
+      Concepts cluster by semantic proximity
+    </p>
+  </div>
+</div>
+
+<!-- SLIDE 5: French comparison — OCTAVE -->
+<div class="slide video-slide" id="s5">
+  <span class="speaker">OCTAVE</span>
+  <video src="terrain_french.mp4" muted loop playsinline class="video-bg"></video>
+  <div class="video-overlay">
+    <p class="section-label">FRENCH TOPOLOGY</p>
+    <p class="overlay-statement">
+      Similar to English &mdash; but not identical<br>
+      <em>Honor</em> drifts from <em>justice</em><br>
+      <span class="overlay-detail">French justice is republican &amp; institutional;<br>English justice is a broad moral virtue</span>
+    </p>
+  </div>
+</div>
+
+<!-- SLIDE 6: German topology — BRENDAN -->
+<div class="slide video-slide" id="s6">
+  <span class="speaker">BRENDAN</span>
+  <video src="terrain_switch.mp4" muted loop playsinline class="video-bg"></video>
+  <div class="video-overlay">
+    <p class="section-label">GERMAN TOPOLOGY</p>
+    <p class="overlay-statement">
+      An entirely <em>different</em> topology<br>
+      <strong>Humiliation</strong> moves close to <strong>reparations</strong><br>
+      <span class="overlay-detail">The conceptual landscape reshapes around<br>a different cultural reading of the same text</span>
+    </p>
+  </div>
+</div>
+
+<!-- SLIDE 7: Pipeline — BRENDAN -->
+<div class="slide" id="s7">
+  <span class="speaker">BRENDAN</span>
+  <p class="section-label">PIPELINE</p>
+  <p class="statement" style="font-size: 1.6vw; margin-bottom: 2vh;">
+    LACUNA works on <em>any document.</em>
+  </p>
+  <div class="pipeline">
+    <div class="pipeline-step">
+      <div class="pipeline-box">DOCUMENT</div>
+      <span class="pipeline-sub">any text input</span>
+    </div>
+    <span class="pipeline-arrow">&rarr;</span>
+    <div class="pipeline-step">
+      <div class="pipeline-box highlight">EXTRACTOR</div>
+      <span class="pipeline-sub">Mistral Large</span>
+    </div>
+    <span class="pipeline-arrow">&rarr;</span>
+    <div class="pipeline-step">
+      <div class="pipeline-box highlight">VALIDATOR</div>
+      <span class="pipeline-sub">Mistral Large</span>
+    </div>
+    <span class="pipeline-arrow">&rarr;</span>
+    <div class="pipeline-step">
+      <div class="pipeline-box">EMBEDDINGS</div>
+      <span class="pipeline-sub">BGE-M3</span>
+    </div>
+    <span class="pipeline-arrow">&rarr;</span>
+    <div class="pipeline-step">
+      <div class="pipeline-box">UMAP</div>
+      <span class="pipeline-sub">topology map</span>
+    </div>
+    <span class="pipeline-arrow">&rarr;</span>
+    <div class="pipeline-step">
+      <div class="pipeline-box highlight">LACUNA</div>
+      <span class="pipeline-sub">visualization</span>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 8: Technical — why topologies diverge — SUNNY -->
+<div class="slide" id="s8">
+  <span class="speaker">SUNNY</span>
+  <p class="section-label">WHY TOPOLOGIES DIVERGE</p>
+  <ul class="tech-list">
+    <li><strong>Linguistic structure</strong><br><span>Syntax, morphology, and framing shape how concepts relate</span></li>
+    <li><strong>Cultural &amp; historical sedimentation</strong><br><span>Centuries of usage layer meaning that embeddings inherit</span></li>
+    <li><strong>Training data &amp; model bias</strong><br><span>Corpus distribution shapes what the model "knows" per language</span></li>
+  </ul>
+</div>
+
+<!-- SLIDE 9: Benchmarking — ALEX -->
+<div class="slide" id="s9" style="padding: 6vh 8vw;">
+  <span class="speaker">ALEX</span>
+  <p class="section-label">BENCHMARKING &mdash; 6 MODELS, 4 METRICS</p>
+  <table class="bench-table">
+    <thead>
+      <tr>
+        <th>Model</th>
+        <th>CLAS <span>(alignment)</span></th>
+        <th>Topology <span>(r)</span></th>
+        <th>Silhouette <span>(clusters)</span></th>
+        <th>Lacuna Detection</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Curated</td><td>0.882</td><td class="hi">0.565</td><td>0.251</td><td>89.6%</td>
+      </tr>
+      <tr>
+        <td class="model-bold">BGE-M3</td><td>0.852</td><td>0.433</td><td>0.178</td><td class="hi">92.0%</td>
+      </tr>
+      <tr>
+        <td>Cohere-v3</td><td>0.856</td><td>0.492</td><td>0.190</td><td>93.6%</td>
+      </tr>
+      <tr class="row-highlight">
+        <td class="model-bold">mistral-embed</td><td>0.839</td><td>0.441</td><td>0.157</td><td class="hi">95.9%</td>
+      </tr>
+      <tr>
+        <td>NV-Embed-v2</td><td>0.842</td><td>0.427</td><td>0.114</td><td>92.1%</td>
+      </tr>
+      <tr>
+        <td>SONAR</td><td>0.830</td><td>0.373</td><td>0.099</td><td>88.6%</td>
+      </tr>
+      <tr>
+        <td>e5-large</td><td>0.827</td><td>0.441</td><td>0.140</td><td>84.5%</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="bench-takeaways">
+    <p><strong>mistral-embed</strong> has the best lacuna detection rate at <em>95.9%</em></p>
+    <p>Divergence patterns hold across all 6 architectures &mdash; <span>the gaps aren't a model artifact, they're in the language</span></p>
+  </div>
+</div>
+
+<!-- SLIDE 10: Use cases — BRENDAN -->
+<div class="slide" id="s10">
+  <span class="speaker">BRENDAN</span>
+  <p class="section-label">USE CASES</p>
+  <div class="use-cases">
+    <div class="use-case">
+      <p class="use-case-title">DIPLOMACY</p>
+      <p>Negotiating between culturally different languages &mdash; knowing the right phrasing is the difference between mutual understanding and conflict.</p>
+    </div>
+    <div class="use-case">
+      <p class="use-case-title">INTERNATIONAL LAW</p>
+      <p>Drafting policy that reads the same way across languages &mdash; not just translated, but conceptually aligned.</p>
+    </div>
+    <div class="use-case">
+      <p class="use-case-title">MODEL EVALUATION</p>
+      <p>Quantifying what multilingual models lose when they compress &mdash; backed by math, not intuition.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 11: Evolution / Future — OCTAVE -->
+<div class="slide" id="s11">
+  <span class="speaker">OCTAVE</span>
+  <p class="section-label">WHAT'S NEXT</p>
+  <ul class="future-list">
+    <li><strong>Embedding model benchmarking</strong><br><span>Cross-lingual alignment metrics as a scoring tool for multilingual models</span></li>
+    <li><strong>Live phrasing recommendations</strong><br><span>Real-time suggestions for cross-lingual clarity</span></li>
+  </ul>
+</div>
+
+<!-- SLIDE 12: End card — OCTAVE -->
+<div class="slide" id="s12">
+  <span class="speaker">OCTAVE</span>
+  <p class="logo">LACUNA</p>
+  <p class="tagline">CROSS-LINGUAL DIVERGENCE EXPLORER</p>
+  <p class="built-with">Brendan &middot; Octave &middot; Alex &middot; Sunny</p>
+</div>
+
+<!-- Navigation -->
+<div class="nav">
+  <button onclick="prev()">PREV</button>
+  <button onclick="next()">NEXT</button>
+</div>
+<div class="counter" id="counter">01 / 12</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let current = 0;
+
+  function pauseVideos(slide) {
+    slide.querySelectorAll('video').forEach(v => {
+      v.pause();
+      v.currentTime = 0;
+    });
+  }
+
+  function playVideos(slide) {
+    slide.querySelectorAll('video').forEach(v => {
+      v.currentTime = 0;
+      v.play();
+    });
+  }
+
+  function show(i) {
+    pauseVideos(slides[current]);
+    slides[current].classList.remove('active');
+    current = Math.max(0, Math.min(i, slides.length - 1));
+    slides[current].classList.remove('active');
+    void slides[current].offsetWidth;
+    slides[current].classList.add('active');
+    playVideos(slides[current]);
+    document.getElementById('counter').textContent =
+      String(current + 1).padStart(2, '0') + ' / ' + String(slides.length).padStart(2, '0');
+  }
+
+  function next() { show(current + 1); }
+  function prev() { show(current - 1); }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); next(); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
+  });
+
+  playVideos(slides[current]);
+</script>
+
+</body>
+</html>

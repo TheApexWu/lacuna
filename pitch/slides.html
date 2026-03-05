@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LACUNA — Pitch</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=JetBrains+Mono:wght@400;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0a0a0a;
+    color: #e5e5e5;
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .slide {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10vw;
+    text-align: center;
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  .slide.active { display: flex; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .quote {
+    font-size: 2.8vw;
+    font-weight: 300;
+    line-height: 1.5;
+    color: #d4d4d4;
+    font-style: italic;
+    max-width: 70vw;
+  }
+
+  .attribution {
+    font-size: 1.2vw;
+    color: #525252;
+    margin-top: 2vh;
+    letter-spacing: 0.15em;
+  }
+
+  .statement {
+    font-size: 2.4vw;
+    font-weight: 300;
+    line-height: 1.6;
+    color: #d4d4d4;
+    max-width: 65vw;
+  }
+
+  .statement em {
+    font-style: normal;
+    color: #f59e0b;
+  }
+
+  .statement strong {
+    font-weight: 700;
+    color: #e5e5e5;
+  }
+
+  .big-word {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8vw;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    color: #e5e5e5;
+  }
+
+  .big-word-sub {
+    font-size: 1.3vw;
+    color: #525252;
+    margin-top: 2vh;
+    letter-spacing: 0.2em;
+    font-style: italic;
+  }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9vw;
+    letter-spacing: 0.4em;
+    color: #404040;
+    margin-bottom: 4vh;
+  }
+
+  .logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 6vw;
+    font-weight: 700;
+    letter-spacing: 0.4em;
+    color: #e5e5e5;
+  }
+
+  .tagline {
+    font-size: 1.1vw;
+    color: #737373;
+    margin-top: 2vh;
+    letter-spacing: 0.25em;
+  }
+
+  .built-with {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8vw;
+    color: #333;
+    margin-top: 4vh;
+    letter-spacing: 0.15em;
+  }
+
+  .bullet-list {
+    text-align: left;
+    max-width: 55vw;
+  }
+
+  .bullet-list li {
+    font-size: 1.6vw;
+    color: #a3a3a3;
+    margin-bottom: 2.5vh;
+    list-style: none;
+    padding-left: 2vw;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .bullet-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.8vw;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #f59e0b;
+  }
+
+  .bullet-list li span {
+    color: #525252;
+    font-size: 1.1vw;
+  }
+
+  .placeholder {
+    border: 1px dashed #262626;
+    border-radius: 12px;
+    width: 70vw;
+    height: 55vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1vw;
+    letter-spacing: 0.2em;
+  }
+
+  .placeholder .hint {
+    font-size: 0.8vw;
+    color: #262626;
+    margin-top: 1vh;
+  }
+
+  /* Video slides: full-bleed video with text overlay */
+  .video-slide {
+    position: relative;
+    padding: 0;
+  }
+
+  .video-bg {
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+    z-index: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 12px;
+  }
+
+  .video-overlay {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 6vh 8vw;
+  }
+
+  .video-overlay .section-label {
+    margin-bottom: 3vh;
+  }
+
+  .overlay-bullets {
+    max-width: 50vw;
+  }
+
+  .overlay-bullets li {
+    font-size: 1.4vw;
+    color: #d4d4d4;
+    margin-bottom: 2vh;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.8);
+  }
+
+  .overlay-bullets li span {
+    color: #737373;
+    font-size: 1vw;
+  }
+
+  .overlay-statement {
+    font-size: 2vw;
+    font-weight: 300;
+    line-height: 1.7;
+    color: #d4d4d4;
+    max-width: 60vw;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.8);
+    margin-top: 2vh;
+  }
+
+  .overlay-statement em {
+    font-style: normal;
+    color: #f59e0b;
+  }
+
+  .overlay-statement strong {
+    font-weight: 700;
+    color: #e5e5e5;
+  }
+
+  /* Navigation */
+  .nav {
+    position: fixed;
+    bottom: 3vh;
+    right: 4vw;
+    display: flex;
+    gap: 1vw;
+    z-index: 100;
+  }
+
+  .nav button {
+    background: #141414;
+    border: 1px solid #262626;
+    color: #737373;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8vw;
+    padding: 0.8vh 1.5vw;
+    cursor: pointer;
+    letter-spacing: 0.15em;
+    border-radius: 4px;
+    transition: all 0.2s;
+  }
+
+  .nav button:hover {
+    border-color: #404040;
+    color: #a3a3a3;
+  }
+
+  .counter {
+    position: fixed;
+    bottom: 3.3vh;
+    left: 4vw;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8vw;
+    color: #333;
+    letter-spacing: 0.15em;
+  }
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1: Wittgenstein quote -->
+<div class="slide active" id="s1">
+  <p class="quote">"The limits of my language are the limits of my world."</p>
+  <p class="attribution">LUDWIG WITTGENSTEIN</p>
+</div>
+
+<!-- SLIDE 2: Two worlds + models flatten them -->
+<div class="slide" id="s2">
+  <p class="statement">
+    When two languages read the same text,<br>
+    they're reading <strong>two different worlds.</strong><br><br>
+    Every multilingual model is trained to compress<br>
+    those worlds into one shared space.
+  </p>
+</div>
+
+<!-- SLIDE 3: Meaning is a topology -->
+<div class="slide" id="s3">
+  <p class="statement">
+    But meaning isn't a point. It's a <em>topology.</em><br><br>
+    Concepts have <strong>weight</strong>, <strong>proximity</strong>, <strong>structure</strong> &mdash;<br>
+    and that structure <em>reshapes itself</em> in every language.
+  </p>
+</div>
+
+<!-- SLIDE 4: LACUNA title -->
+<div class="slide" id="s4">
+  <p class="big-word">LACUNA</p>
+  <p class="big-word-sub">noun. an unfilled space; a gap; a missing piece.</p>
+</div>
+
+<!-- SLIDE 5: Terrain beauty + reading the terrain -->
+<div class="slide video-slide" id="s5">
+  <video src="terrain_beauty.mp4" muted loop playsinline class="video-bg"></video>
+  <div class="video-overlay">
+    <p class="section-label">THE TREATY OF VERSAILLES</p>
+    <ul class="bullet-list overlay-bullets">
+      <li>Every <strong>peak</strong> is a concept <span>— height = centrality</span></li>
+      <li>Every <strong>position</strong> is semantic proximity <span>— related concepts cluster</span></li>
+      <li>Every <strong>color</strong> is a thematic cluster <span>— justice, victory, humiliation</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- SLIDE 6: Language switch + lacunae -->
+<div class="slide video-slide" id="s6">
+  <video src="terrain_switch.mp4" muted loop playsinline class="video-bg"></video>
+  <div class="video-overlay">
+    <p class="overlay-statement">
+      Switch languages, and the landscape <em>changes.</em><br>
+      Concepts that tower in English sink in German.<br>
+      The depressions are <em>lacunae</em> &mdash; concepts with<br>
+      <strong>no ground to stand on</strong> in the other language.
+    </p>
+  </div>
+</div>
+
+<!-- SLIDE 7: End card -->
+<div class="slide" id="s7">
+  <p class="logo">LACUNA</p>
+  <p class="tagline">CROSS-LINGUAL DIVERGENCE EXPLORER</p>
+  <p class="built-with">Built on Mistral + BGE-M3</p>
+</div>
+
+<!-- Navigation -->
+<div class="nav">
+  <button onclick="prev()">PREV</button>
+  <button onclick="next()">NEXT</button>
+</div>
+<div class="counter" id="counter">01 / 07</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let current = 0;
+
+  function pauseVideos(slide) {
+    slide.querySelectorAll('video').forEach(v => {
+      v.pause();
+      v.currentTime = 0;
+    });
+  }
+
+  function playVideos(slide) {
+    slide.querySelectorAll('video').forEach(v => {
+      v.currentTime = 0;
+      v.play();
+    });
+  }
+
+  function show(i) {
+    pauseVideos(slides[current]);
+    slides[current].classList.remove('active');
+    current = Math.max(0, Math.min(i, slides.length - 1));
+    slides[current].classList.remove('active');
+    // Force reflow for animation restart
+    void slides[current].offsetWidth;
+    slides[current].classList.add('active');
+    playVideos(slides[current]);
+    document.getElementById('counter').textContent =
+      String(current + 1).padStart(2, '0') + ' / ' + String(slides.length).padStart(2, '0');
+  }
+
+  function next() { show(current + 1); }
+  function prev() { show(current - 1); }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); next(); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
+  });
+
+  // Autoplay: start videos on the initial slide if any
+  playVideos(slides[current]);
+</script>
+
+</body>
+</html>
