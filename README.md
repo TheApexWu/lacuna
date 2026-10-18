@@ -2,7 +2,7 @@
 
 A cross-lingual bias auditing instrument. LACUNA detects concepts that exist in one language but structurally disappear in another by measuring divergence across multilingual embedding models.
 
-Built for the Mistral AI NYC Hackathon (Feb 28 - Mar 1, 2025) by Team L'ECART.
+Built for the Mistral AI NYC Hackathon (Feb 28 - Mar 1, 2026) by Team L'ECART.
 
 ## What It Does
 
@@ -131,4 +131,4 @@ scripts/
 
 ## Team L'ECART
 
-Built at the Mistral AI NYC Hackathon, February 28 - March 1, 2025.
+Built at the Mistral AI NYC Hackathon, February 28 - March 1, 2026.
