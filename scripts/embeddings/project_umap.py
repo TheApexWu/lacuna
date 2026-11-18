@@ -10,7 +10,7 @@ data file ({model}.json) with:
   - Weights derived from embedding norms / cluster centroids
 
 Usage:
-  python project_umap.py --input bge-m3-raw.json --output ../../src/data/embeddings/bge-m3.json
+  python project_umap.py --input bge-m3-raw.json --output ../../src/data/embeddings/bge-m3.json [--seed 42]
 
 Output format matches the EmbeddingData TypeScript interface.
 """
@@ -132,12 +132,16 @@ def compute_pairwise(vectors):
 def cluster_hdbscan(vectors, min_cluster_size=3):
     """Run HDBSCAN on high-dimensional vectors.
     Returns array of cluster labels (ints, -1 for noise)."""
+    # hdbscan's default tree algorithms reject metric="cosine" (sklearn
+    # BallTree raises "Unrecognized metric"); "generic" uses the full
+    # pairwise distance matrix, which is cheap at 43 points, and needs float64.
     clusterer = hdbscan.HDBSCAN(
         min_cluster_size=min_cluster_size,
         metric="cosine",
+        algorithm="generic",
         allow_single_cluster=False,
     )
-    labels = clusterer.fit_predict(vectors)
+    labels = clusterer.fit_predict(np.asarray(vectors, dtype=np.float64))
     return labels
 
 
@@ -250,6 +254,7 @@ def main():
     parser = argparse.ArgumentParser(description="Project raw embeddings to 2D terrain")
     parser.add_argument("--input", required=True, help="Path to {model}-raw.json")
     parser.add_argument("--output", required=True, help="Output path for {model}.json")
+    parser.add_argument("--seed", type=int, default=42, help="UMAP random_state")
     args = parser.parse_args()
 
     # Load data
@@ -280,7 +285,7 @@ def main():
     lang_positions = {}
     for lang in languages:
         print(f"  {lang}...", end=" ", flush=True)
-        positions = project_language(lang_vectors[lang])
+        positions = project_language(lang_vectors[lang], random_state=args.seed)
         lang_positions[lang] = positions
         print("done")
 

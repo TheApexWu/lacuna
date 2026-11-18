@@ -26,7 +26,7 @@ export const MODELS: ModelInfo[] = [
     shortName: "BGE-M3",
     dimension: 1024,
     provider: "local",
-    status: "stub",
+    status: "live",
     description: "BAAI General Embedding M3 — dense+sparse+ColBERT, 100+ languages",
   },
   {
@@ -44,7 +44,7 @@ export const MODELS: ModelInfo[] = [
     shortName: "MISTRAL",
     dimension: 1024,
     provider: "api",
-    status: "stub",
+    status: "live",
     description: "Mistral AI embedding endpoint",
   },
   {
@@ -53,7 +53,7 @@ export const MODELS: ModelInfo[] = [
     shortName: "COHERE",
     dimension: 1024,
     provider: "api",
-    status: "stub",
+    status: "live",
     description: "Cohere embed-multilingual-v3.0",
   },
   {
