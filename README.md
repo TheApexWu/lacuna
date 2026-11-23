@@ -189,4 +189,4 @@ Original table:
 
 ## Team L'ECART
 
-Built at the Mistral AI NYC Hackathon, February 28 - March 1, 2026. Sunny Son built the embedding benchmark pipeline and the model-comparison views. Alex Wu built the Next.js app, the API routes (query, interpret, orchestrate) and the `python/` backend.
+Built at the Mistral AI NYC Hackathon, February 28 - March 1, 2026. Alex Wu built most of the main app page and 3D terrain, plus the API routes (query, interpret, orchestrate). Sunny Son built the embedding benchmark pipeline and the model-comparison views. Brendan Johnston built the `python/` embedding pipeline and its agents. Octave added the French concepts, interpreter cards and pitch materials.
